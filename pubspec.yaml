@@ -12,11 +12,21 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.5
   flutter_dotenv: ^5.0.2
+  json_annotation: ^4.6.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1
+  json_serializable: ^6.3.1
+  build_runner: ^2.2.0
+
+scripts:
+  gen: flutter pub run build_runner build --delete-conflicting-outputs
+  clean:
+    - flutter clean
+    - flutter pub get
+    - flutter pub upgrade
 
 flutter:
   uses-material-design: true
