@@ -17,6 +17,9 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Setting environment variables
+        run: mv .env.example .env
+
       - name: Analyze code
         run: flutter analyze
 
