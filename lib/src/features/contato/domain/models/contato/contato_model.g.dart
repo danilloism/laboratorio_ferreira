@@ -26,12 +26,12 @@ ContatoModel _$ContatoModelFromJson(Map<String, dynamic> json) => ContatoModel(
 
 Map<String, dynamic> _$ContatoModelToJson(ContatoModel instance) =>
     <String, dynamic>{
-      'criadoEm': instance.criadoEm?.toIso8601String(),
-      'atualizadoEm': instance.atualizadoEm?.toIso8601String(),
       'uid': instance.uid,
       'nome': instance.nome,
       'ativo': instance.ativo,
       'account': instance.account,
+      'criadoEm': instance.criadoEm?.toIso8601String(),
+      'atualizadoEm': instance.atualizadoEm?.toIso8601String(),
       'telefones': instance.telefones.toList(),
       'categorias':
           instance.categorias.map((e) => _$RolesEnumEnumMap[e]!).toList(),

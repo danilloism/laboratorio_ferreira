@@ -16,7 +16,5 @@ class WebApiResponseModel {
     this.erros,
   });
 
-  T dadosTipados<T>() {
-    return dados as T;
-  }
+  T dadosTipados<T>() => dados as T;
 }
