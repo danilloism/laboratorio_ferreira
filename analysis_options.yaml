@@ -5,7 +5,7 @@ analyzer:
     - '**.g.dart'
     - '**/generated_plugin_registrant.dart'
     - '**.env'
-    - '**_test'
+    - 'test/'
 
 linter:
   rules:
