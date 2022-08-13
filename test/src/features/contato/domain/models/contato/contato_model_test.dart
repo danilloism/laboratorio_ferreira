@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/contato/contato_model.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/roles_enum.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/shared/enums/roles_enum.dart';
 
 void main() {
   late ContatoModel contato;
@@ -23,16 +23,22 @@ void main() {
     group('telefones', () {
       test('deve retornar tipo Set',
           () => expect(contato.telefones, isA<Set>()));
-      test('deve incrementar o tamanho ao adicionar novo telefone', () {
-        final anterior = contato.telefones.length;
+      test('deve incrementar o tamanho ao adicionar novo(s) telefone(s)', () {
+        int anterior = contato.telefones.length;
+        Iterable<String> telefones = [];
 
-        contato.addTelefones([faker.phoneNumber.us()]);
+        contato.addTelefones(telefones);
+        expect(contato.telefones.length, equals(anterior));
 
-        expect(contato.telefones.length, equals(anterior + 1));
+        telefones = [faker.phoneNumber.us()];
+        contato.addTelefones(telefones);
+        anterior += telefones.length;
+        expect(contato.telefones.length, equals(anterior));
 
-        contato.addTelefones(List.generate(2, (_) => faker.phoneNumber.us()));
-
-        expect(contato.telefones.length, equals(anterior + 3));
+        telefones = List.generate(5, (_) => faker.phoneNumber.us()).toSet();
+        contato.addTelefones(telefones);
+        anterior += telefones.length;
+        expect(contato.telefones.length, equals(anterior));
       });
     });
   });

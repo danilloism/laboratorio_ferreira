@@ -4,7 +4,6 @@ analyzer:
   exclude:
     - '**.g.dart'
     - '**/generated_plugin_registrant.dart'
-    - '**.env'
     - 'test/'
 
 linter:

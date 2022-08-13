@@ -1,8 +1,7 @@
-import 'dart:collection';
-
+import 'package:collection/collection.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/account/account_model.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/roles_enum.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/shared/enums/roles_enum.dart';
 
 part 'contato_model.g.dart';
 
@@ -41,9 +40,23 @@ class ContatoModel {
   bool removeCategoria(RolesEnum categoria) => _categorias.remove(categoria);
 
   @override
-  int get hashCode => nome.hashCode + _telefones.hashCode;
+  int get hashCode =>
+      criadoEm.hashCode ^
+      uid.hashCode ^
+      nome.hashCode ^
+      telefones.hashCode ^
+      categorias.hashCode;
 
   @override
   bool operator ==(covariant ContatoModel other) =>
-      uid == other.uid && nome == other.nome;
+      uid == other.uid &&
+      nome == other.nome &&
+      const SetEquality().equals(_telefones, other.telefones) &&
+      const SetEquality().equals(_categorias, other.categorias) &&
+      criadoEm.toString() == other.criadoEm.toString();
+
+  factory ContatoModel.fromJson(Map<String, dynamic> json) =>
+      _$ContatoModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ContatoModelToJson(this);
 }

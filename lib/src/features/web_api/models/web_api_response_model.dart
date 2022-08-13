@@ -17,4 +17,9 @@ class WebApiResponseModel {
   });
 
   T dadosTipados<T>() => dados as T;
+
+  Map<String, dynamic> toJson() => _$WebApiResponseModelToJson(this);
+
+  factory WebApiResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$WebApiResponseModelFromJson(json);
 }

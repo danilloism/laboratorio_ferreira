@@ -7,18 +7,37 @@ part of 'web_api_response_model.dart';
 // **************************************************************************
 
 WebApiResponseModel _$WebApiResponseModelFromJson(Map<String, dynamic> json) =>
-    WebApiResponseModel(
-      sucesso: json['sucesso'] as bool,
-      dados: json['dados'],
-      mensagem: json['mensagem'] as String,
-      erros: json['erros'],
+    $checkedCreate(
+      'WebApiResponseModel',
+      json,
+      ($checkedConvert) {
+        $checkKeys(
+          json,
+          allowedKeys: const ['sucesso', 'dados', 'mensagem', 'erros'],
+        );
+        final val = WebApiResponseModel(
+          sucesso: $checkedConvert('sucesso', (v) => v as bool),
+          dados: $checkedConvert('dados', (v) => v),
+          mensagem: $checkedConvert('mensagem', (v) => v as String),
+          erros: $checkedConvert('erros', (v) => v),
+        );
+        return val;
+      },
     );
 
-Map<String, dynamic> _$WebApiResponseModelToJson(
-        WebApiResponseModel instance) =>
-    <String, dynamic>{
-      'sucesso': instance.sucesso,
-      'dados': instance.dados,
-      'mensagem': instance.mensagem,
-      'erros': instance.erros,
-    };
+Map<String, dynamic> _$WebApiResponseModelToJson(WebApiResponseModel instance) {
+  final val = <String, dynamic>{
+    'sucesso': instance.sucesso,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('dados', instance.dados);
+  val['mensagem'] = instance.mensagem;
+  writeNotNull('erros', instance.erros);
+  return val;
+}
