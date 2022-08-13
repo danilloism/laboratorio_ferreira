@@ -23,7 +23,8 @@ class AccountModel {
   Map<String, dynamic> toJson() => _$AccountModelToJson(this);
 
   @override
-  int get hashCode => contatoUid.hashCode ^ criadoEm.hashCode;
+  int get hashCode =>
+      contatoUid.hashCode ^ criadoEm.hashCode ^ email.hashCode ^ senha.hashCode;
 
   @override
   bool operator ==(covariant AccountModel other) =>
