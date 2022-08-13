@@ -27,5 +27,9 @@ class AccountModel {
   int get hashCode => email.hashCode;
 
   @override
-  bool operator ==(covariant AccountModel other) => email == other.email;
+  bool operator ==(covariant AccountModel other) =>
+      email == other.email && contatoUid == other.contatoUid;
+
+  @override
+  String toString() => toJson().toString();
 }
