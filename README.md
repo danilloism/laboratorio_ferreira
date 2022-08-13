@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/danilloism/laboratorio_ferreira_mobile/branch/main/graph/badge.svg?token=4KDIUFTDMD)](https://codecov.io/gh/danilloism/laboratorio_ferreira_mobile)
+
 # laboratorio_ferreira_mobile
 
 A new Flutter project.
