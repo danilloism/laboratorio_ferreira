@@ -1,12 +1,12 @@
-name: Build APK Workflow
+name: Release APK
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - '*'
+    branches-ignore:
+      - '!main'
   workflow_dispatch:
-    branches:
-      - main
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,15 +21,11 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
       - name: Build apk
-        run: flutter build apk
-#        --split-per-abi
-      - name: Upload apk
-        uses: actions/upload-artifact@v3
-        with:
-          name: release-apk
-          path: build/app/outputs/apk/release/*.apk
+        run: flutter build apk --split-per-abi --obfuscate --split-debug-info --release --dart-define=API_URL=${{secrets.API_URL}}
       - name: Release apk
-        uses: ncipollo/release-action@v2
+        uses: ncipollo/release-action@v1
         with:
           artifacts: build/app/outputs/apk/release/*.apk
-          token: $
+          token: ${{secrets.GITHUB_TOKEN}}
+          commit: main
+          tag: v1.0.${{github.run_number}}
