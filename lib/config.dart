@@ -1,8 +1,6 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 class Config {
-  static String get apiUrl => _get('API_URL');
-  static String get environment => _get('ENVIRONMENT');
-
-  static String _get(String value) => dotenv.env[value] ?? '';
+  static String get apiUrl =>
+      const String.fromEnvironment('API_URL', defaultValue: '');
+  static String get environment =>
+      const String.fromEnvironment('ENVIRONMENT', defaultValue: 'development');
 }

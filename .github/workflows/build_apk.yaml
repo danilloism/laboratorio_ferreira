@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
       - name: Build apk
-        run: flutter build apk --split-per-abi
+        run: flutter build apk --split-per-abi --dart-define=API_URL=${{secrets.API_URL}},ENVIRONMENT=production
       - name: Upload apk
         uses: actions/upload-artifact@v3
         with:
