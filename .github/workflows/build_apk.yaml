@@ -1,4 +1,4 @@
-name: Build and release APK
+name: Release APK
 
 on:
   push:
@@ -21,12 +21,7 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
       - name: Build apk
-        run: flutter build apk --split-per-abi --dart-define=API_URL=${{secrets.API_URL}},ENVIRONMENT=production
-      - name: Upload apk
-        uses: actions/upload-artifact@v3
-        with:
-          name: release-apk
-          path: build/app/outputs/apk/release/*.apk
+        run: flutter build apk --split-per-abi --obfuscate --split-debug-info --release --dart-define=API_URL=${{secrets.API_URL}}
       - name: Release apk
         uses: ncipollo/release-action@v1
         with:
