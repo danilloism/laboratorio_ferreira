@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/contato/contato_model.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/shared/enums/roles_enum.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/common/enums/roles_enum.dart';
 
 void main() {
   late ContatoModel contato;
@@ -18,7 +18,16 @@ void main() {
   });
 
   group('ContatoModel', () {
-    test('deve estar instanciado.', () => expect(contato, isA<ContatoModel>()));
+    test(
+      'deve estar instanciado.',
+      () => expect(
+        contato,
+        allOf([
+          isA<ContatoModel>(),
+          isNotNull,
+        ]),
+      ),
+    );
 
     group('telefones', () {
       test('deve retornar tipo Set',
@@ -40,6 +49,19 @@ void main() {
         anterior += telefones.length;
         expect(contato.telefones.length, equals(anterior));
       });
+    });
+
+    test('toJson && fromJson devem fazer a conversão corretamente', () {
+      final json = contato.toJson();
+
+      final contatoFromJson = ContatoModel.fromJson(json);
+
+      final categoriaFromJson = json['categorias'][0] as String;
+      final categoriaFromInstance = contato.categorias.toList()[0].name;
+
+      expect(categoriaFromJson, equals(categoriaFromInstance.toUpperCase()));
+      expect(categoriaFromJson, isNot(categoriaFromInstance));
+      expect(contatoFromJson, equals(contato));
     });
   });
 }

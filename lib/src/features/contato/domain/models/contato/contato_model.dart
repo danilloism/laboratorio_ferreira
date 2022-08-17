@@ -1,27 +1,27 @@
 import 'package:collection/collection.dart';
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/account/account_model.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/shared/enums/roles_enum.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/common/enums/roles_enum.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/common/models/uid_with_date_log_model.dart';
 
 part 'contato_model.g.dart';
 
 @JsonSerializable()
-class ContatoModel {
-  final String? uid;
+class ContatoModel extends UidWithDateLogModel with EquatableMixin {
   final String nome;
   final Set<String> _telefones = {};
   final Set<RolesEnum> _categorias = {};
   final bool? ativo;
   final AccountModel? account;
-  final DateTime? criadoEm, atualizadoEm;
 
   ContatoModel({
-    this.uid,
+    super.uid,
     required this.nome,
     required Iterable<String> telefones,
     required Iterable<RolesEnum> categorias,
-    this.criadoEm,
-    this.atualizadoEm,
+    super.criadoEm,
+    super.atualizadoEm,
     this.ativo,
     this.account,
   }) {
@@ -39,24 +39,11 @@ class ContatoModel {
   bool removeTelefone(String telefone) => _telefones.remove(telefone);
   bool removeCategoria(RolesEnum categoria) => _categorias.remove(categoria);
 
-  @override
-  int get hashCode =>
-      criadoEm.hashCode ^
-      uid.hashCode ^
-      nome.hashCode ^
-      telefones.hashCode ^
-      categorias.hashCode;
-
-  @override
-  bool operator ==(covariant ContatoModel other) =>
-      uid == other.uid &&
-      nome == other.nome &&
-      const SetEquality().equals(_telefones, other.telefones) &&
-      const SetEquality().equals(_categorias, other.categorias) &&
-      criadoEm.toString() == other.criadoEm.toString();
-
   factory ContatoModel.fromJson(Map<String, dynamic> json) =>
       _$ContatoModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ContatoModelToJson(this);
+
+  @override
+  List<Object?> get props => [uid, nome, criadoEm, _telefones, _categorias];
 }

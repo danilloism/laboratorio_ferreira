@@ -1,20 +1,20 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/common/models/date_log_model.dart';
 
 part 'account_model.g.dart';
 
 @JsonSerializable()
-class AccountModel {
+class AccountModel extends DateLogModel with EquatableMixin {
   final String email, senha;
-  final String? username, contatoUid;
-  final DateTime? criadoEm, atualizadoEm;
+  final String? username;
 
-  AccountModel({
-    this.contatoUid,
+  const AccountModel({
     required this.email,
     this.username,
     required this.senha,
-    this.criadoEm,
-    this.atualizadoEm,
+    super.criadoEm,
+    super.atualizadoEm,
   });
 
   factory AccountModel.fromJson(Map<String, dynamic> json) =>
@@ -23,15 +23,5 @@ class AccountModel {
   Map<String, dynamic> toJson() => _$AccountModelToJson(this);
 
   @override
-  int get hashCode =>
-      contatoUid.hashCode ^ criadoEm.hashCode ^ email.hashCode ^ senha.hashCode;
-
-  @override
-  bool operator ==(covariant AccountModel other) =>
-      email == other.email &&
-      contatoUid == other.contatoUid &&
-      username == other.username;
-
-  @override
-  String toString() => toJson().toString();
+  List<Object?> get props => [email, criadoEm];
 }

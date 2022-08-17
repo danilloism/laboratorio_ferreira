@@ -13,11 +13,11 @@ void main() {
 
   group('AccountModel', () {
     test('deve ser instanciado.', () {
-      account = AccountModel(email: '', senha: '');
+      account = const AccountModel(email: '', senha: '');
       expect(account, isA<AccountModel>());
     });
 
-    test('fromJson && toJson', () {
+    test('fromJson && toJson devem fazer a conversão corretamente.', () {
       final json = account.toJson();
 
       account = AccountModel.fromJson(json);
@@ -26,15 +26,14 @@ void main() {
       expect(account.senha, equals(json['senha']));
       expect(account.atualizadoEm, json['atualizadoEm']);
       expect(account.criadoEm, json['criadoEm']);
-      expect(account.contatoUid, json['contatoUid']);
     });
   });
 }
 
 AccountModel genRandomAccount() {
   return AccountModel(
-      email: faker.internet.email(),
-      senha: faker.internet.password(),
-      username: faker.internet.userName(),
-      contatoUid: faker.guid.guid());
+    email: faker.internet.email(),
+    senha: faker.internet.password(),
+    username: faker.internet.userName(),
+  );
 }

@@ -6,41 +6,32 @@ part of 'account_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AccountModel _$AccountModelFromJson(Map<String, dynamic> json) =>
-    $checkedCreate(
-      'AccountModel',
-      json,
-      ($checkedConvert) {
-        $checkKeys(
-          json,
-          allowedKeys: const [
-            'email',
-            'senha',
-            'username',
-            'contatoUid',
-            'criadoEm',
-            'atualizadoEm'
-          ],
-        );
-        final val = AccountModel(
-          contatoUid: $checkedConvert('contatoUid', (v) => v as String?),
-          email: $checkedConvert('email', (v) => v as String),
-          username: $checkedConvert('username', (v) => v as String?),
-          senha: $checkedConvert('senha', (v) => v as String),
-          criadoEm: $checkedConvert('criadoEm',
-              (v) => v == null ? null : DateTime.parse(v as String)),
-          atualizadoEm: $checkedConvert('atualizadoEm',
-              (v) => v == null ? null : DateTime.parse(v as String)),
-        );
-        return val;
-      },
-    );
+AccountModel _$AccountModelFromJson(Map<String, dynamic> json) {
+  $checkKeys(
+    json,
+    allowedKeys: const [
+      'criadoEm',
+      'atualizadoEm',
+      'email',
+      'senha',
+      'username'
+    ],
+  );
+  return AccountModel(
+    email: json['email'] as String,
+    username: json['username'] as String?,
+    senha: json['senha'] as String,
+    criadoEm: json['criadoEm'] == null
+        ? null
+        : DateTime.parse(json['criadoEm'] as String),
+    atualizadoEm: json['atualizadoEm'] == null
+        ? null
+        : DateTime.parse(json['atualizadoEm'] as String),
+  );
+}
 
 Map<String, dynamic> _$AccountModelToJson(AccountModel instance) {
-  final val = <String, dynamic>{
-    'email': instance.email,
-    'senha': instance.senha,
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -48,9 +39,10 @@ Map<String, dynamic> _$AccountModelToJson(AccountModel instance) {
     }
   }
 
-  writeNotNull('username', instance.username);
-  writeNotNull('contatoUid', instance.contatoUid);
   writeNotNull('criadoEm', instance.criadoEm?.toIso8601String());
   writeNotNull('atualizadoEm', instance.atualizadoEm?.toIso8601String());
+  val['email'] = instance.email;
+  val['senha'] = instance.senha;
+  writeNotNull('username', instance.username);
   return val;
 }
