@@ -9,7 +9,7 @@ targets:
           # The default value for each is listed.
           any_map: false
           checked: false
-          constructor: ""
+          constructor: ''
           create_factory: true
           create_field_map: false
           create_to_json: true
@@ -19,3 +19,15 @@ targets:
           generic_argument_factories: false
           ignore_unannotated: false
           include_if_null: false
+      freezed:
+        options:
+          build_extensions:
+            '^lib/{{}}.dart': 'lib/generated/{{}}.freezed.dart'
+      source_gen|combining_builder:
+        options:
+          build_extensions:
+            '^lib/{{}}.dart': 'lib/generated/{{}}.g.dart'
+      hive_generator:
+        options:
+          build_extensions:
+            '^lib/{{}}.dart': 'lib/generated/{{}}.g.dart'
