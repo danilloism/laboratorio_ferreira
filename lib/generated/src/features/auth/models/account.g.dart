@@ -56,29 +56,25 @@ class AccountAdapter extends TypeAdapter<_$_Account> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Account _$$_AccountFromJson(Map<String, dynamic> json) {
-  $checkKeys(
-    json,
-    allowedKeys: const [
-      'email',
-      'senha',
-      'criadoEm',
-      'atualizadoEm',
-      'contatoUid'
-    ],
-  );
-  return _$_Account(
-    email: json['email'] as String,
-    senha: json['senha'] as String?,
-    criadoEm: json['criadoEm'] == null
-        ? null
-        : DateTime.parse(json['criadoEm'] as String),
-    atualizadoEm: json['atualizadoEm'] == null
-        ? null
-        : DateTime.parse(json['atualizadoEm'] as String),
-    contatoUid: json['contatoUid'] as String?,
-  );
-}
+_$_Account _$$_AccountFromJson(Map<String, dynamic> json) => _$_Account(
+      email: json['email'] as String,
+      senha: json['senha'] as String?,
+      criadoEm: json['criadoEm'] == null
+          ? null
+          : DateTime.parse(json['criadoEm'] as String),
+      atualizadoEm: json['atualizadoEm'] == null
+          ? null
+          : DateTime.parse(json['atualizadoEm'] as String),
+      contatoUid: json['contatoUid'] as String?,
+    );
+
+const _$$_AccountFieldMap = <String, String>{
+  'email': 'email',
+  'senha': 'senha',
+  'criadoEm': 'criadoEm',
+  'atualizadoEm': 'atualizadoEm',
+  'contatoUid': 'contatoUid',
+};
 
 Map<String, dynamic> _$$_AccountToJson(_$_Account instance) {
   final val = <String, dynamic>{

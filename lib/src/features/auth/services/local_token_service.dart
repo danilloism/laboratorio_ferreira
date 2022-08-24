@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:laboratorio_ferreira_mobile/src/features/auth/constants/auth_constants.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/local_storage/models/local_storage_item.dart';
@@ -15,7 +14,7 @@ class LocalTokenService {
     final value =
         await _storage.getEncrypted(AuthConstants.tokenSecStorageKeyName);
 
-    return value == null ? null : jsonDecode(value);
+    return value;
   }
 
   Future<void> reset(String? token) async {

@@ -18,24 +18,27 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Session user) loggedIn,
+    required TResult Function(Session session) loggedIn,
     required TResult Function() loggedOut,
+    required TResult Function() loggingIn,
     required TResult Function(dynamic error, Session? user) error,
     required TResult Function() unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Session user)? loggedIn,
+    TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
+    TResult Function()? loggingIn,
     TResult Function(dynamic error, Session? user)? error,
     TResult Function()? unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Session user)? loggedIn,
+    TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
+    TResult Function()? loggingIn,
     TResult Function(dynamic error, Session? user)? error,
     TResult Function()? unknown,
     required TResult orElse(),
@@ -45,6 +48,7 @@ mixin _$AuthState {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoggedIn value) loggedIn,
     required TResult Function(_LoggedOut value) loggedOut,
+    required TResult Function(_LoggingIn value) loggingIn,
     required TResult Function(_Error value) error,
     required TResult Function(_Unknown value) unknown,
   }) =>
@@ -53,6 +57,7 @@ mixin _$AuthState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoggedIn value)? loggedIn,
     TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
     TResult Function(_Unknown value)? unknown,
   }) =>
@@ -61,6 +66,7 @@ mixin _$AuthState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoggedIn value)? loggedIn,
     TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
     TResult Function(_Unknown value)? unknown,
     required TResult orElse(),
@@ -88,9 +94,9 @@ abstract class _$$_LoggedInCopyWith<$Res> {
   factory _$$_LoggedInCopyWith(
           _$_LoggedIn value, $Res Function(_$_LoggedIn) then) =
       __$$_LoggedInCopyWithImpl<$Res>;
-  $Res call({Session user});
+  $Res call({Session session});
 
-  $SessionCopyWith<$Res> get user;
+  $SessionCopyWith<$Res> get session;
 }
 
 /// @nodoc
@@ -105,20 +111,20 @@ class __$$_LoggedInCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? user = freezed,
+    Object? session = freezed,
   }) {
     return _then(_$_LoggedIn(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
+      session: session == freezed
+          ? _value.session
+          : session // ignore: cast_nullable_to_non_nullable
               as Session,
     ));
   }
 
   @override
-  $SessionCopyWith<$Res> get user {
-    return $SessionCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
+  $SessionCopyWith<$Res> get session {
+    return $SessionCopyWith<$Res>(_value.session, (value) {
+      return _then(_value.copyWith(session: value));
     });
   }
 }
@@ -126,14 +132,14 @@ class __$$_LoggedInCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoggedIn extends _LoggedIn {
-  const _$_LoggedIn({required this.user}) : super._();
+  const _$_LoggedIn({required this.session}) : super._();
 
   @override
-  final Session user;
+  final Session session;
 
   @override
   String toString() {
-    return 'AuthState.loggedIn(user: $user)';
+    return 'AuthState.loggedIn(session: $session)';
   }
 
   @override
@@ -141,12 +147,12 @@ class _$_LoggedIn extends _LoggedIn {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LoggedIn &&
-            const DeepCollectionEquality().equals(other.user, user));
+            const DeepCollectionEquality().equals(other.session, session));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(session));
 
   @JsonKey(ignore: true)
   @override
@@ -156,36 +162,39 @@ class _$_LoggedIn extends _LoggedIn {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Session user) loggedIn,
+    required TResult Function(Session session) loggedIn,
     required TResult Function() loggedOut,
+    required TResult Function() loggingIn,
     required TResult Function(dynamic error, Session? user) error,
     required TResult Function() unknown,
   }) {
-    return loggedIn(user);
+    return loggedIn(session);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Session user)? loggedIn,
+    TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
+    TResult Function()? loggingIn,
     TResult Function(dynamic error, Session? user)? error,
     TResult Function()? unknown,
   }) {
-    return loggedIn?.call(user);
+    return loggedIn?.call(session);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Session user)? loggedIn,
+    TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
+    TResult Function()? loggingIn,
     TResult Function(dynamic error, Session? user)? error,
     TResult Function()? unknown,
     required TResult orElse(),
   }) {
     if (loggedIn != null) {
-      return loggedIn(user);
+      return loggedIn(session);
     }
     return orElse();
   }
@@ -195,6 +204,7 @@ class _$_LoggedIn extends _LoggedIn {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoggedIn value) loggedIn,
     required TResult Function(_LoggedOut value) loggedOut,
+    required TResult Function(_LoggingIn value) loggingIn,
     required TResult Function(_Error value) error,
     required TResult Function(_Unknown value) unknown,
   }) {
@@ -206,6 +216,7 @@ class _$_LoggedIn extends _LoggedIn {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoggedIn value)? loggedIn,
     TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
     TResult Function(_Unknown value)? unknown,
   }) {
@@ -217,6 +228,7 @@ class _$_LoggedIn extends _LoggedIn {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoggedIn value)? loggedIn,
     TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
     TResult Function(_Unknown value)? unknown,
     required TResult orElse(),
@@ -229,10 +241,10 @@ class _$_LoggedIn extends _LoggedIn {
 }
 
 abstract class _LoggedIn extends AuthState {
-  const factory _LoggedIn({required final Session user}) = _$_LoggedIn;
+  const factory _LoggedIn({required final Session session}) = _$_LoggedIn;
   const _LoggedIn._() : super._();
 
-  Session get user;
+  Session get session;
   @JsonKey(ignore: true)
   _$$_LoggedInCopyWith<_$_LoggedIn> get copyWith =>
       throw _privateConstructorUsedError;
@@ -278,8 +290,9 @@ class _$_LoggedOut extends _LoggedOut {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Session user) loggedIn,
+    required TResult Function(Session session) loggedIn,
     required TResult Function() loggedOut,
+    required TResult Function() loggingIn,
     required TResult Function(dynamic error, Session? user) error,
     required TResult Function() unknown,
   }) {
@@ -289,8 +302,9 @@ class _$_LoggedOut extends _LoggedOut {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Session user)? loggedIn,
+    TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
+    TResult Function()? loggingIn,
     TResult Function(dynamic error, Session? user)? error,
     TResult Function()? unknown,
   }) {
@@ -300,8 +314,9 @@ class _$_LoggedOut extends _LoggedOut {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Session user)? loggedIn,
+    TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
+    TResult Function()? loggingIn,
     TResult Function(dynamic error, Session? user)? error,
     TResult Function()? unknown,
     required TResult orElse(),
@@ -317,6 +332,7 @@ class _$_LoggedOut extends _LoggedOut {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoggedIn value) loggedIn,
     required TResult Function(_LoggedOut value) loggedOut,
+    required TResult Function(_LoggingIn value) loggingIn,
     required TResult Function(_Error value) error,
     required TResult Function(_Unknown value) unknown,
   }) {
@@ -328,6 +344,7 @@ class _$_LoggedOut extends _LoggedOut {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoggedIn value)? loggedIn,
     TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
     TResult Function(_Unknown value)? unknown,
   }) {
@@ -339,6 +356,7 @@ class _$_LoggedOut extends _LoggedOut {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoggedIn value)? loggedIn,
     TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
     TResult Function(_Unknown value)? unknown,
     required TResult orElse(),
@@ -353,6 +371,129 @@ class _$_LoggedOut extends _LoggedOut {
 abstract class _LoggedOut extends AuthState {
   const factory _LoggedOut() = _$_LoggedOut;
   const _LoggedOut._() : super._();
+}
+
+/// @nodoc
+abstract class _$$_LoggingInCopyWith<$Res> {
+  factory _$$_LoggingInCopyWith(
+          _$_LoggingIn value, $Res Function(_$_LoggingIn) then) =
+      __$$_LoggingInCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LoggingInCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$$_LoggingInCopyWith<$Res> {
+  __$$_LoggingInCopyWithImpl(
+      _$_LoggingIn _value, $Res Function(_$_LoggingIn) _then)
+      : super(_value, (v) => _then(v as _$_LoggingIn));
+
+  @override
+  _$_LoggingIn get _value => super._value as _$_LoggingIn;
+}
+
+/// @nodoc
+
+class _$_LoggingIn extends _LoggingIn {
+  const _$_LoggingIn() : super._();
+
+  @override
+  String toString() {
+    return 'AuthState.loggingIn()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_LoggingIn);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Session session) loggedIn,
+    required TResult Function() loggedOut,
+    required TResult Function() loggingIn,
+    required TResult Function(dynamic error, Session? user) error,
+    required TResult Function() unknown,
+  }) {
+    return loggingIn();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Session session)? loggedIn,
+    TResult Function()? loggedOut,
+    TResult Function()? loggingIn,
+    TResult Function(dynamic error, Session? user)? error,
+    TResult Function()? unknown,
+  }) {
+    return loggingIn?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Session session)? loggedIn,
+    TResult Function()? loggedOut,
+    TResult Function()? loggingIn,
+    TResult Function(dynamic error, Session? user)? error,
+    TResult Function()? unknown,
+    required TResult orElse(),
+  }) {
+    if (loggingIn != null) {
+      return loggingIn();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoggedIn value) loggedIn,
+    required TResult Function(_LoggedOut value) loggedOut,
+    required TResult Function(_LoggingIn value) loggingIn,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Unknown value) unknown,
+  }) {
+    return loggingIn(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_LoggedIn value)? loggedIn,
+    TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_LoggingIn value)? loggingIn,
+    TResult Function(_Error value)? error,
+    TResult Function(_Unknown value)? unknown,
+  }) {
+    return loggingIn?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoggedIn value)? loggedIn,
+    TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_LoggingIn value)? loggingIn,
+    TResult Function(_Error value)? error,
+    TResult Function(_Unknown value)? unknown,
+    required TResult orElse(),
+  }) {
+    if (loggingIn != null) {
+      return loggingIn(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoggingIn extends AuthState {
+  const factory _LoggingIn() = _$_LoggingIn;
+  const _LoggingIn._() : super._();
 }
 
 /// @nodoc
@@ -440,8 +581,9 @@ class _$_Error extends _Error {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Session user) loggedIn,
+    required TResult Function(Session session) loggedIn,
     required TResult Function() loggedOut,
+    required TResult Function() loggingIn,
     required TResult Function(dynamic error, Session? user) error,
     required TResult Function() unknown,
   }) {
@@ -451,8 +593,9 @@ class _$_Error extends _Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Session user)? loggedIn,
+    TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
+    TResult Function()? loggingIn,
     TResult Function(dynamic error, Session? user)? error,
     TResult Function()? unknown,
   }) {
@@ -462,8 +605,9 @@ class _$_Error extends _Error {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Session user)? loggedIn,
+    TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
+    TResult Function()? loggingIn,
     TResult Function(dynamic error, Session? user)? error,
     TResult Function()? unknown,
     required TResult orElse(),
@@ -479,6 +623,7 @@ class _$_Error extends _Error {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoggedIn value) loggedIn,
     required TResult Function(_LoggedOut value) loggedOut,
+    required TResult Function(_LoggingIn value) loggingIn,
     required TResult Function(_Error value) error,
     required TResult Function(_Unknown value) unknown,
   }) {
@@ -490,6 +635,7 @@ class _$_Error extends _Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoggedIn value)? loggedIn,
     TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
     TResult Function(_Unknown value)? unknown,
   }) {
@@ -501,6 +647,7 @@ class _$_Error extends _Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoggedIn value)? loggedIn,
     TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
     TResult Function(_Unknown value)? unknown,
     required TResult orElse(),
@@ -563,8 +710,9 @@ class _$_Unknown extends _Unknown {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Session user) loggedIn,
+    required TResult Function(Session session) loggedIn,
     required TResult Function() loggedOut,
+    required TResult Function() loggingIn,
     required TResult Function(dynamic error, Session? user) error,
     required TResult Function() unknown,
   }) {
@@ -574,8 +722,9 @@ class _$_Unknown extends _Unknown {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Session user)? loggedIn,
+    TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
+    TResult Function()? loggingIn,
     TResult Function(dynamic error, Session? user)? error,
     TResult Function()? unknown,
   }) {
@@ -585,8 +734,9 @@ class _$_Unknown extends _Unknown {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Session user)? loggedIn,
+    TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
+    TResult Function()? loggingIn,
     TResult Function(dynamic error, Session? user)? error,
     TResult Function()? unknown,
     required TResult orElse(),
@@ -602,6 +752,7 @@ class _$_Unknown extends _Unknown {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoggedIn value) loggedIn,
     required TResult Function(_LoggedOut value) loggedOut,
+    required TResult Function(_LoggingIn value) loggingIn,
     required TResult Function(_Error value) error,
     required TResult Function(_Unknown value) unknown,
   }) {
@@ -613,6 +764,7 @@ class _$_Unknown extends _Unknown {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoggedIn value)? loggedIn,
     TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
     TResult Function(_Unknown value)? unknown,
   }) {
@@ -624,6 +776,7 @@ class _$_Unknown extends _Unknown {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoggedIn value)? loggedIn,
     TResult Function(_LoggedOut value)? loggedOut,
+    TResult Function(_LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
     TResult Function(_Unknown value)? unknown,
     required TResult orElse(),

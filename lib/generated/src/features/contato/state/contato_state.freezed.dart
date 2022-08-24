@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ContatoState {
-  List<ContatoModel> get contatos => throw _privateConstructorUsedError;
+  List<Contato> get contatos => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +29,7 @@ abstract class $ContatoStateCopyWith<$Res> {
   factory $ContatoStateCopyWith(
           ContatoState value, $Res Function(ContatoState) then) =
       _$ContatoStateCopyWithImpl<$Res>;
-  $Res call({List<ContatoModel> contatos, bool isLoading});
+  $Res call({List<Contato> contatos, bool isLoading});
 }
 
 /// @nodoc
@@ -49,7 +49,7 @@ class _$ContatoStateCopyWithImpl<$Res> implements $ContatoStateCopyWith<$Res> {
       contatos: contatos == freezed
           ? _value.contatos
           : contatos // ignore: cast_nullable_to_non_nullable
-              as List<ContatoModel>,
+              as List<Contato>,
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -65,7 +65,7 @@ abstract class _$$_ContatoStateCopyWith<$Res>
           _$_ContatoState value, $Res Function(_$_ContatoState) then) =
       __$$_ContatoStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<ContatoModel> contatos, bool isLoading});
+  $Res call({List<Contato> contatos, bool isLoading});
 }
 
 /// @nodoc
@@ -88,7 +88,7 @@ class __$$_ContatoStateCopyWithImpl<$Res>
       contatos: contatos == freezed
           ? _value._contatos
           : contatos // ignore: cast_nullable_to_non_nullable
-              as List<ContatoModel>,
+              as List<Contato>,
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -101,14 +101,14 @@ class __$$_ContatoStateCopyWithImpl<$Res>
 
 class _$_ContatoState extends _ContatoState {
   const _$_ContatoState(
-      {final List<ContatoModel> contatos = const [], this.isLoading = true})
+      {final List<Contato> contatos = const [], this.isLoading = true})
       : _contatos = contatos,
         super._();
 
-  final List<ContatoModel> _contatos;
+  final List<Contato> _contatos;
   @override
   @JsonKey()
-  List<ContatoModel> get contatos {
+  List<Contato> get contatos {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_contatos);
   }
@@ -145,12 +145,11 @@ class _$_ContatoState extends _ContatoState {
 
 abstract class _ContatoState extends ContatoState {
   const factory _ContatoState(
-      {final List<ContatoModel> contatos,
-      final bool isLoading}) = _$_ContatoState;
+      {final List<Contato> contatos, final bool isLoading}) = _$_ContatoState;
   const _ContatoState._() : super._();
 
   @override
-  List<ContatoModel> get contatos;
+  List<Contato> get contatos;
   @override
   bool get isLoading;
   @override

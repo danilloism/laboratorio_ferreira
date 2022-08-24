@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/common/enums/roles_enum.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/models/contato_model.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/models/contato.dart';
 
 void main() {
   late ContatoModel contato;

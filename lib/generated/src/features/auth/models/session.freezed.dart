@@ -17,11 +17,11 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Session {
   @HiveField(0)
-  Account get account => throw _privateConstructorUsedError;
+  Contato get contato => throw _privateConstructorUsedError;
   @HiveField(1)
-  List<RolesEnum> get roles => throw _privateConstructorUsedError;
-  @HiveField(2)
   DateTime get expiresIn => throw _privateConstructorUsedError;
+  @HiveField(2)
+  DateTime get logInDate => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SessionCopyWith<Session> get copyWith => throw _privateConstructorUsedError;
@@ -32,11 +32,9 @@ abstract class $SessionCopyWith<$Res> {
   factory $SessionCopyWith(Session value, $Res Function(Session) then) =
       _$SessionCopyWithImpl<$Res>;
   $Res call(
-      {@HiveField(0) Account account,
-      @HiveField(1) List<RolesEnum> roles,
-      @HiveField(2) DateTime expiresIn});
-
-  $AccountCopyWith<$Res> get account;
+      {@HiveField(0) Contato contato,
+      @HiveField(1) DateTime expiresIn,
+      @HiveField(2) DateTime logInDate});
 }
 
 /// @nodoc
@@ -49,31 +47,24 @@ class _$SessionCopyWithImpl<$Res> implements $SessionCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? account = freezed,
-    Object? roles = freezed,
+    Object? contato = freezed,
     Object? expiresIn = freezed,
+    Object? logInDate = freezed,
   }) {
     return _then(_value.copyWith(
-      account: account == freezed
-          ? _value.account
-          : account // ignore: cast_nullable_to_non_nullable
-              as Account,
-      roles: roles == freezed
-          ? _value.roles
-          : roles // ignore: cast_nullable_to_non_nullable
-              as List<RolesEnum>,
+      contato: contato == freezed
+          ? _value.contato
+          : contato // ignore: cast_nullable_to_non_nullable
+              as Contato,
       expiresIn: expiresIn == freezed
           ? _value.expiresIn
           : expiresIn // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      logInDate: logInDate == freezed
+          ? _value.logInDate
+          : logInDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
-  }
-
-  @override
-  $AccountCopyWith<$Res> get account {
-    return $AccountCopyWith<$Res>(_value.account, (value) {
-      return _then(_value.copyWith(account: value));
-    });
   }
 }
 
@@ -84,12 +75,9 @@ abstract class _$$_AuthModelCopyWith<$Res> implements $SessionCopyWith<$Res> {
       __$$_AuthModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@HiveField(0) Account account,
-      @HiveField(1) List<RolesEnum> roles,
-      @HiveField(2) DateTime expiresIn});
-
-  @override
-  $AccountCopyWith<$Res> get account;
+      {@HiveField(0) Contato contato,
+      @HiveField(1) DateTime expiresIn,
+      @HiveField(2) DateTime logInDate});
 }
 
 /// @nodoc
@@ -104,22 +92,22 @@ class __$$_AuthModelCopyWithImpl<$Res> extends _$SessionCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? account = freezed,
-    Object? roles = freezed,
+    Object? contato = freezed,
     Object? expiresIn = freezed,
+    Object? logInDate = freezed,
   }) {
     return _then(_$_AuthModel(
-      account: account == freezed
-          ? _value.account
-          : account // ignore: cast_nullable_to_non_nullable
-              as Account,
-      roles: roles == freezed
-          ? _value._roles
-          : roles // ignore: cast_nullable_to_non_nullable
-              as List<RolesEnum>,
+      contato: contato == freezed
+          ? _value.contato
+          : contato // ignore: cast_nullable_to_non_nullable
+              as Contato,
       expiresIn: expiresIn == freezed
           ? _value.expiresIn
           : expiresIn // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      logInDate: logInDate == freezed
+          ? _value.logInDate
+          : logInDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ));
   }
@@ -130,29 +118,23 @@ class __$$_AuthModelCopyWithImpl<$Res> extends _$SessionCopyWithImpl<$Res>
 @HiveType(typeId: 2)
 class _$_AuthModel implements _AuthModel {
   const _$_AuthModel(
-      {@HiveField(0) required this.account,
-      @HiveField(1) required final List<RolesEnum> roles,
-      @HiveField(2) required this.expiresIn})
-      : _roles = roles;
+      {@HiveField(0) required this.contato,
+      @HiveField(1) required this.expiresIn,
+      @HiveField(2) required this.logInDate});
 
   @override
   @HiveField(0)
-  final Account account;
-  final List<RolesEnum> _roles;
+  final Contato contato;
   @override
   @HiveField(1)
-  List<RolesEnum> get roles {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_roles);
-  }
-
+  final DateTime expiresIn;
   @override
   @HiveField(2)
-  final DateTime expiresIn;
+  final DateTime logInDate;
 
   @override
   String toString() {
-    return 'Session(account: $account, roles: $roles, expiresIn: $expiresIn)';
+    return 'Session(contato: $contato, expiresIn: $expiresIn, logInDate: $logInDate)';
   }
 
   @override
@@ -160,17 +142,17 @@ class _$_AuthModel implements _AuthModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AuthModel &&
-            const DeepCollectionEquality().equals(other.account, account) &&
-            const DeepCollectionEquality().equals(other._roles, _roles) &&
-            const DeepCollectionEquality().equals(other.expiresIn, expiresIn));
+            const DeepCollectionEquality().equals(other.contato, contato) &&
+            const DeepCollectionEquality().equals(other.expiresIn, expiresIn) &&
+            const DeepCollectionEquality().equals(other.logInDate, logInDate));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(account),
-      const DeepCollectionEquality().hash(_roles),
-      const DeepCollectionEquality().hash(expiresIn));
+      const DeepCollectionEquality().hash(contato),
+      const DeepCollectionEquality().hash(expiresIn),
+      const DeepCollectionEquality().hash(logInDate));
 
   @JsonKey(ignore: true)
   @override
@@ -180,19 +162,19 @@ class _$_AuthModel implements _AuthModel {
 
 abstract class _AuthModel implements Session {
   const factory _AuthModel(
-      {@HiveField(0) required final Account account,
-      @HiveField(1) required final List<RolesEnum> roles,
-      @HiveField(2) required final DateTime expiresIn}) = _$_AuthModel;
+      {@HiveField(0) required final Contato contato,
+      @HiveField(1) required final DateTime expiresIn,
+      @HiveField(2) required final DateTime logInDate}) = _$_AuthModel;
 
   @override
   @HiveField(0)
-  Account get account;
+  Contato get contato;
   @override
   @HiveField(1)
-  List<RolesEnum> get roles;
+  DateTime get expiresIn;
   @override
   @HiveField(2)
-  DateTime get expiresIn;
+  DateTime get logInDate;
   @override
   @JsonKey(ignore: true)
   _$$_AuthModelCopyWith<_$_AuthModel> get copyWith =>

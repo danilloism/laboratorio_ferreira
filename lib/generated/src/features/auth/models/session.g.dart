@@ -17,9 +17,9 @@ class AuthModelAdapter extends TypeAdapter<_$_AuthModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return _$_AuthModel(
-      account: fields[0] as Account,
-      roles: (fields[1] as List).cast<RolesEnum>(),
-      expiresIn: fields[2] as DateTime,
+      contato: fields[0] as Contato,
+      expiresIn: fields[1] as DateTime,
+      logInDate: fields[2] as DateTime,
     );
   }
 
@@ -28,11 +28,11 @@ class AuthModelAdapter extends TypeAdapter<_$_AuthModel> {
     writer
       ..writeByte(3)
       ..writeByte(0)
-      ..write(obj.account)
-      ..writeByte(2)
-      ..write(obj.expiresIn)
+      ..write(obj.contato)
       ..writeByte(1)
-      ..write(obj.roles);
+      ..write(obj.expiresIn)
+      ..writeByte(2)
+      ..write(obj.logInDate);
   }
 
   @override

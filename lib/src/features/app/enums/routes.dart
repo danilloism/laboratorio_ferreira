@@ -1,11 +1,16 @@
-import 'package:go_router/go_router.dart';
-
 enum Routes {
-  home(path: '/', name: 'Home'),
-  splash(path: '/welcome', name: 'Splash'),
-  login(path: '/login', name: 'Login');
+  home(relativePath: '/', name: 'Home', fullPath: '/'),
+  splash(relativePath: '/welcome', name: 'Splash', fullPath: '/welcome'),
+  login(relativePath: '/login', name: 'Login', fullPath: '/login'),
+  settings(relativePath: 'settings', name: 'Settings', fullPath: '/settings'),
+  detalhesContato(
+      relativePath: 'detalhesContato/:id',
+      name: 'DetalhesContato',
+      fullPath: '/detalhesContato');
 
-  final String path;
+  final String relativePath;
   final String name;
-  const Routes({required this.path, required this.name});
+  final String fullPath;
+  const Routes(
+      {required this.relativePath, required this.name, required this.fullPath});
 }

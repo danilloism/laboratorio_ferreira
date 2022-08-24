@@ -9,12 +9,12 @@ class UserSessionService {
   UserSessionService({required LocalStorageService localStorage})
       : _localStorage = localStorage;
 
-  Session? get user => _localStorage.get<Session>(
+  Session? get session => _localStorage.get<Session>(
       key: HiveBoxKeys.auth.value, boxName: HiveBoxesConstants.session.name);
 
-  Future<bool> save(Session user) async {
+  Future<bool> save(Session session) async {
     return await _localStorage.save<Session>(
-        item: LocalStorageItem(HiveBoxKeys.auth.value, user),
+        item: LocalStorageItem(HiveBoxKeys.auth.value, session),
         boxName: HiveBoxesConstants.session.name);
   }
 

@@ -14,8 +14,9 @@ final authNotifierProvider =
   final userSession = ref.read(userSessionServiceProvider);
 
   return AuthNotifier(
-      authRepository: auth,
-      localTokenService: localToken,
-      tokenNotifier: tokenNotifier,
-      userSession: userSession);
+    authRepository: auth,
+    localTokenService: localToken,
+    tokenNotifier: tokenNotifier,
+    userSessionService: userSession,
+  );
 });

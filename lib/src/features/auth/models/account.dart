@@ -1,9 +1,8 @@
-import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 
-part '../../../../generated/src/features/auth/models/account.g.dart';
 part '../../../../generated/src/features/auth/models/account.freezed.dart';
+part '../../../../generated/src/features/auth/models/account.g.dart';
 
 @freezed
 class Account with _$Account {

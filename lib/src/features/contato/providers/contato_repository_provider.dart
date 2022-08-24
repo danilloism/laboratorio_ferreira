@@ -3,4 +3,4 @@ import 'package:laboratorio_ferreira_mobile/src/features/contato/repository/cont
 import 'package:laboratorio_ferreira_mobile/src/features/network/providers/dio_provider.dart';
 
 final contatoRepositoryProvider =
-    Provider((ref) => ContatoRepository(client: ref.read(dioProvider)));
+    Provider((ref) => ContatoRepository(client: ref.watch(dioProvider)));
