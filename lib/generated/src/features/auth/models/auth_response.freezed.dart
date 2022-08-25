@@ -34,6 +34,8 @@ abstract class $AuthResponseCopyWith<$Res> {
           AuthResponse value, $Res Function(AuthResponse) then) =
       _$AuthResponseCopyWithImpl<$Res>;
   $Res call({String accessToken, Contato contato});
+
+  $ContatoCopyWith<$Res> get contato;
 }
 
 /// @nodoc
@@ -60,6 +62,13 @@ class _$AuthResponseCopyWithImpl<$Res> implements $AuthResponseCopyWith<$Res> {
               as Contato,
     ));
   }
+
+  @override
+  $ContatoCopyWith<$Res> get contato {
+    return $ContatoCopyWith<$Res>(_value.contato, (value) {
+      return _then(_value.copyWith(contato: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -70,6 +79,9 @@ abstract class _$$_AuthResponseCopyWith<$Res>
       __$$_AuthResponseCopyWithImpl<$Res>;
   @override
   $Res call({String accessToken, Contato contato});
+
+  @override
+  $ContatoCopyWith<$Res> get contato;
 }
 
 /// @nodoc

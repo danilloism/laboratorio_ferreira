@@ -6,7 +6,11 @@ enum Routes {
   detalhesContato(
       relativePath: 'detalhesContato/:id',
       name: 'DetalhesContato',
-      fullPath: '/detalhesContato');
+      fullPath: '/detalhesContato'),
+  editorContato(
+      relativePath: 'editorContato/:id',
+      name: 'EditorContato',
+      fullPath: '/editorContato');
 
   final String relativePath;
   final String name;

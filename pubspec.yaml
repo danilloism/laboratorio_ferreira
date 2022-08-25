@@ -13,6 +13,7 @@ dependencies:
   dio: ^4.0.6
   email_validator: ^2.1.17
   equatable: ^2.0.5
+  flex_color_scheme: ^5.1.0
   flutter:
     sdk: flutter
   flutter_riverpod: ^1.0.4

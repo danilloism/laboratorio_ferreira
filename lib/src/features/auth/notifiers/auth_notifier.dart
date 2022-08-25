@@ -8,6 +8,7 @@ import 'package:laboratorio_ferreira_mobile/src/features/auth/repository/auth_re
 import 'package:laboratorio_ferreira_mobile/src/features/auth/services/local_token_service.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/services/user_session_service.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/state/auth_state.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/models/contato.dart';
 
 class AuthNotifier extends StateNotifier<AuthState> {
   final LocalTokenService _localTokenService;
@@ -113,5 +114,13 @@ class AuthNotifier extends StateNotifier<AuthState> {
     } catch (e) {
       state = AuthState.error(error: e);
     }
+  }
+
+  Future<void> resetContatoSession(Contato contato) async {
+    if (session != null) {
+      await _userSessionService.save(session!.copyWith(contato: contato));
+    }
+
+    return;
   }
 }

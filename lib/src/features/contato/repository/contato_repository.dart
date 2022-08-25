@@ -22,6 +22,29 @@ class ContatoRepository {
     }
   }
 
+  Future<ApiResponse<Contato?>> update(Contato contato) async {
+    if (contato.uid == null) {
+      throw Exception('Uid do contato não deve ser nulo.');
+    }
+
+    late final Response resposta;
+
+    try {
+      final payload = contato.toJson();
+      payload.remove('uid');
+      payload.remove('account');
+      payload.remove('telefones');
+      payload.remove('criadoEm');
+      payload.remove('atualizadoEm');
+
+      resposta = await _client.put(join(_path, contato.uid), data: payload);
+
+      return ApiResponse<Contato>.fromJson(resposta.data, Contato.fromJson);
+    } on DioError catch (e) {
+      return ApiResponse<Contato?>.fromJson(e.response?.data, Contato.fromJson);
+    }
+  }
+
   // Future<List<ContatoModel>?> getAll(
   //     {Map<String, dynamic>? queryParams}) async {
   //   final resposta = await _client.get<ApiResponse<ContatoModel>>(

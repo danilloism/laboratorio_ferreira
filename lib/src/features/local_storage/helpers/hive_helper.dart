@@ -21,7 +21,8 @@ class HiveHelper {
       Hive.openBox<Session>(HiveBoxesConstants.session.name),
       Hive.openBox(HiveBoxesConstants.encrypted.name,
           encryptionCipher:
-              HiveAesCipher(await HiveHelper.getSecureKey(secService)))
+              HiveAesCipher(await HiveHelper.getSecureKey(secService))),
+      Hive.openBox<String>(HiveBoxesConstants.appConfig.name),
     ]);
   }
 

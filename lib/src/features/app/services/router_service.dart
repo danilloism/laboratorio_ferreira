@@ -9,6 +9,7 @@ import 'package:laboratorio_ferreira_mobile/src/features/app/view/pages/welcome_
 import 'package:laboratorio_ferreira_mobile/src/features/auth/providers/auth_notifier_provider.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/view/pages/login_page.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/view/pages/detalhes_contato_page.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/view/pages/editor_contato_page.dart';
 
 class RouterService {
   final Ref _ref;
@@ -34,21 +35,29 @@ class RouterService {
             builder: (context, state) => const SettingsPage(),
           ),
           GoRoute(
+            name: Routes.editorContato.name,
+            path: Routes.editorContato.relativePath,
+            builder: (context, state) {
+              final id = state.params['id'];
+              if (id != null) {
+                final contatoSession =
+                    _ref.read(authNotifierProvider.notifier).session?.contato;
+                if (id == 'me' || id == contatoSession?.uid) {
+                  return EditorContatoPage(contato: contatoSession);
+                }
+              }
+
+              return EditorContatoPage();
+            },
+          ),
+          GoRoute(
             name: Routes.detalhesContato.name,
             path: Routes.detalhesContato.relativePath,
             builder: (context, state) {
               final id = state.params['id'];
-              if (id != null) {
-                if (id == 'me') {
-                  return DetalhesContatoPage(
-                      contato: _ref
-                          .read(authNotifierProvider.notifier)
-                          .session
-                          ?.contato);
-                }
-              }
 
-              return const DetalhesContatoPage();
+              return DetalhesContatoPage(
+                  _ref.read(authNotifierProvider.notifier).session!.contato);
             },
           ),
         ],

@@ -35,6 +35,8 @@ abstract class $SessionCopyWith<$Res> {
       {@HiveField(0) Contato contato,
       @HiveField(1) DateTime expiresIn,
       @HiveField(2) DateTime logInDate});
+
+  $ContatoCopyWith<$Res> get contato;
 }
 
 /// @nodoc
@@ -66,6 +68,13 @@ class _$SessionCopyWithImpl<$Res> implements $SessionCopyWith<$Res> {
               as DateTime,
     ));
   }
+
+  @override
+  $ContatoCopyWith<$Res> get contato {
+    return $ContatoCopyWith<$Res>(_value.contato, (value) {
+      return _then(_value.copyWith(contato: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -78,6 +87,9 @@ abstract class _$$_AuthModelCopyWith<$Res> implements $SessionCopyWith<$Res> {
       {@HiveField(0) Contato contato,
       @HiveField(1) DateTime expiresIn,
       @HiveField(2) DateTime logInDate});
+
+  @override
+  $ContatoCopyWith<$Res> get contato;
 }
 
 /// @nodoc
