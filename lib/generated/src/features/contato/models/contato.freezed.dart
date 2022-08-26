@@ -20,17 +20,11 @@ Contato _$ContatoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Contato {
-  @HiveField(0)
   String get nome => throw _privateConstructorUsedError;
-  @HiveField(1)
   List<String> get telefones => throw _privateConstructorUsedError;
-  @HiveField(2)
   List<RolesEnum> get categorias => throw _privateConstructorUsedError;
-  @HiveField(3)
   bool? get ativo => throw _privateConstructorUsedError;
-  @HiveField(4)
   Account? get account => throw _privateConstructorUsedError;
-  @HiveField(5)
   String? get uid => throw _privateConstructorUsedError;
   DateTime? get criadoEm => throw _privateConstructorUsedError;
   DateTime? get atualizadoEm => throw _privateConstructorUsedError;
@@ -45,12 +39,12 @@ abstract class $ContatoCopyWith<$Res> {
   factory $ContatoCopyWith(Contato value, $Res Function(Contato) then) =
       _$ContatoCopyWithImpl<$Res>;
   $Res call(
-      {@HiveField(0) String nome,
-      @HiveField(1) List<String> telefones,
-      @HiveField(2) List<RolesEnum> categorias,
-      @HiveField(3) bool? ativo,
-      @HiveField(4) Account? account,
-      @HiveField(5) String? uid,
+      {String nome,
+      List<String> telefones,
+      List<RolesEnum> categorias,
+      bool? ativo,
+      Account? account,
+      String? uid,
       DateTime? criadoEm,
       DateTime? atualizadoEm});
 
@@ -131,12 +125,12 @@ abstract class _$$_ContatoCopyWith<$Res> implements $ContatoCopyWith<$Res> {
       __$$_ContatoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@HiveField(0) String nome,
-      @HiveField(1) List<String> telefones,
-      @HiveField(2) List<RolesEnum> categorias,
-      @HiveField(3) bool? ativo,
-      @HiveField(4) Account? account,
-      @HiveField(5) String? uid,
+      {String nome,
+      List<String> telefones,
+      List<RolesEnum> categorias,
+      bool? ativo,
+      Account? account,
+      String? uid,
       DateTime? criadoEm,
       DateTime? atualizadoEm});
 
@@ -203,15 +197,14 @@ class __$$_ContatoCopyWithImpl<$Res> extends _$ContatoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@HiveType(typeId: 3)
 class _$_Contato implements _Contato {
   const _$_Contato(
-      {@HiveField(0) required this.nome,
-      @HiveField(1) required final List<String> telefones,
-      @HiveField(2) required final List<RolesEnum> categorias,
-      @HiveField(3) this.ativo,
-      @HiveField(4) this.account,
-      @HiveField(5) this.uid,
+      {required this.nome,
+      required final List<String> telefones,
+      required final List<RolesEnum> categorias,
+      this.ativo,
+      this.account,
+      this.uid,
       this.criadoEm,
       this.atualizadoEm})
       : _telefones = telefones,
@@ -221,11 +214,9 @@ class _$_Contato implements _Contato {
       _$$_ContatoFromJson(json);
 
   @override
-  @HiveField(0)
   final String nome;
   final List<String> _telefones;
   @override
-  @HiveField(1)
   List<String> get telefones {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_telefones);
@@ -233,20 +224,16 @@ class _$_Contato implements _Contato {
 
   final List<RolesEnum> _categorias;
   @override
-  @HiveField(2)
   List<RolesEnum> get categorias {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_categorias);
   }
 
   @override
-  @HiveField(3)
   final bool? ativo;
   @override
-  @HiveField(4)
   final Account? account;
   @override
-  @HiveField(5)
   final String? uid;
   @override
   final DateTime? criadoEm;
@@ -304,34 +291,28 @@ class _$_Contato implements _Contato {
 
 abstract class _Contato implements Contato {
   const factory _Contato(
-      {@HiveField(0) required final String nome,
-      @HiveField(1) required final List<String> telefones,
-      @HiveField(2) required final List<RolesEnum> categorias,
-      @HiveField(3) final bool? ativo,
-      @HiveField(4) final Account? account,
-      @HiveField(5) final String? uid,
+      {required final String nome,
+      required final List<String> telefones,
+      required final List<RolesEnum> categorias,
+      final bool? ativo,
+      final Account? account,
+      final String? uid,
       final DateTime? criadoEm,
       final DateTime? atualizadoEm}) = _$_Contato;
 
   factory _Contato.fromJson(Map<String, dynamic> json) = _$_Contato.fromJson;
 
   @override
-  @HiveField(0)
   String get nome;
   @override
-  @HiveField(1)
   List<String> get telefones;
   @override
-  @HiveField(2)
   List<RolesEnum> get categorias;
   @override
-  @HiveField(3)
   bool? get ativo;
   @override
-  @HiveField(4)
   Account? get account;
   @override
-  @HiveField(5)
   String? get uid;
   @override
   DateTime? get criadoEm;

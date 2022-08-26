@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/app/enums/routes.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/models/contato.dart';
 
 class DetalhesContatoPage extends StatelessWidget {
@@ -14,10 +12,7 @@ class DetalhesContatoPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(_contato.nome),
         actions: [
-          IconButton(
-              onPressed: () => context
-                  .push('${Routes.editorContato.fullPath}/${_contato.uid}'),
-              icon: const Icon(Icons.edit)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
         ],
       ),
       body: SizedBox.expand(

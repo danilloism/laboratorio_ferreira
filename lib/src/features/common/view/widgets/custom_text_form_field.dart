@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? Function(String?)? validator;
   final bool obscureText;
   final String? label;
   final TextInputType? keyboardType;
+  final void Function(String)? onChanged;
 
   const CustomTextFormField({
     super.key,
-    required this.controller,
+    this.controller,
     this.validator,
     this.obscureText = false,
     this.label,
     this.keyboardType,
+    this.onChanged,
   });
 
   @override
@@ -24,6 +26,7 @@ class CustomTextFormField extends StatelessWidget {
       obscureText: obscureText,
       controller: controller,
       decoration: InputDecoration(label: label != null ? Text(label!) : null),
+      onChanged: onChanged,
     );
   }
 }

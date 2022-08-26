@@ -3,59 +3,6 @@
 part of '../../../../../src/features/contato/models/contato.dart';
 
 // **************************************************************************
-// TypeAdapterGenerator
-// **************************************************************************
-
-class ContatoAdapter extends TypeAdapter<_$_Contato> {
-  @override
-  final int typeId = 3;
-
-  @override
-  _$_Contato read(BinaryReader reader) {
-    final numOfFields = reader.readByte();
-    final fields = <int, dynamic>{
-      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
-    };
-    return _$_Contato(
-      nome: fields[0] as String,
-      telefones: (fields[1] as List).cast<String>(),
-      categorias: (fields[2] as List).cast<RolesEnum>(),
-      ativo: fields[3] as bool?,
-      account: fields[4] as Account?,
-      uid: fields[5] as String?,
-    );
-  }
-
-  @override
-  void write(BinaryWriter writer, _$_Contato obj) {
-    writer
-      ..writeByte(6)
-      ..writeByte(0)
-      ..write(obj.nome)
-      ..writeByte(3)
-      ..write(obj.ativo)
-      ..writeByte(4)
-      ..write(obj.account)
-      ..writeByte(5)
-      ..write(obj.uid)
-      ..writeByte(1)
-      ..write(obj.telefones)
-      ..writeByte(2)
-      ..write(obj.categorias);
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ContatoAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
-// **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 

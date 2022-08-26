@@ -24,7 +24,7 @@ mixin _$ApiResponse<T> {
   bool get sucesso => throw _privateConstructorUsedError;
   T? get dados => throw _privateConstructorUsedError;
   String? get mensagem => throw _privateConstructorUsedError;
-  String? get erro => throw _privateConstructorUsedError;
+  dynamic get erro => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ApiResponseCopyWith<T, ApiResponse<T>> get copyWith =>
@@ -36,7 +36,7 @@ abstract class $ApiResponseCopyWith<T, $Res> {
   factory $ApiResponseCopyWith(
           ApiResponse<T> value, $Res Function(ApiResponse<T>) then) =
       _$ApiResponseCopyWithImpl<T, $Res>;
-  $Res call({bool sucesso, T? dados, String? mensagem, String? erro});
+  $Res call({bool sucesso, T? dados, String? mensagem, dynamic erro});
 }
 
 /// @nodoc
@@ -71,7 +71,7 @@ class _$ApiResponseCopyWithImpl<T, $Res>
       erro: erro == freezed
           ? _value.erro
           : erro // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
     ));
   }
 }
@@ -83,7 +83,7 @@ abstract class _$$_ApiResponseCopyWith<T, $Res>
           _$_ApiResponse<T> value, $Res Function(_$_ApiResponse<T>) then) =
       __$$_ApiResponseCopyWithImpl<T, $Res>;
   @override
-  $Res call({bool sucesso, T? dados, String? mensagem, String? erro});
+  $Res call({bool sucesso, T? dados, String? mensagem, dynamic erro});
 }
 
 /// @nodoc
@@ -120,7 +120,7 @@ class __$$_ApiResponseCopyWithImpl<T, $Res>
       erro: erro == freezed
           ? _value.erro
           : erro // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
     ));
   }
 }
@@ -142,7 +142,7 @@ class _$_ApiResponse<T> implements _ApiResponse<T> {
   @override
   final String? mensagem;
   @override
-  final String? erro;
+  final dynamic erro;
 
   @override
   String toString() {
@@ -180,7 +180,7 @@ abstract class _ApiResponse<T> implements ApiResponse<T> {
       {required final bool sucesso,
       final T? dados,
       final String? mensagem,
-      final String? erro}) = _$_ApiResponse<T>;
+      final dynamic erro}) = _$_ApiResponse<T>;
 
   factory _ApiResponse.fromJson(
           Map<String, dynamic> json, T Function(Object?) fromJsonT) =
@@ -193,7 +193,7 @@ abstract class _ApiResponse<T> implements ApiResponse<T> {
   @override
   String? get mensagem;
   @override
-  String? get erro;
+  dynamic get erro;
   @override
   @JsonKey(ignore: true)
   _$$_ApiResponseCopyWith<T, _$_ApiResponse<T>> get copyWith =>

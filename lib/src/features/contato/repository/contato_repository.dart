@@ -2,19 +2,24 @@ import 'package:dio/dio.dart';
 import 'package:laboratorio_ferreira_mobile/src/configs/config.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/models/contato.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/network/models/api_response_model.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/network/services/dio_service.dart';
 import 'package:path/path.dart';
 
 class ContatoRepository {
-  final Dio _client;
+  final DioService _httpService;
   final _path = join(Config.apiUrl, 'contatos');
 
-  ContatoRepository({required Dio client}) : _client = client;
+  ContatoRepository({required DioService httpService})
+      : _httpService = httpService;
+
+  // resetClientToken([String? token]) =>
+  //     _httpService.resetInterceptorsWithTokenOrNull(token);
 
   Future<ApiResponse<Contato?>> getOne(String uid) async {
     late final Response resposta;
 
     try {
-      resposta = await _client.get(join(_path, uid));
+      resposta = await _httpService.client.get(join(_path, uid));
 
       return ApiResponse<Contato>.fromJson(resposta.data, Contato.fromJson);
     } on DioError catch (e) {
@@ -37,7 +42,8 @@ class ContatoRepository {
       payload.remove('criadoEm');
       payload.remove('atualizadoEm');
 
-      resposta = await _client.put(join(_path, contato.uid), data: payload);
+      resposta = await _httpService.client
+          .put(join(_path, contato.uid), data: payload);
 
       return ApiResponse<Contato>.fromJson(resposta.data, Contato.fromJson);
     } on DioError catch (e) {

@@ -9,7 +9,7 @@ class ApiResponse<T> with _$ApiResponse<T> {
     required bool sucesso,
     T? dados,
     String? mensagem,
-    String? erro,
+    dynamic erro,
   }) = _ApiResponse;
 
   factory ApiResponse.fromJson(

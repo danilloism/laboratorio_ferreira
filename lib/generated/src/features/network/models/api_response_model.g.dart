@@ -14,7 +14,7 @@ _$_ApiResponse<T> _$$_ApiResponseFromJson<T>(
       sucesso: json['sucesso'] as bool,
       dados: _$nullableGenericFromJson(json['dados'], fromJsonT),
       mensagem: json['mensagem'] as String?,
-      erro: json['erro'] as String?,
+      erro: json['erro'],
     );
 
 const _$$_ApiResponseFieldMap = <String, String>{

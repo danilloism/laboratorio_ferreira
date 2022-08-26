@@ -1,39 +1,70 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/app/providers/router_service_provider.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/app/providers/theme_mode_notifier_provider.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/app/services/logger.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_loggy/flutter_loggy.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:laboratorio_ferreira_mobile/src/configs/config.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/app/bloc/app_bloc_observer.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/app/data/repositories/settings_repository.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/app/view/theme/app_theme.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/providers/auth_notifier_provider.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/local_storage/helpers/hive_helper.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/local_storage/services/secure_storage_service.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/data/repositories/api_auth_repository.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/repository/contato_repository.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/network/services/dio_service.dart';
+import 'package:loggy/loggy.dart';
+import 'package:path_provider/path_provider.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  const secService = SecureStorageService();
-  await HiveHelper.initFlutter(secService: secService);
+  Loggy.initLoggy(
+    logPrinter: Config.isProduction
+        ? const DefaultPrinter()
+        : const PrettyDeveloperPrinter(),
+    logOptions: LogOptions(
+      Config.isProduction ? LogLevel.error : LogLevel.all,
+      includeCallerInfo: true,
+    ),
+  );
 
-  runApp(ProviderScope(
-    observers: [LoggerService()],
-    child: const MyApp(),
-  ));
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final storage = await HydratedStorage.build(
+      storageDirectory: await getApplicationDocumentsDirectory());
+
+  HydratedBlocOverrides.runZoned(
+    () => runApp(
+      MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider(lazy: true, create: (_) => DioService()),
+          RepositoryProvider(create: (_) => AppSettingsRepository()),
+        ],
+        child: const MyApp(),
+      ),
+    ),
+    storage: storage,
+    blocObserver: AppBlocObserver(),
+  );
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    ref.read(authNotifierProvider.notifier).init();
-    final routerService = ref.read(routerServiceProvider);
-    return MaterialApp.router(
-      routeInformationParser: routerService.router.routeInformationParser,
-      routerDelegate: routerService.router.routerDelegate,
-      routeInformationProvider: routerService.router.routeInformationProvider,
-      title: 'Laboratório Ferreira',
-      theme: AppTheme.light,
-      darkTheme: AppTheme.dark,
-      themeMode: ref.watch(themeModeNotifierProvider),
+  Widget build(BuildContext context) {
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+            lazy: true,
+            create: (context) =>
+                ContatoRepository(httpService: context.read<DioService>())),
+        RepositoryProvider(
+            lazy: true,
+            create: (context) =>
+                ApiAuthRepository(dioService: context.read<DioService>())),
+      ],
+      child: MaterialApp(
+        title: 'Laboratório Ferreira',
+        theme: AppTheme.light,
+        darkTheme: AppTheme.dark,
+        themeMode: context.watch<AppSettingsRepository>().state?.themeMode,
+      ),
     );
   }
 }
