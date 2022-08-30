@@ -1,5 +1,5 @@
-import 'package:laboratorio_ferreira_mobile/src/core/models/roles_enum.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/models/contato.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/data/models/roles.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/data/models/contato.dart';
 
 class ContatoViewModel {
   final Contato contato;
@@ -11,5 +11,5 @@ class ContatoViewModel {
         .reduce((value, element) => value < element ? value : element);
   }
 
-  bool temHierarquiaDe(RolesEnum role) => hierarquia <= role.index;
+  bool temHierarquiaDe(Roles role) => hierarquia <= role.index;
 }

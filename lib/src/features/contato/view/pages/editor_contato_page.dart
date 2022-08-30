@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/models/roles_enum.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/models/contato.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/data/models/roles.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/data/models/contato.dart';
 
 class EditorContatoPage<T> extends StatefulWidget {
   const EditorContatoPage({super.key, Contato? contato});
@@ -51,9 +51,9 @@ class _DetalhesContatoPageState extends State<EditorContatoPage> {
 
   _podeEditarCategorias(Contato contato) {
     if (contato.categorias.any((categoria) =>
-        categoria == RolesEnum.admin ||
-        categoria == RolesEnum.gerente ||
-        categoria == RolesEnum.colaborador)) {
+        categoria == Roles.admin ||
+        categoria == Roles.gerente ||
+        categoria == Roles.colaborador)) {
       return true;
     }
 

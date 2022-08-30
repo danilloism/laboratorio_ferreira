@@ -20,8 +20,9 @@ Session _$SessionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Session {
-  Contato get contato => throw _privateConstructorUsedError;
   String get accessToken => throw _privateConstructorUsedError;
+  Contato get contato => throw _privateConstructorUsedError;
+  bool get active => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -32,7 +33,7 @@ mixin _$Session {
 abstract class $SessionCopyWith<$Res> {
   factory $SessionCopyWith(Session value, $Res Function(Session) then) =
       _$SessionCopyWithImpl<$Res>;
-  $Res call({Contato contato, String accessToken});
+  $Res call({String accessToken, Contato contato, bool active});
 
   $ContatoCopyWith<$Res> get contato;
 }
@@ -47,18 +48,23 @@ class _$SessionCopyWithImpl<$Res> implements $SessionCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? contato = freezed,
     Object? accessToken = freezed,
+    Object? contato = freezed,
+    Object? active = freezed,
   }) {
     return _then(_value.copyWith(
-      contato: contato == freezed
-          ? _value.contato
-          : contato // ignore: cast_nullable_to_non_nullable
-              as Contato,
       accessToken: accessToken == freezed
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
+      contato: contato == freezed
+          ? _value.contato
+          : contato // ignore: cast_nullable_to_non_nullable
+              as Contato,
+      active: active == freezed
+          ? _value.active
+          : active // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -76,7 +82,7 @@ abstract class _$$_AuthModelCopyWith<$Res> implements $SessionCopyWith<$Res> {
           _$_AuthModel value, $Res Function(_$_AuthModel) then) =
       __$$_AuthModelCopyWithImpl<$Res>;
   @override
-  $Res call({Contato contato, String accessToken});
+  $Res call({String accessToken, Contato contato, bool active});
 
   @override
   $ContatoCopyWith<$Res> get contato;
@@ -94,18 +100,23 @@ class __$$_AuthModelCopyWithImpl<$Res> extends _$SessionCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? contato = freezed,
     Object? accessToken = freezed,
+    Object? contato = freezed,
+    Object? active = freezed,
   }) {
     return _then(_$_AuthModel(
-      contato: contato == freezed
-          ? _value.contato
-          : contato // ignore: cast_nullable_to_non_nullable
-              as Contato,
       accessToken: accessToken == freezed
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
+      contato: contato == freezed
+          ? _value.contato
+          : contato // ignore: cast_nullable_to_non_nullable
+              as Contato,
+      active: active == freezed
+          ? _value.active
+          : active // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -113,19 +124,23 @@ class __$$_AuthModelCopyWithImpl<$Res> extends _$SessionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_AuthModel implements _AuthModel {
-  const _$_AuthModel({required this.contato, required this.accessToken});
+  const _$_AuthModel(
+      {required this.accessToken, required this.contato, this.active = true});
 
   factory _$_AuthModel.fromJson(Map<String, dynamic> json) =>
       _$$_AuthModelFromJson(json);
 
   @override
+  final String accessToken;
+  @override
   final Contato contato;
   @override
-  final String accessToken;
+  @JsonKey()
+  final bool active;
 
   @override
   String toString() {
-    return 'Session(contato: $contato, accessToken: $accessToken)';
+    return 'Session(accessToken: $accessToken, contato: $contato, active: $active)';
   }
 
   @override
@@ -133,17 +148,19 @@ class _$_AuthModel implements _AuthModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AuthModel &&
-            const DeepCollectionEquality().equals(other.contato, contato) &&
             const DeepCollectionEquality()
-                .equals(other.accessToken, accessToken));
+                .equals(other.accessToken, accessToken) &&
+            const DeepCollectionEquality().equals(other.contato, contato) &&
+            const DeepCollectionEquality().equals(other.active, active));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(accessToken),
       const DeepCollectionEquality().hash(contato),
-      const DeepCollectionEquality().hash(accessToken));
+      const DeepCollectionEquality().hash(active));
 
   @JsonKey(ignore: true)
   @override
@@ -160,16 +177,19 @@ class _$_AuthModel implements _AuthModel {
 
 abstract class _AuthModel implements Session {
   const factory _AuthModel(
-      {required final Contato contato,
-      required final String accessToken}) = _$_AuthModel;
+      {required final String accessToken,
+      required final Contato contato,
+      final bool active}) = _$_AuthModel;
 
   factory _AuthModel.fromJson(Map<String, dynamic> json) =
       _$_AuthModel.fromJson;
 
   @override
+  String get accessToken;
+  @override
   Contato get contato;
   @override
-  String get accessToken;
+  bool get active;
   @override
   @JsonKey(ignore: true)
   _$$_AuthModelCopyWith<_$_AuthModel> get copyWith =>

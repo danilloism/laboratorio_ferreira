@@ -1,0 +1,31 @@
+import '../helpers/type_converters.dart';
+
+CREATE TABLE contatos (
+    uid TEXT NOT NULL PRIMARY KEY,
+    nome TEXT NOT NULL,
+    ativo INTEGER NULL MAPPED BY `const NullableBoolConverter()`,
+    criado_em TEXT MAPPED BY `const DateTimeConverter()`,
+    atualizado_em TEXT MAPPED BY `const DateTimeConverter()`,
+    categorias TEXT MAPPED BY `const CategoriasConverter()`,
+    telefones TEXT MAPPED BY `const TelefonesConverter()`
+);
+
+CREATE TABLE accounts (
+    email TEXT NOT NULL PRIMARY KEY,
+    criado_em TEXT MAPPED BY `const DateTimeConverter()`,
+    atualizado_em TEXT MAPPED BY `const DateTimeConverter()`,
+    contato_uid TEXT NOT NULL UNIQUE REFERENCES contatos(uid)
+);
+
+CREATE TABLE sessions (
+    access_token TEXT NOT NULL,
+    contato_uid TEXT NOT NULL REFERENCES contatos(uid),
+    active INTEGER NOT NULL MAPPED BY `const BoolConverter()`,
+    CONSTRAINT COMPOSITE_KEY PRIMARY KEY (access_token, contato_uid, active)
+);
+
+CREATE TABLE settings (
+    theme_mode INTEGER NOT NULL MAPPED BY `const ThemeModeConverter()`,
+    session_access_token TEXT REFERENCES sessions(access_token),
+    CONSTRAINT COMPOSITE_KEY PRIMARY KEY (theme_mode, session_access_token)
+);

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/account.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/session.dart';
 
 part '../../../../generated/src/features/auth/bloc/auth_state.freezed.dart';
@@ -10,7 +11,7 @@ class AuthState with _$AuthState {
   const factory AuthState.loggingIn() = _LoggingIn;
   const factory AuthState.error({
     required dynamic error,
-    Session? user,
+    Account? user,
   }) = _Error;
   const factory AuthState.unknown() = _Unknown;
 

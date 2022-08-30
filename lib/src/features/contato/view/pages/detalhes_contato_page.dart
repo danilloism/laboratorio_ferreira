@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/models/contato.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/data/models/contato.dart';
 
 class DetalhesContatoPage extends StatelessWidget {
   final Contato _contato;

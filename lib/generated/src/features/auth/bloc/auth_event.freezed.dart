@@ -40,23 +40,23 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AppInitialized value) appInitialized,
-    required TResult Function(_LogInButtonPressed value) logInButtonPressed,
-    required TResult Function(_LogOutButtonPressed value) logOutButtonPressed,
+    required TResult Function(AppInitialized value) appInitialized,
+    required TResult Function(LogInButtonPressed value) logInButtonPressed,
+    required TResult Function(LogOutButtonPressed value) logOutButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AppInitialized value)? appInitialized,
-    TResult Function(_LogInButtonPressed value)? logInButtonPressed,
-    TResult Function(_LogOutButtonPressed value)? logOutButtonPressed,
+    TResult Function(AppInitialized value)? appInitialized,
+    TResult Function(LogInButtonPressed value)? logInButtonPressed,
+    TResult Function(LogOutButtonPressed value)? logOutButtonPressed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AppInitialized value)? appInitialized,
-    TResult Function(_LogInButtonPressed value)? logInButtonPressed,
-    TResult Function(_LogOutButtonPressed value)? logOutButtonPressed,
+    TResult Function(AppInitialized value)? appInitialized,
+    TResult Function(LogInButtonPressed value)? logInButtonPressed,
+    TResult Function(LogOutButtonPressed value)? logOutButtonPressed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -78,28 +78,27 @@ class _$AuthEventCopyWithImpl<$Res> implements $AuthEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_AppInitializedCopyWith<$Res> {
-  factory _$$_AppInitializedCopyWith(
-          _$_AppInitialized value, $Res Function(_$_AppInitialized) then) =
-      __$$_AppInitializedCopyWithImpl<$Res>;
+abstract class _$$AppInitializedCopyWith<$Res> {
+  factory _$$AppInitializedCopyWith(
+          _$AppInitialized value, $Res Function(_$AppInitialized) then) =
+      __$$AppInitializedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_AppInitializedCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res>
-    implements _$$_AppInitializedCopyWith<$Res> {
-  __$$_AppInitializedCopyWithImpl(
-      _$_AppInitialized _value, $Res Function(_$_AppInitialized) _then)
-      : super(_value, (v) => _then(v as _$_AppInitialized));
+class __$$AppInitializedCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
+    implements _$$AppInitializedCopyWith<$Res> {
+  __$$AppInitializedCopyWithImpl(
+      _$AppInitialized _value, $Res Function(_$AppInitialized) _then)
+      : super(_value, (v) => _then(v as _$AppInitialized));
 
   @override
-  _$_AppInitialized get _value => super._value as _$_AppInitialized;
+  _$AppInitialized get _value => super._value as _$AppInitialized;
 }
 
 /// @nodoc
 
-class _$_AppInitialized implements _AppInitialized {
-  const _$_AppInitialized();
+class _$AppInitialized implements AppInitialized {
+  const _$AppInitialized();
 
   @override
   String toString() {
@@ -109,7 +108,7 @@ class _$_AppInitialized implements _AppInitialized {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AppInitialized);
+        (other.runtimeType == runtimeType && other is _$AppInitialized);
   }
 
   @override
@@ -152,9 +151,9 @@ class _$_AppInitialized implements _AppInitialized {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AppInitialized value) appInitialized,
-    required TResult Function(_LogInButtonPressed value) logInButtonPressed,
-    required TResult Function(_LogOutButtonPressed value) logOutButtonPressed,
+    required TResult Function(AppInitialized value) appInitialized,
+    required TResult Function(LogInButtonPressed value) logInButtonPressed,
+    required TResult Function(LogOutButtonPressed value) logOutButtonPressed,
   }) {
     return appInitialized(this);
   }
@@ -162,9 +161,9 @@ class _$_AppInitialized implements _AppInitialized {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AppInitialized value)? appInitialized,
-    TResult Function(_LogInButtonPressed value)? logInButtonPressed,
-    TResult Function(_LogOutButtonPressed value)? logOutButtonPressed,
+    TResult Function(AppInitialized value)? appInitialized,
+    TResult Function(LogInButtonPressed value)? logInButtonPressed,
+    TResult Function(LogOutButtonPressed value)? logOutButtonPressed,
   }) {
     return appInitialized?.call(this);
   }
@@ -172,9 +171,9 @@ class _$_AppInitialized implements _AppInitialized {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AppInitialized value)? appInitialized,
-    TResult Function(_LogInButtonPressed value)? logInButtonPressed,
-    TResult Function(_LogOutButtonPressed value)? logOutButtonPressed,
+    TResult Function(AppInitialized value)? appInitialized,
+    TResult Function(LogInButtonPressed value)? logInButtonPressed,
+    TResult Function(LogOutButtonPressed value)? logOutButtonPressed,
     required TResult orElse(),
   }) {
     if (appInitialized != null) {
@@ -184,36 +183,36 @@ class _$_AppInitialized implements _AppInitialized {
   }
 }
 
-abstract class _AppInitialized implements AuthEvent {
-  const factory _AppInitialized() = _$_AppInitialized;
+abstract class AppInitialized implements AuthEvent {
+  const factory AppInitialized() = _$AppInitialized;
 }
 
 /// @nodoc
-abstract class _$$_LogInButtonPressedCopyWith<$Res> {
-  factory _$$_LogInButtonPressedCopyWith(_$_LogInButtonPressed value,
-          $Res Function(_$_LogInButtonPressed) then) =
-      __$$_LogInButtonPressedCopyWithImpl<$Res>;
+abstract class _$$LogInButtonPressedCopyWith<$Res> {
+  factory _$$LogInButtonPressedCopyWith(_$LogInButtonPressed value,
+          $Res Function(_$LogInButtonPressed) then) =
+      __$$LogInButtonPressedCopyWithImpl<$Res>;
   $Res call({Account account});
 
   $AccountCopyWith<$Res> get account;
 }
 
 /// @nodoc
-class __$$_LogInButtonPressedCopyWithImpl<$Res>
+class __$$LogInButtonPressedCopyWithImpl<$Res>
     extends _$AuthEventCopyWithImpl<$Res>
-    implements _$$_LogInButtonPressedCopyWith<$Res> {
-  __$$_LogInButtonPressedCopyWithImpl(
-      _$_LogInButtonPressed _value, $Res Function(_$_LogInButtonPressed) _then)
-      : super(_value, (v) => _then(v as _$_LogInButtonPressed));
+    implements _$$LogInButtonPressedCopyWith<$Res> {
+  __$$LogInButtonPressedCopyWithImpl(
+      _$LogInButtonPressed _value, $Res Function(_$LogInButtonPressed) _then)
+      : super(_value, (v) => _then(v as _$LogInButtonPressed));
 
   @override
-  _$_LogInButtonPressed get _value => super._value as _$_LogInButtonPressed;
+  _$LogInButtonPressed get _value => super._value as _$LogInButtonPressed;
 
   @override
   $Res call({
     Object? account = freezed,
   }) {
-    return _then(_$_LogInButtonPressed(
+    return _then(_$LogInButtonPressed(
       account: account == freezed
           ? _value.account
           : account // ignore: cast_nullable_to_non_nullable
@@ -231,8 +230,8 @@ class __$$_LogInButtonPressedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LogInButtonPressed implements _LogInButtonPressed {
-  const _$_LogInButtonPressed({required this.account});
+class _$LogInButtonPressed implements LogInButtonPressed {
+  const _$LogInButtonPressed({required this.account});
 
   @override
   final Account account;
@@ -246,7 +245,7 @@ class _$_LogInButtonPressed implements _LogInButtonPressed {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LogInButtonPressed &&
+            other is _$LogInButtonPressed &&
             const DeepCollectionEquality().equals(other.account, account));
   }
 
@@ -256,8 +255,8 @@ class _$_LogInButtonPressed implements _LogInButtonPressed {
 
   @JsonKey(ignore: true)
   @override
-  _$$_LogInButtonPressedCopyWith<_$_LogInButtonPressed> get copyWith =>
-      __$$_LogInButtonPressedCopyWithImpl<_$_LogInButtonPressed>(
+  _$$LogInButtonPressedCopyWith<_$LogInButtonPressed> get copyWith =>
+      __$$LogInButtonPressedCopyWithImpl<_$LogInButtonPressed>(
           this, _$identity);
 
   @override
@@ -297,9 +296,9 @@ class _$_LogInButtonPressed implements _LogInButtonPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AppInitialized value) appInitialized,
-    required TResult Function(_LogInButtonPressed value) logInButtonPressed,
-    required TResult Function(_LogOutButtonPressed value) logOutButtonPressed,
+    required TResult Function(AppInitialized value) appInitialized,
+    required TResult Function(LogInButtonPressed value) logInButtonPressed,
+    required TResult Function(LogOutButtonPressed value) logOutButtonPressed,
   }) {
     return logInButtonPressed(this);
   }
@@ -307,9 +306,9 @@ class _$_LogInButtonPressed implements _LogInButtonPressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AppInitialized value)? appInitialized,
-    TResult Function(_LogInButtonPressed value)? logInButtonPressed,
-    TResult Function(_LogOutButtonPressed value)? logOutButtonPressed,
+    TResult Function(AppInitialized value)? appInitialized,
+    TResult Function(LogInButtonPressed value)? logInButtonPressed,
+    TResult Function(LogOutButtonPressed value)? logOutButtonPressed,
   }) {
     return logInButtonPressed?.call(this);
   }
@@ -317,9 +316,9 @@ class _$_LogInButtonPressed implements _LogInButtonPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AppInitialized value)? appInitialized,
-    TResult Function(_LogInButtonPressed value)? logInButtonPressed,
-    TResult Function(_LogOutButtonPressed value)? logOutButtonPressed,
+    TResult Function(AppInitialized value)? appInitialized,
+    TResult Function(LogInButtonPressed value)? logInButtonPressed,
+    TResult Function(LogOutButtonPressed value)? logOutButtonPressed,
     required TResult orElse(),
   }) {
     if (logInButtonPressed != null) {
@@ -329,39 +328,39 @@ class _$_LogInButtonPressed implements _LogInButtonPressed {
   }
 }
 
-abstract class _LogInButtonPressed implements AuthEvent {
-  const factory _LogInButtonPressed({required final Account account}) =
-      _$_LogInButtonPressed;
+abstract class LogInButtonPressed implements AuthEvent {
+  const factory LogInButtonPressed({required final Account account}) =
+      _$LogInButtonPressed;
 
   Account get account;
   @JsonKey(ignore: true)
-  _$$_LogInButtonPressedCopyWith<_$_LogInButtonPressed> get copyWith =>
+  _$$LogInButtonPressedCopyWith<_$LogInButtonPressed> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_LogOutButtonPressedCopyWith<$Res> {
-  factory _$$_LogOutButtonPressedCopyWith(_$_LogOutButtonPressed value,
-          $Res Function(_$_LogOutButtonPressed) then) =
-      __$$_LogOutButtonPressedCopyWithImpl<$Res>;
+abstract class _$$LogOutButtonPressedCopyWith<$Res> {
+  factory _$$LogOutButtonPressedCopyWith(_$LogOutButtonPressed value,
+          $Res Function(_$LogOutButtonPressed) then) =
+      __$$LogOutButtonPressedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LogOutButtonPressedCopyWithImpl<$Res>
+class __$$LogOutButtonPressedCopyWithImpl<$Res>
     extends _$AuthEventCopyWithImpl<$Res>
-    implements _$$_LogOutButtonPressedCopyWith<$Res> {
-  __$$_LogOutButtonPressedCopyWithImpl(_$_LogOutButtonPressed _value,
-      $Res Function(_$_LogOutButtonPressed) _then)
-      : super(_value, (v) => _then(v as _$_LogOutButtonPressed));
+    implements _$$LogOutButtonPressedCopyWith<$Res> {
+  __$$LogOutButtonPressedCopyWithImpl(
+      _$LogOutButtonPressed _value, $Res Function(_$LogOutButtonPressed) _then)
+      : super(_value, (v) => _then(v as _$LogOutButtonPressed));
 
   @override
-  _$_LogOutButtonPressed get _value => super._value as _$_LogOutButtonPressed;
+  _$LogOutButtonPressed get _value => super._value as _$LogOutButtonPressed;
 }
 
 /// @nodoc
 
-class _$_LogOutButtonPressed implements _LogOutButtonPressed {
-  const _$_LogOutButtonPressed();
+class _$LogOutButtonPressed implements LogOutButtonPressed {
+  const _$LogOutButtonPressed();
 
   @override
   String toString() {
@@ -371,7 +370,7 @@ class _$_LogOutButtonPressed implements _LogOutButtonPressed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_LogOutButtonPressed);
+        (other.runtimeType == runtimeType && other is _$LogOutButtonPressed);
   }
 
   @override
@@ -414,9 +413,9 @@ class _$_LogOutButtonPressed implements _LogOutButtonPressed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AppInitialized value) appInitialized,
-    required TResult Function(_LogInButtonPressed value) logInButtonPressed,
-    required TResult Function(_LogOutButtonPressed value) logOutButtonPressed,
+    required TResult Function(AppInitialized value) appInitialized,
+    required TResult Function(LogInButtonPressed value) logInButtonPressed,
+    required TResult Function(LogOutButtonPressed value) logOutButtonPressed,
   }) {
     return logOutButtonPressed(this);
   }
@@ -424,9 +423,9 @@ class _$_LogOutButtonPressed implements _LogOutButtonPressed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AppInitialized value)? appInitialized,
-    TResult Function(_LogInButtonPressed value)? logInButtonPressed,
-    TResult Function(_LogOutButtonPressed value)? logOutButtonPressed,
+    TResult Function(AppInitialized value)? appInitialized,
+    TResult Function(LogInButtonPressed value)? logInButtonPressed,
+    TResult Function(LogOutButtonPressed value)? logOutButtonPressed,
   }) {
     return logOutButtonPressed?.call(this);
   }
@@ -434,9 +433,9 @@ class _$_LogOutButtonPressed implements _LogOutButtonPressed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AppInitialized value)? appInitialized,
-    TResult Function(_LogInButtonPressed value)? logInButtonPressed,
-    TResult Function(_LogOutButtonPressed value)? logOutButtonPressed,
+    TResult Function(AppInitialized value)? appInitialized,
+    TResult Function(LogInButtonPressed value)? logInButtonPressed,
+    TResult Function(LogOutButtonPressed value)? logOutButtonPressed,
     required TResult orElse(),
   }) {
     if (logOutButtonPressed != null) {
@@ -446,6 +445,6 @@ class _$_LogOutButtonPressed implements _LogOutButtonPressed {
   }
 }
 
-abstract class _LogOutButtonPressed implements AuthEvent {
-  const factory _LogOutButtonPressed() = _$_LogOutButtonPressed;
+abstract class LogOutButtonPressed implements AuthEvent {
+  const factory LogOutButtonPressed() = _$LogOutButtonPressed;
 }

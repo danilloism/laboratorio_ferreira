@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/bloc/login_form_cubit.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/repositories/api_auth_repository.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/data/repositories/auth_repository.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/view/widgets/login_form.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/common/view/widgets/logo.dart';
 
 class LoginPage extends StatefulWidget {
@@ -39,32 +40,33 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 8),
               BlocProvider(
                 create: (context) =>
-                    LoginFormCubit(context.read<ApiAuthRepository>()),
+                    LoginFormCubit(context.read<AuthRepository>()),
                 child: Form(
                   key: _formKey,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: const [
-                        // ref.watch(authNotifierProvider) ==
-                        //         const AuthState.loggingIn()
-                        //     ? const CircularProgressIndicator()
-                        //     : ElevatedButton(
-                        //         onPressed: () {
-                        //           if (_formKey.currentState!.validate()) {
-                        //             ref
-                        //                 .read(authNotifierProvider.notifier)
-                        //                 .login(
-                        //                   Account(
-                        //                     email: _emailTextController.text,
-                        //                     senha: _passwordTextController.text,
-                        //                   ),
-                        //                 );
-                        //           }
-                        //         },
-                        //         child: const Text('Login')),
-                      ],
-                    ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: LoginForm(),
+                    // child: Column(
+                    //   children: const [
+                    // ref.watch(authNotifierProvider) ==
+                    //         const AuthState.loggingIn()
+                    //     ? const CircularProgressIndicator()
+                    //     : ElevatedButton(
+                    //         onPressed: () {
+                    //           if (_formKey.currentState!.validate()) {
+                    //             ref
+                    //                 .read(authNotifierProvider.notifier)
+                    //                 .login(
+                    //                   Account(
+                    //                     email: _emailTextController.text,
+                    //                     senha: _passwordTextController.text,
+                    //                   ),
+                    //                 );
+                    //           }
+                    //         },
+                    //         child: const Text('Login')),
+                    //   ],
+                    // ),
                   ),
                 ),
               )

@@ -21,7 +21,7 @@ mixin _$AuthState {
     required TResult Function(Session session) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function() loggingIn,
-    required TResult Function(dynamic error, Session? user) error,
+    required TResult Function(dynamic error, Account? user) error,
     required TResult Function() unknown,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,7 +30,7 @@ mixin _$AuthState {
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? loggingIn,
-    TResult Function(dynamic error, Session? user)? error,
+    TResult Function(dynamic error, Account? user)? error,
     TResult Function()? unknown,
   }) =>
       throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ mixin _$AuthState {
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? loggingIn,
-    TResult Function(dynamic error, Session? user)? error,
+    TResult Function(dynamic error, Account? user)? error,
     TResult Function()? unknown,
     required TResult orElse(),
   }) =>
@@ -165,7 +165,7 @@ class _$_LoggedIn extends _LoggedIn {
     required TResult Function(Session session) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function() loggingIn,
-    required TResult Function(dynamic error, Session? user) error,
+    required TResult Function(dynamic error, Account? user) error,
     required TResult Function() unknown,
   }) {
     return loggedIn(session);
@@ -177,7 +177,7 @@ class _$_LoggedIn extends _LoggedIn {
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? loggingIn,
-    TResult Function(dynamic error, Session? user)? error,
+    TResult Function(dynamic error, Account? user)? error,
     TResult Function()? unknown,
   }) {
     return loggedIn?.call(session);
@@ -189,7 +189,7 @@ class _$_LoggedIn extends _LoggedIn {
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? loggingIn,
-    TResult Function(dynamic error, Session? user)? error,
+    TResult Function(dynamic error, Account? user)? error,
     TResult Function()? unknown,
     required TResult orElse(),
   }) {
@@ -293,7 +293,7 @@ class _$_LoggedOut extends _LoggedOut {
     required TResult Function(Session session) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function() loggingIn,
-    required TResult Function(dynamic error, Session? user) error,
+    required TResult Function(dynamic error, Account? user) error,
     required TResult Function() unknown,
   }) {
     return loggedOut();
@@ -305,7 +305,7 @@ class _$_LoggedOut extends _LoggedOut {
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? loggingIn,
-    TResult Function(dynamic error, Session? user)? error,
+    TResult Function(dynamic error, Account? user)? error,
     TResult Function()? unknown,
   }) {
     return loggedOut?.call();
@@ -317,7 +317,7 @@ class _$_LoggedOut extends _LoggedOut {
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? loggingIn,
-    TResult Function(dynamic error, Session? user)? error,
+    TResult Function(dynamic error, Account? user)? error,
     TResult Function()? unknown,
     required TResult orElse(),
   }) {
@@ -416,7 +416,7 @@ class _$_LoggingIn extends _LoggingIn {
     required TResult Function(Session session) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function() loggingIn,
-    required TResult Function(dynamic error, Session? user) error,
+    required TResult Function(dynamic error, Account? user) error,
     required TResult Function() unknown,
   }) {
     return loggingIn();
@@ -428,7 +428,7 @@ class _$_LoggingIn extends _LoggingIn {
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? loggingIn,
-    TResult Function(dynamic error, Session? user)? error,
+    TResult Function(dynamic error, Account? user)? error,
     TResult Function()? unknown,
   }) {
     return loggingIn?.call();
@@ -440,7 +440,7 @@ class _$_LoggingIn extends _LoggingIn {
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? loggingIn,
-    TResult Function(dynamic error, Session? user)? error,
+    TResult Function(dynamic error, Account? user)? error,
     TResult Function()? unknown,
     required TResult orElse(),
   }) {
@@ -500,9 +500,9 @@ abstract class _LoggingIn extends AuthState {
 abstract class _$$_ErrorCopyWith<$Res> {
   factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
       __$$_ErrorCopyWithImpl<$Res>;
-  $Res call({dynamic error, Session? user});
+  $Res call({dynamic error, Account? user});
 
-  $SessionCopyWith<$Res>? get user;
+  $AccountCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -527,17 +527,17 @@ class __$$_ErrorCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
       user: user == freezed
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as Session?,
+              as Account?,
     ));
   }
 
   @override
-  $SessionCopyWith<$Res>? get user {
+  $AccountCopyWith<$Res>? get user {
     if (_value.user == null) {
       return null;
     }
 
-    return $SessionCopyWith<$Res>(_value.user!, (value) {
+    return $AccountCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value));
     });
   }
@@ -551,7 +551,7 @@ class _$_Error extends _Error {
   @override
   final dynamic error;
   @override
-  final Session? user;
+  final Account? user;
 
   @override
   String toString() {
@@ -584,7 +584,7 @@ class _$_Error extends _Error {
     required TResult Function(Session session) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function() loggingIn,
-    required TResult Function(dynamic error, Session? user) error,
+    required TResult Function(dynamic error, Account? user) error,
     required TResult Function() unknown,
   }) {
     return error(this.error, user);
@@ -596,7 +596,7 @@ class _$_Error extends _Error {
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? loggingIn,
-    TResult Function(dynamic error, Session? user)? error,
+    TResult Function(dynamic error, Account? user)? error,
     TResult Function()? unknown,
   }) {
     return error?.call(this.error, user);
@@ -608,7 +608,7 @@ class _$_Error extends _Error {
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? loggingIn,
-    TResult Function(dynamic error, Session? user)? error,
+    TResult Function(dynamic error, Account? user)? error,
     TResult Function()? unknown,
     required TResult orElse(),
   }) {
@@ -660,12 +660,12 @@ class _$_Error extends _Error {
 }
 
 abstract class _Error extends AuthState {
-  const factory _Error({required final dynamic error, final Session? user}) =
+  const factory _Error({required final dynamic error, final Account? user}) =
       _$_Error;
   const _Error._() : super._();
 
   dynamic get error;
-  Session? get user;
+  Account? get user;
   @JsonKey(ignore: true)
   _$$_ErrorCopyWith<_$_Error> get copyWith =>
       throw _privateConstructorUsedError;
@@ -713,7 +713,7 @@ class _$_Unknown extends _Unknown {
     required TResult Function(Session session) loggedIn,
     required TResult Function() loggedOut,
     required TResult Function() loggingIn,
-    required TResult Function(dynamic error, Session? user) error,
+    required TResult Function(dynamic error, Account? user) error,
     required TResult Function() unknown,
   }) {
     return unknown();
@@ -725,7 +725,7 @@ class _$_Unknown extends _Unknown {
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? loggingIn,
-    TResult Function(dynamic error, Session? user)? error,
+    TResult Function(dynamic error, Account? user)? error,
     TResult Function()? unknown,
   }) {
     return unknown?.call();
@@ -737,7 +737,7 @@ class _$_Unknown extends _Unknown {
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
     TResult Function()? loggingIn,
-    TResult Function(dynamic error, Session? user)? error,
+    TResult Function(dynamic error, Account? user)? error,
     TResult Function()? unknown,
     required TResult orElse(),
   }) {
