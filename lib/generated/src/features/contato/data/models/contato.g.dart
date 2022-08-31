@@ -13,11 +13,11 @@ _$_Contato _$$_ContatoFromJson(Map<String, dynamic> json) => _$_Contato(
       categorias: (json['categorias'] as List<dynamic>)
           .map((e) => $enumDecode(_$RolesEnumMap, e))
           .toSet(),
+      uid: json['uid'] as String,
       ativo: json['ativo'] as bool?,
       account: json['account'] == null
           ? null
           : Account.fromJson(json['account'] as Map<String, dynamic>),
-      uid: json['uid'] as String?,
       criadoEm: json['criadoEm'] == null
           ? null
           : DateTime.parse(json['criadoEm'] as String),
@@ -30,9 +30,9 @@ const _$$_ContatoFieldMap = <String, String>{
   'nome': 'nome',
   'telefones': 'telefones',
   'categorias': 'categorias',
+  'uid': 'uid',
   'ativo': 'ativo',
   'account': 'account',
-  'uid': 'uid',
   'criadoEm': 'criadoEm',
   'atualizadoEm': 'atualizadoEm',
 };
@@ -42,6 +42,7 @@ Map<String, dynamic> _$$_ContatoToJson(_$_Contato instance) {
     'nome': instance.nome,
     'telefones': instance.telefones.toList(),
     'categorias': instance.categorias.map((e) => _$RolesEnumMap[e]!).toList(),
+    'uid': instance.uid,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -52,7 +53,6 @@ Map<String, dynamic> _$$_ContatoToJson(_$_Contato instance) {
 
   writeNotNull('ativo', instance.ativo);
   writeNotNull('account', instance.account);
-  writeNotNull('uid', instance.uid);
   writeNotNull('criadoEm', instance.criadoEm?.toIso8601String());
   writeNotNull('atualizadoEm', instance.atualizadoEm?.toIso8601String());
   return val;

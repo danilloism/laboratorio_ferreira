@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/common/view/widgets/logo.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/logo.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

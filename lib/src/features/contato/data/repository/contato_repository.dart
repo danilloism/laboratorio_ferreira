@@ -25,10 +25,6 @@ class ContatoRepository {
   }
 
   Future<ApiResponse<Contato?>> update(Contato contato) async {
-    if (contato.uid == null) {
-      throw Exception('Uid do contato não deve ser nulo.');
-    }
-
     late final Response resposta;
 
     try {

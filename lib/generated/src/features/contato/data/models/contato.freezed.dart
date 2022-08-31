@@ -23,9 +23,9 @@ mixin _$Contato {
   String get nome => throw _privateConstructorUsedError;
   Set<String> get telefones => throw _privateConstructorUsedError;
   Set<Roles> get categorias => throw _privateConstructorUsedError;
+  String get uid => throw _privateConstructorUsedError;
   bool? get ativo => throw _privateConstructorUsedError;
   Account? get account => throw _privateConstructorUsedError;
-  String? get uid => throw _privateConstructorUsedError;
   DateTime? get criadoEm => throw _privateConstructorUsedError;
   DateTime? get atualizadoEm => throw _privateConstructorUsedError;
 
@@ -42,9 +42,9 @@ abstract class $ContatoCopyWith<$Res> {
       {String nome,
       Set<String> telefones,
       Set<Roles> categorias,
+      String uid,
       bool? ativo,
       Account? account,
-      String? uid,
       DateTime? criadoEm,
       DateTime? atualizadoEm});
 
@@ -64,9 +64,9 @@ class _$ContatoCopyWithImpl<$Res> implements $ContatoCopyWith<$Res> {
     Object? nome = freezed,
     Object? telefones = freezed,
     Object? categorias = freezed,
+    Object? uid = freezed,
     Object? ativo = freezed,
     Object? account = freezed,
-    Object? uid = freezed,
     Object? criadoEm = freezed,
     Object? atualizadoEm = freezed,
   }) {
@@ -83,6 +83,10 @@ class _$ContatoCopyWithImpl<$Res> implements $ContatoCopyWith<$Res> {
           ? _value.categorias
           : categorias // ignore: cast_nullable_to_non_nullable
               as Set<Roles>,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       ativo: ativo == freezed
           ? _value.ativo
           : ativo // ignore: cast_nullable_to_non_nullable
@@ -91,10 +95,6 @@ class _$ContatoCopyWithImpl<$Res> implements $ContatoCopyWith<$Res> {
           ? _value.account
           : account // ignore: cast_nullable_to_non_nullable
               as Account?,
-      uid: uid == freezed
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as String?,
       criadoEm: criadoEm == freezed
           ? _value.criadoEm
           : criadoEm // ignore: cast_nullable_to_non_nullable
@@ -128,9 +128,9 @@ abstract class _$$_ContatoCopyWith<$Res> implements $ContatoCopyWith<$Res> {
       {String nome,
       Set<String> telefones,
       Set<Roles> categorias,
+      String uid,
       bool? ativo,
       Account? account,
-      String? uid,
       DateTime? criadoEm,
       DateTime? atualizadoEm});
 
@@ -152,9 +152,9 @@ class __$$_ContatoCopyWithImpl<$Res> extends _$ContatoCopyWithImpl<$Res>
     Object? nome = freezed,
     Object? telefones = freezed,
     Object? categorias = freezed,
+    Object? uid = freezed,
     Object? ativo = freezed,
     Object? account = freezed,
-    Object? uid = freezed,
     Object? criadoEm = freezed,
     Object? atualizadoEm = freezed,
   }) {
@@ -171,6 +171,10 @@ class __$$_ContatoCopyWithImpl<$Res> extends _$ContatoCopyWithImpl<$Res>
           ? _value._categorias
           : categorias // ignore: cast_nullable_to_non_nullable
               as Set<Roles>,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
       ativo: ativo == freezed
           ? _value.ativo
           : ativo // ignore: cast_nullable_to_non_nullable
@@ -179,10 +183,6 @@ class __$$_ContatoCopyWithImpl<$Res> extends _$ContatoCopyWithImpl<$Res>
           ? _value.account
           : account // ignore: cast_nullable_to_non_nullable
               as Account?,
-      uid: uid == freezed
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
-              as String?,
       criadoEm: criadoEm == freezed
           ? _value.criadoEm
           : criadoEm // ignore: cast_nullable_to_non_nullable
@@ -202,9 +202,9 @@ class _$_Contato implements _Contato {
       {required this.nome,
       required final Set<String> telefones,
       required final Set<Roles> categorias,
+      required this.uid,
       this.ativo,
       this.account,
-      this.uid,
       this.criadoEm,
       this.atualizadoEm})
       : _telefones = telefones,
@@ -230,11 +230,11 @@ class _$_Contato implements _Contato {
   }
 
   @override
+  final String uid;
+  @override
   final bool? ativo;
   @override
   final Account? account;
-  @override
-  final String? uid;
   @override
   final DateTime? criadoEm;
   @override
@@ -242,7 +242,7 @@ class _$_Contato implements _Contato {
 
   @override
   String toString() {
-    return 'Contato(nome: $nome, telefones: $telefones, categorias: $categorias, ativo: $ativo, account: $account, uid: $uid, criadoEm: $criadoEm, atualizadoEm: $atualizadoEm)';
+    return 'Contato(nome: $nome, telefones: $telefones, categorias: $categorias, uid: $uid, ativo: $ativo, account: $account, criadoEm: $criadoEm, atualizadoEm: $atualizadoEm)';
   }
 
   @override
@@ -255,9 +255,9 @@ class _$_Contato implements _Contato {
                 .equals(other._telefones, _telefones) &&
             const DeepCollectionEquality()
                 .equals(other._categorias, _categorias) &&
+            const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other.ativo, ativo) &&
             const DeepCollectionEquality().equals(other.account, account) &&
-            const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other.criadoEm, criadoEm) &&
             const DeepCollectionEquality()
                 .equals(other.atualizadoEm, atualizadoEm));
@@ -270,9 +270,9 @@ class _$_Contato implements _Contato {
       const DeepCollectionEquality().hash(nome),
       const DeepCollectionEquality().hash(_telefones),
       const DeepCollectionEquality().hash(_categorias),
+      const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(ativo),
       const DeepCollectionEquality().hash(account),
-      const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(criadoEm),
       const DeepCollectionEquality().hash(atualizadoEm));
 
@@ -294,9 +294,9 @@ abstract class _Contato implements Contato {
       {required final String nome,
       required final Set<String> telefones,
       required final Set<Roles> categorias,
+      required final String uid,
       final bool? ativo,
       final Account? account,
-      final String? uid,
       final DateTime? criadoEm,
       final DateTime? atualizadoEm}) = _$_Contato;
 
@@ -309,11 +309,11 @@ abstract class _Contato implements Contato {
   @override
   Set<Roles> get categorias;
   @override
+  String get uid;
+  @override
   bool? get ativo;
   @override
   Account? get account;
-  @override
-  String? get uid;
   @override
   DateTime? get criadoEm;
   @override

@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/bloc/auth_bloc.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/bloc/auth_event.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/bloc/login_form_cubit.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/account.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/login.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/common/view/widgets/custom_text_form_field.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/common/view/widgets/form_section.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/view.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});

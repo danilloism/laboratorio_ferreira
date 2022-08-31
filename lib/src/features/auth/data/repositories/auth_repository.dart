@@ -2,11 +2,8 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:laboratorio_ferreira_mobile/src/configs/config.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/data/models/api_response.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/data/models/repository_exception.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/services/i_http_service.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/account.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/session.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/models.dart';
 import 'package:path/path.dart';
 
 class AuthRepository {

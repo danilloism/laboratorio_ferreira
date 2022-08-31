@@ -1,9 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/email_input.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/login.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/senha_input.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/repositories/auth_repository.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/data/data.dart';
 
 class LoginFormCubit extends Cubit<Login> {
   final AuthRepository _authRepo;

@@ -2,17 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_loggy/flutter_loggy.dart';
 import 'package:laboratorio_ferreira_mobile/src/configs/config.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/data/repositories/settings_repository.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/services/dio_service.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/services/i_http_service.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/app/view/pages/home_page.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/app/view/pages/welcome_page.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/app/view/theme/app_theme.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/bloc/auth_bloc.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/bloc/auth_event.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/bloc/auth_state.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/repositories/auth_repository.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/view/pages/login_page.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 import 'package:loggy/loggy.dart';
 
 Future<void> main() async {
@@ -30,11 +21,18 @@ Future<void> main() async {
           ),
   );
 
-  final settingsRepo = SettingsRepository();
+  final db = Database();
+  final settingsRepo = SettingsRepository(db.settingsDao);
   await settingsRepo.init();
 
-  runApp(RepositoryProvider<SettingsRepository>.value(
-      value: settingsRepo, child: const MyApp()));
+  runApp(MultiRepositoryProvider(
+    providers: [
+      RepositoryProvider<IHttpService>(create: (_) => DioService()),
+      RepositoryProvider<Database>.value(value: db),
+      RepositoryProvider<SettingsRepository>.value(value: settingsRepo),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -44,10 +42,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider<IHttpService>(create: (_) => DioService()),
         RepositoryProvider<AuthRepository>(
             create: (ctx) =>
-                AuthRepository(httpService: ctx.read<IHttpService>()))
+                AuthRepository(httpService: ctx.read<IHttpService>())),
       ],
       child: BlocProvider<AuthBloc>(
         lazy: false,

@@ -24,6 +24,7 @@ dependencies:
   flutter_loggy_dio: ^2.0.0+3
   formz: ^0.4.1
   freezed_annotation: ^2.1.0
+  get_it: ^7.2.0
   json_annotation: ^4.6.0
   jwt_decoder: ^2.0.1
   loggy: ^2.0.1+1

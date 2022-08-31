@@ -2,11 +2,8 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/data/repositories/settings_repository.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/data/models/repository_exception.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/bloc/auth_event.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/bloc/auth_state.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/repositories/auth_repository.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository _authRepo;

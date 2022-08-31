@@ -7,7 +7,8 @@ part '../../../../generated/src/core/data/models/setting.freezed.dart';
 @freezed
 class Setting with _$Setting {
   const factory Setting({
-    required ThemeMode themeMode,
+    @Default(ThemeMode.system) ThemeMode themeMode,
     Session? session,
+    @Default(true) bool active,
   }) = _Setting;
 }

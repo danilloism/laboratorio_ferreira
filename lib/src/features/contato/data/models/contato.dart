@@ -11,9 +11,9 @@ class Contato with _$Contato {
     required String nome,
     required Set<String> telefones,
     required Set<Roles> categorias,
+    required String uid,
     bool? ativo,
     Account? account,
-    String? uid,
     DateTime? criadoEm,
     DateTime? atualizadoEm,
   }) = _Contato;

@@ -54,20 +54,24 @@ class BoolConverter extends TypeConverter<bool, int> {
   const BoolConverter();
 
   @override
-  bool fromSql(int fromDb) => fromDb as bool;
+  bool fromSql(int fromDb) => fromDb == 1;
 
   @override
-  int toSql(bool value) => value as int;
+  int toSql(bool value) => value ? 1 : 0;
 }
 
 class NullableBoolConverter extends TypeConverter<bool?, int?> {
   const NullableBoolConverter();
 
   @override
-  bool? fromSql(int? fromDb) => fromDb as bool?;
+  bool? fromSql(int? fromDb) => fromDb == null ? null : fromDb == 1;
 
   @override
-  int? toSql(bool? value) => value as int?;
+  int? toSql(bool? value) => value == null
+      ? null
+      : value
+          ? 1
+          : 0;
 }
 
 class ThemeModeConverter extends TypeConverter<ThemeMode, int> {

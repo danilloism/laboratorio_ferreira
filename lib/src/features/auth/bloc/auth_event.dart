@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/account.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/models.dart';
 
 part '../../../../generated/src/features/auth/bloc/auth_event.freezed.dart';
 

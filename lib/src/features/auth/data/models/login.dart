@@ -1,8 +1,6 @@
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/email_input.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/senha_input.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/session.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/models.dart';
 
 part '../../../../../generated/src/features/auth/data/models/login.freezed.dart';
 

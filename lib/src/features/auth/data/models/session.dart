@@ -9,7 +9,6 @@ class Session with _$Session {
   const factory Session({
     required String accessToken,
     required Contato contato,
-    @Default(true) bool active,
   }) = _AuthModel;
 
   factory Session.fromJson(Object? json) =>

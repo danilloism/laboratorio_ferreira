@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Setting {
   ThemeMode get themeMode => throw _privateConstructorUsedError;
   Session? get session => throw _privateConstructorUsedError;
+  bool get active => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SettingCopyWith<Setting> get copyWith => throw _privateConstructorUsedError;
@@ -27,7 +28,7 @@ mixin _$Setting {
 abstract class $SettingCopyWith<$Res> {
   factory $SettingCopyWith(Setting value, $Res Function(Setting) then) =
       _$SettingCopyWithImpl<$Res>;
-  $Res call({ThemeMode themeMode, Session? session});
+  $Res call({ThemeMode themeMode, Session? session, bool active});
 
   $SessionCopyWith<$Res>? get session;
 }
@@ -44,6 +45,7 @@ class _$SettingCopyWithImpl<$Res> implements $SettingCopyWith<$Res> {
   $Res call({
     Object? themeMode = freezed,
     Object? session = freezed,
+    Object? active = freezed,
   }) {
     return _then(_value.copyWith(
       themeMode: themeMode == freezed
@@ -54,6 +56,10 @@ class _$SettingCopyWithImpl<$Res> implements $SettingCopyWith<$Res> {
           ? _value.session
           : session // ignore: cast_nullable_to_non_nullable
               as Session?,
+      active: active == freezed
+          ? _value.active
+          : active // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -75,7 +81,7 @@ abstract class _$$_SettingCopyWith<$Res> implements $SettingCopyWith<$Res> {
           _$_Setting value, $Res Function(_$_Setting) then) =
       __$$_SettingCopyWithImpl<$Res>;
   @override
-  $Res call({ThemeMode themeMode, Session? session});
+  $Res call({ThemeMode themeMode, Session? session, bool active});
 
   @override
   $SessionCopyWith<$Res>? get session;
@@ -94,6 +100,7 @@ class __$$_SettingCopyWithImpl<$Res> extends _$SettingCopyWithImpl<$Res>
   $Res call({
     Object? themeMode = freezed,
     Object? session = freezed,
+    Object? active = freezed,
   }) {
     return _then(_$_Setting(
       themeMode: themeMode == freezed
@@ -104,6 +111,10 @@ class __$$_SettingCopyWithImpl<$Res> extends _$SettingCopyWithImpl<$Res>
           ? _value.session
           : session // ignore: cast_nullable_to_non_nullable
               as Session?,
+      active: active == freezed
+          ? _value.active
+          : active // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -111,16 +122,21 @@ class __$$_SettingCopyWithImpl<$Res> extends _$SettingCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Setting implements _Setting {
-  const _$_Setting({required this.themeMode, this.session});
+  const _$_Setting(
+      {this.themeMode = ThemeMode.system, this.session, this.active = true});
 
   @override
+  @JsonKey()
   final ThemeMode themeMode;
   @override
   final Session? session;
+  @override
+  @JsonKey()
+  final bool active;
 
   @override
   String toString() {
-    return 'Setting(themeMode: $themeMode, session: $session)';
+    return 'Setting(themeMode: $themeMode, session: $session, active: $active)';
   }
 
   @override
@@ -129,14 +145,16 @@ class _$_Setting implements _Setting {
         (other.runtimeType == runtimeType &&
             other is _$_Setting &&
             const DeepCollectionEquality().equals(other.themeMode, themeMode) &&
-            const DeepCollectionEquality().equals(other.session, session));
+            const DeepCollectionEquality().equals(other.session, session) &&
+            const DeepCollectionEquality().equals(other.active, active));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(themeMode),
-      const DeepCollectionEquality().hash(session));
+      const DeepCollectionEquality().hash(session),
+      const DeepCollectionEquality().hash(active));
 
   @JsonKey(ignore: true)
   @override
@@ -146,13 +164,16 @@ class _$_Setting implements _Setting {
 
 abstract class _Setting implements Setting {
   const factory _Setting(
-      {required final ThemeMode themeMode,
-      final Session? session}) = _$_Setting;
+      {final ThemeMode themeMode,
+      final Session? session,
+      final bool active}) = _$_Setting;
 
   @override
   ThemeMode get themeMode;
   @override
   Session? get session;
+  @override
+  bool get active;
   @override
   @JsonKey(ignore: true)
   _$$_SettingCopyWith<_$_Setting> get copyWith =>

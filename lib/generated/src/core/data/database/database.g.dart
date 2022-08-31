@@ -7,22 +7,22 @@ part of '../../../../../src/core/data/database/database.dart';
 // **************************************************************************
 
 // ignore_for_file: type=lint
-class Contato extends DataClass implements Insertable<Contato> {
+class ContatoTable extends DataClass implements Insertable<ContatoTable> {
   final String uid;
   final String nome;
   final bool? ativo;
   final DateTime? criadoEm;
   final DateTime? atualizadoEm;
-  final Set<Roles>? categorias;
-  final Set<String>? telefones;
-  const Contato(
+  final Set<Roles> categorias;
+  final Set<String> telefones;
+  const ContatoTable(
       {required this.uid,
       required this.nome,
       this.ativo,
       this.criadoEm,
       this.atualizadoEm,
-      this.categorias,
-      this.telefones});
+      required this.categorias,
+      required this.telefones});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -40,12 +40,12 @@ class Contato extends DataClass implements Insertable<Contato> {
       final converter = Contatos.$converter2n;
       map['atualizado_em'] = Variable<String>(converter.toSql(atualizadoEm));
     }
-    if (!nullToAbsent || categorias != null) {
-      final converter = Contatos.$converter3n;
+    {
+      final converter = Contatos.$converter3;
       map['categorias'] = Variable<String>(converter.toSql(categorias));
     }
-    if (!nullToAbsent || telefones != null) {
-      final converter = Contatos.$converter4n;
+    {
+      final converter = Contatos.$converter4;
       map['telefones'] = Variable<String>(converter.toSql(telefones));
     }
     return map;
@@ -63,26 +63,22 @@ class Contato extends DataClass implements Insertable<Contato> {
       atualizadoEm: atualizadoEm == null && nullToAbsent
           ? const Value.absent()
           : Value(atualizadoEm),
-      categorias: categorias == null && nullToAbsent
-          ? const Value.absent()
-          : Value(categorias),
-      telefones: telefones == null && nullToAbsent
-          ? const Value.absent()
-          : Value(telefones),
+      categorias: Value(categorias),
+      telefones: Value(telefones),
     );
   }
 
-  factory Contato.fromJson(Map<String, dynamic> json,
+  factory ContatoTable.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return Contato(
+    return ContatoTable(
       uid: serializer.fromJson<String>(json['uid']),
       nome: serializer.fromJson<String>(json['nome']),
       ativo: serializer.fromJson<bool?>(json['ativo']),
       criadoEm: serializer.fromJson<DateTime?>(json['criado_em']),
       atualizadoEm: serializer.fromJson<DateTime?>(json['atualizado_em']),
-      categorias: serializer.fromJson<Set<Roles>?>(json['categorias']),
-      telefones: serializer.fromJson<Set<String>?>(json['telefones']),
+      categorias: serializer.fromJson<Set<Roles>>(json['categorias']),
+      telefones: serializer.fromJson<Set<String>>(json['telefones']),
     );
   }
   @override
@@ -94,32 +90,32 @@ class Contato extends DataClass implements Insertable<Contato> {
       'ativo': serializer.toJson<bool?>(ativo),
       'criado_em': serializer.toJson<DateTime?>(criadoEm),
       'atualizado_em': serializer.toJson<DateTime?>(atualizadoEm),
-      'categorias': serializer.toJson<Set<Roles>?>(categorias),
-      'telefones': serializer.toJson<Set<String>?>(telefones),
+      'categorias': serializer.toJson<Set<Roles>>(categorias),
+      'telefones': serializer.toJson<Set<String>>(telefones),
     };
   }
 
-  Contato copyWith(
+  ContatoTable copyWith(
           {String? uid,
           String? nome,
           Value<bool?> ativo = const Value.absent(),
           Value<DateTime?> criadoEm = const Value.absent(),
           Value<DateTime?> atualizadoEm = const Value.absent(),
-          Value<Set<Roles>?> categorias = const Value.absent(),
-          Value<Set<String>?> telefones = const Value.absent()}) =>
-      Contato(
+          Set<Roles>? categorias,
+          Set<String>? telefones}) =>
+      ContatoTable(
         uid: uid ?? this.uid,
         nome: nome ?? this.nome,
         ativo: ativo.present ? ativo.value : this.ativo,
         criadoEm: criadoEm.present ? criadoEm.value : this.criadoEm,
         atualizadoEm:
             atualizadoEm.present ? atualizadoEm.value : this.atualizadoEm,
-        categorias: categorias.present ? categorias.value : this.categorias,
-        telefones: telefones.present ? telefones.value : this.telefones,
+        categorias: categorias ?? this.categorias,
+        telefones: telefones ?? this.telefones,
       );
   @override
   String toString() {
-    return (StringBuffer('Contato(')
+    return (StringBuffer('ContatoTable(')
           ..write('uid: $uid, ')
           ..write('nome: $nome, ')
           ..write('ativo: $ativo, ')
@@ -137,7 +133,7 @@ class Contato extends DataClass implements Insertable<Contato> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is Contato &&
+      (other is ContatoTable &&
           other.uid == this.uid &&
           other.nome == this.nome &&
           other.ativo == this.ativo &&
@@ -147,14 +143,14 @@ class Contato extends DataClass implements Insertable<Contato> {
           other.telefones == this.telefones);
 }
 
-class ContatosCompanion extends UpdateCompanion<Contato> {
+class ContatosCompanion extends UpdateCompanion<ContatoTable> {
   final Value<String> uid;
   final Value<String> nome;
   final Value<bool?> ativo;
   final Value<DateTime?> criadoEm;
   final Value<DateTime?> atualizadoEm;
-  final Value<Set<Roles>?> categorias;
-  final Value<Set<String>?> telefones;
+  final Value<Set<Roles>> categorias;
+  final Value<Set<String>> telefones;
   const ContatosCompanion({
     this.uid = const Value.absent(),
     this.nome = const Value.absent(),
@@ -170,11 +166,13 @@ class ContatosCompanion extends UpdateCompanion<Contato> {
     this.ativo = const Value.absent(),
     this.criadoEm = const Value.absent(),
     this.atualizadoEm = const Value.absent(),
-    this.categorias = const Value.absent(),
-    this.telefones = const Value.absent(),
+    required Set<Roles> categorias,
+    required Set<String> telefones,
   })  : uid = Value(uid),
-        nome = Value(nome);
-  static Insertable<Contato> custom({
+        nome = Value(nome),
+        categorias = Value(categorias),
+        telefones = Value(telefones);
+  static Insertable<ContatoTable> custom({
     Expression<String>? uid,
     Expression<String>? nome,
     Expression<int>? ativo,
@@ -200,8 +198,8 @@ class ContatosCompanion extends UpdateCompanion<Contato> {
       Value<bool?>? ativo,
       Value<DateTime?>? criadoEm,
       Value<DateTime?>? atualizadoEm,
-      Value<Set<Roles>?>? categorias,
-      Value<Set<String>?>? telefones}) {
+      Value<Set<Roles>>? categorias,
+      Value<Set<String>>? telefones}) {
     return ContatosCompanion(
       uid: uid ?? this.uid,
       nome: nome ?? this.nome,
@@ -236,11 +234,11 @@ class ContatosCompanion extends UpdateCompanion<Contato> {
           Variable<String>(converter.toSql(atualizadoEm.value));
     }
     if (categorias.present) {
-      final converter = Contatos.$converter3n;
+      final converter = Contatos.$converter3;
       map['categorias'] = Variable<String>(converter.toSql(categorias.value));
     }
     if (telefones.present) {
-      final converter = Contatos.$converter4n;
+      final converter = Contatos.$converter4;
       map['telefones'] = Variable<String>(converter.toSql(telefones.value));
     }
     return map;
@@ -261,7 +259,7 @@ class ContatosCompanion extends UpdateCompanion<Contato> {
   }
 }
 
-class Contatos extends Table with TableInfo<Contatos, Contato> {
+class Contatos extends Table with TableInfo<Contatos, ContatoTable> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -301,19 +299,19 @@ class Contatos extends Table with TableInfo<Contatos, Contato> {
               $customConstraints: '')
           .withConverter<DateTime?>(Contatos.$converter2n);
   final VerificationMeta _categoriasMeta = const VerificationMeta('categorias');
-  late final GeneratedColumnWithTypeConverter<Set<Roles>?, String> categorias =
-      GeneratedColumn<String>('categorias', aliasedName, true,
+  late final GeneratedColumnWithTypeConverter<Set<Roles>, String> categorias =
+      GeneratedColumn<String>('categorias', aliasedName, false,
               type: DriftSqlType.string,
-              requiredDuringInsert: false,
-              $customConstraints: '')
-          .withConverter<Set<Roles>?>(Contatos.$converter3n);
+              requiredDuringInsert: true,
+              $customConstraints: 'NOT NULL')
+          .withConverter<Set<Roles>>(Contatos.$converter3);
   final VerificationMeta _telefonesMeta = const VerificationMeta('telefones');
-  late final GeneratedColumnWithTypeConverter<Set<String>?, String> telefones =
-      GeneratedColumn<String>('telefones', aliasedName, true,
+  late final GeneratedColumnWithTypeConverter<Set<String>, String> telefones =
+      GeneratedColumn<String>('telefones', aliasedName, false,
               type: DriftSqlType.string,
-              requiredDuringInsert: false,
-              $customConstraints: '')
-          .withConverter<Set<String>?>(Contatos.$converter4n);
+              requiredDuringInsert: true,
+              $customConstraints: 'NOT NULL')
+          .withConverter<Set<String>>(Contatos.$converter4);
   @override
   List<GeneratedColumn> get $columns =>
       [uid, nome, ativo, criadoEm, atualizadoEm, categorias, telefones];
@@ -322,7 +320,7 @@ class Contatos extends Table with TableInfo<Contatos, Contato> {
   @override
   String get actualTableName => 'contatos';
   @override
-  VerificationContext validateIntegrity(Insertable<Contato> instance,
+  VerificationContext validateIntegrity(Insertable<ContatoTable> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -349,9 +347,9 @@ class Contatos extends Table with TableInfo<Contatos, Contato> {
   @override
   Set<GeneratedColumn> get $primaryKey => {uid};
   @override
-  Contato map(Map<String, dynamic> data, {String? tablePrefix}) {
+  ContatoTable map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return Contato(
+    return ContatoTable(
       uid: attachedDatabase.options.types
           .read(DriftSqlType.string, data['${effectivePrefix}uid'])!,
       nome: attachedDatabase.options.types
@@ -362,10 +360,10 @@ class Contatos extends Table with TableInfo<Contatos, Contato> {
           .read(DriftSqlType.string, data['${effectivePrefix}criado_em'])),
       atualizadoEm: Contatos.$converter2n.fromSql(attachedDatabase.options.types
           .read(DriftSqlType.string, data['${effectivePrefix}atualizado_em'])),
-      categorias: Contatos.$converter3n.fromSql(attachedDatabase.options.types
-          .read(DriftSqlType.string, data['${effectivePrefix}categorias'])),
-      telefones: Contatos.$converter4n.fromSql(attachedDatabase.options.types
-          .read(DriftSqlType.string, data['${effectivePrefix}telefones'])),
+      categorias: Contatos.$converter3.fromSql(attachedDatabase.options.types
+          .read(DriftSqlType.string, data['${effectivePrefix}categorias'])!),
+      telefones: Contatos.$converter4.fromSql(attachedDatabase.options.types
+          .read(DriftSqlType.string, data['${effectivePrefix}telefones'])!),
     );
   }
 
@@ -387,20 +385,433 @@ class Contatos extends Table with TableInfo<Contatos, Contato> {
       NullAwareTypeConverter.wrap($converter1);
   static TypeConverter<DateTime?, String?> $converter2n =
       NullAwareTypeConverter.wrap($converter2);
-  static TypeConverter<Set<Roles>?, String?> $converter3n =
-      NullAwareTypeConverter.wrap($converter3);
-  static TypeConverter<Set<String>?, String?> $converter4n =
-      NullAwareTypeConverter.wrap($converter4);
   @override
   bool get dontWriteConstraints => true;
 }
 
-class Account extends DataClass implements Insertable<Account> {
+class SessionTable extends DataClass implements Insertable<SessionTable> {
+  final String accessToken;
+  final String contatoUid;
+  const SessionTable({required this.accessToken, required this.contatoUid});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['access_token'] = Variable<String>(accessToken);
+    map['contato_uid'] = Variable<String>(contatoUid);
+    return map;
+  }
+
+  SessionsCompanion toCompanion(bool nullToAbsent) {
+    return SessionsCompanion(
+      accessToken: Value(accessToken),
+      contatoUid: Value(contatoUid),
+    );
+  }
+
+  factory SessionTable.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SessionTable(
+      accessToken: serializer.fromJson<String>(json['access_token']),
+      contatoUid: serializer.fromJson<String>(json['contato_uid']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'access_token': serializer.toJson<String>(accessToken),
+      'contato_uid': serializer.toJson<String>(contatoUid),
+    };
+  }
+
+  SessionTable copyWith({String? accessToken, String? contatoUid}) =>
+      SessionTable(
+        accessToken: accessToken ?? this.accessToken,
+        contatoUid: contatoUid ?? this.contatoUid,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('SessionTable(')
+          ..write('accessToken: $accessToken, ')
+          ..write('contatoUid: $contatoUid')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(accessToken, contatoUid);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SessionTable &&
+          other.accessToken == this.accessToken &&
+          other.contatoUid == this.contatoUid);
+}
+
+class SessionsCompanion extends UpdateCompanion<SessionTable> {
+  final Value<String> accessToken;
+  final Value<String> contatoUid;
+  const SessionsCompanion({
+    this.accessToken = const Value.absent(),
+    this.contatoUid = const Value.absent(),
+  });
+  SessionsCompanion.insert({
+    required String accessToken,
+    required String contatoUid,
+  })  : accessToken = Value(accessToken),
+        contatoUid = Value(contatoUid);
+  static Insertable<SessionTable> custom({
+    Expression<String>? accessToken,
+    Expression<String>? contatoUid,
+  }) {
+    return RawValuesInsertable({
+      if (accessToken != null) 'access_token': accessToken,
+      if (contatoUid != null) 'contato_uid': contatoUid,
+    });
+  }
+
+  SessionsCompanion copyWith(
+      {Value<String>? accessToken, Value<String>? contatoUid}) {
+    return SessionsCompanion(
+      accessToken: accessToken ?? this.accessToken,
+      contatoUid: contatoUid ?? this.contatoUid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (accessToken.present) {
+      map['access_token'] = Variable<String>(accessToken.value);
+    }
+    if (contatoUid.present) {
+      map['contato_uid'] = Variable<String>(contatoUid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SessionsCompanion(')
+          ..write('accessToken: $accessToken, ')
+          ..write('contatoUid: $contatoUid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class Sessions extends Table with TableInfo<Sessions, SessionTable> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  Sessions(this.attachedDatabase, [this._alias]);
+  final VerificationMeta _accessTokenMeta =
+      const VerificationMeta('accessToken');
+  late final GeneratedColumn<String> accessToken = GeneratedColumn<String>(
+      'access_token', aliasedName, false,
+      type: DriftSqlType.string,
+      requiredDuringInsert: true,
+      $customConstraints: 'NOT NULL');
+  final VerificationMeta _contatoUidMeta = const VerificationMeta('contatoUid');
+  late final GeneratedColumn<String> contatoUid = GeneratedColumn<String>(
+      'contato_uid', aliasedName, false,
+      type: DriftSqlType.string,
+      requiredDuringInsert: true,
+      $customConstraints: 'NOT NULL REFERENCES contatos(uid)');
+  @override
+  List<GeneratedColumn> get $columns => [accessToken, contatoUid];
+  @override
+  String get aliasedName => _alias ?? 'sessions';
+  @override
+  String get actualTableName => 'sessions';
+  @override
+  VerificationContext validateIntegrity(Insertable<SessionTable> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('access_token')) {
+      context.handle(
+          _accessTokenMeta,
+          accessToken.isAcceptableOrUnknown(
+              data['access_token']!, _accessTokenMeta));
+    } else if (isInserting) {
+      context.missing(_accessTokenMeta);
+    }
+    if (data.containsKey('contato_uid')) {
+      context.handle(
+          _contatoUidMeta,
+          contatoUid.isAcceptableOrUnknown(
+              data['contato_uid']!, _contatoUidMeta));
+    } else if (isInserting) {
+      context.missing(_contatoUidMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {accessToken, contatoUid};
+  @override
+  SessionTable map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SessionTable(
+      accessToken: attachedDatabase.options.types
+          .read(DriftSqlType.string, data['${effectivePrefix}access_token'])!,
+      contatoUid: attachedDatabase.options.types
+          .read(DriftSqlType.string, data['${effectivePrefix}contato_uid'])!,
+    );
+  }
+
+  @override
+  Sessions createAlias(String alias) {
+    return Sessions(attachedDatabase, alias);
+  }
+
+  @override
+  List<String> get customConstraints => const [
+        'CONSTRAINT COMPOSITE_KEY PRIMARY KEY (access_token, contato_uid)'
+      ];
+  @override
+  bool get dontWriteConstraints => true;
+}
+
+class SettingTable extends DataClass implements Insertable<SettingTable> {
+  final ThemeMode themeMode;
+  final String? sessionAccessToken;
+  final bool active;
+  const SettingTable(
+      {required this.themeMode, this.sessionAccessToken, required this.active});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    {
+      final converter = Settings.$converter0;
+      map['theme_mode'] = Variable<int>(converter.toSql(themeMode));
+    }
+    if (!nullToAbsent || sessionAccessToken != null) {
+      map['session_access_token'] = Variable<String>(sessionAccessToken);
+    }
+    {
+      final converter = Settings.$converter1;
+      map['active'] = Variable<int>(converter.toSql(active));
+    }
+    return map;
+  }
+
+  SettingsCompanion toCompanion(bool nullToAbsent) {
+    return SettingsCompanion(
+      themeMode: Value(themeMode),
+      sessionAccessToken: sessionAccessToken == null && nullToAbsent
+          ? const Value.absent()
+          : Value(sessionAccessToken),
+      active: Value(active),
+    );
+  }
+
+  factory SettingTable.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SettingTable(
+      themeMode: serializer.fromJson<ThemeMode>(json['theme_mode']),
+      sessionAccessToken:
+          serializer.fromJson<String?>(json['session_access_token']),
+      active: serializer.fromJson<bool>(json['active']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'theme_mode': serializer.toJson<ThemeMode>(themeMode),
+      'session_access_token': serializer.toJson<String?>(sessionAccessToken),
+      'active': serializer.toJson<bool>(active),
+    };
+  }
+
+  SettingTable copyWith(
+          {ThemeMode? themeMode,
+          Value<String?> sessionAccessToken = const Value.absent(),
+          bool? active}) =>
+      SettingTable(
+        themeMode: themeMode ?? this.themeMode,
+        sessionAccessToken: sessionAccessToken.present
+            ? sessionAccessToken.value
+            : this.sessionAccessToken,
+        active: active ?? this.active,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('SettingTable(')
+          ..write('themeMode: $themeMode, ')
+          ..write('sessionAccessToken: $sessionAccessToken, ')
+          ..write('active: $active')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(themeMode, sessionAccessToken, active);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SettingTable &&
+          other.themeMode == this.themeMode &&
+          other.sessionAccessToken == this.sessionAccessToken &&
+          other.active == this.active);
+}
+
+class SettingsCompanion extends UpdateCompanion<SettingTable> {
+  final Value<ThemeMode> themeMode;
+  final Value<String?> sessionAccessToken;
+  final Value<bool> active;
+  const SettingsCompanion({
+    this.themeMode = const Value.absent(),
+    this.sessionAccessToken = const Value.absent(),
+    this.active = const Value.absent(),
+  });
+  SettingsCompanion.insert({
+    this.themeMode = const Value.absent(),
+    this.sessionAccessToken = const Value.absent(),
+    this.active = const Value.absent(),
+  });
+  static Insertable<SettingTable> custom({
+    Expression<int>? themeMode,
+    Expression<String>? sessionAccessToken,
+    Expression<int>? active,
+  }) {
+    return RawValuesInsertable({
+      if (themeMode != null) 'theme_mode': themeMode,
+      if (sessionAccessToken != null)
+        'session_access_token': sessionAccessToken,
+      if (active != null) 'active': active,
+    });
+  }
+
+  SettingsCompanion copyWith(
+      {Value<ThemeMode>? themeMode,
+      Value<String?>? sessionAccessToken,
+      Value<bool>? active}) {
+    return SettingsCompanion(
+      themeMode: themeMode ?? this.themeMode,
+      sessionAccessToken: sessionAccessToken ?? this.sessionAccessToken,
+      active: active ?? this.active,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (themeMode.present) {
+      final converter = Settings.$converter0;
+      map['theme_mode'] = Variable<int>(converter.toSql(themeMode.value));
+    }
+    if (sessionAccessToken.present) {
+      map['session_access_token'] = Variable<String>(sessionAccessToken.value);
+    }
+    if (active.present) {
+      final converter = Settings.$converter1;
+      map['active'] = Variable<int>(converter.toSql(active.value));
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SettingsCompanion(')
+          ..write('themeMode: $themeMode, ')
+          ..write('sessionAccessToken: $sessionAccessToken, ')
+          ..write('active: $active')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class Settings extends Table with TableInfo<Settings, SettingTable> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  Settings(this.attachedDatabase, [this._alias]);
+  final VerificationMeta _themeModeMeta = const VerificationMeta('themeMode');
+  late final GeneratedColumnWithTypeConverter<ThemeMode, int> themeMode =
+      GeneratedColumn<int>('theme_mode', aliasedName, false,
+              type: DriftSqlType.int,
+              requiredDuringInsert: false,
+              $customConstraints: 'NOT NULL DEFAULT 0',
+              defaultValue: const CustomExpression<int>('0'))
+          .withConverter<ThemeMode>(Settings.$converter0);
+  final VerificationMeta _sessionAccessTokenMeta =
+      const VerificationMeta('sessionAccessToken');
+  late final GeneratedColumn<String> sessionAccessToken =
+      GeneratedColumn<String>('session_access_token', aliasedName, true,
+          type: DriftSqlType.string,
+          requiredDuringInsert: false,
+          $customConstraints: 'REFERENCES sessions(access_token)');
+  final VerificationMeta _activeMeta = const VerificationMeta('active');
+  late final GeneratedColumnWithTypeConverter<bool, int> active =
+      GeneratedColumn<int>('active', aliasedName, false,
+              type: DriftSqlType.int,
+              requiredDuringInsert: false,
+              $customConstraints: 'NOT NULL DEFAULT 1',
+              defaultValue: const CustomExpression<int>('1'))
+          .withConverter<bool>(Settings.$converter1);
+  @override
+  List<GeneratedColumn> get $columns => [themeMode, sessionAccessToken, active];
+  @override
+  String get aliasedName => _alias ?? 'settings';
+  @override
+  String get actualTableName => 'settings';
+  @override
+  VerificationContext validateIntegrity(Insertable<SettingTable> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    context.handle(_themeModeMeta, const VerificationResult.success());
+    if (data.containsKey('session_access_token')) {
+      context.handle(
+          _sessionAccessTokenMeta,
+          sessionAccessToken.isAcceptableOrUnknown(
+              data['session_access_token']!, _sessionAccessTokenMeta));
+    }
+    context.handle(_activeMeta, const VerificationResult.success());
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {themeMode, sessionAccessToken};
+  @override
+  SettingTable map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SettingTable(
+      themeMode: Settings.$converter0.fromSql(attachedDatabase.options.types
+          .read(DriftSqlType.int, data['${effectivePrefix}theme_mode'])!),
+      sessionAccessToken: attachedDatabase.options.types.read(
+          DriftSqlType.string, data['${effectivePrefix}session_access_token']),
+      active: Settings.$converter1.fromSql(attachedDatabase.options.types
+          .read(DriftSqlType.int, data['${effectivePrefix}active'])!),
+    );
+  }
+
+  @override
+  Settings createAlias(String alias) {
+    return Settings(attachedDatabase, alias);
+  }
+
+  static TypeConverter<ThemeMode, int> $converter0 = const ThemeModeConverter();
+  static TypeConverter<bool, int> $converter1 = const BoolConverter();
+  @override
+  List<String> get customConstraints => const [
+        'CONSTRAINT COMPOSITE_KEY PRIMARY KEY (theme_mode, session_access_token)'
+      ];
+  @override
+  bool get dontWriteConstraints => true;
+}
+
+class AccountTable extends DataClass implements Insertable<AccountTable> {
   final String email;
   final DateTime? criadoEm;
   final DateTime? atualizadoEm;
   final String contatoUid;
-  const Account(
+  const AccountTable(
       {required this.email,
       this.criadoEm,
       this.atualizadoEm,
@@ -434,10 +845,10 @@ class Account extends DataClass implements Insertable<Account> {
     );
   }
 
-  factory Account.fromJson(Map<String, dynamic> json,
+  factory AccountTable.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return Account(
+    return AccountTable(
       email: serializer.fromJson<String>(json['email']),
       criadoEm: serializer.fromJson<DateTime?>(json['criado_em']),
       atualizadoEm: serializer.fromJson<DateTime?>(json['atualizado_em']),
@@ -455,12 +866,12 @@ class Account extends DataClass implements Insertable<Account> {
     };
   }
 
-  Account copyWith(
+  AccountTable copyWith(
           {String? email,
           Value<DateTime?> criadoEm = const Value.absent(),
           Value<DateTime?> atualizadoEm = const Value.absent(),
           String? contatoUid}) =>
-      Account(
+      AccountTable(
         email: email ?? this.email,
         criadoEm: criadoEm.present ? criadoEm.value : this.criadoEm,
         atualizadoEm:
@@ -469,7 +880,7 @@ class Account extends DataClass implements Insertable<Account> {
       );
   @override
   String toString() {
-    return (StringBuffer('Account(')
+    return (StringBuffer('AccountTable(')
           ..write('email: $email, ')
           ..write('criadoEm: $criadoEm, ')
           ..write('atualizadoEm: $atualizadoEm, ')
@@ -483,14 +894,14 @@ class Account extends DataClass implements Insertable<Account> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is Account &&
+      (other is AccountTable &&
           other.email == this.email &&
           other.criadoEm == this.criadoEm &&
           other.atualizadoEm == this.atualizadoEm &&
           other.contatoUid == this.contatoUid);
 }
 
-class AccountsCompanion extends UpdateCompanion<Account> {
+class AccountsCompanion extends UpdateCompanion<AccountTable> {
   final Value<String> email;
   final Value<DateTime?> criadoEm;
   final Value<DateTime?> atualizadoEm;
@@ -508,7 +919,7 @@ class AccountsCompanion extends UpdateCompanion<Account> {
     required String contatoUid,
   })  : email = Value(email),
         contatoUid = Value(contatoUid);
-  static Insertable<Account> custom({
+  static Insertable<AccountTable> custom({
     Expression<String>? email,
     Expression<String>? criadoEm,
     Expression<String>? atualizadoEm,
@@ -568,7 +979,7 @@ class AccountsCompanion extends UpdateCompanion<Account> {
   }
 }
 
-class Accounts extends Table with TableInfo<Accounts, Account> {
+class Accounts extends Table with TableInfo<Accounts, AccountTable> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -608,7 +1019,7 @@ class Accounts extends Table with TableInfo<Accounts, Account> {
   @override
   String get actualTableName => 'accounts';
   @override
-  VerificationContext validateIntegrity(Insertable<Account> instance,
+  VerificationContext validateIntegrity(Insertable<AccountTable> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -634,9 +1045,9 @@ class Accounts extends Table with TableInfo<Accounts, Account> {
   @override
   Set<GeneratedColumn> get $primaryKey => {email};
   @override
-  Account map(Map<String, dynamic> data, {String? tablePrefix}) {
+  AccountTable map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return Account(
+    return AccountTable(
       email: attachedDatabase.options.types
           .read(DriftSqlType.string, data['${effectivePrefix}email'])!,
       criadoEm: Accounts.$converter0n.fromSql(attachedDatabase.options.types
@@ -665,429 +1076,15 @@ class Accounts extends Table with TableInfo<Accounts, Account> {
   bool get dontWriteConstraints => true;
 }
 
-class Session extends DataClass implements Insertable<Session> {
-  final String accessToken;
-  final String contatoUid;
-  final bool active;
-  const Session(
-      {required this.accessToken,
-      required this.contatoUid,
-      required this.active});
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    map['access_token'] = Variable<String>(accessToken);
-    map['contato_uid'] = Variable<String>(contatoUid);
-    {
-      final converter = Sessions.$converter0;
-      map['active'] = Variable<int>(converter.toSql(active));
-    }
-    return map;
-  }
-
-  SessionsCompanion toCompanion(bool nullToAbsent) {
-    return SessionsCompanion(
-      accessToken: Value(accessToken),
-      contatoUid: Value(contatoUid),
-      active: Value(active),
-    );
-  }
-
-  factory Session.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return Session(
-      accessToken: serializer.fromJson<String>(json['access_token']),
-      contatoUid: serializer.fromJson<String>(json['contato_uid']),
-      active: serializer.fromJson<bool>(json['active']),
-    );
-  }
-  @override
-  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'access_token': serializer.toJson<String>(accessToken),
-      'contato_uid': serializer.toJson<String>(contatoUid),
-      'active': serializer.toJson<bool>(active),
-    };
-  }
-
-  Session copyWith({String? accessToken, String? contatoUid, bool? active}) =>
-      Session(
-        accessToken: accessToken ?? this.accessToken,
-        contatoUid: contatoUid ?? this.contatoUid,
-        active: active ?? this.active,
-      );
-  @override
-  String toString() {
-    return (StringBuffer('Session(')
-          ..write('accessToken: $accessToken, ')
-          ..write('contatoUid: $contatoUid, ')
-          ..write('active: $active')
-          ..write(')'))
-        .toString();
-  }
-
-  @override
-  int get hashCode => Object.hash(accessToken, contatoUid, active);
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is Session &&
-          other.accessToken == this.accessToken &&
-          other.contatoUid == this.contatoUid &&
-          other.active == this.active);
-}
-
-class SessionsCompanion extends UpdateCompanion<Session> {
-  final Value<String> accessToken;
-  final Value<String> contatoUid;
-  final Value<bool> active;
-  const SessionsCompanion({
-    this.accessToken = const Value.absent(),
-    this.contatoUid = const Value.absent(),
-    this.active = const Value.absent(),
-  });
-  SessionsCompanion.insert({
-    required String accessToken,
-    required String contatoUid,
-    required bool active,
-  })  : accessToken = Value(accessToken),
-        contatoUid = Value(contatoUid),
-        active = Value(active);
-  static Insertable<Session> custom({
-    Expression<String>? accessToken,
-    Expression<String>? contatoUid,
-    Expression<int>? active,
-  }) {
-    return RawValuesInsertable({
-      if (accessToken != null) 'access_token': accessToken,
-      if (contatoUid != null) 'contato_uid': contatoUid,
-      if (active != null) 'active': active,
-    });
-  }
-
-  SessionsCompanion copyWith(
-      {Value<String>? accessToken,
-      Value<String>? contatoUid,
-      Value<bool>? active}) {
-    return SessionsCompanion(
-      accessToken: accessToken ?? this.accessToken,
-      contatoUid: contatoUid ?? this.contatoUid,
-      active: active ?? this.active,
-    );
-  }
-
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    if (accessToken.present) {
-      map['access_token'] = Variable<String>(accessToken.value);
-    }
-    if (contatoUid.present) {
-      map['contato_uid'] = Variable<String>(contatoUid.value);
-    }
-    if (active.present) {
-      final converter = Sessions.$converter0;
-      map['active'] = Variable<int>(converter.toSql(active.value));
-    }
-    return map;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('SessionsCompanion(')
-          ..write('accessToken: $accessToken, ')
-          ..write('contatoUid: $contatoUid, ')
-          ..write('active: $active')
-          ..write(')'))
-        .toString();
-  }
-}
-
-class Sessions extends Table with TableInfo<Sessions, Session> {
-  @override
-  final GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  Sessions(this.attachedDatabase, [this._alias]);
-  final VerificationMeta _accessTokenMeta =
-      const VerificationMeta('accessToken');
-  late final GeneratedColumn<String> accessToken = GeneratedColumn<String>(
-      'access_token', aliasedName, false,
-      type: DriftSqlType.string,
-      requiredDuringInsert: true,
-      $customConstraints: 'NOT NULL');
-  final VerificationMeta _contatoUidMeta = const VerificationMeta('contatoUid');
-  late final GeneratedColumn<String> contatoUid = GeneratedColumn<String>(
-      'contato_uid', aliasedName, false,
-      type: DriftSqlType.string,
-      requiredDuringInsert: true,
-      $customConstraints: 'NOT NULL REFERENCES contatos(uid)');
-  final VerificationMeta _activeMeta = const VerificationMeta('active');
-  late final GeneratedColumnWithTypeConverter<bool, int> active =
-      GeneratedColumn<int>('active', aliasedName, false,
-              type: DriftSqlType.int,
-              requiredDuringInsert: true,
-              $customConstraints: 'NOT NULL')
-          .withConverter<bool>(Sessions.$converter0);
-  @override
-  List<GeneratedColumn> get $columns => [accessToken, contatoUid, active];
-  @override
-  String get aliasedName => _alias ?? 'sessions';
-  @override
-  String get actualTableName => 'sessions';
-  @override
-  VerificationContext validateIntegrity(Insertable<Session> instance,
-      {bool isInserting = false}) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('access_token')) {
-      context.handle(
-          _accessTokenMeta,
-          accessToken.isAcceptableOrUnknown(
-              data['access_token']!, _accessTokenMeta));
-    } else if (isInserting) {
-      context.missing(_accessTokenMeta);
-    }
-    if (data.containsKey('contato_uid')) {
-      context.handle(
-          _contatoUidMeta,
-          contatoUid.isAcceptableOrUnknown(
-              data['contato_uid']!, _contatoUidMeta));
-    } else if (isInserting) {
-      context.missing(_contatoUidMeta);
-    }
-    context.handle(_activeMeta, const VerificationResult.success());
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => {accessToken, contatoUid, active};
-  @override
-  Session map(Map<String, dynamic> data, {String? tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return Session(
-      accessToken: attachedDatabase.options.types
-          .read(DriftSqlType.string, data['${effectivePrefix}access_token'])!,
-      contatoUid: attachedDatabase.options.types
-          .read(DriftSqlType.string, data['${effectivePrefix}contato_uid'])!,
-      active: Sessions.$converter0.fromSql(attachedDatabase.options.types
-          .read(DriftSqlType.int, data['${effectivePrefix}active'])!),
-    );
-  }
-
-  @override
-  Sessions createAlias(String alias) {
-    return Sessions(attachedDatabase, alias);
-  }
-
-  static TypeConverter<bool, int> $converter0 = const BoolConverter();
-  @override
-  List<String> get customConstraints => const [
-        'CONSTRAINT COMPOSITE_KEY PRIMARY KEY (access_token, contato_uid, active)'
-      ];
-  @override
-  bool get dontWriteConstraints => true;
-}
-
-class Setting extends DataClass implements Insertable<Setting> {
-  final ThemeMode themeMode;
-  final String? sessionAccessToken;
-  const Setting({required this.themeMode, this.sessionAccessToken});
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    {
-      final converter = Settings.$converter0;
-      map['theme_mode'] = Variable<int>(converter.toSql(themeMode));
-    }
-    if (!nullToAbsent || sessionAccessToken != null) {
-      map['session_access_token'] = Variable<String>(sessionAccessToken);
-    }
-    return map;
-  }
-
-  SettingsCompanion toCompanion(bool nullToAbsent) {
-    return SettingsCompanion(
-      themeMode: Value(themeMode),
-      sessionAccessToken: sessionAccessToken == null && nullToAbsent
-          ? const Value.absent()
-          : Value(sessionAccessToken),
-    );
-  }
-
-  factory Setting.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return Setting(
-      themeMode: serializer.fromJson<ThemeMode>(json['theme_mode']),
-      sessionAccessToken:
-          serializer.fromJson<String?>(json['session_access_token']),
-    );
-  }
-  @override
-  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'theme_mode': serializer.toJson<ThemeMode>(themeMode),
-      'session_access_token': serializer.toJson<String?>(sessionAccessToken),
-    };
-  }
-
-  Setting copyWith(
-          {ThemeMode? themeMode,
-          Value<String?> sessionAccessToken = const Value.absent()}) =>
-      Setting(
-        themeMode: themeMode ?? this.themeMode,
-        sessionAccessToken: sessionAccessToken.present
-            ? sessionAccessToken.value
-            : this.sessionAccessToken,
-      );
-  @override
-  String toString() {
-    return (StringBuffer('Setting(')
-          ..write('themeMode: $themeMode, ')
-          ..write('sessionAccessToken: $sessionAccessToken')
-          ..write(')'))
-        .toString();
-  }
-
-  @override
-  int get hashCode => Object.hash(themeMode, sessionAccessToken);
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is Setting &&
-          other.themeMode == this.themeMode &&
-          other.sessionAccessToken == this.sessionAccessToken);
-}
-
-class SettingsCompanion extends UpdateCompanion<Setting> {
-  final Value<ThemeMode> themeMode;
-  final Value<String?> sessionAccessToken;
-  const SettingsCompanion({
-    this.themeMode = const Value.absent(),
-    this.sessionAccessToken = const Value.absent(),
-  });
-  SettingsCompanion.insert({
-    required ThemeMode themeMode,
-    this.sessionAccessToken = const Value.absent(),
-  }) : themeMode = Value(themeMode);
-  static Insertable<Setting> custom({
-    Expression<int>? themeMode,
-    Expression<String>? sessionAccessToken,
-  }) {
-    return RawValuesInsertable({
-      if (themeMode != null) 'theme_mode': themeMode,
-      if (sessionAccessToken != null)
-        'session_access_token': sessionAccessToken,
-    });
-  }
-
-  SettingsCompanion copyWith(
-      {Value<ThemeMode>? themeMode, Value<String?>? sessionAccessToken}) {
-    return SettingsCompanion(
-      themeMode: themeMode ?? this.themeMode,
-      sessionAccessToken: sessionAccessToken ?? this.sessionAccessToken,
-    );
-  }
-
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    if (themeMode.present) {
-      final converter = Settings.$converter0;
-      map['theme_mode'] = Variable<int>(converter.toSql(themeMode.value));
-    }
-    if (sessionAccessToken.present) {
-      map['session_access_token'] = Variable<String>(sessionAccessToken.value);
-    }
-    return map;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('SettingsCompanion(')
-          ..write('themeMode: $themeMode, ')
-          ..write('sessionAccessToken: $sessionAccessToken')
-          ..write(')'))
-        .toString();
-  }
-}
-
-class Settings extends Table with TableInfo<Settings, Setting> {
-  @override
-  final GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  Settings(this.attachedDatabase, [this._alias]);
-  final VerificationMeta _themeModeMeta = const VerificationMeta('themeMode');
-  late final GeneratedColumnWithTypeConverter<ThemeMode, int> themeMode =
-      GeneratedColumn<int>('theme_mode', aliasedName, false,
-              type: DriftSqlType.int,
-              requiredDuringInsert: true,
-              $customConstraints: 'NOT NULL')
-          .withConverter<ThemeMode>(Settings.$converter0);
-  final VerificationMeta _sessionAccessTokenMeta =
-      const VerificationMeta('sessionAccessToken');
-  late final GeneratedColumn<String> sessionAccessToken =
-      GeneratedColumn<String>('session_access_token', aliasedName, true,
-          type: DriftSqlType.string,
-          requiredDuringInsert: false,
-          $customConstraints: 'REFERENCES sessions(access_token)');
-  @override
-  List<GeneratedColumn> get $columns => [themeMode, sessionAccessToken];
-  @override
-  String get aliasedName => _alias ?? 'settings';
-  @override
-  String get actualTableName => 'settings';
-  @override
-  VerificationContext validateIntegrity(Insertable<Setting> instance,
-      {bool isInserting = false}) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    context.handle(_themeModeMeta, const VerificationResult.success());
-    if (data.containsKey('session_access_token')) {
-      context.handle(
-          _sessionAccessTokenMeta,
-          sessionAccessToken.isAcceptableOrUnknown(
-              data['session_access_token']!, _sessionAccessTokenMeta));
-    }
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => {themeMode, sessionAccessToken};
-  @override
-  Setting map(Map<String, dynamic> data, {String? tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return Setting(
-      themeMode: Settings.$converter0.fromSql(attachedDatabase.options.types
-          .read(DriftSqlType.int, data['${effectivePrefix}theme_mode'])!),
-      sessionAccessToken: attachedDatabase.options.types.read(
-          DriftSqlType.string, data['${effectivePrefix}session_access_token']),
-    );
-  }
-
-  @override
-  Settings createAlias(String alias) {
-    return Settings(attachedDatabase, alias);
-  }
-
-  static TypeConverter<ThemeMode, int> $converter0 = const ThemeModeConverter();
-  @override
-  List<String> get customConstraints => const [
-        'CONSTRAINT COMPOSITE_KEY PRIMARY KEY (theme_mode, session_access_token)'
-      ];
-  @override
-  bool get dontWriteConstraints => true;
-}
-
 abstract class _$Database extends GeneratedDatabase {
   _$Database(QueryExecutor e) : super(e);
   late final Contatos contatos = Contatos(this);
-  late final Accounts accounts = Accounts(this);
   late final Sessions sessions = Sessions(this);
   late final Settings settings = Settings(this);
+  late final Trigger deactivateSettings = Trigger(
+      'CREATE TRIGGER deactivate_settings BEFORE INSERT ON settings BEGIN UPDATE settings SET active = 0;END',
+      'deactivate_settings');
+  late final Accounts accounts = Accounts(this);
   late final AccountsDao accountsDao = AccountsDao(this as Database);
   late final ContatosDao contatosDao = ContatosDao(this as Database);
   late final SettingsDao settingsDao = SettingsDao(this as Database);
@@ -1097,5 +1094,17 @@ abstract class _$Database extends GeneratedDatabase {
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities =>
-      [contatos, accounts, sessions, settings];
+      [contatos, sessions, settings, deactivateSettings, accounts];
+  @override
+  StreamQueryUpdateRules get streamUpdateRules => const StreamQueryUpdateRules(
+        [
+          WritePropagation(
+            on: TableUpdateQuery.onTableName('settings',
+                limitUpdateKind: UpdateKind.insert),
+            result: [
+              TableUpdate('settings', kind: UpdateKind.update),
+            ],
+          ),
+        ],
+      );
 }

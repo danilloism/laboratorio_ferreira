@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/bloc/login_form_cubit.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/repositories/auth_repository.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/view/widgets/login_form.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/common/view/widgets/logo.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/logo.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
