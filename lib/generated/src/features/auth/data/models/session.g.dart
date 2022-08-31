@@ -19,5 +19,5 @@ const _$$_AuthModelFieldMap = <String, String>{
 Map<String, dynamic> _$$_AuthModelToJson(_$_AuthModel instance) =>
     <String, dynamic>{
       'accessToken': instance.accessToken,
-      'contato': instance.contato,
+      'contato': instance.contato.toJson(),
     };

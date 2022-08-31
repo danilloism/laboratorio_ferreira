@@ -5,6 +5,7 @@ targets:
         options:
           create_field_map: true
           include_if_null: false
+          explicit_to_json: true
       freezed:
         options:
           build_extensions:

@@ -4,7 +4,7 @@ import 'package:laboratorio_ferreira_mobile/src/features/contato/data/models/con
 part '../../../../../generated/src/features/auth/data/models/session.freezed.dart';
 part '../../../../../generated/src/features/auth/data/models/session.g.dart';
 
-@freezed
+@Freezed(toJson: true)
 class Session with _$Session {
   const factory Session({
     required String accessToken,

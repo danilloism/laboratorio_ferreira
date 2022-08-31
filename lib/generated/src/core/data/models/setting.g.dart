@@ -34,7 +34,7 @@ Map<String, dynamic> _$$_SettingToJson(_$_Setting instance) {
     }
   }
 
-  writeNotNull('session', instance.session);
+  writeNotNull('session', instance.session?.toJson());
   val['active'] = instance.active;
   writeNotNull('id', instance.id);
   return val;

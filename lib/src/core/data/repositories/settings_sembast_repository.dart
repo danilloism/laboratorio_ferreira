@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:collection';
 
+import 'package:collection/collection.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:loggy/loggy.dart';
@@ -23,7 +24,9 @@ class SettingsSembastRepository with UiLoggy implements SettingsRepository {
         return;
       }
 
-      _current = await _addSemId(const Setting(), transaction: txn);
+      await _deactivateAll(txn);
+      final result = await _addSemId(const Setting(), transaction: txn);
+      _current = Setting.fromJson(result);
       return;
     });
   }
@@ -37,6 +40,14 @@ class SettingsSembastRepository with UiLoggy implements SettingsRepository {
     return id != null;
   }
 
+  Future<void> _deactivateAll(Transaction txn) async {
+    await _store.update(
+      txn,
+      {'active': false},
+      finder: Finder(filter: Filter.equals('active', true)),
+    );
+  }
+
   @override
   Future<List<Setting>> getMany({Finder? finder}) async {
     final snapshots = await _store.find(_database, finder: finder);
@@ -46,46 +57,53 @@ class SettingsSembastRepository with UiLoggy implements SettingsRepository {
     return UnmodifiableListView(result);
   }
 
-  Future<Setting> _addSemId(Setting setting,
+  Future<Map<String, Object?>> _addSemId(Setting setting,
       {required Transaction transaction}) async {
-    if (setting.active) {
-      await _store.update(transaction, {'active': false},
-          finder: Finder(filter: Filter.equals('active', true)));
-    }
     final id = await _store.add(transaction, setting.toJson());
-    final record = await _store
+    final updatedSetting = await _store
         .record(id)
         .update(transaction, setting.copyWith(id: id).toJson());
-    _current = Setting.fromJson(record!);
-    return _current;
+    return updatedSetting!;
   }
 
   @override
   Future<Setting> upsertSetting(Setting setting) async {
     return await _database.transaction((txn) async {
+      await _deactivateAll(txn);
+
       if (setting.session != null) {
         final finder = Finder(
             filter: Filter.equals(
                 'session.contato.uid', setting.session!.contato.uid));
-        final userSettingSnaphot = await _store.findFirst(txn, finder: finder);
-        final userSetting = userSettingSnaphot != null
-            ? Setting.fromJson(userSettingSnaphot.value)
-            : null;
-        if (userSetting != null) {
+        final userSettingSnapshot = await _store.findFirst(txn, finder: finder);
+        if (userSettingSnapshot != null) {
+          final userSetting = Setting.fromJson(userSettingSnapshot.value);
           setting = setting.copyWith(
               id: userSetting.id, themeMode: userSetting.themeMode);
         }
       }
 
       if (setting.id == null) {
-        final result = await _addSemId(setting, transaction: txn);
-        return result;
+        final finder = Finder(filter: Filter.isNull('session'));
+        final loggedOutSetting = await _store.findFirst(txn, finder: finder);
+        if (loggedOutSetting != null) {
+          final transformed = Setting.fromJson(loggedOutSetting.value);
+          setting = setting.copyWith(
+              id: transformed.id, themeMode: transformed.themeMode);
+        }
+      }
+
+      if (setting.id == null) {
+        final record = await _addSemId(setting, transaction: txn);
+        _current = Setting.fromJson(record);
+        return _current;
       }
 
       final record = await _store
           .record(setting.id!)
           .put(txn, setting.toJson(), merge: true);
-      return Setting.fromJson(record);
+      _current = Setting.fromJson(record);
+      return _current;
     });
   }
 

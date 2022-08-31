@@ -52,7 +52,7 @@ Map<String, dynamic> _$$_ContatoToJson(_$_Contato instance) {
   }
 
   writeNotNull('ativo', instance.ativo);
-  writeNotNull('account', instance.account);
+  writeNotNull('account', instance.account?.toJson());
   writeNotNull('criadoEm', instance.criadoEm?.toIso8601String());
   writeNotNull('atualizadoEm', instance.atualizadoEm?.toIso8601String());
   return val;
