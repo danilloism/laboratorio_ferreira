@@ -46,29 +46,29 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoggedIn value) loggedIn,
-    required TResult Function(_LoggedOut value) loggedOut,
-    required TResult Function(_LoggingIn value) loggingIn,
+    required TResult Function(LoggedIn value) loggedIn,
+    required TResult Function(LoggedOut value) loggedOut,
+    required TResult Function(LoggingIn value) loggingIn,
     required TResult Function(_Error value) error,
-    required TResult Function(_Unknown value) unknown,
+    required TResult Function(Unknown value) unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_LoggedIn value)? loggedIn,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_LoggingIn value)? loggingIn,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(LoggedOut value)? loggedOut,
+    TResult Function(LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
-    TResult Function(_Unknown value)? unknown,
+    TResult Function(Unknown value)? unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoggedIn value)? loggedIn,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_LoggingIn value)? loggingIn,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(LoggedOut value)? loggedOut,
+    TResult Function(LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
-    TResult Function(_Unknown value)? unknown,
+    TResult Function(Unknown value)? unknown,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -90,30 +90,30 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_LoggedInCopyWith<$Res> {
-  factory _$$_LoggedInCopyWith(
-          _$_LoggedIn value, $Res Function(_$_LoggedIn) then) =
-      __$$_LoggedInCopyWithImpl<$Res>;
+abstract class _$$LoggedInCopyWith<$Res> {
+  factory _$$LoggedInCopyWith(
+          _$LoggedIn value, $Res Function(_$LoggedIn) then) =
+      __$$LoggedInCopyWithImpl<$Res>;
+
   $Res call({Session session});
 
   $SessionCopyWith<$Res> get session;
 }
 
 /// @nodoc
-class __$$_LoggedInCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements _$$_LoggedInCopyWith<$Res> {
-  __$$_LoggedInCopyWithImpl(
-      _$_LoggedIn _value, $Res Function(_$_LoggedIn) _then)
-      : super(_value, (v) => _then(v as _$_LoggedIn));
+class __$$LoggedInCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$$LoggedInCopyWith<$Res> {
+  __$$LoggedInCopyWithImpl(_$LoggedIn _value, $Res Function(_$LoggedIn) _then)
+      : super(_value, (v) => _then(v as _$LoggedIn));
 
   @override
-  _$_LoggedIn get _value => super._value as _$_LoggedIn;
+  _$LoggedIn get _value => super._value as _$LoggedIn;
 
   @override
   $Res call({
     Object? session = freezed,
   }) {
-    return _then(_$_LoggedIn(
+    return _then(_$LoggedIn(
       session: session == freezed
           ? _value.session
           : session // ignore: cast_nullable_to_non_nullable
@@ -131,8 +131,8 @@ class __$$_LoggedInCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LoggedIn extends _LoggedIn {
-  const _$_LoggedIn({required this.session}) : super._();
+class _$LoggedIn extends LoggedIn {
+  const _$LoggedIn({required this.session}) : super._();
 
   @override
   final Session session;
@@ -146,7 +146,7 @@ class _$_LoggedIn extends _LoggedIn {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LoggedIn &&
+            other is _$LoggedIn &&
             const DeepCollectionEquality().equals(other.session, session));
   }
 
@@ -156,8 +156,8 @@ class _$_LoggedIn extends _LoggedIn {
 
   @JsonKey(ignore: true)
   @override
-  _$$_LoggedInCopyWith<_$_LoggedIn> get copyWith =>
-      __$$_LoggedInCopyWithImpl<_$_LoggedIn>(this, _$identity);
+  _$$LoggedInCopyWith<_$LoggedIn> get copyWith =>
+      __$$LoggedInCopyWithImpl<_$LoggedIn>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -202,11 +202,11 @@ class _$_LoggedIn extends _LoggedIn {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoggedIn value) loggedIn,
-    required TResult Function(_LoggedOut value) loggedOut,
-    required TResult Function(_LoggingIn value) loggingIn,
+    required TResult Function(LoggedIn value) loggedIn,
+    required TResult Function(LoggedOut value) loggedOut,
+    required TResult Function(LoggingIn value) loggingIn,
     required TResult Function(_Error value) error,
-    required TResult Function(_Unknown value) unknown,
+    required TResult Function(Unknown value) unknown,
   }) {
     return loggedIn(this);
   }
@@ -214,11 +214,11 @@ class _$_LoggedIn extends _LoggedIn {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_LoggedIn value)? loggedIn,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_LoggingIn value)? loggingIn,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(LoggedOut value)? loggedOut,
+    TResult Function(LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
-    TResult Function(_Unknown value)? unknown,
+    TResult Function(Unknown value)? unknown,
   }) {
     return loggedIn?.call(this);
   }
@@ -226,11 +226,11 @@ class _$_LoggedIn extends _LoggedIn {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoggedIn value)? loggedIn,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_LoggingIn value)? loggingIn,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(LoggedOut value)? loggedOut,
+    TResult Function(LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
-    TResult Function(_Unknown value)? unknown,
+    TResult Function(Unknown value)? unknown,
     required TResult orElse(),
   }) {
     if (loggedIn != null) {
@@ -240,38 +240,40 @@ class _$_LoggedIn extends _LoggedIn {
   }
 }
 
-abstract class _LoggedIn extends AuthState {
-  const factory _LoggedIn({required final Session session}) = _$_LoggedIn;
-  const _LoggedIn._() : super._();
+abstract class LoggedIn extends AuthState {
+  const factory LoggedIn({required final Session session}) = _$LoggedIn;
+
+  const LoggedIn._() : super._();
 
   Session get session;
+
   @JsonKey(ignore: true)
-  _$$_LoggedInCopyWith<_$_LoggedIn> get copyWith =>
+  _$$LoggedInCopyWith<_$LoggedIn> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_LoggedOutCopyWith<$Res> {
-  factory _$$_LoggedOutCopyWith(
-          _$_LoggedOut value, $Res Function(_$_LoggedOut) then) =
-      __$$_LoggedOutCopyWithImpl<$Res>;
+abstract class _$$LoggedOutCopyWith<$Res> {
+  factory _$$LoggedOutCopyWith(
+          _$LoggedOut value, $Res Function(_$LoggedOut) then) =
+      __$$LoggedOutCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoggedOutCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements _$$_LoggedOutCopyWith<$Res> {
-  __$$_LoggedOutCopyWithImpl(
-      _$_LoggedOut _value, $Res Function(_$_LoggedOut) _then)
-      : super(_value, (v) => _then(v as _$_LoggedOut));
+class __$$LoggedOutCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$$LoggedOutCopyWith<$Res> {
+  __$$LoggedOutCopyWithImpl(
+      _$LoggedOut _value, $Res Function(_$LoggedOut) _then)
+      : super(_value, (v) => _then(v as _$LoggedOut));
 
   @override
-  _$_LoggedOut get _value => super._value as _$_LoggedOut;
+  _$LoggedOut get _value => super._value as _$LoggedOut;
 }
 
 /// @nodoc
 
-class _$_LoggedOut extends _LoggedOut {
-  const _$_LoggedOut() : super._();
+class _$LoggedOut extends LoggedOut {
+  const _$LoggedOut() : super._();
 
   @override
   String toString() {
@@ -281,7 +283,7 @@ class _$_LoggedOut extends _LoggedOut {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_LoggedOut);
+        (other.runtimeType == runtimeType && other is _$LoggedOut);
   }
 
   @override
@@ -330,11 +332,11 @@ class _$_LoggedOut extends _LoggedOut {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoggedIn value) loggedIn,
-    required TResult Function(_LoggedOut value) loggedOut,
-    required TResult Function(_LoggingIn value) loggingIn,
+    required TResult Function(LoggedIn value) loggedIn,
+    required TResult Function(LoggedOut value) loggedOut,
+    required TResult Function(LoggingIn value) loggingIn,
     required TResult Function(_Error value) error,
-    required TResult Function(_Unknown value) unknown,
+    required TResult Function(Unknown value) unknown,
   }) {
     return loggedOut(this);
   }
@@ -342,11 +344,11 @@ class _$_LoggedOut extends _LoggedOut {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_LoggedIn value)? loggedIn,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_LoggingIn value)? loggingIn,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(LoggedOut value)? loggedOut,
+    TResult Function(LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
-    TResult Function(_Unknown value)? unknown,
+    TResult Function(Unknown value)? unknown,
   }) {
     return loggedOut?.call(this);
   }
@@ -354,11 +356,11 @@ class _$_LoggedOut extends _LoggedOut {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoggedIn value)? loggedIn,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_LoggingIn value)? loggingIn,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(LoggedOut value)? loggedOut,
+    TResult Function(LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
-    TResult Function(_Unknown value)? unknown,
+    TResult Function(Unknown value)? unknown,
     required TResult orElse(),
   }) {
     if (loggedOut != null) {
@@ -368,33 +370,34 @@ class _$_LoggedOut extends _LoggedOut {
   }
 }
 
-abstract class _LoggedOut extends AuthState {
-  const factory _LoggedOut() = _$_LoggedOut;
-  const _LoggedOut._() : super._();
+abstract class LoggedOut extends AuthState {
+  const factory LoggedOut() = _$LoggedOut;
+
+  const LoggedOut._() : super._();
 }
 
 /// @nodoc
-abstract class _$$_LoggingInCopyWith<$Res> {
-  factory _$$_LoggingInCopyWith(
-          _$_LoggingIn value, $Res Function(_$_LoggingIn) then) =
-      __$$_LoggingInCopyWithImpl<$Res>;
+abstract class _$$LoggingInCopyWith<$Res> {
+  factory _$$LoggingInCopyWith(
+          _$LoggingIn value, $Res Function(_$LoggingIn) then) =
+      __$$LoggingInCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoggingInCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements _$$_LoggingInCopyWith<$Res> {
-  __$$_LoggingInCopyWithImpl(
-      _$_LoggingIn _value, $Res Function(_$_LoggingIn) _then)
-      : super(_value, (v) => _then(v as _$_LoggingIn));
+class __$$LoggingInCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$$LoggingInCopyWith<$Res> {
+  __$$LoggingInCopyWithImpl(
+      _$LoggingIn _value, $Res Function(_$LoggingIn) _then)
+      : super(_value, (v) => _then(v as _$LoggingIn));
 
   @override
-  _$_LoggingIn get _value => super._value as _$_LoggingIn;
+  _$LoggingIn get _value => super._value as _$LoggingIn;
 }
 
 /// @nodoc
 
-class _$_LoggingIn extends _LoggingIn {
-  const _$_LoggingIn() : super._();
+class _$LoggingIn extends LoggingIn {
+  const _$LoggingIn() : super._();
 
   @override
   String toString() {
@@ -404,7 +407,7 @@ class _$_LoggingIn extends _LoggingIn {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_LoggingIn);
+        (other.runtimeType == runtimeType && other is _$LoggingIn);
   }
 
   @override
@@ -453,11 +456,11 @@ class _$_LoggingIn extends _LoggingIn {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoggedIn value) loggedIn,
-    required TResult Function(_LoggedOut value) loggedOut,
-    required TResult Function(_LoggingIn value) loggingIn,
+    required TResult Function(LoggedIn value) loggedIn,
+    required TResult Function(LoggedOut value) loggedOut,
+    required TResult Function(LoggingIn value) loggingIn,
     required TResult Function(_Error value) error,
-    required TResult Function(_Unknown value) unknown,
+    required TResult Function(Unknown value) unknown,
   }) {
     return loggingIn(this);
   }
@@ -465,11 +468,11 @@ class _$_LoggingIn extends _LoggingIn {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_LoggedIn value)? loggedIn,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_LoggingIn value)? loggingIn,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(LoggedOut value)? loggedOut,
+    TResult Function(LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
-    TResult Function(_Unknown value)? unknown,
+    TResult Function(Unknown value)? unknown,
   }) {
     return loggingIn?.call(this);
   }
@@ -477,11 +480,11 @@ class _$_LoggingIn extends _LoggingIn {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoggedIn value)? loggedIn,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_LoggingIn value)? loggingIn,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(LoggedOut value)? loggedOut,
+    TResult Function(LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
-    TResult Function(_Unknown value)? unknown,
+    TResult Function(Unknown value)? unknown,
     required TResult orElse(),
   }) {
     if (loggingIn != null) {
@@ -491,9 +494,10 @@ class _$_LoggingIn extends _LoggingIn {
   }
 }
 
-abstract class _LoggingIn extends AuthState {
-  const factory _LoggingIn() = _$_LoggingIn;
-  const _LoggingIn._() : super._();
+abstract class LoggingIn extends AuthState {
+  const factory LoggingIn() = _$LoggingIn;
+
+  const LoggingIn._() : super._();
 }
 
 /// @nodoc
@@ -621,11 +625,11 @@ class _$_Error extends _Error {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoggedIn value) loggedIn,
-    required TResult Function(_LoggedOut value) loggedOut,
-    required TResult Function(_LoggingIn value) loggingIn,
+    required TResult Function(LoggedIn value) loggedIn,
+    required TResult Function(LoggedOut value) loggedOut,
+    required TResult Function(LoggingIn value) loggingIn,
     required TResult Function(_Error value) error,
-    required TResult Function(_Unknown value) unknown,
+    required TResult Function(Unknown value) unknown,
   }) {
     return error(this);
   }
@@ -633,11 +637,11 @@ class _$_Error extends _Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_LoggedIn value)? loggedIn,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_LoggingIn value)? loggingIn,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(LoggedOut value)? loggedOut,
+    TResult Function(LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
-    TResult Function(_Unknown value)? unknown,
+    TResult Function(Unknown value)? unknown,
   }) {
     return error?.call(this);
   }
@@ -645,11 +649,11 @@ class _$_Error extends _Error {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoggedIn value)? loggedIn,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_LoggingIn value)? loggingIn,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(LoggedOut value)? loggedOut,
+    TResult Function(LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
-    TResult Function(_Unknown value)? unknown,
+    TResult Function(Unknown value)? unknown,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -672,26 +676,25 @@ abstract class _Error extends AuthState {
 }
 
 /// @nodoc
-abstract class _$$_UnknownCopyWith<$Res> {
-  factory _$$_UnknownCopyWith(
-          _$_Unknown value, $Res Function(_$_Unknown) then) =
-      __$$_UnknownCopyWithImpl<$Res>;
+abstract class _$$UnknownCopyWith<$Res> {
+  factory _$$UnknownCopyWith(_$Unknown value, $Res Function(_$Unknown) then) =
+      __$$UnknownCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_UnknownCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements _$$_UnknownCopyWith<$Res> {
-  __$$_UnknownCopyWithImpl(_$_Unknown _value, $Res Function(_$_Unknown) _then)
-      : super(_value, (v) => _then(v as _$_Unknown));
+class __$$UnknownCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$$UnknownCopyWith<$Res> {
+  __$$UnknownCopyWithImpl(_$Unknown _value, $Res Function(_$Unknown) _then)
+      : super(_value, (v) => _then(v as _$Unknown));
 
   @override
-  _$_Unknown get _value => super._value as _$_Unknown;
+  _$Unknown get _value => super._value as _$Unknown;
 }
 
 /// @nodoc
 
-class _$_Unknown extends _Unknown {
-  const _$_Unknown() : super._();
+class _$Unknown extends Unknown {
+  const _$Unknown() : super._();
 
   @override
   String toString() {
@@ -701,7 +704,7 @@ class _$_Unknown extends _Unknown {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Unknown);
+        (other.runtimeType == runtimeType && other is _$Unknown);
   }
 
   @override
@@ -750,11 +753,11 @@ class _$_Unknown extends _Unknown {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoggedIn value) loggedIn,
-    required TResult Function(_LoggedOut value) loggedOut,
-    required TResult Function(_LoggingIn value) loggingIn,
+    required TResult Function(LoggedIn value) loggedIn,
+    required TResult Function(LoggedOut value) loggedOut,
+    required TResult Function(LoggingIn value) loggingIn,
     required TResult Function(_Error value) error,
-    required TResult Function(_Unknown value) unknown,
+    required TResult Function(Unknown value) unknown,
   }) {
     return unknown(this);
   }
@@ -762,11 +765,11 @@ class _$_Unknown extends _Unknown {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_LoggedIn value)? loggedIn,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_LoggingIn value)? loggingIn,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(LoggedOut value)? loggedOut,
+    TResult Function(LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
-    TResult Function(_Unknown value)? unknown,
+    TResult Function(Unknown value)? unknown,
   }) {
     return unknown?.call(this);
   }
@@ -774,11 +777,11 @@ class _$_Unknown extends _Unknown {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoggedIn value)? loggedIn,
-    TResult Function(_LoggedOut value)? loggedOut,
-    TResult Function(_LoggingIn value)? loggingIn,
+    TResult Function(LoggedIn value)? loggedIn,
+    TResult Function(LoggedOut value)? loggedOut,
+    TResult Function(LoggingIn value)? loggingIn,
     TResult Function(_Error value)? error,
-    TResult Function(_Unknown value)? unknown,
+    TResult Function(Unknown value)? unknown,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -788,7 +791,8 @@ class _$_Unknown extends _Unknown {
   }
 }
 
-abstract class _Unknown extends AuthState {
-  const factory _Unknown() = _$_Unknown;
-  const _Unknown._() : super._();
+abstract class Unknown extends AuthState {
+  const factory Unknown() = _$Unknown;
+
+  const Unknown._() : super._();
 }

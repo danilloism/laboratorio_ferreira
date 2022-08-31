@@ -5,14 +5,18 @@ part '../../../../generated/src/features/auth/bloc/auth_state.freezed.dart';
 
 @freezed
 class AuthState with _$AuthState {
-  const factory AuthState.loggedIn({required Session session}) = _LoggedIn;
-  const factory AuthState.loggedOut() = _LoggedOut;
-  const factory AuthState.loggingIn() = _LoggingIn;
+  const factory AuthState.loggedIn({required Session session}) = LoggedIn;
+
+  const factory AuthState.loggedOut() = LoggedOut;
+
+  const factory AuthState.loggingIn() = LoggingIn;
+
   const factory AuthState.error({
     required dynamic error,
     Account? user,
   }) = _Error;
-  const factory AuthState.unknown() = _Unknown;
+
+  const factory AuthState.unknown() = Unknown;
 
   const AuthState._();
 }

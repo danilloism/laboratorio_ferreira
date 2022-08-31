@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:loggy/loggy.dart';
@@ -32,7 +33,7 @@ class SettingsSembastRepository with UiLoggy implements SettingsRepository {
   }
 
   @override
-  Setting get active => _current;
+  Setting get activeStored => _current;
 
   @override
   Future<bool> deleteSetting(int settingId) async {
@@ -119,5 +120,19 @@ class SettingsSembastRepository with UiLoggy implements SettingsRepository {
     final validTokenSettings = settings
         .where((setting) => JwtDecoder.isExpired(setting.session!.accessToken));
     return UnmodifiableListView(validTokenSettings);
+  }
+
+  @override
+  Future<bool> setThemeMode(ThemeMode mode) async {
+    if (mode == _current.themeMode) return true;
+
+    final updated = await _store
+        .record(_current.id!)
+        .update(_database, {'themeMode': mode.name});
+
+    if (updated == null) return false;
+
+    _current = Setting.fromJson(updated);
+    return true;
   }
 }

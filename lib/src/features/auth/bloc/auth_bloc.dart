@@ -17,7 +17,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         super(const AuthState.unknown()) {
     on<AppInitialized>((event, emit) async {
       var session = _authRepo.session;
-      session ??= _settingsRepo.active.session;
+      session ??= _settingsRepo.activeStored.session;
 
       final tokenValido =
           session != null && !JwtDecoder.isExpired(session.accessToken);

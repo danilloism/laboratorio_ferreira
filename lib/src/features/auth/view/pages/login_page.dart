@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/logo.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 
 class LoginPage extends StatelessWidget {
@@ -9,6 +8,12 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const SettingsPage())),
+        child: const Icon(Icons.settings),
+      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       body: SafeArea(
         child: SizedBox.expand(
           child: Column(
@@ -18,14 +23,7 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 8),
               Text('Bem vindo!', style: Theme.of(context).textTheme.headline6),
               const SizedBox(height: 8),
-              BlocProvider(
-                create: (context) =>
-                    LoginFormCubit(context.read<AuthRepository>()),
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: LoginForm(),
-                ),
-              )
+              const LoginForm(),
             ],
           ),
         ),

@@ -7,6 +7,18 @@ import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => LoginFormCubit(context.read<AuthRepository>()),
+      child: const _LoginForm(),
+    );
+  }
+}
+
+class _LoginForm extends StatelessWidget {
+  const _LoginForm({super.key});
+
   bool _isButtonValid(BuildContext context) {
     final formState = context.watch<LoginFormCubit>().state;
     if (formState.status != FormzStatus.valid) return false;
@@ -18,58 +30,62 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        BlocBuilder<LoginFormCubit, Login>(
-          buildWhen: (anterior, novo) => anterior.email != novo.email,
-          builder: (context, state) {
-            return FormSection(
-              child: CustomTextFormField(
-                // validator: (value) {
-                //   return EmailValidator.validate(value ?? '')
-                //       ? null
-                //       : 'Email inválido';
-                // },
-                // controller: _emailTextController,
-                label: 'Email',
-                keyboardType: TextInputType.emailAddress,
-                onChanged: (email) =>
-                    context.read<LoginFormCubit>().emailTeveAlteracao(email),
-              ),
-            );
-          },
-        ),
-        BlocBuilder<LoginFormCubit, Login>(
-          buildWhen: (anterior, novo) => anterior.senha != novo.senha,
-          builder: (context, state) {
-            return FormSection(
-              child: CustomTextFormField(
-                obscureText: true,
-                label: 'Senha',
-                onChanged: (senha) =>
-                    context.read<LoginFormCubit>().senhaTeveAlteracao(senha),
-              ),
-            );
-          },
-        ),
-        ElevatedButton(
-            onPressed: _isButtonValid(context)
-                ? () => context.read<AuthBloc>().add(
-                    AuthEvent.logInButtonPressed(
-                        account: Account(
-                            email: context
-                                .read<LoginFormCubit>()
-                                .state
-                                .email!
-                                .value,
-                            senha: context
-                                .read<LoginFormCubit>()
-                                .state
-                                .senha!
-                                .value)))
-                : null,
-            child: const Text('Login')),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          BlocBuilder<LoginFormCubit, Login>(
+            buildWhen: (anterior, novo) => anterior.email != novo.email,
+            builder: (context, state) {
+              return FormSection(
+                child: CustomTextFormField(
+                  // validator: (value) {
+                  //   return EmailValidator.validate(value ?? '')
+                  //       ? null
+                  //       : 'Email inválido';
+                  // },
+                  // controller: _emailTextController,
+                  label: 'Email',
+                  keyboardType: TextInputType.emailAddress,
+                  onChanged: (email) =>
+                      context.read<LoginFormCubit>().emailTeveAlteracao(email),
+                  inputAction: TextInputAction.next,
+                ),
+              );
+            },
+          ),
+          BlocBuilder<LoginFormCubit, Login>(
+            buildWhen: (anterior, novo) => anterior.senha != novo.senha,
+            builder: (context, state) {
+              return FormSection(
+                child: CustomTextFormField(
+                  obscureText: true,
+                  label: 'Senha',
+                  onChanged: (senha) =>
+                      context.read<LoginFormCubit>().senhaTeveAlteracao(senha),
+                ),
+              );
+            },
+          ),
+          ElevatedButton(
+              onPressed: _isButtonValid(context)
+                  ? () => context.read<AuthBloc>().add(
+                      AuthEvent.logInButtonPressed(
+                          account: Account(
+                              email: context
+                                  .read<LoginFormCubit>()
+                                  .state
+                                  .email!
+                                  .value,
+                              senha: context
+                                  .read<LoginFormCubit>()
+                                  .state
+                                  .senha!
+                                  .value)))
+                  : null,
+              child: const Text('Login')),
+        ],
+      ),
     );
   }
 }

@@ -7,6 +7,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? label;
   final TextInputType? keyboardType;
   final void Function(String)? onChanged;
+  final TextInputAction? inputAction;
 
   const CustomTextFormField({
     super.key,
@@ -16,6 +17,7 @@ class CustomTextFormField extends StatelessWidget {
     this.label,
     this.keyboardType,
     this.onChanged,
+    this.inputAction,
   });
 
   @override
@@ -27,6 +29,7 @@ class CustomTextFormField extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(label: label != null ? Text(label!) : null),
       onChanged: onChanged,
+      textInputAction: inputAction,
     );
   }
 }
