@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_loggy/flutter_loggy.dart';
 import 'package:get_it/get_it.dart';
@@ -30,6 +31,10 @@ class Init {
     );
 
     WidgetsFlutterBinding.ensureInitialized();
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.edgeToEdge,
+      overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top],
+    );
     await _initSembast();
     await _initRepositories();
     _registerServices();
