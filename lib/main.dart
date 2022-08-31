@@ -1,37 +1,54 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/app/providers/router_service_provider.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/app/services/logger.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/providers/auth_notifier_provider.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/local_storage/helpers/hive_helper.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/local_storage/services/secure_storage_service.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
+import 'package:sembast/sembast.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  const secService = SecureStorageService();
-  await HiveHelper.initFlutter(secService: secService);
+void main() {
+  runApp(
+    FutureBuilder(
+        future: Init.execute(),
+        builder: (_, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return BlocProvider(
+              create: (_) => AuthBloc(
+                  authRepository: GetIt.I.get(),
+                  settingsRepository: GetIt.I.get())
+                ..add(const AuthEvent.appInitialized()),
+              child: const MyApp(),
+            );
+          }
 
-  runApp(ProviderScope(
-    observers: [LoggerService()],
-    child: const MyApp(),
-  ));
+          return const MaterialApp(home: WelcomePage());
+        }),
+  );
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    ref.read(authNotifierProvider.notifier).init();
-    final routerService = ref.read(routerServiceProvider);
-    return MaterialApp.router(
-      routeInformationParser: routerService.router.routeInformationParser,
-      routerDelegate: routerService.router.routerDelegate,
-      routeInformationProvider: routerService.router.routeInformationProvider,
-      title: 'Laboratório Ferreira',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+  Widget build(BuildContext context) {
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<IHttpService>.value(value: GetIt.I.get()),
+        RepositoryProvider<Database>.value(value: GetIt.I.get()),
+        RepositoryProvider<SettingsRepository>.value(value: GetIt.I.get()),
+        RepositoryProvider<AuthRepository>.value(value: GetIt.I.get()),
+      ],
+      child: MaterialApp(
+          title: 'Laboratório Ferreira',
+          theme: AppTheme.light,
+          darkTheme: AppTheme.dark,
+          // themeMode: context.select<SettingsRepository, ThemeMode>
+          //     (value) => value.value.themeMode),
+          home: context.watch<AuthBloc>().state.when(
+              loggedIn: (_) => const HomePage(),
+              loggedOut: () => const LoginPage(),
+              loggingIn: () => const LoginPage(),
+              error: (_, __) => const Scaffold(),
+              unknown: () => const WelcomePage())),
     );
   }
 }

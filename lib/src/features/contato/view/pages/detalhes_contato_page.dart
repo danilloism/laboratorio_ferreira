@@ -1,72 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/models/contato.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/data/models/contato.dart';
 
-class DetalhesContatoPage extends ConsumerStatefulWidget {
-  final Contato? contato;
+class DetalhesContatoPage extends StatelessWidget {
+  final Contato _contato;
 
-  const DetalhesContatoPage({super.key, this.contato});
-
-  @override
-  ConsumerState<DetalhesContatoPage> createState() =>
-      _DetalhesContatoPageState();
-}
-
-class _DetalhesContatoPageState extends ConsumerState<DetalhesContatoPage> {
-  final _formKey = GlobalKey<FormState>();
-  final _nomeController = TextEditingController();
-  final _telefonesControllers = <TextEditingController>[];
-  final _telefonesFormFieldCounter = StateProvider((ref) => 1);
-
-  @override
-  void initState() {
-    final contato = widget.contato;
-    if (contato != null) {
-      _nomeController.text = contato.nome;
-      for (final telefone in contato.telefones) {
-        final controller = TextEditingController()..text = telefone;
-        _telefonesControllers.add(controller);
-      }
-      ref.read(_telefonesFormFieldCounter.notifier).state =
-          contato.telefones.length;
-    }
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _nomeController.dispose();
-    for (final controller in _telefonesControllers) {
-      controller.dispose();
-    }
-    super.dispose();
-  }
+  const DetalhesContatoPage(this._contato, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            const Text('Nome'),
-            TextFormField(
-              controller: _nomeController,
-            ),
-            const Text('Categorias'),
-            Wrap(
-              children: widget.contato!.categorias
-                  .map((categoria) => Chip(label: Text(categoria.capitalized)))
-                  .toList(),
-            ),
-            const Text('Telefones'),
-            ..._telefonesControllers
-                .map((controller) => TextFormField(
-                      controller: controller,
-                    ))
-                .toList()
-          ],
+      appBar: AppBar(
+        title: Text(_contato.nome),
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
+        ],
+      ),
+      body: SizedBox.expand(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Telefones', style: Theme.of(context).textTheme.headline5),
+              Wrap(
+                  children: _contato.telefones
+                      .map((telefone) => Chip(label: Text(telefone)))
+                      .toList()),
+              const SizedBox(height: 16),
+              Text('Categorias', style: Theme.of(context).textTheme.headline5),
+              Wrap(
+                  children: _contato.categorias
+                      .map((categoria) =>
+                          Chip(label: Text(categoria.capitalized)))
+                      .toList(growable: false)),
+            ],
+          ),
         ),
       ),
     );
