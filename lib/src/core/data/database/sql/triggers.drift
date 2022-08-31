@@ -1,5 +1,0 @@
-import 'tabelas.drift';
-
-CREATE TRIGGER deactivate_settings BEFORE INSERT ON settings BEGIN
-UPDATE settings SET active = 0;
-END;
