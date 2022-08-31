@@ -14,12 +14,18 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Setting _$SettingFromJson(Map<String, dynamic> json) {
+  return _Setting.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Setting {
   ThemeMode get themeMode => throw _privateConstructorUsedError;
   Session? get session => throw _privateConstructorUsedError;
   bool get active => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SettingCopyWith<Setting> get copyWith => throw _privateConstructorUsedError;
 }
@@ -28,7 +34,7 @@ mixin _$Setting {
 abstract class $SettingCopyWith<$Res> {
   factory $SettingCopyWith(Setting value, $Res Function(Setting) then) =
       _$SettingCopyWithImpl<$Res>;
-  $Res call({ThemeMode themeMode, Session? session, bool active});
+  $Res call({ThemeMode themeMode, Session? session, bool active, int? id});
 
   $SessionCopyWith<$Res>? get session;
 }
@@ -46,6 +52,7 @@ class _$SettingCopyWithImpl<$Res> implements $SettingCopyWith<$Res> {
     Object? themeMode = freezed,
     Object? session = freezed,
     Object? active = freezed,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
       themeMode: themeMode == freezed
@@ -60,6 +67,10 @@ class _$SettingCopyWithImpl<$Res> implements $SettingCopyWith<$Res> {
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 
@@ -81,7 +92,7 @@ abstract class _$$_SettingCopyWith<$Res> implements $SettingCopyWith<$Res> {
           _$_Setting value, $Res Function(_$_Setting) then) =
       __$$_SettingCopyWithImpl<$Res>;
   @override
-  $Res call({ThemeMode themeMode, Session? session, bool active});
+  $Res call({ThemeMode themeMode, Session? session, bool active, int? id});
 
   @override
   $SessionCopyWith<$Res>? get session;
@@ -101,6 +112,7 @@ class __$$_SettingCopyWithImpl<$Res> extends _$SettingCopyWithImpl<$Res>
     Object? themeMode = freezed,
     Object? session = freezed,
     Object? active = freezed,
+    Object? id = freezed,
   }) {
     return _then(_$_Setting(
       themeMode: themeMode == freezed
@@ -115,15 +127,25 @@ class __$$_SettingCopyWithImpl<$Res> extends _$SettingCopyWithImpl<$Res>
           ? _value.active
           : active // ignore: cast_nullable_to_non_nullable
               as bool,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Setting implements _Setting {
   const _$_Setting(
-      {this.themeMode = ThemeMode.system, this.session, this.active = true});
+      {this.themeMode = ThemeMode.system,
+      this.session,
+      this.active = true,
+      this.id});
+
+  factory _$_Setting.fromJson(Map<String, dynamic> json) =>
+      _$$_SettingFromJson(json);
 
   @override
   @JsonKey()
@@ -133,10 +155,12 @@ class _$_Setting implements _Setting {
   @override
   @JsonKey()
   final bool active;
+  @override
+  final int? id;
 
   @override
   String toString() {
-    return 'Setting(themeMode: $themeMode, session: $session, active: $active)';
+    return 'Setting(themeMode: $themeMode, session: $session, active: $active, id: $id)';
   }
 
   @override
@@ -146,27 +170,40 @@ class _$_Setting implements _Setting {
             other is _$_Setting &&
             const DeepCollectionEquality().equals(other.themeMode, themeMode) &&
             const DeepCollectionEquality().equals(other.session, session) &&
-            const DeepCollectionEquality().equals(other.active, active));
+            const DeepCollectionEquality().equals(other.active, active) &&
+            const DeepCollectionEquality().equals(other.id, id));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(themeMode),
       const DeepCollectionEquality().hash(session),
-      const DeepCollectionEquality().hash(active));
+      const DeepCollectionEquality().hash(active),
+      const DeepCollectionEquality().hash(id));
 
   @JsonKey(ignore: true)
   @override
   _$$_SettingCopyWith<_$_Setting> get copyWith =>
       __$$_SettingCopyWithImpl<_$_Setting>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_SettingToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Setting implements Setting {
   const factory _Setting(
       {final ThemeMode themeMode,
       final Session? session,
-      final bool active}) = _$_Setting;
+      final bool active,
+      final int? id}) = _$_Setting;
+
+  factory _Setting.fromJson(Map<String, dynamic> json) = _$_Setting.fromJson;
 
   @override
   ThemeMode get themeMode;
@@ -174,6 +211,8 @@ abstract class _Setting implements Setting {
   Session? get session;
   @override
   bool get active;
+  @override
+  int? get id;
   @override
   @JsonKey(ignore: true)
   _$$_SettingCopyWith<_$_Setting> get copyWith =>

@@ -17,15 +17,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         super(const AuthState.unknown()) {
     on<AppInitialized>((event, emit) async {
       var session = _authRepo.session;
-
-      // session ??= _settingsRepo.value.session.value;
+      session ??= _settingsRepo.active.session;
 
       final tokenValido =
           session != null && !JwtDecoder.isExpired(session.accessToken);
 
       if (tokenValido) {
         _authRepo.session = session;
-        await _settingsRepo.resetSession(session);
         return emit(AuthState.loggedIn(session: session));
       }
       emit(const AuthState.loggedOut());
@@ -37,7 +35,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       try {
         final session = await _authRepo.login(event.account);
         _authRepo.session = session;
-        await _settingsRepo.resetSession(session);
+        await _settingsRepo.upsertSetting(Setting(session: session));
         emit(AuthState.loggedIn(session: session));
       } on RepositoryException catch (e) {
         emit(AuthState.error(error: e.message));
@@ -48,7 +46,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<LogOutButtonPressed>((event, emit) async {
       _authRepo.session = null;
-      await _settingsRepo.resetSession();
+      await _settingsRepo.upsertSetting(const Setting());
       emit(const AuthState.loggedOut());
     });
   }

@@ -1,25 +1,15 @@
-import 'package:laboratorio_ferreira_mobile/src/core/data/models/setting.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/session.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/data/models/models.dart';
 
-class SettingsRepository {
-  SettingsRepository();
+abstract class SettingsRepository {
+  Future<Setting?> upsertSetting(Setting setting);
 
-  Future<void> init() async {
-    // final active = await _dao.findActiveSettings();
-    // if (active == null) {
-    //   _value = await _dao.create(const Setting());
-    //   return;
-    // }
-    // _value = active;
-    // return;
-  }
+  Future<bool> deleteSetting(int settingId);
 
-  late Setting _value;
+  Future<List<Setting>> getMany();
 
-  Setting get value => _value;
+  Future<Setting?> getOne(int id);
 
-  Future<void> resetSession([Session? session]) async {
-    // await _isar.settings
-    //     .put(_value.copyWith(session: session), replaceOnConflict: true);
-  }
+  Setting get active;
+
+  Future<void> init();
 }

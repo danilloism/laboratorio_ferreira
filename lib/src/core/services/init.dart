@@ -44,7 +44,7 @@ class Init {
   }
 
   static Future<void> _initRepositories() async {
-    final settingsRepo = SettingsRepository();
+    final settingsRepo = SettingsSembastRepository(GetIt.I.get());
     await settingsRepo.init();
     GetIt.I.registerLazySingleton<SettingsRepository>(() => settingsRepo);
   }
