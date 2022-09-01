@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/bloc/settings_bloc.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/bloc/settings_event.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/extensions/build_context_extension.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 import 'package:sembast/sembast.dart';
 
@@ -48,28 +49,41 @@ class MyApp extends StatelessWidget {
       darkTheme: AppTheme.dark,
       themeMode: context
           .select<SettingsBloc, ThemeMode>((value) => value.state.themeMode),
-      home: BlocListener<AuthBloc, AuthState>(
-        listenWhen: (_, current) => current.maybeWhen(
-          loggedIn: (session) =>
-              session != context.read<SettingsBloc>().state.session,
-          loggedOut: () => context.read<SettingsBloc>().state.session != null,
-          orElse: () => false,
-        ),
-        listener: (ctx, state) {
-          state.whenOrNull(
-            loggedIn: (session) => ctx.read<SettingsBloc>().add(
-                SettingsEvent.activeSettingChanged(Setting(session: session))),
-            loggedOut: () => ctx
-                .read<SettingsBloc>()
-                .add(const SettingsEvent.activeSettingChanged(Setting())),
+      home: BlocConsumer<AuthBloc, AuthState>(
+        listenWhen: (_, current) {
+          return current.maybeWhen(
+            loggedIn: (session) {
+              return session != SettingsBloc.of(context).state.session;
+            },
+            loggedOut: () {
+              return SettingsBloc.of(context).state.session != null;
+            },
+            error: (_, __) => true,
+            orElse: () => false,
           );
         },
-        child: context.watch<AuthBloc>().state.when(
-            loggedIn: (_) => const HomePage(),
-            loggedOut: () => const LoginPage(),
-            loggingIn: () => const LoginPage(),
-            error: (_, __) => const Scaffold(),
-            unknown: () => const WelcomePage()),
+        listener: (ctx, state) {
+          state.whenOrNull(
+            loggedIn: (session) => SettingsBloc.of(ctx).add(
+              SettingsEvent.activeSettingChanged(Setting(session: session)),
+            ),
+            loggedOut: () => SettingsBloc.of(ctx)
+                .add(const SettingsEvent.activeSettingChanged(Setting())),
+            error: (error, _) => ctx.showErrorSnackBar(message: error),
+          );
+        },
+        buildWhen: (_, current) => current.maybeWhen(
+          loggedIn: (_) => true,
+          loggedOut: () => true,
+          orElse: () => false,
+        ),
+        builder: (_, state) => state.when(
+          loggedIn: (_) => const HomePage(),
+          loggedOut: () => const LoginPage(),
+          loggingIn: () => const LoginPage(),
+          error: (_, __) => const Scaffold(),
+          unknown: () => const WelcomePage(),
+        ),
       ),
     );
   }

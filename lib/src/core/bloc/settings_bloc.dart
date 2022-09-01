@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/bloc/settings_event.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
@@ -22,4 +23,8 @@ class SettingsBloc extends Bloc<SettingsEvent, Setting> {
           },
         ));
   }
+
+  static SettingsBloc of(BuildContext context) => context.read<SettingsBloc>();
+  static SettingsBloc watcherOf(BuildContext context) =>
+      context.watch<SettingsBloc>();
 }

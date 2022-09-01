@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/bloc/settings_bloc.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/bloc/settings_event.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/logged_in_settings_buttons.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 
 const themeModeMap = {
@@ -17,7 +18,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Configurações')),
-      body: SizedBox.expand(
+      body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -28,7 +29,7 @@ class SettingsPage extends StatelessWidget {
                   children: [
                     if (context.read<AuthBloc>().state is LoggedIn)
                       Text(
-                        'Olá, ${context.read<SettingsBloc>().state.session?.contato.nome.split(' ')[0]}',
+                        'Olá, ${SettingsBloc.of(context).state.session?.contato.nome.split(' ')[0]}',
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.headline5,
                       ),
@@ -99,8 +100,7 @@ class SettingsPage extends StatelessWidget {
                                     ),
                                   )
                                   .toList(),
-                              onChanged: (value) => context
-                                  .read<SettingsBloc>()
+                              onChanged: (value) => SettingsBloc.of(context)
                                   .add(SettingsEvent.themeModeChanged(value!)),
                             ),
                           ],
@@ -120,24 +120,8 @@ class SettingsPage extends StatelessWidget {
                   ],
                 ),
               ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     session!.contato.categorias.contains(RolesEnum.admin) ||
-              //             session.contato.categorias.contains(RolesEnum.gerente)
-              //         ? ElevatedButton(
-              //             onPressed: () {},
-              //             child: const Text('Criar nova conta'),
-              //           )
-              //         : const SizedBox.expand(),
-              //     ElevatedButton(
-              //       onPressed: () => ref
-              //           .read(authNotifierProvider.notifier)
-              //           .resetHttpClientToken(),
-              //       child: const Text('Sair'),
-              //     ),
-              //   ],
-              // ),
+              if (SettingsBloc.of(context).state.session != null)
+                const LoggedInSettingsButtons()
             ],
           ),
         ),

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/logo.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -15,9 +13,8 @@ class HomePage extends StatelessWidget {
             child: const Logo()),
         actions: [
           IconButton(
-            onPressed: () => context
-                .read<AuthBloc>()
-                .add(const AuthEvent.logOutButtonPressed()),
+            onPressed: () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const SettingsPage())),
             icon: const Icon(Icons.settings),
           ),
         ],

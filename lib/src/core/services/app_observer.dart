@@ -19,4 +19,22 @@ class AppObserver extends BlocObserver with UiLoggy {
     loggy.error('\n${bloc.runtimeType}\n$error\n$stackTrace');
     super.onError(bloc, error, stackTrace);
   }
+
+  @override
+  void onClose(BlocBase bloc) {
+    loggy.debug('\n${bloc.runtimeType}\nClose');
+    super.onClose(bloc);
+  }
+
+  @override
+  void onCreate(BlocBase bloc) {
+    loggy.debug('\n${bloc.runtimeType}\nCreate');
+    super.onCreate(bloc);
+  }
+
+  @override
+  void onChange(BlocBase bloc, Change change) {
+    loggy.debug('\n${bloc.runtimeType}\n$change');
+    super.onChange(bloc, change);
+  }
 }
