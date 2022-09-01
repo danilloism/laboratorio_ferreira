@@ -14,6 +14,3 @@ targets:
         options:
           build_extensions:
             '^lib/{{}}.dart': 'lib/generated/{{}}.g.dart'
-#      drift_dev:
-#        options:
-#          generate_connect_constructor: true

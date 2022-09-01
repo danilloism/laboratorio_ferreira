@@ -8,14 +8,11 @@ environment:
   sdk: '>=2.17.6 <3.0.0'
 
 dependencies:
-  bloc_concurrency: ^0.2.0
   collection: ^1.16.0
   cupertino_icons: ^1.0.5
   dio: ^4.0.6
-  drift: ^2.1.0
   email_validator: ^2.1.17
   flex_color_scheme: ^6.0.0
-  flow_builder: ^0.0.9
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
@@ -45,10 +42,10 @@ dev_dependencies:
 
 flutter_native_splash:
   image: assets/laboratorioferreira_logo_sem_fundo.png
-  color: "CCD5AE"
+  color: 'CCD5AE'
   android_12:
     image: assets/laboratorioferreira_logo_sem_fundo.png
-    color: "CCD5AE"
+    color: 'CCD5AE'
   android: true
   ios: true
   web: false

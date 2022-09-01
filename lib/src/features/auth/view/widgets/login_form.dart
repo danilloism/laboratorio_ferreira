@@ -10,14 +10,14 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginFormCubit(context.read<AuthRepository>()),
+      create: (context) => LoginFormCubit(),
       child: const _LoginForm(),
     );
   }
 }
 
 class _LoginForm extends StatelessWidget {
-  const _LoginForm({super.key});
+  const _LoginForm();
 
   bool _isButtonValid(BuildContext context) {
     final formState = context.watch<LoginFormCubit>().state;

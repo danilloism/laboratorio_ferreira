@@ -190,6 +190,6 @@ class _DetalhesContatoPageState extends State<EditorContatoPage> {
     //     ),
     //   ),
     // );
-    return Center();
+    return const Center();
   }
 }
