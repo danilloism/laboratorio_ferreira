@@ -28,7 +28,7 @@ class SettingsPage extends StatelessWidget {
                   children: [
                     if (context.read<AuthBloc>().state is LoggedIn)
                       Text(
-                        'Olá, ${context.read<AuthRepository>().session?.contato.nome.split(' ')[0]}',
+                        'Olá, ${context.read<SettingsBloc>().state.session?.contato.nome.split(' ')[0]}',
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.headline5,
                       ),

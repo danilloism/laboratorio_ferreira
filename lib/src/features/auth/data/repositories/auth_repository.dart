@@ -9,14 +9,11 @@ import 'package:path/path.dart';
 class AuthRepository {
   final IHttpService _httpService;
   final _path = join(Config.apiUrl, 'user');
-  Session? _session;
-  Session? get session => _session;
-  set session(Session? value) {
-    if (value?.accessToken != _httpService.authorizationToken) {
-      _httpService.resetInterceptorsWithTokenOrNull(value?.accessToken);
-    }
-
-    _session = value;
+  String? _token;
+  String? get authToken => _token;
+  set authToken(String? value) {
+    _httpService.resetAuthTokenWithValueOrNull(value);
+    _token = value;
   }
 
   AuthRepository({required IHttpService httpService})
@@ -41,7 +38,7 @@ class AuthRepository {
           ApiResponse<Session>.fromJson(resposta.data, Session.fromJson);
       if (dto.sucesso) {
         final session = dto.dados!;
-        this.session = session;
+        authToken = session.accessToken;
         return session;
       }
 
