@@ -1,12 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:formz/formz.dart';
-
-enum EmailInputError {
-  empty('Por favor, informe um email.'),
-  invalid('Email inválido.');
-
-  const EmailInputError(String name);
-}
+import 'package:laboratorio_ferreira_mobile/src/features/auth/data/enums/enums.dart';
 
 class EmailInput extends FormzInput<String, EmailInputError> {
   const EmailInput.pure() : super.pure('');
