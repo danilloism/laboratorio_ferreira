@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/extensions/build_context_extension.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/view.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 
@@ -19,19 +20,10 @@ class LoginForm extends StatelessWidget {
 class _LoginForm extends StatelessWidget {
   const _LoginForm();
 
-  bool _isButtonValid(BuildContext context) {
-    final formState = context.watch<LoginFormCubit>().state;
-    if (formState.status != FormzStatus.valid) return false;
-    return context
-        .watch<AuthBloc>()
-        .state
-        .maybeWhen(loggingIn: () => false, orElse: () => true);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: Column(
         children: [
           BlocBuilder<LoginFormCubit, Login>(
@@ -39,21 +31,15 @@ class _LoginForm extends StatelessWidget {
             builder: (context, state) {
               return FormSection(
                 child: CustomTextFormField(
-                  // validator: (value) {
-                  //   return EmailValidator.validate(value ?? '')
-                  //       ? null
-                  //       : 'Email inválido';
-                  // },
-                  // controller: _emailTextController,
                   label: 'Email',
                   keyboardType: TextInputType.emailAddress,
-                  onChanged: (email) =>
-                      context.read<LoginFormCubit>().emailTeveAlteracao(email),
+                  onChanged: LoginFormCubit.of(context).emailTeveAlteracao,
                   inputAction: TextInputAction.next,
                 ),
               );
             },
           ),
+          const SizedBox(height: 16),
           BlocBuilder<LoginFormCubit, Login>(
             buildWhen: (anterior, novo) => anterior.senha != novo.senha,
             builder: (context, state) {
@@ -61,29 +47,41 @@ class _LoginForm extends StatelessWidget {
                 child: CustomTextFormField(
                   obscureText: true,
                   label: 'Senha',
-                  onChanged: (senha) =>
-                      context.read<LoginFormCubit>().senhaTeveAlteracao(senha),
+                  onChanged: LoginFormCubit.of(context).senhaTeveAlteracao,
                 ),
               );
             },
           ),
-          ElevatedButton(
-              onPressed: _isButtonValid(context)
-                  ? () => context.read<AuthBloc>().add(
-                      AuthEvent.logInButtonPressed(
-                          account: Account(
-                              email: context
-                                  .read<LoginFormCubit>()
-                                  .state
-                                  .email!
-                                  .value,
-                              senha: context
-                                  .read<LoginFormCubit>()
-                                  .state
-                                  .senha!
-                                  .value)))
-                  : null,
-              child: const Text('Login')),
+          const SizedBox(height: 16),
+          BlocBuilder<LoginFormCubit, Login>(
+            builder: (context, state) {
+              if (state.status.isSubmissionInProgress ||
+                  state.status.isSubmissionSuccess) {
+                return const Padding(
+                  padding: EdgeInsets.only(top: 8.0),
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              return ElevatedButton(
+                onPressed: () {
+                  if (!state.status.isValid) {
+                    context.showErrorSnackBar(message: state.error!);
+                    return;
+                  }
+
+                  LoginFormCubit.of(context).submit();
+                  AuthBloc.of(context).add(
+                    AuthEvent.logInButtonPressed(
+                      account: Account(
+                          email: state.email.value, senha: state.senha.value),
+                    ),
+                  );
+                },
+                child: const Text('Login'),
+              );
+            },
+          ),
         ],
       ),
     );

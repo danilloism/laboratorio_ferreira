@@ -22,14 +22,12 @@ mixin _$SettingsEvent {
     required TResult Function(Setting setting) activeSettingChanged,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(ThemeMode mode)? themeModeChanged,
     TResult Function(Setting setting)? activeSettingChanged,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ThemeMode mode)? themeModeChanged,
@@ -37,21 +35,18 @@ mixin _$SettingsEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ThemeModeChanged value) themeModeChanged,
     required TResult Function(_ActiveSettingChanged value) activeSettingChanged,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ThemeModeChanged value)? themeModeChanged,
     TResult Function(_ActiveSettingChanged value)? activeSettingChanged,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ThemeModeChanged value)? themeModeChanged,
@@ -74,7 +69,6 @@ class _$SettingsEventCopyWithImpl<$Res>
   _$SettingsEventCopyWithImpl(this._value, this._then);
 
   final SettingsEvent _value;
-
   // ignore: unused_field
   final $Res Function(SettingsEvent) _then;
 }
@@ -84,7 +78,6 @@ abstract class _$$_ThemeModeChangedCopyWith<$Res> {
   factory _$$_ThemeModeChangedCopyWith(
           _$_ThemeModeChanged value, $Res Function(_$_ThemeModeChanged) then) =
       __$$_ThemeModeChangedCopyWithImpl<$Res>;
-
   $Res call({ThemeMode mode});
 }
 
@@ -207,11 +200,9 @@ class _$_ThemeModeChanged extends _ThemeModeChanged {
 
 abstract class _ThemeModeChanged extends SettingsEvent {
   const factory _ThemeModeChanged(final ThemeMode mode) = _$_ThemeModeChanged;
-
   const _ThemeModeChanged._() : super._();
 
   ThemeMode get mode;
-
   @JsonKey(ignore: true)
   _$$_ThemeModeChangedCopyWith<_$_ThemeModeChanged> get copyWith =>
       throw _privateConstructorUsedError;
@@ -222,7 +213,6 @@ abstract class _$$_ActiveSettingChangedCopyWith<$Res> {
   factory _$$_ActiveSettingChangedCopyWith(_$_ActiveSettingChanged value,
           $Res Function(_$_ActiveSettingChanged) then) =
       __$$_ActiveSettingChangedCopyWithImpl<$Res>;
-
   $Res call({Setting setting});
 
   $SettingCopyWith<$Res> get setting;
@@ -356,11 +346,9 @@ class _$_ActiveSettingChanged extends _ActiveSettingChanged {
 abstract class _ActiveSettingChanged extends SettingsEvent {
   const factory _ActiveSettingChanged(final Setting setting) =
       _$_ActiveSettingChanged;
-
   const _ActiveSettingChanged._() : super._();
 
   Setting get setting;
-
   @JsonKey(ignore: true)
   _$$_ActiveSettingChangedCopyWith<_$_ActiveSettingChanged> get copyWith =>
       throw _privateConstructorUsedError;

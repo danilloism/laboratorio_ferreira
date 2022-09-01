@@ -94,7 +94,6 @@ abstract class _$$LoggedInCopyWith<$Res> {
   factory _$$LoggedInCopyWith(
           _$LoggedIn value, $Res Function(_$LoggedIn) then) =
       __$$LoggedInCopyWithImpl<$Res>;
-
   $Res call({Session session});
 
   $SessionCopyWith<$Res> get session;
@@ -242,11 +241,9 @@ class _$LoggedIn extends LoggedIn {
 
 abstract class LoggedIn extends AuthState {
   const factory LoggedIn({required final Session session}) = _$LoggedIn;
-
   const LoggedIn._() : super._();
 
   Session get session;
-
   @JsonKey(ignore: true)
   _$$LoggedInCopyWith<_$LoggedIn> get copyWith =>
       throw _privateConstructorUsedError;
@@ -372,7 +369,6 @@ class _$LoggedOut extends LoggedOut {
 
 abstract class LoggedOut extends AuthState {
   const factory LoggedOut() = _$LoggedOut;
-
   const LoggedOut._() : super._();
 }
 
@@ -496,7 +492,6 @@ class _$LoggingIn extends LoggingIn {
 
 abstract class LoggingIn extends AuthState {
   const factory LoggingIn() = _$LoggingIn;
-
   const LoggingIn._() : super._();
 }
 
@@ -793,6 +788,5 @@ class _$Unknown extends Unknown {
 
 abstract class Unknown extends AuthState {
   const factory Unknown() = _$Unknown;
-
   const Unknown._() : super._();
 }
