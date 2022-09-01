@@ -55,6 +55,9 @@ class AppTheme {
         borderSide: BorderSide.none,
       );
 
+  static FloatingActionButtonThemeData get _floatingButton =>
+      const FloatingActionButtonThemeData(shape: CircleBorder(), elevation: 1);
+
   static ThemeData get dark => _originalDark.copyWith(
         appBarTheme: _originalDark.appBarTheme.copyWith(
           centerTitle: true,
@@ -67,6 +70,7 @@ class AppTheme {
         elevatedButtonTheme: _elevatedButtonTheme,
         popupMenuTheme: _popUpMenuTheme,
         shadowColor: FlexColor.greenDarkPrimary,
+        floatingActionButtonTheme: _floatingButton,
       );
 
   static ThemeData get light => _originalLight.copyWith(
@@ -81,5 +85,6 @@ class AppTheme {
         elevatedButtonTheme: _elevatedButtonTheme,
         popupMenuTheme: _popUpMenuTheme,
         shadowColor: FlexColor.greenDarkPrimary,
+        floatingActionButtonTheme: _floatingButton,
       );
 }
