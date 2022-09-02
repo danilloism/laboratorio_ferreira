@@ -50,3 +50,4 @@ coverage
 .vscode
 **/google-services.json
 **/firebase_options.dart
+**/*GoogleService*.*
