@@ -19,7 +19,7 @@ class WelcomePage extends StatelessWidget {
                 SizedBox(height: 8),
                 Text('Bem vindo!'),
                 SizedBox(height: 8),
-                CircularProgressIndicator(color: Cores.verdeEscuro),
+                CircularProgressIndicator(),
               ],
             ),
           ),

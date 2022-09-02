@@ -3,25 +3,21 @@ import 'package:laboratorio_ferreira_mobile/src/configs/assets.dart';
 import 'package:laboratorio_ferreira_mobile/src/configs/colors.dart';
 
 class Logo extends StatelessWidget {
-  const Logo({super.key, this.width = 150, this.height = 150});
-  final double width;
-  final double height;
+  const Logo({super.key, this.height});
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
+    return DecoratedBox(
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
         color: Colors.white,
         gradient: LinearGradient(
           colors: [
-            Cores.verdeEscuro,
-            Cores.verde,
             Cores.verdeClaro,
-            Cores.marromClaro,
-            Cores.marrom,
+            Cores.marmore,
+            Cores.marmore,
+            Cores.branco,
           ],
           begin: AlignmentDirectional.topCenter,
           end: AlignmentDirectional.bottomEnd,
@@ -37,6 +33,8 @@ class Logo extends StatelessWidget {
       ),
       child: Image.asset(
         Assets.laboratorioferreiraLogoTransparente,
+        fit: BoxFit.contain,
+        height: height,
         filterQuality: FilterQuality.high,
         isAntiAlias: true,
         semanticLabel: 'Logo',

@@ -64,6 +64,10 @@ class _LoginForm extends StatelessWidget {
               }
 
               return ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                ),
                 onPressed: () {
                   if (!state.status.isValid) {
                     context.showErrorSnackBar(message: state.error!);

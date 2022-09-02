@@ -65,16 +65,9 @@ class SettingsPage extends StatelessWidget {
                             DropdownButton<ThemeMode>(
                               underline: const SizedBox(),
                               borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
+                                  const BorderRadius.all(Radius.circular(15)),
                               dropdownColor:
                                   Theme.of(context).appBarTheme.backgroundColor,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge!
-                                  .copyWith(
-                                    color: Theme.of(context).primaryColorLight,
-                                    fontWeight: FontWeight.bold,
-                                  ),
                               value: context.select<SettingsBloc, ThemeMode>(
                                   (value) => value.state.themeMode),
                               selectedItemBuilder: (context) => ThemeMode.values
@@ -92,11 +85,7 @@ class SettingsPage extends StatelessWidget {
                                   .map(
                                     (mode) => DropdownMenuItem(
                                       value: mode,
-                                      child: Text(
-                                        themeModeMap[mode]!,
-                                        style: const TextStyle(
-                                            color: Colors.white),
-                                      ),
+                                      child: Text(themeModeMap[mode]!),
                                     ),
                                   )
                                   .toList(),

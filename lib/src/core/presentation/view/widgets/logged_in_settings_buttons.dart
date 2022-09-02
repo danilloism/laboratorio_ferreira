@@ -14,8 +14,10 @@ class LoggedInSettingsButtons extends StatelessWidget {
           child: const Text('Criar nova conta'),
         ),
         ElevatedButton(
-          onPressed: () =>
-              AuthBloc.of(context).add(const AuthEvent.logOutButtonPressed()),
+          onPressed: () {
+            AuthBloc.of(context).add(const AuthEvent.logOutButtonPressed());
+            Navigator.pop(context);
+          },
           child: const Text('Sair'),
         ),
       ],

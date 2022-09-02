@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/bloc/navigation_index_cubit.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/bloc/settings_bloc.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/bloc/settings_event.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
@@ -45,8 +46,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Laboratório Ferreira',
-      theme: AppTheme.light,
-      darkTheme: AppTheme.dark,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       themeMode: context
           .select<SettingsBloc, ThemeMode>((value) => value.state.themeMode),
       home: BlocConsumer<AuthBloc, AuthState>(
@@ -78,7 +79,10 @@ class MyApp extends StatelessWidget {
           orElse: () => false,
         ),
         builder: (_, state) => state.when(
-          loggedIn: (_) => const HomePage(),
+          loggedIn: (_) => BlocProvider(
+            create: (_) => NavigationIndexCubit(),
+            child: const HomePage(),
+          ),
           loggedOut: () => const LoginPage(),
           loggingIn: () => const LoginPage(),
           error: (_, __) => const Scaffold(),

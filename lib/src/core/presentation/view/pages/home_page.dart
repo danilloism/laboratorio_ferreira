@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/bloc/navigation_index_cubit.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/app_navigation_bar.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/view/pages/contatos_page_view.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/servico/presentation/view/pages/servicos_page_view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -8,9 +13,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: SizedBox(
-            height: Theme.of(context).appBarTheme.toolbarHeight! - 15,
-            child: const Logo()),
+        title: const SizedBox(child: Logo(height: 50)),
         actions: [
           IconButton(
             onPressed: () => Navigator.push(context,
@@ -19,9 +22,20 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: const SafeArea(
-        child: SizedBox.expand(),
+      body: SafeArea(
+        child: BlocBuilder<NavigationIndexCubit, int>(
+          buildWhen: (previous, current) => previous != current,
+          builder: (context, state) => IndexedStack(
+            index: state,
+            children: const [
+              InicioPageView(),
+              ContatosPageView(),
+              ServicosPageView()
+            ],
+          ),
+        ),
       ),
+      bottomNavigationBar: const AppNavigationBar(),
     );
   }
 }
