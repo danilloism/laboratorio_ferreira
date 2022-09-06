@@ -1,19 +1,17 @@
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/models/account.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 
 void main() {
   late Account account;
-  late Faker faker;
 
   setUp(() {
-    faker = Faker();
     account = genRandomAccount();
   });
 
   group('AccountModel', () {
     test('deve ser instanciado.', () {
-      account = Account(email: '', senha: '');
+      account = const Account(email: '', senha: '');
       expect(account, isA<Account>());
     });
 
@@ -26,6 +24,7 @@ void main() {
       expect(account.senha, equals(json['senha']));
       expect(account.atualizadoEm, json['atualizadoEm']);
       expect(account.criadoEm, json['criadoEm']);
+      expect(account.contatoUid, json['contatoUid']);
     });
   });
 }
@@ -34,6 +33,6 @@ Account genRandomAccount() {
   return Account(
     email: faker.internet.email(),
     senha: faker.internet.password(),
-    username: faker.internet.userName(),
+    contatoUid: faker.guid.guid(),
   );
 }
