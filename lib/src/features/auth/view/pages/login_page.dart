@@ -19,7 +19,7 @@ class LoginPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Logo(),
+              const Logo(height: 150),
               const SizedBox(height: 8),
               Text('Bem vindo!', style: context.theme.textTheme.headline6),
               const SizedBox(height: 8),

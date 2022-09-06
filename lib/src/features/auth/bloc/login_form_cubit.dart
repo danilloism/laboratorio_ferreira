@@ -7,48 +7,53 @@ import 'package:laboratorio_ferreira_mobile/src/features/auth/data/enums/enums.d
 
 class LoginFormCubit extends Cubit<Login> {
   LoginFormCubit()
-      : super(
-          Login(
-            error:
-                '${EmailInputError.empty.name}\n${SenhaInputError.empty.name}',
+      : super(Login(
+          error: _formatError(
+            emailErr: '${EmailInputError.empty}',
+            senhaErr: '${SenhaInputError.empty}',
           ),
-        );
+        ));
 
   void emailTeveAlteracao(String value) {
     final email = EmailInput.dirty(value);
     final status = _validate([email, state.senha]);
-    var erro = state.error;
+
     if (status.isValid) {
-      erro = null;
-      emit(state.copyWith(email: email, error: erro, status: status));
+      emit(state.copyWith(email: email, status: status));
       return;
     }
 
-    final emailErr = email.error?.name;
-    final senhaErr = state.senha.error?.name;
-    erro = '${emailErr == null ? '' : '$emailErr\n'}${senhaErr ?? ''}'.trim();
-    emit(state.copyWith(email: email, error: erro, status: status));
+    emit(state.copyWith(
+        email: email,
+        error: _formatError(
+          emailErr: email.error?.toString(),
+          senhaErr: state.senha.error?.toString(),
+        ),
+        status: status));
   }
 
   void senhaTeveAlteracao(String value) {
     final senha = SenhaInput.dirty(value);
     final status = _validate([state.email, senha]);
-    var erro = state.error;
+
     if (status.isValid) {
-      erro = null;
-      emit(state.copyWith(senha: senha, error: erro, status: status));
+      emit(state.copyWith(senha: senha, status: status));
       return;
     }
 
-    final emailErr = state.email.error?.name;
-    final senhaErr = senha.error?.name;
-    erro = '${emailErr == null ? '' : '$emailErr\n'}${senhaErr ?? ''}'.trim();
-    emit(state.copyWith(senha: senha, error: erro, status: status));
+    emit(state.copyWith(
+        senha: senha,
+        error: _formatError(
+          emailErr: state.email.error?.toString(),
+          senhaErr: senha.error?.toString(),
+        ),
+        status: status));
   }
 
   void submit() {
     final submitted = state.copyWith();
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
+
     if (!submitted.status.isValid) {
       emit(state.copyWith(status: FormzStatus.submissionFailure));
       return;
@@ -62,7 +67,10 @@ class LoginFormCubit extends Cubit<Login> {
 
   static LoginFormCubit of(BuildContext context) =>
       context.read<LoginFormCubit>();
+}
 
-  static LoginFormCubit watcherOf(BuildContext context) =>
-      context.watch<LoginFormCubit>();
+String? _formatError({String? emailErr, String? senhaErr}) {
+  final formatted = '${emailErr ?? ''}\n${senhaErr ?? ''}'.trim();
+
+  return formatted.isEmpty ? null : formatted;
 }
