@@ -10,18 +10,6 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LoginFormCubit(),
-      child: const _LoginForm(),
-    );
-  }
-}
-
-class _LoginForm extends StatelessWidget {
-  const _LoginForm();
-
-  @override
-  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: Column(

@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/bloc/connectivity_cubit.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/bloc/navigation_index_cubit.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/settings_bloc.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/settings_event.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/extensions/build_context_extension.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/services/router_service.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/settings_bloc.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/settings_event.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/data/models/setting.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/data/repositories/settings_repository.dart';
 import 'package:sembast/sembast.dart';
@@ -38,6 +38,8 @@ Future<void> main() async {
               create: (_) => GetIt.I.get<SettingsRepository>()),
           RepositoryProvider<AuthRepository>(
               create: (_) => GetIt.I.get<AuthRepository>()),
+          RepositoryProvider<RouterService>(
+              create: (ctx) => RouterService(AuthBloc.of(ctx))),
         ],
         child: const MyApp(),
       ),
@@ -50,50 +52,40 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Laboratório Ferreira',
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: context
-          .select<SettingsBloc, ThemeMode>((value) => value.state.themeMode),
-      home: BlocConsumer<AuthBloc, AuthState>(
-        listenWhen: (_, current) {
-          return current.maybeWhen(
-            loggedIn: (session) {
-              return session != SettingsBloc.of(context).state.session;
-            },
-            loggedOut: () {
-              return SettingsBloc.of(context).state.session != null;
-            },
-            error: (_, __) => true,
-            orElse: () => false,
-          );
-        },
-        listener: (ctx, state) {
-          state.whenOrNull(
-            loggedIn: (session) => SettingsBloc.of(ctx).add(
-              SettingsEvent.activeSettingChanged(Setting(session: session)),
-            ),
-            loggedOut: () => SettingsBloc.of(ctx)
-                .add(const SettingsEvent.activeSettingChanged(Setting())),
-            error: (error, _) => ctx.showErrorSnackBar(message: error),
-          );
-        },
-        buildWhen: (_, current) => current.maybeWhen(
-          loggedIn: (_) => true,
-          loggedOut: () => true,
+    return BlocListener<AuthBloc, AuthState>(
+      listenWhen: (_, current) {
+        return current.maybeWhen(
+          loggedIn: (session) {
+            return session != SettingsBloc.of(context).state.session;
+          },
+          loggedOut: () {
+            return SettingsBloc.of(context).state.session != null;
+          },
+          error: (_, __) => true,
           orElse: () => false,
-        ),
-        builder: (_, state) => state.when(
-          loggedIn: (_) => BlocProvider<NavigationIndexCubit>(
-            create: (_) => NavigationIndexCubit(),
-            child: const HomePage(),
+        );
+      },
+      listener: (ctx, state) {
+        state.whenOrNull(
+          loggedIn: (session) => SettingsBloc.of(ctx).add(
+            SettingsEvent.activeSettingChanged(Setting(session: session)),
           ),
-          loggedOut: () => const LoginPage(),
-          loggingIn: () => const LoginPage(),
-          error: (_, __) => const Scaffold(),
-          unknown: () => const WelcomePage(),
-        ),
+          loggedOut: () => SettingsBloc.of(ctx)
+              .add(const SettingsEvent.activeSettingChanged(Setting())),
+          error: (error, _) => ctx.showErrorSnackBar(message: error),
+        );
+      },
+      child: MaterialApp.router(
+        title: 'Laboratório Ferreira',
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: context
+            .select<SettingsBloc, ThemeMode>((value) => value.state.themeMode),
+        routeInformationParser:
+            RouterService.of(context).router.routeInformationParser,
+        routeInformationProvider:
+            RouterService.of(context).router.routeInformationProvider,
+        routerDelegate: RouterService.of(context).router.routerDelegate,
       ),
     );
   }

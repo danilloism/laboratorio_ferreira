@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/bloc/navigation_index_cubit.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 
@@ -34,8 +35,7 @@ class _HomePageState extends State<HomePage> {
         title: const SizedBox(child: Logo(height: 50)),
         actions: [
           IconButton(
-            onPressed: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const SettingsPage())),
+            onPressed: () => context.pushNamed(Routes.settings.name),
             icon: const Icon(Icons.settings),
           ),
         ],
