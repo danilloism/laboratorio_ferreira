@@ -1,9 +1,11 @@
+import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_loggy/flutter_loggy.dart';
+import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:laboratorio_ferreira_mobile/firebase_options.dart';
 import 'package:laboratorio_ferreira_mobile/src/configs/config.dart';
@@ -63,7 +65,12 @@ class Init {
   }
 
   static void _registerServices() {
-    GetIt.I.registerFactory<IHttpService>(() => DioService());
+    GetIt.I.registerFactory<IHttpService>(() => DioService(Dio(
+          BaseOptions(
+            baseUrl: Config.apiUrl,
+            responseType: ResponseType.json,
+          ),
+        )..interceptors.add(LoggyDioInterceptor())));
     GetIt.I.registerFactory(() => AuthRepository(httpService: GetIt.I.get()));
   }
 }

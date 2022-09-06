@@ -1,17 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
-import 'package:laboratorio_ferreira_mobile/src/configs/config.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/services/i_http_service.dart';
 
 class DioService implements IHttpService {
-  final Dio _client = Dio(
-    BaseOptions(
-      baseUrl: Config.apiUrl,
-      responseType: ResponseType.json,
-    ),
-  )..interceptors.add(LoggyDioInterceptor());
+  final Dio _client;
 
-  DioService();
+  DioService(this._client);
 
   @override
   resetAuthTokenWithValueOrNull([String? token]) {
@@ -35,7 +28,7 @@ class DioService implements IHttpService {
       _client.get(path, queryParameters: queryParams);
 
   @override
-  Future put(String path, {data}) => _client.put(path, data: data);
+  Future<Response> put(String path, {data}) => _client.put(path, data: data);
 
   @override
   String? get authorizationToken =>
