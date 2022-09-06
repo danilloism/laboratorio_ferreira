@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ServicosPageView extends StatelessWidget {
-  const ServicosPageView({Key? key}) : super(key: key);
+  const ServicosPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const SafeArea(
+      child: ColoredBox(
+        color: Colors.purple,
+      ),
+    );
   }
 }

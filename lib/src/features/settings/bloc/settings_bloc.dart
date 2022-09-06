@@ -26,6 +26,4 @@ class SettingsBloc extends Bloc<SettingsEvent, Setting> {
   }
 
   static SettingsBloc of(BuildContext context) => context.read<SettingsBloc>();
-  static SettingsBloc watcherOf(BuildContext context) =>
-      context.watch<SettingsBloc>();
 }

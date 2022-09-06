@@ -6,6 +6,9 @@ enum SenhaInputError {
   final String name;
 
   const SenhaInputError(this.name);
+
+  @override
+  String toString() => name;
 }
 
 enum EmailInputError {
@@ -15,4 +18,7 @@ enum EmailInputError {
   final String name;
 
   const EmailInputError(this.name);
+
+  @override
+  String toString() => name;
 }

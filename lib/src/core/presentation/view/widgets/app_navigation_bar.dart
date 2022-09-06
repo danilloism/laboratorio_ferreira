@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/bloc/navigation_index_cubit.dart';
 
 class AppNavigationBar extends StatelessWidget {
@@ -7,7 +8,7 @@ class AppNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      currentIndex: NavigationIndexCubit.watcherOf(context).state,
+      currentIndex: context.watch<NavigationIndexCubit>().state,
       onTap: NavigationIndexCubit.of(context).goTo,
       items: const [
         BottomNavigationBarItem(

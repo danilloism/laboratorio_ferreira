@@ -43,6 +43,4 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   static AuthBloc of(BuildContext context) => context.read<AuthBloc>();
-
-  static AuthBloc watcherOf(BuildContext context) => context.watch<AuthBloc>();
 }
