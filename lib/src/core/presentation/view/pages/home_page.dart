@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/bloc/navigation_index_cubit.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/app_navigation_bar.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/lista_contatos/view/lista_contatos_page_view.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/servico/presentation/view/pages/servicos_page_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,7 +15,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    _controller = PageController();
+    _controller =
+        PageController(initialPage: context.read<NavigationIndexCubit>().state);
     super.initState();
   }
 
@@ -30,6 +28,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final navCubit = NavigationIndexCubit.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const SizedBox(child: Logo(height: 50)),
@@ -42,17 +41,44 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: SafeArea(
-        child: PageView(
+        child: PageView.builder(
+          itemCount: navCubit.pages.length,
+          itemBuilder: (ctx, index) => navCubit.pages[index],
           controller: _controller,
-          onPageChanged: NavigationIndexCubit.of(context).goTo,
-          children: const [
-            InicioPageView(),
-            ContatosPageView(),
-            ServicosPageView()
+          onPageChanged: navCubit.goTo,
+        ),
+      ),
+      bottomNavigationBar: BlocBuilder<NavigationIndexCubit, int>(
+        builder: (ctx, state) => BottomNavigationBar(
+          currentIndex: state,
+          onTap: (index) {
+            if (index == state - 1 || index == state + 1) {
+              _controller.animateToPage(
+                index,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.ease,
+              );
+              return;
+            }
+
+            _controller.jumpToPage(index);
+          },
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_rounded),
+              label: 'Início',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person_rounded),
+              label: 'Contatos',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.cases_rounded),
+              label: 'Serviços',
+            ),
           ],
         ),
       ),
-      bottomNavigationBar: const AppNavigationBar(),
     );
   }
 }
