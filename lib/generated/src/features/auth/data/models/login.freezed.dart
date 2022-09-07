@@ -19,7 +19,7 @@ mixin _$Login {
   EmailInput get email => throw _privateConstructorUsedError;
   SenhaInput get senha => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
-  String? get error => throw _privateConstructorUsedError;
+  String? get errors => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginCopyWith<Login> get copyWith => throw _privateConstructorUsedError;
@@ -30,7 +30,7 @@ abstract class $LoginCopyWith<$Res> {
   factory $LoginCopyWith(Login value, $Res Function(Login) then) =
       _$LoginCopyWithImpl<$Res>;
   $Res call(
-      {EmailInput email, SenhaInput senha, FormzStatus status, String? error});
+      {EmailInput email, SenhaInput senha, FormzStatus status, String? errors});
 }
 
 /// @nodoc
@@ -46,7 +46,7 @@ class _$LoginCopyWithImpl<$Res> implements $LoginCopyWith<$Res> {
     Object? email = freezed,
     Object? senha = freezed,
     Object? status = freezed,
-    Object? error = freezed,
+    Object? errors = freezed,
   }) {
     return _then(_value.copyWith(
       email: email == freezed
@@ -61,9 +61,9 @@ class _$LoginCopyWithImpl<$Res> implements $LoginCopyWith<$Res> {
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
+      errors: errors == freezed
+          ? _value.errors
+          : errors // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -75,7 +75,7 @@ abstract class _$$_LoginCopyWith<$Res> implements $LoginCopyWith<$Res> {
       __$$_LoginCopyWithImpl<$Res>;
   @override
   $Res call(
-      {EmailInput email, SenhaInput senha, FormzStatus status, String? error});
+      {EmailInput email, SenhaInput senha, FormzStatus status, String? errors});
 }
 
 /// @nodoc
@@ -92,7 +92,7 @@ class __$$_LoginCopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res>
     Object? email = freezed,
     Object? senha = freezed,
     Object? status = freezed,
-    Object? error = freezed,
+    Object? errors = freezed,
   }) {
     return _then(_$_Login(
       email: email == freezed
@@ -107,9 +107,9 @@ class __$$_LoginCopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
+      errors: errors == freezed
+          ? _value.errors
+          : errors // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -122,7 +122,7 @@ class _$_Login implements _Login {
       {this.email = const EmailInput.pure(),
       this.senha = const SenhaInput.pure(),
       this.status = FormzStatus.pure,
-      this.error});
+      this.errors});
 
   @override
   @JsonKey()
@@ -134,11 +134,11 @@ class _$_Login implements _Login {
   @JsonKey()
   final FormzStatus status;
   @override
-  final String? error;
+  final String? errors;
 
   @override
   String toString() {
-    return 'Login(email: $email, senha: $senha, status: $status, error: $error)';
+    return 'Login(email: $email, senha: $senha, status: $status, errors: $errors)';
   }
 
   @override
@@ -149,7 +149,7 @@ class _$_Login implements _Login {
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality().equals(other.senha, senha) &&
             const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other.error, error));
+            const DeepCollectionEquality().equals(other.errors, errors));
   }
 
   @override
@@ -158,7 +158,7 @@ class _$_Login implements _Login {
       const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(senha),
       const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(error));
+      const DeepCollectionEquality().hash(errors));
 
   @JsonKey(ignore: true)
   @override
@@ -171,7 +171,7 @@ abstract class _Login implements Login {
       {final EmailInput email,
       final SenhaInput senha,
       final FormzStatus status,
-      final String? error}) = _$_Login;
+      final String? errors}) = _$_Login;
 
   @override
   EmailInput get email;
@@ -180,7 +180,7 @@ abstract class _Login implements Login {
   @override
   FormzStatus get status;
   @override
-  String? get error;
+  String? get errors;
   @override
   @JsonKey(ignore: true)
   _$$_LoginCopyWith<_$_Login> get copyWith =>

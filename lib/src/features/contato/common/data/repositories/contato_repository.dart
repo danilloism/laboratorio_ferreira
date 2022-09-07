@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:laboratorio_ferreira_mobile/src/configs/config.dart';
+import 'package:laboratorio_ferreira_mobile/src/config/constants.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/common/data/models/contato.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/contato.dart';
 import 'package:path/path.dart';
 
 class ContatoRepository {
   final IHttpService _httpService;
-  final _path = join(Config.apiUrl, 'contatos');
+  final _path = join(Constants.apiUrl, 'contatos');
 
   ContatoRepository({required IHttpService httpService})
       : _httpService = httpService;
@@ -24,12 +24,12 @@ class ContatoRepository {
       }
 
       throw RepositoryException(
-        error: resposta.data,
+        object: resposta.data,
         whichRepository: ContatoRepository,
       );
     } on DioError catch (e) {
       throw RepositoryException(
-        error: {
+        object: {
           'data': e.response?.data,
           'statusCode': e.response?.statusCode,
         },
@@ -54,12 +54,12 @@ class ContatoRepository {
       }
 
       throw RepositoryException(
-        error: resposta.data,
+        object: resposta.data,
         whichRepository: ContatoRepository,
       );
     } on DioError catch (e) {
       throw RepositoryException(
-        error: {
+        object: {
           'data': e.response?.data,
           'statusCode': e.response?.statusCode,
         },
@@ -82,12 +82,12 @@ class ContatoRepository {
       }
 
       throw RepositoryException(
-        error: resposta.data,
+        object: resposta.data,
         whichRepository: ContatoRepository,
       );
     } on DioError catch (e) {
       throw RepositoryException(
-        error: {
+        object: {
           'data': e.response?.data,
           'statusCode': e.response?.statusCode,
         },

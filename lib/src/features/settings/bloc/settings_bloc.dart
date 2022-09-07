@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/settings_event.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/data/models/setting.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/data/repositories/settings_repository.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, Setting> {
   final SettingsRepository _repo;

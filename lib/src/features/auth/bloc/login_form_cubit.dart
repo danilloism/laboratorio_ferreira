@@ -1,53 +1,36 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/helpers/formatter.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/data.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/enums/enums.dart';
 
 class LoginFormCubit extends Cubit<Login> {
   LoginFormCubit()
       : super(Login(
-          error: _formatError(
-            emailErr: '${EmailInputError.empty}',
-            senhaErr: '${SenhaInputError.empty}',
-          ),
+          errors: Formatter.fromErrorList([
+            EmailInputError.empty.name,
+            SenhaInputError.empty.name,
+          ]),
         ));
 
   void emailTeveAlteracao(String value) {
     final email = EmailInput.dirty(value);
     final status = _validate([email, state.senha]);
+    final errors =
+        Formatter.fromErrorList([email.error?.name, state.senha.error?.name]);
 
-    if (status.isValid) {
-      emit(state.copyWith(email: email, status: status));
-      return;
-    }
-
-    emit(state.copyWith(
-        email: email,
-        error: _formatError(
-          emailErr: email.error?.toString(),
-          senhaErr: state.senha.error?.toString(),
-        ),
-        status: status));
+    emit(state.copyWith(email: email, errors: errors, status: status));
   }
 
   void senhaTeveAlteracao(String value) {
     final senha = SenhaInput.dirty(value);
     final status = _validate([state.email, senha]);
+    final errors = Formatter.fromErrorList([
+      state.email.error?.name,
+      senha.error?.name,
+    ]);
 
-    if (status.isValid) {
-      emit(state.copyWith(senha: senha, status: status));
-      return;
-    }
-
-    emit(state.copyWith(
-        senha: senha,
-        error: _formatError(
-          emailErr: state.email.error?.toString(),
-          senhaErr: senha.error?.toString(),
-        ),
-        status: status));
+    emit(state.copyWith(senha: senha, errors: errors, status: status));
   }
 
   void submit() {
@@ -58,8 +41,12 @@ class LoginFormCubit extends Cubit<Login> {
       emit(state.copyWith(status: FormzStatus.submissionFailure));
       return;
     }
+  }
 
-    emit(state.copyWith(status: FormzStatus.submissionSuccess));
+  void emitSubmissionFailure(String? error) {
+    emit(state.copyWith(
+        status: FormzStatus.submissionFailure,
+        errors: Formatter.fromErrorList([state.errors, error])));
   }
 
   FormzStatus _validate(List<FormzInput<dynamic, dynamic>> inputs) =>
@@ -67,10 +54,4 @@ class LoginFormCubit extends Cubit<Login> {
 
   static LoginFormCubit of(BuildContext context) =>
       context.read<LoginFormCubit>();
-}
-
-String? _formatError({String? emailErr, String? senhaErr}) {
-  final formatted = '${emailErr ?? ''}\n${senhaErr ?? ''}'.trim();
-
-  return formatted.isEmpty ? null : formatted;
 }

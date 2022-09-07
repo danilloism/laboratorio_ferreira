@@ -18,7 +18,7 @@ dependencies:
   firebase_performance: ^0.8.2+4
   firebase_storage: ^10.3.7
   flex_color_scheme: ^6.0.0
-  flex_seed_scheme: ^1.0.0
+  flex_seed_scheme: ^1.0.1
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
@@ -27,9 +27,11 @@ dependencies:
   formz: ^0.4.1
   freezed_annotation: ^2.1.0
   get_it: ^7.2.0
+  go_router: ^4.3.0
   json_annotation: ^4.6.0
   jwt_decoder: ^2.0.1
   loggy: ^2.0.1+1
+  mask_text_input_formatter: ^2.4.0
   path: ^1.8.2
   path_provider: ^2.0.11
   sembast: ^3.3.0

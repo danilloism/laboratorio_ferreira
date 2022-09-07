@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/extensions/build_context_extension.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/detalhes_contato/view/detalhes_contato_page.dart';
+import 'package:go_router/go_router.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/settings_bloc.dart';
 
 class LoggedInInfoSection extends StatelessWidget {
@@ -22,11 +22,9 @@ class LoggedInInfoSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ElevatedButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetalhesContatoPage(contato),
-                ),
+              onPressed: () => context.pushNamed(
+                Routes.detalhesContato.name,
+                params: {'uid': 'me'},
               ),
               child: Text(
                 'Ver meu contato',

@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/lista_contatos/view/lista_contatos_page_view.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/servico/presentation/view/pages/servicos_page_view.dart';
 
 class NavigationIndexCubit extends Cubit<int> {
-  NavigationIndexCubit() : super(0);
+  NavigationIndexCubit([super.initialState = 0]) {
+    assert(state >= 0 && state <= _limiteIndex);
+  }
+
+  int get _limiteIndex => HomePageTabs.values.length - 1;
 
   void goTo(int index) {
-    final limiteIndex = pages.length - 1;
-    assert(index >= 0 && index <= limiteIndex);
+    assert(index >= 0 && index <= _limiteIndex);
     emit(index);
   }
 
-  void goToInicio() => goTo(0);
+  void goToInicio() => goTo(HomePageTabs.inicio.index);
 
-  void goToContatos() => goTo(1);
+  void goToContatos() => goTo(HomePageTabs.contatos.index);
 
-  void goToServicos() => goTo(2);
+  void goToServicos() => goTo(HomePageTabs.servicos.index);
 
-  List<Widget> get pages => const [
-        InicioPageView(),
-        ContatosPageView(),
-        ServicosPageView(),
-      ];
+  List<Widget> get pages => HomePageTabs.values.map((e) => e.page).toList();
 
   static NavigationIndexCubit of(BuildContext context) =>
       context.read<NavigationIndexCubit>();

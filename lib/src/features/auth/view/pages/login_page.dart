@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/extensions/build_context_extension.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 
 class LoginPage extends StatelessWidget {
@@ -10,8 +10,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const SettingsPage())),
+        onPressed: () => context.pushNamed(Routes.settings.name),
         child: const Icon(Icons.settings),
       ),
       body: SafeArea(

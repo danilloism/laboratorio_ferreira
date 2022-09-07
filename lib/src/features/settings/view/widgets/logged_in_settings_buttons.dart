@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 
 class LoggedInSettingsButtons extends StatelessWidget {
@@ -15,8 +17,8 @@ class LoggedInSettingsButtons extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
+            context.goNamed(Routes.welcome.name); //TODO: ta feio isso aqui
             AuthBloc.of(context).add(const AuthEvent.logOutButtonPressed());
-            Navigator.pop(context);
           },
           child: const Text('Sair'),
         ),

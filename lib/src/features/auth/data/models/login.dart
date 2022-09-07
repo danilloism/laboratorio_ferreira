@@ -10,6 +10,6 @@ class Login with _$Login {
     @Default(EmailInput.pure()) EmailInput email,
     @Default(SenhaInput.pure()) SenhaInput senha,
     @Default(FormzStatus.pure) FormzStatus status,
-    String? error,
+    String? errors,
   }) = _Login;
 }

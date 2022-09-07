@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/extensions/build_context_extension.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/common/data/models/contato.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/editor_contato/bloc/editor_contato_cubit.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/editor_contato/view/editor_contato_page.dart';
+import 'package:go_router/go_router.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/contato.dart';
 
 class DetalhesContatoPage extends StatelessWidget {
   final Contato _contato;
@@ -17,9 +15,9 @@ class DetalhesContatoPage extends StatelessWidget {
         title: Text(_contato.nome),
         actions: [
           IconButton(
-              onPressed: () => BlocProvider(
-                    create: (ctx) => EditorContatoCubit(_contato),
-                    child: const EditorContatoPage(),
+              onPressed: () => context.pushNamed(
+                    Routes.editarContato.name,
+                    params: {'uid': _contato.uid},
                   ),
               icon: const Icon(Icons.edit)),
         ],

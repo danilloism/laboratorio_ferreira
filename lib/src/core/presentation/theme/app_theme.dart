@@ -1,6 +1,6 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:laboratorio_ferreira_mobile/src/configs/colors.dart';
+import 'package:laboratorio_ferreira_mobile/src/config/config.dart';
 
 class AppTheme {
   AppTheme._();

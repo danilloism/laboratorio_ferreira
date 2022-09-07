@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/extensions/build_context_extension.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/settings_bloc.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/settings_event.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/view/widgets/logged_in_info_section.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/view/widgets/logged_in_settings_buttons.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
 
 const themeModeMap = {
   ThemeMode.system: 'Sistema',

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laboratorio_ferreira_mobile/src/configs/colors.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/logo.dart';
+import 'package:laboratorio_ferreira_mobile/src/config/config.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/core.dart' show Logo;
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});

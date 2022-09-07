@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/data/models/roles.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/account.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 
 part '../../../../../../generated/src/features/contato/common/data/models/contato.freezed.dart';
 part '../../../../../../generated/src/features/contato/common/data/models/contato.g.dart';
