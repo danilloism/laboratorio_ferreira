@@ -20,8 +20,7 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function(Session session) loggedIn,
     required TResult Function() loggedOut,
-    required TResult Function() loggingIn,
-    required TResult Function(dynamic error, Account? user) error,
+    required TResult Function(Object error, dynamic extra) error,
     required TResult Function() unknown,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,8 +28,7 @@ mixin _$AuthState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
-    TResult Function()? loggingIn,
-    TResult Function(dynamic error, Account? user)? error,
+    TResult Function(Object error, dynamic extra)? error,
     TResult Function()? unknown,
   }) =>
       throw _privateConstructorUsedError;
@@ -38,8 +36,7 @@ mixin _$AuthState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
-    TResult Function()? loggingIn,
-    TResult Function(dynamic error, Account? user)? error,
+    TResult Function(Object error, dynamic extra)? error,
     TResult Function()? unknown,
     required TResult orElse(),
   }) =>
@@ -48,8 +45,7 @@ mixin _$AuthState {
   TResult map<TResult extends Object?>({
     required TResult Function(LoggedIn value) loggedIn,
     required TResult Function(LoggedOut value) loggedOut,
-    required TResult Function(LoggingIn value) loggingIn,
-    required TResult Function(_Error value) error,
+    required TResult Function(AuthError value) error,
     required TResult Function(Unknown value) unknown,
   }) =>
       throw _privateConstructorUsedError;
@@ -57,8 +53,7 @@ mixin _$AuthState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggedOut value)? loggedOut,
-    TResult Function(LoggingIn value)? loggingIn,
-    TResult Function(_Error value)? error,
+    TResult Function(AuthError value)? error,
     TResult Function(Unknown value)? unknown,
   }) =>
       throw _privateConstructorUsedError;
@@ -66,8 +61,7 @@ mixin _$AuthState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggedOut value)? loggedOut,
-    TResult Function(LoggingIn value)? loggingIn,
-    TResult Function(_Error value)? error,
+    TResult Function(AuthError value)? error,
     TResult Function(Unknown value)? unknown,
     required TResult orElse(),
   }) =>
@@ -163,8 +157,7 @@ class _$LoggedIn extends LoggedIn {
   TResult when<TResult extends Object?>({
     required TResult Function(Session session) loggedIn,
     required TResult Function() loggedOut,
-    required TResult Function() loggingIn,
-    required TResult Function(dynamic error, Account? user) error,
+    required TResult Function(Object error, dynamic extra) error,
     required TResult Function() unknown,
   }) {
     return loggedIn(session);
@@ -175,8 +168,7 @@ class _$LoggedIn extends LoggedIn {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
-    TResult Function()? loggingIn,
-    TResult Function(dynamic error, Account? user)? error,
+    TResult Function(Object error, dynamic extra)? error,
     TResult Function()? unknown,
   }) {
     return loggedIn?.call(session);
@@ -187,8 +179,7 @@ class _$LoggedIn extends LoggedIn {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
-    TResult Function()? loggingIn,
-    TResult Function(dynamic error, Account? user)? error,
+    TResult Function(Object error, dynamic extra)? error,
     TResult Function()? unknown,
     required TResult orElse(),
   }) {
@@ -203,8 +194,7 @@ class _$LoggedIn extends LoggedIn {
   TResult map<TResult extends Object?>({
     required TResult Function(LoggedIn value) loggedIn,
     required TResult Function(LoggedOut value) loggedOut,
-    required TResult Function(LoggingIn value) loggingIn,
-    required TResult Function(_Error value) error,
+    required TResult Function(AuthError value) error,
     required TResult Function(Unknown value) unknown,
   }) {
     return loggedIn(this);
@@ -215,8 +205,7 @@ class _$LoggedIn extends LoggedIn {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggedOut value)? loggedOut,
-    TResult Function(LoggingIn value)? loggingIn,
-    TResult Function(_Error value)? error,
+    TResult Function(AuthError value)? error,
     TResult Function(Unknown value)? unknown,
   }) {
     return loggedIn?.call(this);
@@ -227,8 +216,7 @@ class _$LoggedIn extends LoggedIn {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggedOut value)? loggedOut,
-    TResult Function(LoggingIn value)? loggingIn,
-    TResult Function(_Error value)? error,
+    TResult Function(AuthError value)? error,
     TResult Function(Unknown value)? unknown,
     required TResult orElse(),
   }) {
@@ -291,8 +279,7 @@ class _$LoggedOut extends LoggedOut {
   TResult when<TResult extends Object?>({
     required TResult Function(Session session) loggedIn,
     required TResult Function() loggedOut,
-    required TResult Function() loggingIn,
-    required TResult Function(dynamic error, Account? user) error,
+    required TResult Function(Object error, dynamic extra) error,
     required TResult Function() unknown,
   }) {
     return loggedOut();
@@ -303,8 +290,7 @@ class _$LoggedOut extends LoggedOut {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
-    TResult Function()? loggingIn,
-    TResult Function(dynamic error, Account? user)? error,
+    TResult Function(Object error, dynamic extra)? error,
     TResult Function()? unknown,
   }) {
     return loggedOut?.call();
@@ -315,8 +301,7 @@ class _$LoggedOut extends LoggedOut {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
-    TResult Function()? loggingIn,
-    TResult Function(dynamic error, Account? user)? error,
+    TResult Function(Object error, dynamic extra)? error,
     TResult Function()? unknown,
     required TResult orElse(),
   }) {
@@ -331,8 +316,7 @@ class _$LoggedOut extends LoggedOut {
   TResult map<TResult extends Object?>({
     required TResult Function(LoggedIn value) loggedIn,
     required TResult Function(LoggedOut value) loggedOut,
-    required TResult Function(LoggingIn value) loggingIn,
-    required TResult Function(_Error value) error,
+    required TResult Function(AuthError value) error,
     required TResult Function(Unknown value) unknown,
   }) {
     return loggedOut(this);
@@ -343,8 +327,7 @@ class _$LoggedOut extends LoggedOut {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggedOut value)? loggedOut,
-    TResult Function(LoggingIn value)? loggingIn,
-    TResult Function(_Error value)? error,
+    TResult Function(AuthError value)? error,
     TResult Function(Unknown value)? unknown,
   }) {
     return loggedOut?.call(this);
@@ -355,8 +338,7 @@ class _$LoggedOut extends LoggedOut {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggedOut value)? loggedOut,
-    TResult Function(LoggingIn value)? loggingIn,
-    TResult Function(_Error value)? error,
+    TResult Function(AuthError value)? error,
     TResult Function(Unknown value)? unknown,
     required TResult orElse(),
   }) {
@@ -373,220 +355,86 @@ abstract class LoggedOut extends AuthState {
 }
 
 /// @nodoc
-abstract class _$$LoggingInCopyWith<$Res> {
-  factory _$$LoggingInCopyWith(
-          _$LoggingIn value, $Res Function(_$LoggingIn) then) =
-      __$$LoggingInCopyWithImpl<$Res>;
+abstract class _$$AuthErrorCopyWith<$Res> {
+  factory _$$AuthErrorCopyWith(
+          _$AuthError value, $Res Function(_$AuthError) then) =
+      __$$AuthErrorCopyWithImpl<$Res>;
+
+  $Res call({Object error, dynamic extra});
 }
 
 /// @nodoc
-class __$$LoggingInCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements _$$LoggingInCopyWith<$Res> {
-  __$$LoggingInCopyWithImpl(
-      _$LoggingIn _value, $Res Function(_$LoggingIn) _then)
-      : super(_value, (v) => _then(v as _$LoggingIn));
+class __$$AuthErrorCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$$AuthErrorCopyWith<$Res> {
+  __$$AuthErrorCopyWithImpl(
+      _$AuthError _value, $Res Function(_$AuthError) _then)
+      : super(_value, (v) => _then(v as _$AuthError));
 
   @override
-  _$LoggingIn get _value => super._value as _$LoggingIn;
-}
-
-/// @nodoc
-
-class _$LoggingIn extends LoggingIn {
-  const _$LoggingIn() : super._();
-
-  @override
-  String toString() {
-    return 'AuthState.loggingIn()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoggingIn);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Session session) loggedIn,
-    required TResult Function() loggedOut,
-    required TResult Function() loggingIn,
-    required TResult Function(dynamic error, Account? user) error,
-    required TResult Function() unknown,
-  }) {
-    return loggingIn();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Session session)? loggedIn,
-    TResult Function()? loggedOut,
-    TResult Function()? loggingIn,
-    TResult Function(dynamic error, Account? user)? error,
-    TResult Function()? unknown,
-  }) {
-    return loggingIn?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Session session)? loggedIn,
-    TResult Function()? loggedOut,
-    TResult Function()? loggingIn,
-    TResult Function(dynamic error, Account? user)? error,
-    TResult Function()? unknown,
-    required TResult orElse(),
-  }) {
-    if (loggingIn != null) {
-      return loggingIn();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LoggedIn value) loggedIn,
-    required TResult Function(LoggedOut value) loggedOut,
-    required TResult Function(LoggingIn value) loggingIn,
-    required TResult Function(_Error value) error,
-    required TResult Function(Unknown value) unknown,
-  }) {
-    return loggingIn(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoggedIn value)? loggedIn,
-    TResult Function(LoggedOut value)? loggedOut,
-    TResult Function(LoggingIn value)? loggingIn,
-    TResult Function(_Error value)? error,
-    TResult Function(Unknown value)? unknown,
-  }) {
-    return loggingIn?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoggedIn value)? loggedIn,
-    TResult Function(LoggedOut value)? loggedOut,
-    TResult Function(LoggingIn value)? loggingIn,
-    TResult Function(_Error value)? error,
-    TResult Function(Unknown value)? unknown,
-    required TResult orElse(),
-  }) {
-    if (loggingIn != null) {
-      return loggingIn(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LoggingIn extends AuthState {
-  const factory LoggingIn() = _$LoggingIn;
-  const LoggingIn._() : super._();
-}
-
-/// @nodoc
-abstract class _$$_ErrorCopyWith<$Res> {
-  factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
-      __$$_ErrorCopyWithImpl<$Res>;
-  $Res call({dynamic error, Account? user});
-
-  $AccountCopyWith<$Res>? get user;
-}
-
-/// @nodoc
-class __$$_ErrorCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements _$$_ErrorCopyWith<$Res> {
-  __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
-      : super(_value, (v) => _then(v as _$_Error));
-
-  @override
-  _$_Error get _value => super._value as _$_Error;
+  _$AuthError get _value => super._value as _$AuthError;
 
   @override
   $Res call({
     Object? error = freezed,
-    Object? user = freezed,
+    Object? extra = freezed,
   }) {
-    return _then(_$_Error(
+    return _then(_$AuthError(
       error: error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
+              as Object,
+      extra: extra == freezed
+          ? _value.extra
+          : extra // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as Account?,
     ));
-  }
-
-  @override
-  $AccountCopyWith<$Res>? get user {
-    if (_value.user == null) {
-      return null;
-    }
-
-    return $AccountCopyWith<$Res>(_value.user!, (value) {
-      return _then(_value.copyWith(user: value));
-    });
   }
 }
 
 /// @nodoc
 
-class _$_Error extends _Error {
-  const _$_Error({required this.error, this.user}) : super._();
+class _$AuthError extends AuthError {
+  const _$AuthError({required this.error, this.extra}) : super._();
 
   @override
-  final dynamic error;
+  final Object error;
   @override
-  final Account? user;
+  final dynamic extra;
 
   @override
   String toString() {
-    return 'AuthState.error(error: $error, user: $user)';
+    return 'AuthState.error(error: $error, extra: $extra)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Error &&
+            other is _$AuthError &&
             const DeepCollectionEquality().equals(other.error, error) &&
-            const DeepCollectionEquality().equals(other.user, user));
+            const DeepCollectionEquality().equals(other.extra, extra));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(error),
-      const DeepCollectionEquality().hash(user));
+      const DeepCollectionEquality().hash(extra));
 
   @JsonKey(ignore: true)
   @override
-  _$$_ErrorCopyWith<_$_Error> get copyWith =>
-      __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
+  _$$AuthErrorCopyWith<_$AuthError> get copyWith =>
+      __$$AuthErrorCopyWithImpl<_$AuthError>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Session session) loggedIn,
     required TResult Function() loggedOut,
-    required TResult Function() loggingIn,
-    required TResult Function(dynamic error, Account? user) error,
+    required TResult Function(Object error, dynamic extra) error,
     required TResult Function() unknown,
   }) {
-    return error(this.error, user);
+    return error(this.error, extra);
   }
 
   @override
@@ -594,11 +442,10 @@ class _$_Error extends _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
-    TResult Function()? loggingIn,
-    TResult Function(dynamic error, Account? user)? error,
+    TResult Function(Object error, dynamic extra)? error,
     TResult Function()? unknown,
   }) {
-    return error?.call(this.error, user);
+    return error?.call(this.error, extra);
   }
 
   @override
@@ -606,13 +453,12 @@ class _$_Error extends _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
-    TResult Function()? loggingIn,
-    TResult Function(dynamic error, Account? user)? error,
+    TResult Function(Object error, dynamic extra)? error,
     TResult Function()? unknown,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(this.error, user);
+      return error(this.error, extra);
     }
     return orElse();
   }
@@ -622,8 +468,7 @@ class _$_Error extends _Error {
   TResult map<TResult extends Object?>({
     required TResult Function(LoggedIn value) loggedIn,
     required TResult Function(LoggedOut value) loggedOut,
-    required TResult Function(LoggingIn value) loggingIn,
-    required TResult Function(_Error value) error,
+    required TResult Function(AuthError value) error,
     required TResult Function(Unknown value) unknown,
   }) {
     return error(this);
@@ -634,8 +479,7 @@ class _$_Error extends _Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggedOut value)? loggedOut,
-    TResult Function(LoggingIn value)? loggingIn,
-    TResult Function(_Error value)? error,
+    TResult Function(AuthError value)? error,
     TResult Function(Unknown value)? unknown,
   }) {
     return error?.call(this);
@@ -646,8 +490,7 @@ class _$_Error extends _Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggedOut value)? loggedOut,
-    TResult Function(LoggingIn value)? loggingIn,
-    TResult Function(_Error value)? error,
+    TResult Function(AuthError value)? error,
     TResult Function(Unknown value)? unknown,
     required TResult orElse(),
   }) {
@@ -658,15 +501,18 @@ class _$_Error extends _Error {
   }
 }
 
-abstract class _Error extends AuthState {
-  const factory _Error({required final dynamic error, final Account? user}) =
-      _$_Error;
-  const _Error._() : super._();
+abstract class AuthError extends AuthState {
+  const factory AuthError({required final Object error, final dynamic extra}) =
+      _$AuthError;
 
-  dynamic get error;
-  Account? get user;
+  const AuthError._() : super._();
+
+  Object get error;
+
+  dynamic get extra;
+
   @JsonKey(ignore: true)
-  _$$_ErrorCopyWith<_$_Error> get copyWith =>
+  _$$AuthErrorCopyWith<_$AuthError> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -710,8 +556,7 @@ class _$Unknown extends Unknown {
   TResult when<TResult extends Object?>({
     required TResult Function(Session session) loggedIn,
     required TResult Function() loggedOut,
-    required TResult Function() loggingIn,
-    required TResult Function(dynamic error, Account? user) error,
+    required TResult Function(Object error, dynamic extra) error,
     required TResult Function() unknown,
   }) {
     return unknown();
@@ -722,8 +567,7 @@ class _$Unknown extends Unknown {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
-    TResult Function()? loggingIn,
-    TResult Function(dynamic error, Account? user)? error,
+    TResult Function(Object error, dynamic extra)? error,
     TResult Function()? unknown,
   }) {
     return unknown?.call();
@@ -734,8 +578,7 @@ class _$Unknown extends Unknown {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Session session)? loggedIn,
     TResult Function()? loggedOut,
-    TResult Function()? loggingIn,
-    TResult Function(dynamic error, Account? user)? error,
+    TResult Function(Object error, dynamic extra)? error,
     TResult Function()? unknown,
     required TResult orElse(),
   }) {
@@ -750,8 +593,7 @@ class _$Unknown extends Unknown {
   TResult map<TResult extends Object?>({
     required TResult Function(LoggedIn value) loggedIn,
     required TResult Function(LoggedOut value) loggedOut,
-    required TResult Function(LoggingIn value) loggingIn,
-    required TResult Function(_Error value) error,
+    required TResult Function(AuthError value) error,
     required TResult Function(Unknown value) unknown,
   }) {
     return unknown(this);
@@ -762,8 +604,7 @@ class _$Unknown extends Unknown {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggedOut value)? loggedOut,
-    TResult Function(LoggingIn value)? loggingIn,
-    TResult Function(_Error value)? error,
+    TResult Function(AuthError value)? error,
     TResult Function(Unknown value)? unknown,
   }) {
     return unknown?.call(this);
@@ -774,8 +615,7 @@ class _$Unknown extends Unknown {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LoggedIn value)? loggedIn,
     TResult Function(LoggedOut value)? loggedOut,
-    TResult Function(LoggingIn value)? loggingIn,
-    TResult Function(_Error value)? error,
+    TResult Function(AuthError value)? error,
     TResult Function(Unknown value)? unknown,
     required TResult orElse(),
   }) {

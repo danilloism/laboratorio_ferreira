@@ -35,12 +35,12 @@ class AuthRepository {
       }
 
       throw RepositoryException(
-        error: resposta.data,
+        object: resposta.data,
         whichRepository: AuthRepository,
       );
     } on DioError catch (e) {
       throw RepositoryException(
-        error: {
+        object: {
           'data': e.response?.data,
           'statusCode': e.response?.statusCode,
         },

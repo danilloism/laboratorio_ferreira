@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/bloc/connectivity_cubit.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/extensions/build_context_extension.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/services/router_service.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/settings_bloc.dart';
@@ -61,7 +60,6 @@ class MyApp extends StatelessWidget {
           loggedOut: () {
             return SettingsBloc.of(context).state.session != null;
           },
-          error: (_, __) => true,
           orElse: () => false,
         );
       },
@@ -72,7 +70,6 @@ class MyApp extends StatelessWidget {
           ),
           loggedOut: () => SettingsBloc.of(ctx)
               .add(const SettingsEvent.activeSettingChanged(Setting())),
-          error: (error, _) => ctx.showErrorSnackBar(message: error),
         );
       },
       child: MaterialApp.router(

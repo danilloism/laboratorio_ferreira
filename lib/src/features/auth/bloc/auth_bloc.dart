@@ -24,13 +24,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
     on<LogInButtonPressed>((event, emit) async {
-      emit(const AuthState.loggingIn());
-
       try {
         final session = await _authRepo.login(event.account);
         emit(AuthState.loggedIn(session: session));
       } on RepositoryException catch (e) {
-        emit(AuthState.error(error: e.message));
+        emit(AuthState.error(error: e));
       } catch (e) {
         emit(AuthState.error(error: e.toString()));
       }

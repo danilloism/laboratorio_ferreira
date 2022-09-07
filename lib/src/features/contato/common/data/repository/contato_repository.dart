@@ -24,12 +24,12 @@ class ContatoRepository {
       }
 
       throw RepositoryException(
-        error: resposta.data,
+        object: resposta.data,
         whichRepository: ContatoRepository,
       );
     } on DioError catch (e) {
       throw RepositoryException(
-        error: {
+        object: {
           'data': e.response?.data,
           'statusCode': e.response?.statusCode,
         },
@@ -54,12 +54,12 @@ class ContatoRepository {
       }
 
       throw RepositoryException(
-        error: resposta.data,
+        object: resposta.data,
         whichRepository: ContatoRepository,
       );
     } on DioError catch (e) {
       throw RepositoryException(
-        error: {
+        object: {
           'data': e.response?.data,
           'statusCode': e.response?.statusCode,
         },
@@ -82,12 +82,12 @@ class ContatoRepository {
       }
 
       throw RepositoryException(
-        error: resposta.data,
+        object: resposta.data,
         whichRepository: ContatoRepository,
       );
     } on DioError catch (e) {
       throw RepositoryException(
-        error: {
+        object: {
           'data': e.response?.data,
           'statusCode': e.response?.statusCode,
         },

@@ -2,11 +2,13 @@ import 'package:laboratorio_ferreira_mobile/src/core/extensions/map_extension.da
 
 class RepositoryException implements Exception {
   late final String? message;
+  final Map<String, dynamic>? object;
+
   RepositoryException({
-    Map<String, dynamic>? error,
+    this.object,
     Type? whichRepository,
   }) {
-    error?['Repository:'] = whichRepository.toString();
-    message = error?.formattedString;
+    object?['Repository'] = whichRepository.toString();
+    message = object?.formattedString;
   }
 }
