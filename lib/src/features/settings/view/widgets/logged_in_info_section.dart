@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/extensions/build_context_extension.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/settings_bloc.dart';
 
 class LoggedInInfoSection extends StatelessWidget {

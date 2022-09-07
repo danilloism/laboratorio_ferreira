@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/bloc/navigation_index_cubit.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/detalhes_contato/view/detalhes_contato_page.dart';
@@ -10,6 +9,7 @@ import 'package:laboratorio_ferreira_mobile/src/features/contato/editor_contato/
 import 'package:laboratorio_ferreira_mobile/src/features/contato/lista_contatos/view/lista_contatos_page_view.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/servico/presentation/view/pages/servicos_page_view.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/settings_bloc.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/settings/view/pages/settings_page.dart';
 
 enum HomePageTabs {
   inicio,

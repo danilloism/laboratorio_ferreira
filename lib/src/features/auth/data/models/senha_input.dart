@@ -1,5 +1,5 @@
 import 'package:formz/formz.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/enums/enums.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/input_errors.dart';
 
 class SenhaInput extends FormzInput<String, SenhaInputError> {
   const SenhaInput.pure() : super.pure('');

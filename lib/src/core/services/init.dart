@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -47,7 +48,7 @@ class Init {
     );
     await _initSembast();
     await _initRepositories();
-    _registerServices();
+    await _registerServices();
   }
 
   static Future<void> _initSembast() async {
@@ -64,7 +65,10 @@ class Init {
     GetIt.I.registerLazySingleton<SettingsRepository>(() => settingsRepo);
   }
 
-  static void _registerServices() {
+  static Future<void> _registerServices() async {
+    final connectivity = await Connectivity().checkConnectivity();
+    GetIt.I.registerLazySingleton(() => connectivity,
+        instanceName: Config.initialConnectivityInstanceName);
     GetIt.I.registerFactory<IHttpService>(() => DioService(Dio(
           BaseOptions(
             baseUrl: Config.apiUrl,

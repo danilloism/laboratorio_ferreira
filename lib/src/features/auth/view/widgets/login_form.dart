@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/extensions/build_context_extension.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/view.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 
 class LoginForm extends StatelessWidget {
@@ -60,8 +58,7 @@ class LoginForm extends StatelessWidget {
               listener: (context, state) =>
                   context.showErrorSnackBar(message: state.errors!),
               builder: (context, state) {
-                if (state.status.isSubmissionInProgress ||
-                    state.status.isSubmissionSuccess) {
+                if (state.status.isSubmissionInProgress) {
                   return const CircularProgressIndicator();
                 }
 
