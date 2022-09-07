@@ -1,56 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/data/models/roles.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/common/data/models/contato.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/editor_contato/bloc/editor_contato_cubit.dart';
 
-class EditorContatoPage<T> extends StatefulWidget {
+class EditorContatoPage<T> extends StatelessWidget {
   const EditorContatoPage({super.key});
-
-  @override
-  State<EditorContatoPage> createState() => _DetalhesContatoPageState();
-}
-
-class _DetalhesContatoPageState extends State<EditorContatoPage> {
-  final _formKey = GlobalKey<FormState>();
-  final _nomeController = TextEditingController();
-  final _telefonesControllers = <TextEditingController>[];
-  // final _telefonesFormFieldCounter = StateProvider((ref) => 0);
-  // StateNotifierProvider<EditorContatoNotifier, Contato> get _contatoProvider =>
-  //     widget.editorNotifierProvider;
-  late final void Function() _nomeListener;
-  late final Contato _contatoOriginal;
-  // final _editorContatoStateProvider = StateProvider<EditingContatoState>(
-  //     (ref) => const EditingContatoState.editing());
-
-  @override
-  void initState() {
-    _contatoOriginal = EditorContatoCubit.of(context).state;
-    // final contato = ref.read(_contatoProvider);
-    // _contatoOriginal = contato;
-    // _nomeController.text = contato.nome;
-    // _nomeListener = () {
-    //   ref.read(_contatoProvider.notifier).atualizarNome(_nomeController.text);
-    // };
-    // _nomeController.addListener(_nomeListener);
-    // for (final telefone in contato.telefones) {
-    //   final controller = TextEditingController()..text = telefone;
-    //   _telefonesControllers.add(controller);
-    // }
-    // ref.read(_telefonesFormFieldCounter.notifier).state =
-    //     contato.telefones.length;
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _nomeController.removeListener(_nomeListener);
-    _nomeController.dispose();
-    for (final controller in _telefonesControllers) {
-      controller.dispose();
-    }
-    super.dispose();
-    EditorContatoCubit.of(context).close();
-  }
 
   _podeEditarCategorias(Contato contato) {
     if (contato.categorias.any((categoria) =>

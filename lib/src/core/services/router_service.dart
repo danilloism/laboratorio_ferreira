@@ -19,22 +19,49 @@ class RouterService {
         GoRoute(
           name: Routes.home.name,
           path: Routes.home.path,
-          builder: Routes.home.builder,
+          builder: Routes.home.builder!,
+        ),
+        GoRoute(
+          name: Routes.inicio.name,
+          path: Routes.inicio.path,
+          redirect: Routes.inicio.redirect!,
+        ),
+        GoRoute(
+            name: Routes.contatos.name,
+            path: Routes.contatos.path,
+            redirect: Routes.contatos.redirect!,
+            routes: [
+              GoRoute(
+                  name: Routes.detalhesContato.name,
+                  path: Routes.detalhesContato.path,
+                  builder: Routes.detalhesContato.builder!,
+                  routes: [
+                    GoRoute(
+                      name: Routes.editarContato.name,
+                      path: Routes.editarContato.path,
+                      builder: Routes.editarContato.builder!,
+                    ),
+                  ]),
+            ]),
+        GoRoute(
+          name: Routes.servicos.name,
+          path: Routes.servicos.path,
+          redirect: Routes.servicos.redirect!,
         ),
         GoRoute(
           name: Routes.login.name,
           path: Routes.login.path,
-          builder: Routes.login.builder,
+          builder: Routes.login.builder!,
         ),
         GoRoute(
           name: Routes.welcome.name,
           path: Routes.welcome.path,
-          builder: Routes.welcome.builder,
+          builder: Routes.welcome.builder!,
         ),
         GoRoute(
           name: Routes.settings.name,
           path: Routes.settings.path,
-          builder: Routes.settings.builder,
+          builder: Routes.settings.builder!,
         ),
       ],
     );
@@ -44,15 +71,17 @@ class RouterService {
     switch (state.location) {
       case '/welcome':
         return _authBloc.state.whenOrNull(
-          loggedIn: (_) => '/',
-          loggedOut: () => '/login',
+          loggedIn: (_) => state.namedLocation(Routes.inicio.name),
+          loggedOut: () => state.namedLocation(Routes.login.name),
         );
 
       case '/':
-        return _authBloc.state.whenOrNull(loggedOut: () => '/login');
+        return _authBloc.state.whenOrNull(
+            loggedOut: () => state.namedLocation(Routes.login.name));
 
       case '/login':
-        return _authBloc.state.whenOrNull(loggedIn: (_) => '/');
+        return _authBloc.state.whenOrNull(
+            loggedIn: (_) => state.namedLocation(Routes.inicio.name));
 
       default:
         return null;
