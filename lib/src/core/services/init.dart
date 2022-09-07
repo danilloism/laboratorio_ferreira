@@ -9,11 +9,10 @@ import 'package:flutter_loggy/flutter_loggy.dart';
 import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:laboratorio_ferreira_mobile/firebase_options.dart';
-import 'package:laboratorio_ferreira_mobile/src/configs/config.dart';
+import 'package:laboratorio_ferreira_mobile/src/config/config.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/data/repositories/settings_repository.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/data/repositories/settings_sembast_repository.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
 import 'package:loggy/loggy.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -26,10 +25,10 @@ class Init {
   static Future<void> execute() async {
     Bloc.observer = AppObserver();
     Loggy.initLoggy(
-      logPrinter: Config.isProduction
+      logPrinter: Constants.isProduction
           ? const DefaultPrinter()
           : const PrettyDeveloperPrinter(),
-      logOptions: Config.isProduction
+      logOptions: Constants.isProduction
           ? const LogOptions(LogLevel.error)
           : const LogOptions(
               LogLevel.all,
@@ -68,10 +67,10 @@ class Init {
   static Future<void> _registerServices() async {
     final connectivity = await Connectivity().checkConnectivity();
     GetIt.I.registerLazySingleton(() => connectivity,
-        instanceName: Config.initialConnectivityInstanceName);
+        instanceName: Constants.initialConnectivityInstanceName);
     GetIt.I.registerFactory<IHttpService>(() => DioService(Dio(
           BaseOptions(
-            baseUrl: Config.apiUrl,
+            baseUrl: Constants.apiUrl,
             responseType: ResponseType.json,
           ),
         )..interceptors.add(LoggyDioInterceptor())));

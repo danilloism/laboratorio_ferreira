@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/common/data/models/contato.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/contato.dart';
 
 class DetalhesContatoPage extends StatelessWidget {
   final Contato _contato;

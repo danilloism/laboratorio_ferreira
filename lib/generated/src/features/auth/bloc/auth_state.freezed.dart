@@ -359,7 +359,6 @@ abstract class _$$AuthErrorCopyWith<$Res> {
   factory _$$AuthErrorCopyWith(
           _$AuthError value, $Res Function(_$AuthError) then) =
       __$$AuthErrorCopyWithImpl<$Res>;
-
   $Res call({Object error, dynamic extra});
 }
 
@@ -504,13 +503,10 @@ class _$AuthError extends AuthError {
 abstract class AuthError extends AuthState {
   const factory AuthError({required final Object error, final dynamic extra}) =
       _$AuthError;
-
   const AuthError._() : super._();
 
   Object get error;
-
   dynamic get extra;
-
   @JsonKey(ignore: true)
   _$$AuthErrorCopyWith<_$AuthError> get copyWith =>
       throw _privateConstructorUsedError;

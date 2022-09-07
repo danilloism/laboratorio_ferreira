@@ -4,8 +4,7 @@ import 'dart:collection';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/data/models/setting.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/data/repositories/settings_repository.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
 import 'package:loggy/loggy.dart';
 import 'package:sembast/sembast.dart';
 

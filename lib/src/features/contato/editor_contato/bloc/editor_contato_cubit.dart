@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/common/data/models/contato.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/editor_contato/data/models/editor_contato.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/editor_contato/data/models/nome_input.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/editor_contato/data/models/telefone_input.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/editor_contato/data/models/telefones_input_list.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/contato.dart';
 
 class EditorContatoCubit extends Cubit<EditorContato> {
   EditorContatoCubit([Contato? contato])

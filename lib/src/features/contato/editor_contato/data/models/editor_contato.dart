@@ -1,8 +1,7 @@
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/editor_contato/data/models/nome_input.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/editor_contato/data/models/telefones_input_list.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/contato.dart';
 
 part '../../../../../../generated/src/features/contato/editor_contato/data/models/editor_contato.freezed.dart';
 

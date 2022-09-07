@@ -31,6 +31,7 @@ dependencies:
   json_annotation: ^4.6.0
   jwt_decoder: ^2.0.1
   loggy: ^2.0.1+1
+  mask_text_input_formatter: ^2.4.0
   path: ^1.8.2
   path_provider: ^2.0.11
   sembast: ^3.3.0

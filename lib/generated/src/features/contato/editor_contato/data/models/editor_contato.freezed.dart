@@ -17,13 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$EditorContato {
   NomeInput get nome => throw _privateConstructorUsedError;
-
   TelefonesInputList get telefones => throw _privateConstructorUsedError;
-
   Set<Roles> get categorias => throw _privateConstructorUsedError;
-
   FormzStatus get status => throw _privateConstructorUsedError;
-
   String? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,7 +32,6 @@ abstract class $EditorContatoCopyWith<$Res> {
   factory $EditorContatoCopyWith(
           EditorContato value, $Res Function(EditorContato) then) =
       _$EditorContatoCopyWithImpl<$Res>;
-
   $Res call(
       {NomeInput nome,
       TelefonesInputList telefones,
@@ -51,7 +46,6 @@ class _$EditorContatoCopyWithImpl<$Res>
   _$EditorContatoCopyWithImpl(this._value, this._then);
 
   final EditorContato _value;
-
   // ignore: unused_field
   final $Res Function(EditorContato) _then;
 
@@ -94,7 +88,6 @@ abstract class _$$_EditorContatoCopyWith<$Res>
   factory _$$_EditorContatoCopyWith(
           _$_EditorContato value, $Res Function(_$_EditorContato) then) =
       __$$_EditorContatoCopyWithImpl<$Res>;
-
   @override
   $Res call(
       {NomeInput nome,
@@ -166,7 +159,6 @@ class _$_EditorContato implements _EditorContato {
   @JsonKey()
   final TelefonesInputList telefones;
   final Set<Roles> _categorias;
-
   @override
   @JsonKey()
   Set<Roles> get categorias {
@@ -223,19 +215,14 @@ abstract class _EditorContato implements EditorContato {
 
   @override
   NomeInput get nome;
-
   @override
   TelefonesInputList get telefones;
-
   @override
   Set<Roles> get categorias;
-
   @override
   FormzStatus get status;
-
   @override
   String? get error;
-
   @override
   @JsonKey(ignore: true)
   _$$_EditorContatoCopyWith<_$_EditorContato> get copyWith =>

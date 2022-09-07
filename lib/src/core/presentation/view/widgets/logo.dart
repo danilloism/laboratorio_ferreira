@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laboratorio_ferreira_mobile/src/configs/assets.dart';
-import 'package:laboratorio_ferreira_mobile/src/configs/colors.dart';
+import 'package:laboratorio_ferreira_mobile/src/config/config.dart';
 
 class Logo extends StatelessWidget {
   const Logo({super.key, this.height});

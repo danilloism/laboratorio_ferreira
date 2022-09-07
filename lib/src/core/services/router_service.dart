@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laboratorio_ferreira_mobile/src/configs/config.dart';
+import 'package:laboratorio_ferreira_mobile/src/config/config.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 
@@ -11,7 +11,7 @@ class RouterService {
 
   RouterService(this._authBloc) {
     router = GoRouter(
-      debugLogDiagnostics: !Config.isProduction,
+      debugLogDiagnostics: !Constants.isProduction,
       refreshListenable: GoRouterRefreshStream(_authBloc.stream),
       initialLocation: '/welcome',
       redirect: _redirect,

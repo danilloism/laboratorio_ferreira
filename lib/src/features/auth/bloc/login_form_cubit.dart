@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/helpers/formatter.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/data.dart';
 
 class LoginFormCubit extends Cubit<Login> {
   LoginFormCubit()

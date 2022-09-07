@@ -19,7 +19,6 @@ mixin _$Login {
   EmailInput get email => throw _privateConstructorUsedError;
   SenhaInput get senha => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
-
   String? get errors => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +29,6 @@ mixin _$Login {
 abstract class $LoginCopyWith<$Res> {
   factory $LoginCopyWith(Login value, $Res Function(Login) then) =
       _$LoginCopyWithImpl<$Res>;
-
   $Res call(
       {EmailInput email, SenhaInput senha, FormzStatus status, String? errors});
 }
@@ -75,7 +73,6 @@ class _$LoginCopyWithImpl<$Res> implements $LoginCopyWith<$Res> {
 abstract class _$$_LoginCopyWith<$Res> implements $LoginCopyWith<$Res> {
   factory _$$_LoginCopyWith(_$_Login value, $Res Function(_$_Login) then) =
       __$$_LoginCopyWithImpl<$Res>;
-
   @override
   $Res call(
       {EmailInput email, SenhaInput senha, FormzStatus status, String? errors});
@@ -180,13 +177,10 @@ abstract class _Login implements Login {
   EmailInput get email;
   @override
   SenhaInput get senha;
-
   @override
   FormzStatus get status;
-
   @override
   String? get errors;
-
   @override
   @JsonKey(ignore: true)
   _$$_LoginCopyWith<_$_Login> get copyWith =>

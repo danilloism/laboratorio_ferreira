@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:laboratorio_ferreira_mobile/src/configs/config.dart';
+import 'package:laboratorio_ferreira_mobile/src/config/config.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/settings_bloc.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/settings_event.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/data/models/setting.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/data/repositories/settings_repository.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
 import 'package:sembast/sembast.dart';
 
 class BlocDependencyInjectionContainer extends StatelessWidget {
@@ -29,7 +26,7 @@ class BlocDependencyInjectionContainer extends StatelessWidget {
         BlocProvider(create: (_) => SettingsBloc(settingsRepo: GetIt.I.get())),
         BlocProvider(
             create: (_) => ConnectivityCubit(GetIt.I
-                .get(instanceName: Config.initialConnectivityInstanceName))),
+                .get(instanceName: Constants.initialConnectivityInstanceName))),
       ],
       child: MultiRepositoryProvider(
         providers: [

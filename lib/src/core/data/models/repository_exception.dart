@@ -1,4 +1,4 @@
-import 'package:laboratorio_ferreira_mobile/src/core/extensions/map_extension.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/extensions/extensions.dart';
 
 class RepositoryException implements Exception {
   late final String? message;
