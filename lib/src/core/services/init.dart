@@ -38,16 +38,22 @@ class Init {
     );
 
     WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform);
+
+    await Future.wait([
+      Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
+      _initSembast(),
+    ]);
+
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
     SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.edgeToEdge,
       overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top],
     );
-    await _initSembast();
-    await _initRepositories();
-    await _registerServices();
+
+    await Future.wait([
+      _initAndRegisterSettingsRepo(),
+      _registerOtherServices(),
+    ]);
   }
 
   static Future<void> _initSembast() async {
@@ -58,22 +64,45 @@ class Init {
     GetIt.I.registerLazySingleton<Database>(() => db);
   }
 
-  static Future<void> _initRepositories() async {
-    final settingsRepo = SettingsSembastRepository(GetIt.I.get());
-    await settingsRepo.init();
-    GetIt.I.registerLazySingleton<SettingsRepository>(() => settingsRepo);
+  static Future<void> _registerOtherServices() async {
+    _registerHttpService();
+    _registerAuthRepository();
+    await _registerInitialConnectivityValue();
   }
 
-  static Future<void> _registerServices() async {
-    final connectivity = await Connectivity().checkConnectivity();
-    GetIt.I.registerLazySingleton(() => connectivity,
-        instanceName: Constants.initialConnectivityInstanceName);
-    GetIt.I.registerFactory<IHttpService>(() => DioService(Dio(
-          BaseOptions(
-            baseUrl: Constants.apiUrl,
-            responseType: ResponseType.json,
-          ),
-        )..interceptors.add(LoggyDioInterceptor())));
-    GetIt.I.registerFactory(() => AuthRepository(httpService: GetIt.I.get()));
+  static Future<void> _registerInitialConnectivityValue() async {
+    if (!GetIt.I.isRegistered<ConnectivityResult>(
+        instanceName: Constants.initialConnectivityInstanceName)) {
+      final connectivity = await Connectivity().checkConnectivity();
+
+      GetIt.I.registerFactory<ConnectivityResult>(() => connectivity,
+          instanceName: Constants.initialConnectivityInstanceName);
+    }
+  }
+
+  static Future<void> _initAndRegisterSettingsRepo() async {
+    if (!GetIt.I.isRegistered<SettingsRepository>()) {
+      final settingsRepo = SettingsSembastRepository(GetIt.I.get());
+      await settingsRepo.init();
+      GetIt.I.registerLazySingleton<SettingsRepository>(() => settingsRepo);
+    }
+  }
+
+  static void _registerAuthRepository() {
+    if (!GetIt.I.isRegistered<AuthRepository>()) {
+      GetIt.I.registerFactory<AuthRepository>(
+          () => AuthRepository(httpService: GetIt.I.get()));
+    }
+  }
+
+  static void _registerHttpService() {
+    if (!GetIt.I.isRegistered<IHttpService>()) {
+      GetIt.I.registerLazySingleton<IHttpService>(() => DioService(Dio(
+            BaseOptions(
+              baseUrl: Constants.apiUrl,
+              responseType: ResponseType.json,
+            ),
+          )..interceptors.add(LoggyDioInterceptor())));
+    }
   }
 }
