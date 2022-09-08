@@ -8,8 +8,8 @@ class LoggedInInfoSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final contato = SettingsBloc.of(context).state.session!.contato;
-
+    final settings = SettingsBloc.of(context).state;
+    final contato = settings.session!.contato;
     return Column(
       children: [
         Text(
@@ -18,28 +18,53 @@ class LoggedInInfoSection extends StatelessWidget {
           style: context.theme.textTheme.headline5,
         ),
         const Divider(thickness: 1.5),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ElevatedButton(
-              onPressed: () => context.pushNamed(
-                Routes.detalhesContato.name,
-                params: {'uid': 'me'},
-              ),
-              child: Text(
-                'Ver meu contato',
-                style: context.theme.textTheme.bodyLarge,
-              ),
+        const SizedBox(height: 8),
+        Card(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Meu contato'),
+                    IconButton(
+                        onPressed: () => context.pushNamed(
+                            Routes.editarContato.name,
+                            params: {'uid': 'me'}),
+                        icon: const Icon(Icons.edit_note_outlined))
+                  ],
+                ),
+                const Text('Telefones:'),
+                Wrap(
+                  children: [
+                    ...contato.telefones.map((telefone) => Chip(
+                            label: Text(
+                          Formatter.applyPhoneMask(telefone),
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ))),
+                  ],
+                ),
+                const Divider(thickness: 1.1),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Minha conta'),
+                    IconButton(
+                        onPressed: () => context.pushNamed(
+                            Routes.editarContato.name,
+                            params: {'uid': 'me'}),
+                        icon: const Icon(Icons.edit_note_outlined))
+                  ],
+                ),
+                const Text('Email:'),
+                Text(contato.account!.email),
+              ],
             ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                'Editar conta',
-                style: context.theme.textTheme.bodyLarge,
-              ),
-            ),
-          ],
+          ),
         ),
+        const SizedBox(height: 8),
       ],
     );
   }

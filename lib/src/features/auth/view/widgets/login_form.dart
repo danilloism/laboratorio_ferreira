@@ -81,7 +81,7 @@ class LoginForm extends StatelessWidget {
                       ),
                     );
                   },
-                  child: const Text('Login'),
+                  child: const Text('Entrar'),
                 );
               },
             ),

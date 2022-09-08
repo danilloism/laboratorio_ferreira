@@ -10,4 +10,14 @@ class Formatter {
       return element == null || element.isEmpty ? value : '$value\n$element';
     })?.trim();
   }
+
+  static String applyPhoneMask(String raw) {
+    assert(raw.length == 11);
+    final ddd = raw.substring(0, 2);
+    final numero = raw.substring(2);
+    final primeiraParte = numero.substring(0, 5);
+    final ultimaParte = numero.substring(5);
+
+    return '($ddd) $primeiraParte-$ultimaParte';
+  }
 }

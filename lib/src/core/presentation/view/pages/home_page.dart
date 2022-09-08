@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     _controller =
-        PageController(initialPage: context.read<NavigationIndexCubit>().state);
+        PageController(initialPage: NavigationIndexCubit.of(context).state);
     super.initState();
   }
 
@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
     final navCubit = NavigationIndexCubit.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const SizedBox(child: Logo(height: 50)),
+        title: const SizedBox(child: Logo(height: 70)),
         actions: [
           IconButton(
             onPressed: () => context.pushNamed(Routes.settings.name),

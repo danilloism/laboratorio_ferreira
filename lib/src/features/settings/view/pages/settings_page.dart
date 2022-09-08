@@ -20,72 +20,67 @@ class SettingsPage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: Column(
+          child: ListView(
             children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (AuthBloc.of(context).state is LoggedIn)
-                      const LoggedInInfoSection(),
-                    // const SizedBox(height: 16),
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Tema',
-                                style: context.theme.textTheme.bodyLarge),
-                            DropdownButton<ThemeMode>(
-                              underline: const SizedBox(),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(15)),
-                              dropdownColor:
-                                  context.theme.appBarTheme.backgroundColor,
-                              value: context.select<SettingsBloc, ThemeMode>(
-                                  (value) => value.state.themeMode),
-                              selectedItemBuilder: (context) => ThemeMode.values
-                                  .map(
-                                    (mode) => Center(
-                                      child: Text(
-                                        themeModeMap[mode]!,
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (AuthBloc.of(context).state is LoggedIn)
+                    const LoggedInInfoSection(),
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Tema',
+                              style: context.theme.textTheme.bodyLarge),
+                          DropdownButton<ThemeMode>(
+                            underline: const SizedBox(),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(15)),
+                            dropdownColor:
+                                context.theme.appBarTheme.backgroundColor,
+                            value: context.select<SettingsBloc, ThemeMode>(
+                                (value) => value.state.themeMode),
+                            selectedItemBuilder: (context) => ThemeMode.values
+                                .map(
+                                  (mode) => Center(
+                                    child: Text(
+                                      themeModeMap[mode]!,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                  )
-                                  .toList(),
-                              items: ThemeMode.values
-                                  .map(
-                                    (mode) => DropdownMenuItem(
-                                      value: mode,
-                                      child: Text(themeModeMap[mode]!),
-                                    ),
-                                  )
-                                  .toList(),
-                              onChanged: (value) => SettingsBloc.of(context)
-                                  .add(SettingsEvent.themeModeChanged(value!)),
-                            ),
-                          ],
-                        ),
+                                  ),
+                                )
+                                .toList(),
+                            items: ThemeMode.values
+                                .map(
+                                  (mode) => DropdownMenuItem(
+                                    value: mode,
+                                    child: Text(themeModeMap[mode]!),
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: (value) => SettingsBloc.of(context)
+                                .add(SettingsEvent.themeModeChanged(value!)),
+                          ),
+                        ],
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        ),
-                      ),
+                  ),
+                  Card(
+                    child: Column(
+                      children: const [
+                        Text('Entrar em contato:'),
+                        TextField(),
+                      ],
                     ),
-                    const SizedBox(height: 16),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              if (AuthBloc.of(context).state is LoggedIn)
-                const LoggedInSettingsButtons()
+              // if (AuthBloc.of(context).state is LoggedIn)
+              //   const LoggedInSettingsButtons()
             ],
           ),
         ),

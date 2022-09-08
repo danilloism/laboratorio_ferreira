@@ -33,21 +33,16 @@ class AppTheme {
       ).copyWith(
         appBarTheme: _appBarTheme,
         inputDecorationTheme: _inputTheme,
-        popupMenuTheme: _popUpMenuTheme,
       );
 
   static AppBarTheme get _appBarTheme =>
-      const AppBarTheme(centerTitle: true, toolbarHeight: 65);
+      const AppBarTheme(centerTitle: true, toolbarHeight: 80);
 
-  static InputDecorationTheme get _inputTheme =>
-      InputDecorationTheme(border: _inputBorder, filled: true);
-
-  static const _popUpMenuTheme = PopupMenuThemeData(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(50))));
-
-  static InputBorder get _inputBorder => const OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        borderSide: BorderSide.none,
+  static InputDecorationTheme get _inputTheme => const InputDecorationTheme(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide.none,
+        ),
+        filled: true,
       );
 }

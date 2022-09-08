@@ -96,7 +96,22 @@ enum Routes {
         };
 
       case Routes.settings:
-        return (_, __) => const SettingsPage();
+        return (ctx, __) {
+          return AuthBloc.of(ctx).state.maybeWhen(
+              loggedIn: (_) => Stack(
+                    children: const [
+                      SettingsPage(),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: LoggedInSettingsButtons(),
+                        ),
+                      )
+                    ],
+                  ),
+              orElse: () => const SettingsPage());
+        };
 
       case Routes.login:
         return (_, __) => BlocProvider<LoginFormCubit>(
