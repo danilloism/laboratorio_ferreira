@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:laboratorio_ferreira_mobile/src/config/config.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/settings_bloc.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
 
 class LoggedInInfoSection extends StatelessWidget {
   const LoggedInInfoSection({super.key});
@@ -38,12 +39,23 @@ class LoggedInInfoSection extends StatelessWidget {
                 ),
                 const Text('Telefones:'),
                 Wrap(
+                  spacing: 10,
                   children: [
-                    ...contato.telefones.map((telefone) => Chip(
-                            label: Text(
-                          Formatter.applyPhoneMask(telefone),
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ))),
+                    ...contato.telefones.map((telefone) =>
+                        Chip(label: Text(Formatter.applyPhoneMask(telefone)))),
+                    ActionChip(
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                      label: const Icon(Icons.add, size: 15),
+                      onPressed: () {
+                        showDialog(
+                          barrierDismissible: !Constants.isProduction,
+                          context: context,
+                          builder: (context) =>
+                              const AdicionarTelefonesDialog(),
+                        );
+                      },
+                    ),
                   ],
                 ),
                 const Divider(thickness: 1.1),

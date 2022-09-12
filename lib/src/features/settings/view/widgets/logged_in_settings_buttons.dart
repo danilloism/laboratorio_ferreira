@@ -15,24 +15,27 @@ class LoggedInSettingsButtons extends StatelessWidget {
         .session!
         .contato
         .temHierarquiaMaiorOuIgualQue(Roles.gerente);
-    return Row(
-      mainAxisAlignment: podeCriarConta
-          ? MainAxisAlignment.spaceBetween
-          : MainAxisAlignment.end,
-      children: [
-        if (podeCriarConta)
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: podeCriarConta
+            ? MainAxisAlignment.spaceBetween
+            : MainAxisAlignment.end,
+        children: [
+          if (podeCriarConta)
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('Criar nova conta'),
+            ),
           ElevatedButton(
-            onPressed: () {},
-            child: const Text('Criar nova conta'),
+            onPressed: () {
+              context.goNamed(Routes.welcome.name); //TODO: ta feio isso aqui
+              AuthBloc.of(context).add(const AuthEvent.logOutButtonPressed());
+            },
+            child: const Text('Sair'),
           ),
-        ElevatedButton(
-          onPressed: () {
-            context.goNamed(Routes.welcome.name); //TODO: ta feio isso aqui
-            AuthBloc.of(context).add(const AuthEvent.logOutButtonPressed());
-          },
-          child: const Text('Sair'),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

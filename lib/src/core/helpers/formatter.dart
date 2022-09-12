@@ -20,4 +20,7 @@ class Formatter {
 
     return '($ddd) $primeiraParte-$ultimaParte';
   }
+
+  static String unmaskPhone(String phone) =>
+      phone.replaceAll(RegExp('[^0-9]'), '');
 }

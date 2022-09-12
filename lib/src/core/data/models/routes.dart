@@ -103,10 +103,7 @@ enum Routes {
                       SettingsPage(),
                       Align(
                         alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: LoggedInSettingsButtons(),
-                        ),
+                        child: LoggedInSettingsButtons(),
                       )
                     ],
                   ),

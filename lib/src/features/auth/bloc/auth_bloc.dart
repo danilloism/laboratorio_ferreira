@@ -9,8 +9,10 @@ import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository _authRepo;
 
-  AuthBloc({required AuthRepository authRepository, Session? localSession})
-      : _authRepo = authRepository,
+  AuthBloc({
+    required AuthRepository authRepository,
+    Session? localSession,
+  })  : _authRepo = authRepository,
         super(const AuthState.unknown()) {
     on<AppInitialized>((event, emit) async {
       final tokenValido = localSession != null &&
