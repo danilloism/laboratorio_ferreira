@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/extensions/build_context_extension.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/contato.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
 
 const themeModeMap = {
@@ -15,6 +16,8 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final contato = SettingsBloc.of(context).state.session?.contato;
+
     return Scaffold(
       appBar: AppBar(title: const Text('Configurações')),
       body: SafeArea(
@@ -69,14 +72,16 @@ class SettingsPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Card(
-                    child: Column(
-                      children: const [
-                        Text('Entrar em contato:'),
-                        TextField(),
-                      ],
+                  if (contato == null ||
+                      !contato.temHierarquiaMaiorOuIgualQue(Roles.colaborador))
+                    Card(
+                      child: Column(
+                        children: const [
+                          Text('Entrar em contato:'),
+                          TextField(),
+                        ],
+                      ),
                     ),
-                  ),
                 ],
               ),
               // if (AuthBloc.of(context).state is LoggedIn)

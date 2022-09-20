@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
@@ -99,11 +99,23 @@ enum Routes {
         return (ctx, __) {
           return AuthBloc.of(ctx).state.maybeWhen(
               loggedIn: (_) => Stack(
-                    children: const [
-                      SettingsPage(),
+                    children: [
+                      const SettingsPage(),
                       Align(
-                        alignment: Alignment.bottomCenter,
-                        child: LoggedInSettingsButtons(),
+                        alignment: Alignment.bottomRight,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(elevation: 4),
+                            onPressed: () {
+                              ctx.goNamed(Routes
+                                  .welcome.name); //TODO: ta feio isso aqui
+                              AuthBloc.of(ctx)
+                                  .add(const AuthEvent.logOutButtonPressed());
+                            },
+                            child: const Text('Sair'),
+                          ),
+                        ),
                       )
                     ],
                   ),

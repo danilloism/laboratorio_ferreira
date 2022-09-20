@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/config/config.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/contato.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
 
 class LoggedInInfoSection extends StatelessWidget {
@@ -29,7 +30,10 @@ class LoggedInInfoSection extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Meu contato'),
+                    Text(
+                      'Meu contato',
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
                     IconButton(
                         onPressed: () => context.pushNamed(
                             Routes.editarContato.name,
@@ -62,7 +66,10 @@ class LoggedInInfoSection extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Minha conta'),
+                    Text(
+                      'Minha conta',
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
                     IconButton(
                         onPressed: () => context.pushNamed(
                             Routes.editarContato.name,
@@ -76,7 +83,13 @@ class LoggedInInfoSection extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 4),
+        if (SettingsBloc.of(context)
+            .state
+            .session!
+            .contato
+            .temHierarquiaMaiorOuIgualQue(Roles.gerente))
+          const GerenciarContasSection(),
       ],
     );
   }
