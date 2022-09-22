@@ -100,27 +100,7 @@ enum Routes {
       case Routes.settings:
         return (ctx, __) {
           return AuthBloc.of(ctx).state.maybeWhen(
-              loggedIn: (_) => Stack(
-                    children: [
-                      const SettingsPage(),
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(elevation: 4),
-                            onPressed: () {
-                              ctx.goNamed(Routes
-                                  .welcome.name); //TODO: ta feio isso aqui
-                              AuthBloc.of(ctx)
-                                  .add(const AuthEvent.logOutButtonPressed());
-                            },
-                            child: const Text('Sair'),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+              loggedIn: (_) => const SettingsPage(),
               orElse: () => const SettingsPage());
         };
 

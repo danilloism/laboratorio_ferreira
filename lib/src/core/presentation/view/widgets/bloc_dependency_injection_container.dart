@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:laboratorio_ferreira_mobile/src/config/config.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/common/common.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
 import 'package:sembast/sembast.dart';
 
@@ -39,6 +40,10 @@ class BlocDependencyInjectionContainer extends StatelessWidget {
               create: (_) => GetIt.I.get<AuthRepository>()),
           RepositoryProvider<RouterService>(
               create: (ctx) => RouterService(AuthBloc.of(ctx))),
+          RepositoryProvider(
+            create: (_) =>
+                ContatoRepository(httpService: GetIt.I.get<IHttpService>()),
+          ),
         ],
         child: Builder(
           builder: (context) {
