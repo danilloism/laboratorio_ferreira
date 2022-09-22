@@ -75,9 +75,11 @@ enum Routes {
       case Routes.editarContato:
         return (ctx, state) {
           final uid = state.params['uid'];
+          final sessionContato = SettingsBloc.of(ctx).state.session?.contato;
+          final itsMe = uid == 'me' || uid == sessionContato?.uid;
+
           return BlocProvider(
-            create: (ctx) =>
-                EditorContatoCubit(SettingsBloc.of(ctx).state.session?.contato),
+            create: (ctx) => EditorContatoCubit(itsMe ? sessionContato : null),
             child: const EditorContatoPage(),
           );
         };
