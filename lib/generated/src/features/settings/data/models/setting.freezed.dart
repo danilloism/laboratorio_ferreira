@@ -20,12 +20,12 @@ Setting _$SettingFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Setting {
-  ThemeMode get themeMode => throw _privateConstructorUsedError;
   Session? get session => throw _privateConstructorUsedError;
-  bool get active => throw _privateConstructorUsedError;
-  int? get id => throw _privateConstructorUsedError;
+
+  ThemeMode get themeMode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $SettingCopyWith<Setting> get copyWith => throw _privateConstructorUsedError;
 }
@@ -34,7 +34,8 @@ mixin _$Setting {
 abstract class $SettingCopyWith<$Res> {
   factory $SettingCopyWith(Setting value, $Res Function(Setting) then) =
       _$SettingCopyWithImpl<$Res>;
-  $Res call({ThemeMode themeMode, Session? session, bool active, int? id});
+
+  $Res call({Session? session, ThemeMode themeMode});
 
   $SessionCopyWith<$Res>? get session;
 }
@@ -49,28 +50,18 @@ class _$SettingCopyWithImpl<$Res> implements $SettingCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? themeMode = freezed,
     Object? session = freezed,
-    Object? active = freezed,
-    Object? id = freezed,
+    Object? themeMode = freezed,
   }) {
     return _then(_value.copyWith(
-      themeMode: themeMode == freezed
-          ? _value.themeMode
-          : themeMode // ignore: cast_nullable_to_non_nullable
-              as ThemeMode,
       session: session == freezed
           ? _value.session
           : session // ignore: cast_nullable_to_non_nullable
               as Session?,
-      active: active == freezed
-          ? _value.active
-          : active // ignore: cast_nullable_to_non_nullable
-              as bool,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+      themeMode: themeMode == freezed
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
     ));
   }
 
@@ -91,8 +82,9 @@ abstract class _$$_SettingCopyWith<$Res> implements $SettingCopyWith<$Res> {
   factory _$$_SettingCopyWith(
           _$_Setting value, $Res Function(_$_Setting) then) =
       __$$_SettingCopyWithImpl<$Res>;
+
   @override
-  $Res call({ThemeMode themeMode, Session? session, bool active, int? id});
+  $Res call({Session? session, ThemeMode themeMode});
 
   @override
   $SessionCopyWith<$Res>? get session;
@@ -109,28 +101,18 @@ class __$$_SettingCopyWithImpl<$Res> extends _$SettingCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? themeMode = freezed,
     Object? session = freezed,
-    Object? active = freezed,
-    Object? id = freezed,
+    Object? themeMode = freezed,
   }) {
     return _then(_$_Setting(
-      themeMode: themeMode == freezed
-          ? _value.themeMode
-          : themeMode // ignore: cast_nullable_to_non_nullable
-              as ThemeMode,
       session: session == freezed
           ? _value.session
           : session // ignore: cast_nullable_to_non_nullable
               as Session?,
-      active: active == freezed
-          ? _value.active
-          : active // ignore: cast_nullable_to_non_nullable
-              as bool,
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+      themeMode: themeMode == freezed
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
     ));
   }
 }
@@ -138,29 +120,20 @@ class __$$_SettingCopyWithImpl<$Res> extends _$SettingCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Setting implements _Setting {
-  const _$_Setting(
-      {this.themeMode = ThemeMode.system,
-      this.session,
-      this.active = true,
-      this.id});
+  const _$_Setting({this.session, this.themeMode = ThemeMode.system});
 
   factory _$_Setting.fromJson(Map<String, dynamic> json) =>
       _$$_SettingFromJson(json);
 
   @override
-  @JsonKey()
-  final ThemeMode themeMode;
-  @override
   final Session? session;
   @override
   @JsonKey()
-  final bool active;
-  @override
-  final int? id;
+  final ThemeMode themeMode;
 
   @override
   String toString() {
-    return 'Setting(themeMode: $themeMode, session: $session, active: $active, id: $id)';
+    return 'Setting(session: $session, themeMode: $themeMode)';
   }
 
   @override
@@ -168,20 +141,16 @@ class _$_Setting implements _Setting {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Setting &&
-            const DeepCollectionEquality().equals(other.themeMode, themeMode) &&
             const DeepCollectionEquality().equals(other.session, session) &&
-            const DeepCollectionEquality().equals(other.active, active) &&
-            const DeepCollectionEquality().equals(other.id, id));
+            const DeepCollectionEquality().equals(other.themeMode, themeMode));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(themeMode),
       const DeepCollectionEquality().hash(session),
-      const DeepCollectionEquality().hash(active),
-      const DeepCollectionEquality().hash(id));
+      const DeepCollectionEquality().hash(themeMode));
 
   @JsonKey(ignore: true)
   @override
@@ -197,22 +166,17 @@ class _$_Setting implements _Setting {
 }
 
 abstract class _Setting implements Setting {
-  const factory _Setting(
-      {final ThemeMode themeMode,
-      final Session? session,
-      final bool active,
-      final int? id}) = _$_Setting;
+  const factory _Setting({final Session? session, final ThemeMode themeMode}) =
+      _$_Setting;
 
   factory _Setting.fromJson(Map<String, dynamic> json) = _$_Setting.fromJson;
 
   @override
-  ThemeMode get themeMode;
-  @override
   Session? get session;
+
   @override
-  bool get active;
-  @override
-  int? get id;
+  ThemeMode get themeMode;
+
   @override
   @JsonKey(ignore: true)
   _$$_SettingCopyWith<_$_Setting> get copyWith =>

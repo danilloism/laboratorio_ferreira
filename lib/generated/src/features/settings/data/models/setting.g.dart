@@ -7,26 +7,20 @@ part of '../../../../../../src/features/settings/data/models/setting.dart';
 // **************************************************************************
 
 _$_Setting _$$_SettingFromJson(Map<String, dynamic> json) => _$_Setting(
-      themeMode: $enumDecodeNullable(_$ThemeModeEnumMap, json['themeMode']) ??
-          ThemeMode.system,
       session: json['session'] == null
           ? null
           : Session.fromJson(json['session'] as Object),
-      active: json['active'] as bool? ?? true,
-      id: json['id'] as int?,
+      themeMode: $enumDecodeNullable(_$ThemeModeEnumMap, json['themeMode']) ??
+          ThemeMode.system,
     );
 
 const _$$_SettingFieldMap = <String, String>{
-  'themeMode': 'themeMode',
   'session': 'session',
-  'active': 'active',
-  'id': 'id',
+  'themeMode': 'themeMode',
 };
 
 Map<String, dynamic> _$$_SettingToJson(_$_Setting instance) {
-  final val = <String, dynamic>{
-    'themeMode': _$ThemeModeEnumMap[instance.themeMode]!,
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -35,8 +29,7 @@ Map<String, dynamic> _$$_SettingToJson(_$_Setting instance) {
   }
 
   writeNotNull('session', instance.session?.toJson());
-  val['active'] = instance.active;
-  writeNotNull('id', instance.id);
+  val['themeMode'] = _$ThemeModeEnumMap[instance.themeMode]!;
   return val;
 }
 

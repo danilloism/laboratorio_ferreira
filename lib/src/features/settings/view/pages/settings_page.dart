@@ -24,22 +24,6 @@ class SettingsPage extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(elevation: 4),
-                  onPressed: () {
-                    context
-                        .goNamed(Routes.welcome.name); //TODO: ta feio isso aqui
-                    AuthBloc.of(context)
-                        .add(const AuthEvent.logOutButtonPressed());
-                  },
-                  child: const Text('Sair'),
-                ),
-              ),
-            ),
             Padding(
               padding: const EdgeInsets.all(16),
               child: ListView(
@@ -111,6 +95,23 @@ class SettingsPage extends StatelessWidget {
                 ],
               ),
             ),
+            if (AuthBloc.of(context).state is LoggedIn)
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(elevation: 4),
+                    onPressed: () {
+                      context.goNamed(
+                          Routes.welcome.name); //TODO: ta feio isso aqui
+                      AuthBloc.of(context)
+                          .add(const AuthEvent.logOutButtonPressed());
+                    },
+                    child: const Text('Sair'),
+                  ),
+                ),
+              ),
           ],
         ),
       ),

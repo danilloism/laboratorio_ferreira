@@ -73,12 +73,11 @@ class EditorContatoPage<T> extends StatelessWidget {
                     await context.read<ContatoRepository>().update(contato);
                 final itsMe = contato.uid == settings.session?.contato.uid;
                 if (itsMe) {
-                  final session = SettingsBloc.of(context).add(
-                      SettingsEvent.activeSettingChanged(settings.copyWith(
-                          session: settings.session?.copyWith(
-                              contato: contatoAtualizado.copyWith(
-                                  account:
-                                      settings.session?.contato.account)))));
+                  final session = settings.session;
+                  SettingsBloc.of(context).add(SettingsEvent.sessionChanged(
+                      session?.copyWith(
+                          contato: contatoAtualizado.copyWith(
+                              account: session.contato.account))));
                 }
               } on RepositoryException catch (e) {
                 context.showErrorSnackBar(
@@ -154,6 +153,5 @@ class EditorContatoPage<T> extends StatelessWidget {
         ),
       ),
     );
-    return const Center();
   }
 }

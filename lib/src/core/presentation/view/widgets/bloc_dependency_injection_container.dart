@@ -62,11 +62,10 @@ class BlocDependencyInjectionContainer extends StatelessWidget {
               listener: (ctx, state) {
                 state.whenOrNull(
                   loggedIn: (session) => SettingsBloc.of(ctx).add(
-                    SettingsEvent.activeSettingChanged(
-                        Setting(session: session)),
+                    SettingsEvent.sessionChanged(session),
                   ),
                   loggedOut: () => SettingsBloc.of(ctx)
-                      .add(const SettingsEvent.activeSettingChanged(Setting())),
+                      .add(const SettingsEvent.sessionChanged()),
                 );
               },
               child: child,

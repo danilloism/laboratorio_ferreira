@@ -19,38 +19,38 @@ mixin _$SettingsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ThemeMode mode) themeModeChanged,
-    required TResult Function(Setting setting) activeSettingChanged,
+    required TResult Function(Session? session) sessionChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(ThemeMode mode)? themeModeChanged,
-    TResult Function(Setting setting)? activeSettingChanged,
+    TResult Function(Session? session)? sessionChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ThemeMode mode)? themeModeChanged,
-    TResult Function(Setting setting)? activeSettingChanged,
+    TResult Function(Session? session)? sessionChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ThemeModeChanged value) themeModeChanged,
-    required TResult Function(_ActiveSettingChanged value) activeSettingChanged,
+    required TResult Function(_SessionChanged value) sessionChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ThemeModeChanged value)? themeModeChanged,
-    TResult Function(_ActiveSettingChanged value)? activeSettingChanged,
+    TResult Function(_SessionChanged value)? sessionChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ThemeModeChanged value)? themeModeChanged,
-    TResult Function(_ActiveSettingChanged value)? activeSettingChanged,
+    TResult Function(_SessionChanged value)? sessionChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -139,7 +139,7 @@ class _$_ThemeModeChanged extends _ThemeModeChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ThemeMode mode) themeModeChanged,
-    required TResult Function(Setting setting) activeSettingChanged,
+    required TResult Function(Session? session) sessionChanged,
   }) {
     return themeModeChanged(mode);
   }
@@ -148,7 +148,7 @@ class _$_ThemeModeChanged extends _ThemeModeChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(ThemeMode mode)? themeModeChanged,
-    TResult Function(Setting setting)? activeSettingChanged,
+    TResult Function(Session? session)? sessionChanged,
   }) {
     return themeModeChanged?.call(mode);
   }
@@ -157,7 +157,7 @@ class _$_ThemeModeChanged extends _ThemeModeChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ThemeMode mode)? themeModeChanged,
-    TResult Function(Setting setting)? activeSettingChanged,
+    TResult Function(Session? session)? sessionChanged,
     required TResult orElse(),
   }) {
     if (themeModeChanged != null) {
@@ -170,7 +170,7 @@ class _$_ThemeModeChanged extends _ThemeModeChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ThemeModeChanged value) themeModeChanged,
-    required TResult Function(_ActiveSettingChanged value) activeSettingChanged,
+    required TResult Function(_SessionChanged value) sessionChanged,
   }) {
     return themeModeChanged(this);
   }
@@ -179,7 +179,7 @@ class _$_ThemeModeChanged extends _ThemeModeChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ThemeModeChanged value)? themeModeChanged,
-    TResult Function(_ActiveSettingChanged value)? activeSettingChanged,
+    TResult Function(_SessionChanged value)? sessionChanged,
   }) {
     return themeModeChanged?.call(this);
   }
@@ -188,7 +188,7 @@ class _$_ThemeModeChanged extends _ThemeModeChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ThemeModeChanged value)? themeModeChanged,
-    TResult Function(_ActiveSettingChanged value)? activeSettingChanged,
+    TResult Function(_SessionChanged value)? sessionChanged,
     required TResult orElse(),
   }) {
     if (themeModeChanged != null) {
@@ -209,104 +209,108 @@ abstract class _ThemeModeChanged extends SettingsEvent {
 }
 
 /// @nodoc
-abstract class _$$_ActiveSettingChangedCopyWith<$Res> {
-  factory _$$_ActiveSettingChangedCopyWith(_$_ActiveSettingChanged value,
-          $Res Function(_$_ActiveSettingChanged) then) =
-      __$$_ActiveSettingChangedCopyWithImpl<$Res>;
-  $Res call({Setting setting});
+abstract class _$$_SessionChangedCopyWith<$Res> {
+  factory _$$_SessionChangedCopyWith(
+          _$_SessionChanged value, $Res Function(_$_SessionChanged) then) =
+      __$$_SessionChangedCopyWithImpl<$Res>;
 
-  $SettingCopyWith<$Res> get setting;
+  $Res call({Session? session});
+
+  $SessionCopyWith<$Res>? get session;
 }
 
 /// @nodoc
-class __$$_ActiveSettingChangedCopyWithImpl<$Res>
+class __$$_SessionChangedCopyWithImpl<$Res>
     extends _$SettingsEventCopyWithImpl<$Res>
-    implements _$$_ActiveSettingChangedCopyWith<$Res> {
-  __$$_ActiveSettingChangedCopyWithImpl(_$_ActiveSettingChanged _value,
-      $Res Function(_$_ActiveSettingChanged) _then)
-      : super(_value, (v) => _then(v as _$_ActiveSettingChanged));
+    implements _$$_SessionChangedCopyWith<$Res> {
+  __$$_SessionChangedCopyWithImpl(
+      _$_SessionChanged _value, $Res Function(_$_SessionChanged) _then)
+      : super(_value, (v) => _then(v as _$_SessionChanged));
 
   @override
-  _$_ActiveSettingChanged get _value => super._value as _$_ActiveSettingChanged;
+  _$_SessionChanged get _value => super._value as _$_SessionChanged;
 
   @override
   $Res call({
-    Object? setting = freezed,
+    Object? session = freezed,
   }) {
-    return _then(_$_ActiveSettingChanged(
-      setting == freezed
-          ? _value.setting
-          : setting // ignore: cast_nullable_to_non_nullable
-              as Setting,
+    return _then(_$_SessionChanged(
+      session == freezed
+          ? _value.session
+          : session // ignore: cast_nullable_to_non_nullable
+              as Session?,
     ));
   }
 
   @override
-  $SettingCopyWith<$Res> get setting {
-    return $SettingCopyWith<$Res>(_value.setting, (value) {
-      return _then(_value.copyWith(setting: value));
+  $SessionCopyWith<$Res>? get session {
+    if (_value.session == null) {
+      return null;
+    }
+
+    return $SessionCopyWith<$Res>(_value.session!, (value) {
+      return _then(_value.copyWith(session: value));
     });
   }
 }
 
 /// @nodoc
 
-class _$_ActiveSettingChanged extends _ActiveSettingChanged {
-  const _$_ActiveSettingChanged(this.setting) : super._();
+class _$_SessionChanged extends _SessionChanged {
+  const _$_SessionChanged([this.session]) : super._();
 
   @override
-  final Setting setting;
+  final Session? session;
 
   @override
   String toString() {
-    return 'SettingsEvent.activeSettingChanged(setting: $setting)';
+    return 'SettingsEvent.sessionChanged(session: $session)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ActiveSettingChanged &&
-            const DeepCollectionEquality().equals(other.setting, setting));
+            other is _$_SessionChanged &&
+            const DeepCollectionEquality().equals(other.session, session));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(setting));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(session));
 
   @JsonKey(ignore: true)
   @override
-  _$$_ActiveSettingChangedCopyWith<_$_ActiveSettingChanged> get copyWith =>
-      __$$_ActiveSettingChangedCopyWithImpl<_$_ActiveSettingChanged>(
-          this, _$identity);
+  _$$_SessionChangedCopyWith<_$_SessionChanged> get copyWith =>
+      __$$_SessionChangedCopyWithImpl<_$_SessionChanged>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(ThemeMode mode) themeModeChanged,
-    required TResult Function(Setting setting) activeSettingChanged,
+    required TResult Function(Session? session) sessionChanged,
   }) {
-    return activeSettingChanged(setting);
+    return sessionChanged(session);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(ThemeMode mode)? themeModeChanged,
-    TResult Function(Setting setting)? activeSettingChanged,
+    TResult Function(Session? session)? sessionChanged,
   }) {
-    return activeSettingChanged?.call(setting);
+    return sessionChanged?.call(session);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(ThemeMode mode)? themeModeChanged,
-    TResult Function(Setting setting)? activeSettingChanged,
+    TResult Function(Session? session)? sessionChanged,
     required TResult orElse(),
   }) {
-    if (activeSettingChanged != null) {
-      return activeSettingChanged(setting);
+    if (sessionChanged != null) {
+      return sessionChanged(session);
     }
     return orElse();
   }
@@ -315,41 +319,42 @@ class _$_ActiveSettingChanged extends _ActiveSettingChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ThemeModeChanged value) themeModeChanged,
-    required TResult Function(_ActiveSettingChanged value) activeSettingChanged,
+    required TResult Function(_SessionChanged value) sessionChanged,
   }) {
-    return activeSettingChanged(this);
+    return sessionChanged(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ThemeModeChanged value)? themeModeChanged,
-    TResult Function(_ActiveSettingChanged value)? activeSettingChanged,
+    TResult Function(_SessionChanged value)? sessionChanged,
   }) {
-    return activeSettingChanged?.call(this);
+    return sessionChanged?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ThemeModeChanged value)? themeModeChanged,
-    TResult Function(_ActiveSettingChanged value)? activeSettingChanged,
+    TResult Function(_SessionChanged value)? sessionChanged,
     required TResult orElse(),
   }) {
-    if (activeSettingChanged != null) {
-      return activeSettingChanged(this);
+    if (sessionChanged != null) {
+      return sessionChanged(this);
     }
     return orElse();
   }
 }
 
-abstract class _ActiveSettingChanged extends SettingsEvent {
-  const factory _ActiveSettingChanged(final Setting setting) =
-      _$_ActiveSettingChanged;
-  const _ActiveSettingChanged._() : super._();
+abstract class _SessionChanged extends SettingsEvent {
+  const factory _SessionChanged([final Session? session]) = _$_SessionChanged;
 
-  Setting get setting;
+  const _SessionChanged._() : super._();
+
+  Session? get session;
+
   @JsonKey(ignore: true)
-  _$$_ActiveSettingChangedCopyWith<_$_ActiveSettingChanged> get copyWith =>
+  _$$_SessionChangedCopyWith<_$_SessionChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }

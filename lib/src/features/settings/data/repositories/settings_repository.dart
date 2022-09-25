@@ -1,16 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
 
 abstract class SettingsRepository {
-  Future<Setting> upsertSetting(Setting setting);
+  Future<Setting> upsertSetting(SettingsItem setting, dynamic value);
 
-  Future<bool> setThemeMode(ThemeMode mode);
+  Future<bool> deleteSetting(SettingsItem setting);
 
-  Future<bool> deleteSetting(int settingId);
-
-  Future<List<Setting>> getMany();
-
-  Future<Setting?> getOne(int id);
+  Future<Map<String, Object?>?> get<T>(SettingsItem setting);
 
   Setting get activeStored;
 

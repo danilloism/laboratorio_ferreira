@@ -98,10 +98,8 @@ enum Routes {
         };
 
       case Routes.settings:
-        return (ctx, __) {
-          return AuthBloc.of(ctx).state.maybeWhen(
-              loggedIn: (_) => const SettingsPage(),
-              orElse: () => const SettingsPage());
+        return (_, __) {
+          return const SettingsPage();
         };
 
       case Routes.login:
