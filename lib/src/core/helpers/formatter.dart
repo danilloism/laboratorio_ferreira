@@ -2,13 +2,19 @@ class Formatter {
   const Formatter._();
 
   static String? fromErrorList(List<String?> errors) {
-    return errors.reduce((value, element) {
-      if (value == null || value.isEmpty) {
-        if (element == null || element.isEmpty) return null;
+    final listWithoutNull = errors.whereType<String>();
+
+    if (listWithoutNull.isEmpty) return null;
+
+    final finalString = listWithoutNull.reduce((value, element) {
+      if (value.isEmpty) {
+        if (element.isEmpty) return '';
         return element;
       }
-      return element == null || element.isEmpty ? value : '$value\n$element';
-    })?.trim();
+      return element.isEmpty ? value : '$value\n$element';
+    }).trim();
+
+    return finalString.isNotEmpty ? finalString : null;
   }
 
   static String applyPhoneMask(String raw) {

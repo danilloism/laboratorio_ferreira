@@ -68,6 +68,8 @@ class LoginForm extends StatelessWidget {
                         horizontal: 50, vertical: 15),
                   ),
                   onPressed: () {
+                    UiHelper.closeKeyboard();
+
                     if (!state.status.isValid) {
                       context.showErrorSnackBar(message: state.errors!);
                       return;

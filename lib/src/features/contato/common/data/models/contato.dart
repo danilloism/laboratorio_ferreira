@@ -30,18 +30,67 @@ class Contato with _$Contato {
     return listaDadosCrus.map(Contato.fromJson).toList();
   }
 
-  static Contato get empty =>
-      const Contato(nome: '', telefones: {}, categorias: {}, uid: '');
+  static Contato get empty => const Contato(
+        nome: '',
+        telefones: {},
+        categorias: {},
+        uid: '',
+      );
+
+  static Contato get emptyDentista => const Contato(
+        nome: '',
+        telefones: {},
+        categorias: {Roles.dentista},
+        uid: '',
+      );
+
+  static Contato get emptyPaciente => const Contato(
+        nome: '',
+        telefones: {},
+        categorias: {Roles.paciente},
+        uid: '',
+      );
+
+  static Contato get emptyDentistaEspacoOdontologico => const Contato(
+        nome: '',
+        telefones: {},
+        categorias: {Roles.dentista, Roles.colaborador},
+        uid: '',
+      );
+
+  static Contato get emptyAdmin => const Contato(
+        nome: '',
+        telefones: {},
+        categorias: {Roles.admin},
+        uid: '',
+      );
+
+  static Contato get emptyGerente => const Contato(
+        nome: '',
+        telefones: {},
+        categorias: {Roles.gerente},
+        uid: '',
+      );
 }
 
 extension Methods on Contato {
-  bool get isEmpty => this == Contato.empty;
+  bool get isEmpty =>
+      this == Contato.empty ||
+      this == Contato.emptyDentista ||
+      this == Contato.emptyPaciente ||
+      this == Contato.emptyDentistaEspacoOdontologico ||
+      this == Contato.emptyAdmin ||
+      this == Contato.emptyGerente;
 
   int get hierarquia => categorias
       .map((categoria) => categoria.index)
       .reduce((value, element) => value < element ? value : element);
 
   bool temHierarquiaMaiorOuIgualQue(Roles role) => hierarquia <= role.index;
+
+  bool get isDentistaEspacoOdontologico =>
+      categorias.contains(Roles.colaborador) &&
+      categorias.contains(Roles.dentista);
 
   Map<String, dynamic> toJsonPostMethod() {
     final json = toJson();

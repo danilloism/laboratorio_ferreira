@@ -97,4 +97,33 @@ class ContatoRepository {
       rethrow;
     }
   }
+
+  Future<Contato> create(Contato contato) async {
+    try {
+      final Response resposta =
+          await _httpService.post(_path, data: contato.toJsonPostMethod());
+
+      final dto =
+          ApiResponse<Contato>.fromJson(resposta.data, Contato.fromJson);
+
+      if (dto.sucesso) {
+        return dto.dados!;
+      }
+
+      throw RepositoryException(
+        object: resposta.data,
+        whichRepository: ContatoRepository,
+      );
+    } on DioError catch (e) {
+      throw RepositoryException(
+        object: {
+          'data': e.response?.data,
+          'statusCode': e.response?.statusCode,
+        },
+        whichRepository: ContatoRepository,
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

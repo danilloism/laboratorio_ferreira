@@ -8,6 +8,7 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final void Function(String)? onChanged;
   final TextInputAction? inputAction;
+  final String? initialValue;
 
   const CustomTextFormField({
     super.key,
@@ -18,6 +19,7 @@ class CustomTextFormField extends StatelessWidget {
     this.keyboardType,
     this.onChanged,
     this.inputAction,
+    this.initialValue,
   });
 
   @override
@@ -30,6 +32,7 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(label: label != null ? Text(label!) : null),
       onChanged: onChanged,
       textInputAction: inputAction,
+      initialValue: initialValue,
     );
   }
 }
