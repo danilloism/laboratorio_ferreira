@@ -75,9 +75,7 @@ class EditorContatoPage<T> extends StatelessWidget {
                 if (itsMe) {
                   final session = settings.session;
                   SettingsBloc.of(context).add(SettingsEvent.sessionChanged(
-                      session?.copyWith(
-                          contato: contatoAtualizado.copyWith(
-                              account: session.contato.account))));
+                      session?.copyWith(contato: contatoAtualizado)));
                 }
               } on RepositoryException catch (e) {
                 context.showErrorSnackBar(

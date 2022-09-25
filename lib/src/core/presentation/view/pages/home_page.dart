@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -39,13 +40,32 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: SafeArea(
-        child: PageView.builder(
-          itemCount: navCubit.pages.length,
-          itemBuilder: (ctx, index) => navCubit.pages[index],
-          controller: _controller,
-          onPageChanged: navCubit.goTo,
-        ),
+      body: Column(
+        children: [
+          BlocBuilder<ConnectivityCubit, ConnectivityResult>(
+            builder: (context, state) {
+              return Visibility(
+                visible: !ConnectivityCubit.of(context).isConnected,
+                child: const ColoredBox(
+                  color: Colors.red,
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                        'Dispositivo não está conectado na internet. Algumas funcionalidades serão limitadas.'),
+                  ),
+                ),
+              );
+            },
+          ),
+          Expanded(
+            child: PageView.builder(
+              itemCount: navCubit.pages.length,
+              itemBuilder: (ctx, index) => navCubit.pages[index],
+              controller: _controller,
+              onPageChanged: navCubit.goTo,
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: BlocBuilder<NavigationIndexCubit, int>(
         builder: (ctx, state) => BottomNavigationBar(

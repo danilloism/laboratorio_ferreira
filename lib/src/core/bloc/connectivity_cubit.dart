@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ConnectivityCubit extends Cubit<ConnectivityResult> {
@@ -11,11 +12,15 @@ class ConnectivityCubit extends Cubit<ConnectivityResult> {
         Connectivity().onConnectivityChanged.listen((result) => emit(result));
   }
 
-  bool get isConnected => state != ConnectivityResult.none;
+  bool get isConnected =>
+      state != ConnectivityResult.none && state != ConnectivityResult.bluetooth;
 
   @override
   Future<void> close() {
     _streamSub.cancel();
     return super.close();
   }
+
+  static ConnectivityCubit of(BuildContext context) =>
+      context.read<ConnectivityCubit>();
 }
