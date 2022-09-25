@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/contato.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/editor_contato/bloc/editor_contato_step_cubit.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/bloc.dart';
 
 class EditorContatoPage<T> extends StatelessWidget {
@@ -21,74 +22,114 @@ class EditorContatoPage<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final contato = ref.watch(_contatoProvider);
-    // final contatoNotifier = ref.read(_contatoProvider.notifier);
-    // final userSession =
-    //     ref.read(authNotifierProvider.notifier).session!.contato;
     final contato = EditorContatoCubit.of(context).state;
     return Scaffold(
       appBar: AppBar(
         title: Text(contato.isEmpty ? 'Criar Contato' : 'Editar Contato'),
-        // leading: IconButton(
-        //     icon: const Icon(Icons.arrow_back),
-        //     onPressed: () {
-        //       if (contato != _contatoOriginal) {
-        //         showDialog(
-        //           context: context,
-        //           builder: (context) {
-        //             return AlertDialog(
-        //               title: const Text(
-        //                   'Há alterações não salvas, deseja mesmo voltar?'),
-        //               actions: [
-        //                 ElevatedButton(
-        //                     onPressed: () =>
-        //                         Navigator.of(context, rootNavigator: true)
-        //                             .pop('dialog'),
-        //                     child: const Text('Não')),
-        //                 TextButton(
-        //                     onPressed: () => context.pop(),
-        //                     child: const Text('Sim'))
-        //               ],
-        //             );
-        //           },
-        //         );
-        //       } else {
-        //         context.pop();
-        //       }
-        //     }),
+        leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              if (contato != EditorContatoCubit.of(context).state) {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text(
+                          'Há alterações não salvas, deseja mesmo voltar?'),
+                      actions: [
+                        ElevatedButton(
+                            onPressed: () =>
+                                Navigator.of(context, rootNavigator: true)
+                                    .pop('dialog'),
+                            child: const Text('Não')),
+                        TextButton(
+                            onPressed: () => context.pop(),
+                            child: const Text('Sim'))
+                      ],
+                    );
+                  },
+                );
+              } else {
+                context.pop();
+              }
+            }),
         actions: [
-          IconButton(
-            onPressed: () async {
-              final cubit = EditorContatoCubit.of(context);
+          BlocBuilder<EditorContatoStepCubit, EditingContatoState>(
+            builder: (context, state) => state.when(
+                done: () => const Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                editing: () => IconButton(
+                      onPressed: () async {
+                        UiHelper.closeKeyboard();
+                        EditorContatoStepCubit.of(context).setDone();
 
-              if (cubit.errors.isNotEmpty) {
-                context.showErrorSnackBar(
-                    message: Formatter.fromErrorList(cubit.errors)!);
-                return;
-              }
+                        final cubit = EditorContatoCubit.of(context);
 
-              try {
-                final settings = context.read<SettingsBloc>().state;
-                final contatoAtualizado =
-                    await context.read<ContatoRepository>().update(contato);
-                final itsMe = contato.uid == settings.session?.contato.uid;
-                if (itsMe) {
-                  final session = settings.session;
-                  SettingsBloc.of(context).add(SettingsEvent.sessionChanged(
-                      session?.copyWith(contato: contatoAtualizado)));
-                }
-              } on RepositoryException catch (e) {
-                context.showErrorSnackBar(
-                    message: e.object?['data']['mensagem'] ?? e.message);
-                return;
-              } catch (e) {
-                context.showErrorSnackBar(message: e.toString());
-                return;
-              }
+                        if (cubit.errors.isNotEmpty) {
+                          context.showErrorSnackBar(
+                              message: Formatter.fromErrorList(cubit.errors) ??
+                                  'Erro desconhecido.');
+                          EditorContatoStepCubit.of(context).setEditing();
+                          return;
+                        }
 
-              Future.value().whenComplete(() => context.pop());
-            },
-            icon: const Icon(Icons.done),
+                        if (contato == cubit.state) {
+                          context.pop();
+                          return;
+                        }
+
+                        try {
+                          final repository = context.read<ContatoRepository>();
+
+                          if (contato.isEmpty) {
+                            final contatoCriado =
+                                await repository.create(cubit.state);
+                            Future.value().whenComplete(() => context.pop());
+                            return;
+                          }
+                          final settings = SettingsBloc.of(context).state;
+                          final contatoAtualizado =
+                              await repository.update(cubit.state);
+                          final itsMe =
+                              contato.uid == settings.session?.contato.uid;
+                          if (itsMe) {
+                            final session = settings.session;
+                            // ignore: use_build_context_synchronously
+                            SettingsBloc.of(context).add(
+                                SettingsEvent.sessionChanged(session?.copyWith(
+                                    contato: contatoAtualizado)));
+                          }
+
+                          Future.value().whenComplete(() => context.pop());
+                        } on RepositoryException catch (e) {
+                          final erro = e.object?['data']['erro'];
+
+                          if (erro is List) {
+                            final erroCasted =
+                                List<String?>.from(erro, growable: false);
+
+                            context.showErrorSnackBar(
+                                message: Formatter.fromErrorList(erroCasted)!);
+                          }
+
+                          if (erro is String?) {
+                            context.showErrorSnackBar(
+                                message: '${erro ?? e.message}');
+                          }
+
+                          EditorContatoStepCubit.of(context).setEditing();
+                        } catch (e) {
+                          EditorContatoStepCubit.of(context).setEditing();
+                          context.showErrorSnackBar(message: e.toString());
+                          return;
+                        }
+                      },
+                      icon: const Icon(Icons.done),
+                    )),
           ),
         ],
       ),
@@ -102,15 +143,8 @@ class EditorContatoPage<T> extends StatelessWidget {
               FormSection(
                 title: 'Nome',
                 child: CustomTextFormField(
-                  // controller: _nomeController,
                   onChanged: EditorContatoCubit.of(context).nomeTeveAlteracao,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Campo obrigatório.';
-                    }
-
-                    return null;
-                  },
+                  initialValue: contato.nome,
                 ),
               ),
               // if (_podeEditarCategorias(userSession))

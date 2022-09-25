@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/contato.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/editor_contato/bloc/editor_contato_step_cubit.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/servico/servico.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
 
@@ -28,8 +29,9 @@ enum Routes {
   home(path: '/:tab(inicio|contatos|servicos)'),
   inicio(path: '/inicio'),
   contatos(path: '/contatos'),
-  detalhesContato(path: ':uid'),
+  detalhesContato(path: 'detalhes/:uid'),
   editarContato(path: 'editar'),
+  criarContato(path: 'criar'),
   servicos(path: '/servicos'),
   welcome(path: '/welcome'),
   settings(path: '/settings'),
@@ -78,16 +80,34 @@ enum Routes {
           final sessionContato = SettingsBloc.of(ctx).state.session?.contato;
           final itsMe = uid == 'me' || uid == sessionContato?.uid;
 
-          return BlocProvider(
-            create: (ctx) => EditorContatoCubit(itsMe ? sessionContato : null),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                  create: (_) =>
+                      EditorContatoCubit(itsMe ? sessionContato : null)),
+              BlocProvider(create: (_) => EditorContatoStepCubit()),
+            ],
             child: const EditorContatoPage(),
           );
         };
 
+      case Routes.criarContato:
+        return (ctx, state) => MultiBlocProvider(
+              providers: [
+                BlocProvider(create: (_) => EditorContatoCubit()),
+                BlocProvider(create: (_) => EditorContatoStepCubit()),
+              ],
+              child: const EditorContatoPage(),
+            );
+
       case Routes.detalhesContato:
         return (ctx, state) {
           final uid = state.params['uid'];
-          if (uid == 'me') {}
+          final sessionContato = SettingsBloc.of(ctx).state.session?.contato;
+          // ignore: unused_local_variable
+          final itsMe = uid == 'me' || uid == sessionContato?.uid;
+          //TODO
+
           return DetalhesContatoPage(
               SettingsBloc.of(ctx).state.session!.contato);
         };

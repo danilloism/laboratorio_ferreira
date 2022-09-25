@@ -42,6 +42,11 @@ class RouterService {
                       builder: Routes.editarContato.builder!,
                     ),
                   ]),
+              GoRoute(
+                name: Routes.criarContato.name,
+                path: Routes.criarContato.path,
+                builder: Routes.criarContato.builder!,
+              ),
             ]),
         GoRoute(
           name: Routes.servicos.name,
