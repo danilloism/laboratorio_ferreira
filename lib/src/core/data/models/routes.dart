@@ -25,6 +25,13 @@ enum HomePageTabs {
   }
 }
 
+final _contatoComCategoriaProviderCreateMap = {
+  'dentista': (BuildContext _) => EditorContatoCubit(Contato.emptyDentista),
+  'paciente': (BuildContext _) => EditorContatoCubit(Contato.emptyPaciente),
+  'dentistaEspOdont': (BuildContext _) =>
+      EditorContatoCubit(Contato.emptyDentistaEspacoOdontologico),
+};
+
 enum Routes {
   home(path: '/:tab(inicio|contatos|servicos)'),
   inicio(path: '/inicio'),
@@ -32,6 +39,7 @@ enum Routes {
   detalhesContato(path: 'detalhes/:uid'),
   editarContato(path: 'editar'),
   criarContato(path: 'criar'),
+  criarContatoComCategoriaEspecifica(path: ':categoria'),
   servicos(path: '/servicos'),
   welcome(path: '/welcome'),
   settings(path: '/settings'),
@@ -92,13 +100,32 @@ enum Routes {
         };
 
       case Routes.criarContato:
-        return (ctx, state) => MultiBlocProvider(
+        return (_, __) => MultiBlocProvider(
               providers: [
                 BlocProvider(create: (_) => EditorContatoCubit()),
                 BlocProvider(create: (_) => EditorContatoStepCubit()),
               ],
               child: const EditorContatoPage(),
             );
+
+      case Routes.criarContatoComCategoriaEspecifica:
+        return (_, state) {
+          final categoria = state.params['categoria'];
+          if (categoria == 'dentista' ||
+              categoria == 'paciente' ||
+              categoria == 'dentistaEspOdont') {
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                    create: _contatoComCategoriaProviderCreateMap[categoria]!),
+                BlocProvider(create: (_) => EditorContatoStepCubit()),
+              ],
+              child: const EditorContatoPage(),
+            );
+          }
+
+          throw Exception();
+        };
 
       case Routes.detalhesContato:
         return (ctx, state) {

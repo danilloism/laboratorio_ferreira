@@ -46,6 +46,13 @@ class RouterService {
                 name: Routes.criarContato.name,
                 path: Routes.criarContato.path,
                 builder: Routes.criarContato.builder!,
+                routes: [
+                  GoRoute(
+                    name: Routes.criarContatoComCategoriaEspecifica.name,
+                    path: Routes.criarContatoComCategoriaEspecifica.path,
+                    builder: Routes.criarContatoComCategoriaEspecifica.builder!,
+                  )
+                ],
               ),
             ]),
         GoRoute(
