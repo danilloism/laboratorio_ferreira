@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/search_bar.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/common/common.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/lista_contatos/view/widgets/criar_contato_button.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/bloc.dart';

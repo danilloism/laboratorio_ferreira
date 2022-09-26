@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/contato.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/editor_contato/bloc/editor_contato_step_cubit.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/bloc.dart';
 
 class EditorContatoPage<T> extends StatelessWidget {
@@ -86,6 +85,7 @@ class EditorContatoPage<T> extends StatelessWidget {
                           final repository = context.read<ContatoRepository>();
 
                           if (contato.isEmpty) {
+                            // ignore: unused_local_variable
                             final contatoCriado =
                                 await repository.create(cubit.state);
                             Future.value().whenComplete(() => context.pop());

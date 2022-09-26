@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/contato.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/editor_contato/bloc/editor_contato_step_cubit.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/servico/servico.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
 
