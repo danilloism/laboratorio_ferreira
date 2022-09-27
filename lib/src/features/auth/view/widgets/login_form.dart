@@ -7,6 +7,20 @@ import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
 
+  void _submitForm({required Login state, required BuildContext context}) {
+    if (!state.status.isValid) {
+      context.showErrorSnackBar(message: state.errors!);
+      return;
+    }
+
+    LoginFormCubit.of(context).submit();
+    AuthBloc.of(context).add(
+      AuthEvent.logInButtonPressed(
+        account: Account(email: state.email.value, senha: state.senha.value),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,9 +46,12 @@ class LoginForm extends StatelessWidget {
             builder: (context, state) {
               return FormSection(
                 child: CustomTextFormField(
+                  inputAction: TextInputAction.go,
                   obscureText: true,
                   label: 'Senha',
                   onChanged: LoginFormCubit.of(context).senhaTeveAlteracao,
+                  onFieldSubmitted: (_) =>
+                      _submitForm(state: state, context: context),
                 ),
               );
             },
@@ -69,19 +86,7 @@ class LoginForm extends StatelessWidget {
                   ),
                   onPressed: () {
                     UiHelper.closeKeyboard();
-
-                    if (!state.status.isValid) {
-                      context.showErrorSnackBar(message: state.errors!);
-                      return;
-                    }
-
-                    LoginFormCubit.of(context).submit();
-                    AuthBloc.of(context).add(
-                      AuthEvent.logInButtonPressed(
-                        account: Account(
-                            email: state.email.value, senha: state.senha.value),
-                      ),
-                    );
+                    _submitForm(state: state, context: context);
                   },
                   child: const Text('Entrar'),
                 );

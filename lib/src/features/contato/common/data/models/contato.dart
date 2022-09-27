@@ -82,9 +82,17 @@ extension Methods on Contato {
       this == Contato.emptyAdmin ||
       this == Contato.emptyGerente;
 
-  int get hierarquia => categorias
-      .map((categoria) => categoria.index)
-      .reduce((value, element) => value < element ? value : element);
+  int get hierarquia => categorias.isEmpty
+      ? 6
+      : categorias
+          .map((categoria) => categoria.index)
+          .reduce((value, element) => value < element ? value : element);
+
+  bool temHierarquiaMenorQue(Roles role) => hierarquia > role.index;
+
+  bool temHierarquiaMaiorQue(Roles role) => hierarquia < role.index;
+
+  bool temHierarquiaMenorOuIgualQue(Roles role) => hierarquia >= role.index;
 
   bool temHierarquiaMaiorOuIgualQue(Roles role) => hierarquia <= role.index;
 
@@ -104,10 +112,7 @@ extension Methods on Contato {
 
   Map<String, dynamic> toJsonPutMethod() {
     final json = toJsonPostMethod();
-
     json.remove('account');
-    json.remove('telefones');
-
     return json;
   }
 }

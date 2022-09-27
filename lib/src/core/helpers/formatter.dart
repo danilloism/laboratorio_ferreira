@@ -18,6 +18,7 @@ class Formatter {
   }
 
   static String applyPhoneMask(String raw) {
+    raw = unmaskPhone(raw);
     assert(raw.length == 11);
     final ddd = raw.substring(0, 2);
     final numero = raw.substring(2);
