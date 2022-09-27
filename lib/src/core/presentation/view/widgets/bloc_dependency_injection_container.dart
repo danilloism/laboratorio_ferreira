@@ -129,6 +129,7 @@ class _Listeners extends StatelessWidget {
             if (diferencaDias <= 2) return;
 
             context.read<AuthRepository>().refreshToken().then((refreshToken) {
+              if (AuthBloc.of(context).state is LoggedOut) return;
               final newSession = settingsBloc.state.session!
                   .copyWith(accessToken: refreshToken.accessToken);
               settingsBloc.add(SettingsEvent.sessionChanged(newSession));

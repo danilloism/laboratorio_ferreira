@@ -16,6 +16,8 @@ class EditorTelefoneDialog extends StatelessWidget {
     required BuildContext context,
     required String initialValue,
   }) {
+    if (!input.valid) return;
+
     final telefone = input.value;
     if (isEditar) {
       EditorContatoCubit.of(context).alterarTelefone(
@@ -82,7 +84,6 @@ class EditorTelefoneDialog extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 CustomTextFormField(
-                  inputAction: TextInputAction.go,
                   initialValue: telefoneInitialValue.isEmpty
                       ? null
                       : Formatter.applyPhoneMask(telefoneInitialValue),
