@@ -24,12 +24,13 @@ enum HomePageTabs {
   }
 }
 
-final _contatoComCategoriaProviderCreateMap = {
-  'dentista': (BuildContext _) => EditorContatoCubit(Contato.emptyDentista),
-  'paciente': (BuildContext _) => EditorContatoCubit(Contato.emptyPaciente),
-  'dentistaEspOdont': (BuildContext _) =>
-      EditorContatoCubit(Contato.emptyDentistaEspacoOdontologico),
-};
+//TODO
+// final _contatoComCategoriaProviderCreateMap = {
+//   'dentista': (BuildContext _) => EditorContatoCubit(Contato.emptyDentista),
+//   'paciente': (BuildContext _) => EditorContatoCubit(Contato.emptyPaciente),
+//   'dentistaEspOdont': (BuildContext _) =>
+//       EditorContatoCubit(Contato.emptyDentistaEspacoOdontologico),
+// };
 
 enum Routes {
   home(path: '/:tab(inicio|contatos|servicos)'),
@@ -87,25 +88,11 @@ enum Routes {
           final sessionContato = SettingsBloc.of(ctx).state.session?.contato;
           final itsMe = uid == 'me' || uid == sessionContato?.uid;
 
-          return MultiBlocProvider(
-            providers: [
-              BlocProvider(
-                  create: (_) =>
-                      EditorContatoCubit(itsMe ? sessionContato : null)),
-              BlocProvider(create: (_) => EditorContatoStepCubit()),
-            ],
-            child: const EditorContatoPage(),
-          );
+          return EditorContatoPage(contato: itsMe ? sessionContato : null);
         };
 
       case Routes.criarContato:
-        return (_, __) => MultiBlocProvider(
-              providers: [
-                BlocProvider(create: (_) => EditorContatoCubit()),
-                BlocProvider(create: (_) => EditorContatoStepCubit()),
-              ],
-              child: const EditorContatoPage(),
-            );
+        return (_, __) => EditorContatoPage();
 
       case Routes.criarContatoComCategoriaEspecifica:
         return (_, state) {
@@ -113,14 +100,7 @@ enum Routes {
           if (categoria == 'dentista' ||
               categoria == 'paciente' ||
               categoria == 'dentistaEspOdont') {
-            return MultiBlocProvider(
-              providers: [
-                BlocProvider(
-                    create: _contatoComCategoriaProviderCreateMap[categoria]!),
-                BlocProvider(create: (_) => EditorContatoStepCubit()),
-              ],
-              child: const EditorContatoPage(),
-            );
+            return EditorContatoPage();
           }
 
           throw Exception();
