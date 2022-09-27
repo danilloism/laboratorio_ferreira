@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:laboratorio_ferreira_mobile/src/config/constants.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/refresh_token.dart';
 import 'package:path/path.dart';
 
 class AuthRepository {
@@ -34,6 +35,38 @@ class AuthRepository {
         final session = dto.dados!;
         authToken = session.accessToken;
         return session;
+      }
+
+      throw RepositoryException(
+        object: resposta.data,
+        whichRepository: AuthRepository,
+      );
+    } on DioError catch (e) {
+      throw RepositoryException(
+        object: {
+          'data': e.response?.data,
+          'statusCode': e.response?.statusCode,
+        },
+        whichRepository: AuthRepository,
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<RefreshToken> refreshToken() async {
+    try {
+      final Response resposta = await _httpService.patch(
+        join(_path, 'refresh'),
+      );
+
+      final dto = ApiResponse<RefreshToken>.fromJson(
+          resposta.data, RefreshToken.fromJson);
+      if (dto.sucesso) {
+        final refreshToken = dto.dados!;
+
+        authToken = refreshToken.accessToken;
+        return refreshToken;
       }
 
       throw RepositoryException(

@@ -4,4 +4,6 @@ abstract class IHttpService {
   Future post(String path, {dynamic data});
   Future get(String path, {Map<String, dynamic>? queryParams});
   Future put(String path, {dynamic data});
+
+  Future patch(String path);
 }

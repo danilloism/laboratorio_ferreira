@@ -33,4 +33,7 @@ class DioService implements IHttpService {
   @override
   String? get authorizationToken =>
       (_client.options.headers['Authorization'] as String?)?.split(' ')[1];
+
+  @override
+  Future<Response> patch(String path) => _client.patch(path);
 }
