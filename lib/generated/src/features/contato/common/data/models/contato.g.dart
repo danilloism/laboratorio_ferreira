@@ -15,9 +15,7 @@ _$_Contato _$$_ContatoFromJson(Map<String, dynamic> json) => _$_Contato(
           .toSet(),
       uid: json['uid'] as String,
       ativo: json['ativo'] as bool?,
-      account: json['account'] == null
-          ? null
-          : Account.fromJson(json['account'] as Map<String, dynamic>),
+      account: json['account'],
       criadoEm: json['criadoEm'] == null
           ? null
           : DateTime.parse(json['criadoEm'] as String),
@@ -52,7 +50,7 @@ Map<String, dynamic> _$$_ContatoToJson(_$_Contato instance) {
   }
 
   writeNotNull('ativo', instance.ativo);
-  writeNotNull('account', instance.account?.toJson());
+  writeNotNull('account', instance.account);
   writeNotNull('criadoEm', instance.criadoEm?.toIso8601String());
   writeNotNull('atualizadoEm', instance.atualizadoEm?.toIso8601String());
   return val;

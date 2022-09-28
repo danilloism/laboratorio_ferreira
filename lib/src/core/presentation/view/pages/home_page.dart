@@ -1,6 +1,4 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 
@@ -37,16 +35,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: BlocListener<ConnectivityCubit, ConnectivityResult>(
-        listener: (context, state) {
-          if (!ConnectivityCubit.of(context).isConnected) {
-            context.showErrorSnackBar(
-                message:
-                    'Você está offline. Algumas funcionalidades serão limitadas.');
-          }
-        },
-        child: child,
-      ),
+      body: child,
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: false,
         currentIndex: _getIndex(context),

@@ -1,2 +1,2 @@
-export 'theme/theme.dart';
+export 'controllers/controllers.dart';
 export 'view/view.dart';

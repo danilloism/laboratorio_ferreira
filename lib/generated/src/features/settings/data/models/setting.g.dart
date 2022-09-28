@@ -7,9 +7,7 @@ part of '../../../../../../src/features/settings/data/models/setting.dart';
 // **************************************************************************
 
 _$_Setting _$$_SettingFromJson(Map<String, dynamic> json) => _$_Setting(
-      session: json['session'] == null
-          ? null
-          : Session.fromJson(json['session'] as Object),
+      session: json['session'],
       themeMode: $enumDecodeNullable(_$ThemeModeEnumMap, json['themeMode']) ??
           ThemeMode.system,
     );
@@ -28,7 +26,7 @@ Map<String, dynamic> _$$_SettingToJson(_$_Setting instance) {
     }
   }
 
-  writeNotNull('session', instance.session?.toJson());
+  writeNotNull('session', instance.session);
   val['themeMode'] = _$ThemeModeEnumMap[instance.themeMode]!;
   return val;
 }

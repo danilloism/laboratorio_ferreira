@@ -1,5 +1,5 @@
 import 'package:formz/formz.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/helpers/formatter.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/formatter.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/editor_contato/data/models/telefone_input.dart';
 
 enum TelefonesInputListError { empty, hasDuplicates, individualItemError }

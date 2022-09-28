@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/contato.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
 
-class LoggedInInfoSection extends StatelessWidget {
+class LoggedInInfoSection extends ConsumerWidget {
   const LoggedInInfoSection({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final settings = SettingsBloc.of(context).state;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final settings = ref.read(settingsProvider);
     final contato = settings.session!.contato;
     return Column(
       children: [
@@ -76,8 +77,8 @@ class LoggedInInfoSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 4),
-        if (SettingsBloc.of(context)
-            .state
+        if (ref
+            .read(settingsProvider)
             .session!
             .contato
             .temHierarquiaMaiorOuIgualQue(Roles.gerente))

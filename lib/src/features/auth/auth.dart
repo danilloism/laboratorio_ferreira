@@ -1,3 +1,3 @@
-export 'bloc/bloc.dart';
 export 'data/data.dart';
-export 'view/view.dart';
+export 'domain/domain.dart';
+export 'presentation/presentation.dart';

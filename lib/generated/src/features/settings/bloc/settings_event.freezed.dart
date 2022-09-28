@@ -213,10 +213,7 @@ abstract class _$$_SessionChangedCopyWith<$Res> {
   factory _$$_SessionChangedCopyWith(
           _$_SessionChanged value, $Res Function(_$_SessionChanged) then) =
       __$$_SessionChangedCopyWithImpl<$Res>;
-
   $Res call({Session? session});
-
-  $SessionCopyWith<$Res>? get session;
 }
 
 /// @nodoc
@@ -240,17 +237,6 @@ class __$$_SessionChangedCopyWithImpl<$Res>
           : session // ignore: cast_nullable_to_non_nullable
               as Session?,
     ));
-  }
-
-  @override
-  $SessionCopyWith<$Res>? get session {
-    if (_value.session == null) {
-      return null;
-    }
-
-    return $SessionCopyWith<$Res>(_value.session!, (value) {
-      return _then(_value.copyWith(session: value));
-    });
   }
 }
 
@@ -349,11 +335,9 @@ class _$_SessionChanged extends _SessionChanged {
 
 abstract class _SessionChanged extends SettingsEvent {
   const factory _SessionChanged([final Session? session]) = _$_SessionChanged;
-
   const _SessionChanged._() : super._();
 
   Session? get session;
-
   @JsonKey(ignore: true)
   _$$_SessionChangedCopyWith<_$_SessionChanged> get copyWith =>
       throw _privateConstructorUsedError;

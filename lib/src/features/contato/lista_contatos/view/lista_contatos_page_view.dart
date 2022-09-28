@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/common/common.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/lista_contatos/view/widgets/criar_contato_button.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/bloc.dart';
 
-class ContatosPageView extends StatelessWidget {
+class ContatosPageView extends ConsumerWidget {
   const ContatosPageView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final usuarioLogado = SettingsBloc.of(context).state.session!.contato;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final usuarioLogado = ref.read(settingsProvider).session!.contato;
     final podeCriarContato =
         usuarioLogado.temHierarquiaMaiorOuIgualQue(Roles.gerente) ||
             usuarioLogado.isDentistaEspacoOdontologico;

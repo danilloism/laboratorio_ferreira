@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/config/constants.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/refresh_token.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/models.dart';
 import 'package:path/path.dart';
 
 class AuthRepository {
@@ -86,3 +86,6 @@ class AuthRepository {
     }
   }
 }
+
+final authRepositoryProvider = Provider<AuthRepository>(
+    (ref) => AuthRepository(httpService: ref.watch(httpServiceProvider)));

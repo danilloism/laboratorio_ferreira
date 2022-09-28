@@ -47,8 +47,6 @@ abstract class $ContatoCopyWith<$Res> {
       Account? account,
       DateTime? criadoEm,
       DateTime? atualizadoEm});
-
-  $AccountCopyWith<$Res>? get account;
 }
 
 /// @nodoc
@@ -105,17 +103,6 @@ class _$ContatoCopyWithImpl<$Res> implements $ContatoCopyWith<$Res> {
               as DateTime?,
     ));
   }
-
-  @override
-  $AccountCopyWith<$Res>? get account {
-    if (_value.account == null) {
-      return null;
-    }
-
-    return $AccountCopyWith<$Res>(_value.account!, (value) {
-      return _then(_value.copyWith(account: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -133,9 +120,6 @@ abstract class _$$_ContatoCopyWith<$Res> implements $ContatoCopyWith<$Res> {
       Account? account,
       DateTime? criadoEm,
       DateTime? atualizadoEm});
-
-  @override
-  $AccountCopyWith<$Res>? get account;
 }
 
 /// @nodoc

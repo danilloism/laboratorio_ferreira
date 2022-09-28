@@ -21,11 +21,9 @@ Setting _$SettingFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Setting {
   Session? get session => throw _privateConstructorUsedError;
-
   ThemeMode get themeMode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $SettingCopyWith<Setting> get copyWith => throw _privateConstructorUsedError;
 }
@@ -34,10 +32,7 @@ mixin _$Setting {
 abstract class $SettingCopyWith<$Res> {
   factory $SettingCopyWith(Setting value, $Res Function(Setting) then) =
       _$SettingCopyWithImpl<$Res>;
-
   $Res call({Session? session, ThemeMode themeMode});
-
-  $SessionCopyWith<$Res>? get session;
 }
 
 /// @nodoc
@@ -64,17 +59,6 @@ class _$SettingCopyWithImpl<$Res> implements $SettingCopyWith<$Res> {
               as ThemeMode,
     ));
   }
-
-  @override
-  $SessionCopyWith<$Res>? get session {
-    if (_value.session == null) {
-      return null;
-    }
-
-    return $SessionCopyWith<$Res>(_value.session!, (value) {
-      return _then(_value.copyWith(session: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -82,12 +66,8 @@ abstract class _$$_SettingCopyWith<$Res> implements $SettingCopyWith<$Res> {
   factory _$$_SettingCopyWith(
           _$_Setting value, $Res Function(_$_Setting) then) =
       __$$_SettingCopyWithImpl<$Res>;
-
   @override
   $Res call({Session? session, ThemeMode themeMode});
-
-  @override
-  $SessionCopyWith<$Res>? get session;
 }
 
 /// @nodoc
@@ -173,10 +153,8 @@ abstract class _Setting implements Setting {
 
   @override
   Session? get session;
-
   @override
   ThemeMode get themeMode;
-
   @override
   @JsonKey(ignore: true)
   _$$_SettingCopyWith<_$_Setting> get copyWith =>

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/extensions/extensions.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/extensions.dart';
 
 class FormSection extends StatelessWidget {
   final String? title;
