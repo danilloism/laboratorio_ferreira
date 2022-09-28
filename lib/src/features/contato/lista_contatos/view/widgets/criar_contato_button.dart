@@ -11,7 +11,9 @@ class CriarContatoButton extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         TextButton(
-          onPressed: () => context.pushNamed(Routes.criarContato.name),
+          onPressed: () {
+            context.pushNamed('criarContato');
+          },
           child: Row(
             children: const [
               Icon(Icons.person_add),

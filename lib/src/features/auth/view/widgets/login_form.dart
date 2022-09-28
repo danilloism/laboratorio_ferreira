@@ -50,8 +50,9 @@ class LoginForm extends StatelessWidget {
                   obscureText: true,
                   label: 'Senha',
                   onChanged: LoginFormCubit.of(context).senhaTeveAlteracao,
-                  onFieldSubmitted: (_) =>
-                      _submitForm(state: state, context: context),
+                  onFieldSubmitted: (_) => _submitForm(
+                      state: LoginFormCubit.of(context).state,
+                      context: context),
                 ),
               );
             },

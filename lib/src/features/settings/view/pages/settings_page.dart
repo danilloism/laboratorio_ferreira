@@ -19,100 +19,107 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final contato = SettingsBloc.of(context).state.session?.contato;
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Configurações')),
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: ListView(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (AuthBloc.of(context).state is LoggedIn)
-                        const LoggedInInfoSection(),
-                      Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Tema',
-                                  style: context.theme.textTheme.bodyLarge),
-                              DropdownButton<ThemeMode>(
-                                underline: const SizedBox(),
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(15)),
-                                dropdownColor:
-                                    context.theme.appBarTheme.backgroundColor,
-                                value: context.select<SettingsBloc, ThemeMode>(
-                                    (value) => value.state.themeMode),
-                                selectedItemBuilder: (context) =>
-                                    ThemeMode.values
-                                        .map(
-                                          (mode) => Center(
-                                            child: Text(
-                                              themeModeMap[mode]!,
-                                              style: const TextStyle(
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                        )
-                                        .toList(),
-                                items: ThemeMode.values
-                                    .map(
-                                      (mode) => DropdownMenuItem(
-                                        value: mode,
-                                        child: Text(themeModeMap[mode]!),
-                                      ),
-                                    )
-                                    .toList(),
-                                onChanged: (value) => SettingsBloc.of(context)
-                                    .add(
-                                        SettingsEvent.themeModeChanged(value!)),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      if (contato == null ||
-                          !contato
-                              .temHierarquiaMaiorOuIgualQue(Roles.colaborador))
+    return BlocListener<AuthBloc, AuthState>(
+      listenWhen: (_, __) => GoRouter.of(context).location == '/settings',
+      listener: (context, state) {
+        if (GoRouter.of(context).location == '/settings') {
+          state.whenOrNull(
+              loggedIn: (_) => context.go('/inicio'),
+              loggedOut: () => context.go('/login'));
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(title: const Text('Configurações')),
+        body: SafeArea(
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: ListView(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (AuthBloc.of(context).state is LoggedIn)
+                          const LoggedInInfoSection(),
                         Card(
-                          child: Column(
-                            children: const [
-                              Text('Entrar em contato:'),
-                              TextField(),
-                            ],
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Tema',
+                                    style: context.theme.textTheme.bodyLarge),
+                                DropdownButton<ThemeMode>(
+                                  underline: const SizedBox(),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(15)),
+                                  dropdownColor:
+                                      context.theme.appBarTheme.backgroundColor,
+                                  value:
+                                      context.select<SettingsBloc, ThemeMode>(
+                                          (value) => value.state.themeMode),
+                                  selectedItemBuilder: (context) => ThemeMode
+                                      .values
+                                      .map(
+                                        (mode) => Center(
+                                          child: Text(
+                                            themeModeMap[mode]!,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      )
+                                      .toList(),
+                                  items: ThemeMode.values
+                                      .map(
+                                        (mode) => DropdownMenuItem(
+                                          value: mode,
+                                          child: Text(themeModeMap[mode]!),
+                                        ),
+                                      )
+                                      .toList(),
+                                  onChanged: (value) => SettingsBloc.of(context)
+                                      .add(SettingsEvent.themeModeChanged(
+                                          value!)),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                    ],
-                  ),
-                  // if (AuthBloc.of(context).state is LoggedIn)
-                  //   const LoggedInSettingsButtons()
-                ],
-              ),
-            ),
-            if (AuthBloc.of(context).state is LoggedIn)
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(elevation: 4),
-                    onPressed: () {
-                      context.goNamed(
-                          Routes.welcome.name); //TODO: ta feio isso aqui
-                      AuthBloc.of(context)
-                          .add(const AuthEvent.logOutButtonPressed());
-                    },
-                    child: const Text('Sair'),
-                  ),
+                        if (contato == null ||
+                            !contato.temHierarquiaMaiorOuIgualQue(
+                                Roles.colaborador))
+                          Card(
+                            child: Column(
+                              children: const [
+                                Text('Entrar em contato:'),
+                                TextField(),
+                              ],
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-          ],
+              if (AuthBloc.of(context).state is LoggedIn)
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(elevation: 4),
+                      onPressed: () {
+                        AuthBloc.of(context)
+                            .add(const AuthEvent.logOutButtonPressed());
+                      },
+                      child: const Text('Sair'),
+                    ),
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );

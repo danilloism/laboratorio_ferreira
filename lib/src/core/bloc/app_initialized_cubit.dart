@@ -2,16 +2,15 @@ import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/bloc/bloc.dart';
 
 class RefreshTokenOnAppInitializationCubit extends Cubit<bool> {
   RefreshTokenOnAppInitializationCubit({
-    required Stream<ConnectivityResult> connectivityResultStream,
+    required ConnectivityCubit connectivityCubit,
     required bool appInitializedLoggedIn,
   }) : super(false) {
-    _sub = connectivityResultStream.listen((event) {
-      if (event != ConnectivityResult.none &&
-          event != ConnectivityResult.bluetooth &&
-          appInitializedLoggedIn) {
+    _sub = connectivityCubit.stream.listen((event) {
+      if (connectivityCubit.isConnected && appInitializedLoggedIn) {
         emit(true);
       }
     });

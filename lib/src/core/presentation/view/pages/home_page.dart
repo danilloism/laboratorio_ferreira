@@ -4,100 +4,78 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key, required this.child});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
+  final Widget child;
 
-class _HomePageState extends State<HomePage> {
-  late final PageController _controller;
+  int _getIndex(BuildContext context) {
+    final route = GoRouter.of(context);
+    final String location = route.location;
 
-  @override
-  void initState() {
-    _controller =
-        PageController(initialPage: NavigationIndexCubit.of(context).state);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+    switch (location) {
+      case '/inicio':
+        return 0;
+      case '/contatos':
+        return 1;
+      case '/servicos':
+        return 2;
+      default:
+        return 0;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final navCubit = NavigationIndexCubit.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const SizedBox(child: Logo(height: 70)),
         actions: [
           IconButton(
-            onPressed: () => context.pushNamed(Routes.settings.name),
+            onPressed: () => context.push('/settings'),
             icon: const Icon(Icons.settings),
           ),
         ],
       ),
-      body: Column(
-        children: [
-          BlocBuilder<ConnectivityCubit, ConnectivityResult>(
-            builder: (context, state) {
-              return Visibility(
-                visible: !ConnectivityCubit.of(context).isConnected,
-                child: const ColoredBox(
-                  color: Colors.red,
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                        'Dispositivo não está conectado na internet. Algumas funcionalidades serão limitadas.'),
-                  ),
-                ),
-              );
-            },
+      body: BlocListener<ConnectivityCubit, ConnectivityResult>(
+        listener: (context, state) {
+          if (!ConnectivityCubit.of(context).isConnected) {
+            context.showErrorSnackBar(
+                message:
+                    'Você está offline. Algumas funcionalidades serão limitadas.');
+          }
+        },
+        child: child,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        showUnselectedLabels: false,
+        currentIndex: _getIndex(context),
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              context.go('/inicio');
+              break;
+            case 1:
+              context.go('/contatos');
+              break;
+            case 2:
+              context.go('/servicos');
+          }
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_rounded),
+            label: 'Início',
           ),
-          Expanded(
-            child: PageView.builder(
-              itemCount: navCubit.pages.length,
-              itemBuilder: (ctx, index) => navCubit.pages[index],
-              controller: _controller,
-              onPageChanged: navCubit.goTo,
-            ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_rounded),
+            label: 'Contatos',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.cases_rounded),
+            label: 'Serviços',
           ),
         ],
-      ),
-      bottomNavigationBar: BlocBuilder<NavigationIndexCubit, int>(
-        builder: (ctx, state) => BottomNavigationBar(
-          showUnselectedLabels: false,
-          currentIndex: state,
-          onTap: (index) {
-            if (index == state - 1 || index == state + 1) {
-              _controller.animateToPage(
-                index,
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.ease,
-              );
-              return;
-            }
-
-            _controller.jumpToPage(index);
-          },
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_rounded),
-              label: 'Início',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_rounded),
-              label: 'Contatos',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.cases_rounded),
-              label: 'Serviços',
-            ),
-          ],
-        ),
       ),
     );
   }

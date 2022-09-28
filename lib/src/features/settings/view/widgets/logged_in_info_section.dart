@@ -34,9 +34,9 @@ class LoggedInInfoSection extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     IconButton(
-                        onPressed: () => context.pushNamed(
-                            Routes.editarContato.name,
-                            params: {'uid': 'me'}),
+                        onPressed: () {
+                          context.push('/settings/editar_contato');
+                        },
                         icon: const Icon(Icons.edit_note_outlined))
                   ],
                 ),
@@ -61,9 +61,11 @@ class LoggedInInfoSection extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     IconButton(
-                        onPressed: () => context.pushNamed(
-                            Routes.editarContato.name,
-                            params: {'uid': 'me'}),
+                        onPressed: () {
+                          // context.pushNamed(
+                          //   Routes.editarContato.name,
+                          //   params: {'uid': 'me'});
+                        },
                         icon: const Icon(Icons.edit_note_outlined))
                   ],
                 ),

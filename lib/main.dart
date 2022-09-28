@@ -19,11 +19,7 @@ class MyApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: context
           .select<SettingsBloc, ThemeMode>((value) => value.state.themeMode),
-      routeInformationParser:
-          RouterService.of(context).router.routeInformationParser,
-      routeInformationProvider:
-          RouterService.of(context).router.routeInformationProvider,
-      routerDelegate: RouterService.of(context).router.routerDelegate,
+      routerConfig: RouterService.of(context).router,
     );
   }
 }

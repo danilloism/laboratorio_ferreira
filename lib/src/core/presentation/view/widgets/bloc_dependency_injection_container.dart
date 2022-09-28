@@ -20,7 +20,7 @@ class BlocDependencyInjectionContainer extends StatelessWidget {
       child: _RepositoriesProvider(
         child: BlocProvider(
           create: (context) => RefreshTokenOnAppInitializationCubit(
-            connectivityResultStream: context.read<ConnectivityCubit>().stream,
+            connectivityCubit: context.read<ConnectivityCubit>(),
             appInitializedLoggedIn:
                 SettingsBloc.of(context).state.session != null,
           ),
@@ -106,12 +106,12 @@ class _Listeners extends StatelessWidget {
               orElse: () => false,
             );
           },
-          listener: (ctx, state) {
+          listener: (context, state) {
             state.whenOrNull(
-              loggedIn: (session) => SettingsBloc.of(ctx).add(
+              loggedIn: (session) => SettingsBloc.of(context).add(
                 SettingsEvent.sessionChanged(session),
               ),
-              loggedOut: () => SettingsBloc.of(ctx)
+              loggedOut: () => SettingsBloc.of(context)
                   .add(const SettingsEvent.sessionChanged()),
             );
           },

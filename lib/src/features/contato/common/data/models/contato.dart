@@ -71,6 +71,13 @@ class Contato with _$Contato {
         categorias: {Roles.gerente},
         uid: '',
       );
+
+  static Contato get emptyColaborador => const Contato(
+        nome: '',
+        telefones: {},
+        categorias: {Roles.colaborador},
+        uid: '',
+      );
 }
 
 extension Methods on Contato {
@@ -80,7 +87,8 @@ extension Methods on Contato {
       this == Contato.emptyPaciente ||
       this == Contato.emptyDentistaEspacoOdontologico ||
       this == Contato.emptyAdmin ||
-      this == Contato.emptyGerente;
+      this == Contato.emptyGerente ||
+      this == Contato.emptyColaborador;
 
   int get hierarquia => categorias.isEmpty
       ? 6

@@ -1,9 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/config/config.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/contato.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/servico/presentation/presentation.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
+
+final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
+final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
 
 class RouterService {
   final AuthBloc _authBloc;
@@ -11,89 +19,102 @@ class RouterService {
 
   RouterService(this._authBloc) {
     router = GoRouter(
+      navigatorKey: _rootNavigatorKey,
       debugLogDiagnostics: !Constants.isProduction,
-      refreshListenable: GoRouterRefreshStream(_authBloc.stream),
-      initialLocation: '/welcome',
+      refreshListenable: GoRouterRefreshListenable(_authBloc),
+      initialLocation: '/splash',
       redirect: _redirect,
       routes: [
-        GoRoute(
-          name: Routes.home.name,
-          path: Routes.home.path,
-          builder: Routes.home.builder!,
+        ShellRoute(
+          navigatorKey: _shellNavigatorKey,
+          builder: (_, __, child) => HomePage(child: child),
+          routes: [
+            GoRoute(
+              name: 'inicio',
+              path: '/inicio',
+              builder: (context, state) => const InicioPageView(),
+            ),
+            GoRoute(
+              name: 'contatos',
+              path: '/contatos',
+              builder: (context, state) => const ContatosPageView(),
+            ),
+            GoRoute(
+              name: 'servicos',
+              path: '/servicos',
+              builder: (context, state) => const ServicosPageView(),
+            ),
+          ],
         ),
         GoRoute(
-          name: Routes.inicio.name,
-          path: Routes.inicio.path,
-          redirect: Routes.inicio.redirect!,
+          parentNavigatorKey: _rootNavigatorKey,
+          name: 'acaoContato',
+          path: '/contatos/:uid/:acao',
+          builder: (context, state) {
+            final acao = state.params['acao'];
+            final me = SettingsBloc.of(context).state.session!.contato;
+
+            if (acao == 'info') {
+              return DetalhesContatoPage(me);
+            }
+
+            return EditorContatoPage(contato: me);
+          },
         ),
         GoRoute(
-            name: Routes.contatos.name,
-            path: Routes.contatos.path,
-            redirect: Routes.contatos.redirect!,
-            routes: [
-              GoRoute(
-                  name: Routes.detalhesContato.name,
-                  path: Routes.detalhesContato.path,
-                  builder: Routes.detalhesContato.builder!,
-                  routes: [
-                    GoRoute(
-                      name: Routes.editarContato.name,
-                      path: Routes.editarContato.path,
-                      builder: Routes.editarContato.builder!,
-                    ),
-                  ]),
-              GoRoute(
-                name: Routes.criarContato.name,
-                path: Routes.criarContato.path,
-                builder: Routes.criarContato.builder!,
-                routes: [
-                  GoRoute(
-                    name: Routes.criarContatoComCategoriaEspecifica.name,
-                    path: Routes.criarContatoComCategoriaEspecifica.path,
-                    builder: Routes.criarContatoComCategoriaEspecifica.builder!,
-                  )
-                ],
-              ),
-            ]),
-        GoRoute(
-          name: Routes.servicos.name,
-          path: Routes.servicos.path,
-          redirect: Routes.servicos.redirect!,
+          parentNavigatorKey: _rootNavigatorKey,
+          name: 'criarContato',
+          path: '/contatos/criar',
+          builder: (context, state) => EditorContatoPage(),
         ),
         GoRoute(
-          name: Routes.login.name,
-          path: Routes.login.path,
-          builder: Routes.login.builder!,
+          name: 'login',
+          path: '/login',
+          builder: (context, state) => const LoginPage(),
         ),
         GoRoute(
-          name: Routes.welcome.name,
-          path: Routes.welcome.path,
-          builder: Routes.welcome.builder!,
+          name: 'splash',
+          path: '/splash',
+          builder: (context, state) => const WelcomePage(),
         ),
         GoRoute(
-          name: Routes.settings.name,
-          path: Routes.settings.path,
-          builder: Routes.settings.builder!,
+          parentNavigatorKey: _rootNavigatorKey,
+          name: 'settings',
+          path: '/settings',
+          builder: (context, state) => const SettingsPage(),
+          routes: [
+            GoRoute(
+              name: 'settingsEditarContato',
+              path: 'editar_contato',
+              redirect: (context, _) {
+                if (AuthBloc.of(context).state is LoggedIn) {
+                  return '/contatos/me/editar';
+                }
+
+                return null;
+              },
+            ),
+          ],
         ),
       ],
     );
   }
 
-  String? _redirect(GoRouterState state) {
+  String? _redirect(BuildContext context, GoRouterState state) {
     switch (state.location) {
-      case '/welcome':
+      case '/splash':
         return _authBloc.state.whenOrNull(
-          loggedIn: (_) => state.namedLocation(Routes.inicio.name),
-          loggedOut: () => state.namedLocation(Routes.login.name),
+          loggedIn: (_) => '/inicio',
+          loggedOut: () => '/login',
         );
 
-      case '/':
-        return _authBloc.state.whenOrNull(
-            loggedOut: () => state.namedLocation(Routes.login.name));
+      case '/inicio':
+      case '/contatos':
+      case '/servicos':
+        return _authBloc.state.whenOrNull(loggedOut: () => '/login');
 
       case '/login':
-        return _authBloc.state.whenOrNull(
-            loggedIn: (_) => state.namedLocation(Routes.inicio.name));
+        return _authBloc.state.whenOrNull(loggedIn: (_) => '/inicio');
 
       default:
         return null;
@@ -102,4 +123,19 @@ class RouterService {
 
   static RouterService of(BuildContext context) =>
       context.read<RouterService>();
+}
+
+class GoRouterRefreshListenable extends ChangeNotifier {
+  GoRouterRefreshListenable(BlocBase bloc) {
+    notifyListeners();
+    _sub = bloc.stream.listen((event) => notifyListeners());
+  }
+
+  late final StreamSubscription _sub;
+
+  @override
+  void dispose() {
+    _sub.cancel();
+    super.dispose();
+  }
 }

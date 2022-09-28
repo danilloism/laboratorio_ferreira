@@ -17,7 +17,7 @@ class CustomActionChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return ActionChip(
       label: label,
-      onPressed: onPressed,
+      onPressed: onPressed ?? () {},
       disabledColor: context.theme.chipTheme.backgroundColor,
       padding: padding,
     );
