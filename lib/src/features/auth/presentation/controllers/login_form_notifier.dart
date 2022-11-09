@@ -1,9 +1,7 @@
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:formz/formz.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/misc.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/models.dart';
 
 class LoginFormNotifier extends StateNotifier<Login> {
   LoginFormNotifier()

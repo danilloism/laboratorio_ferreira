@@ -2,11 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/config/config.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/contato.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/states/auth_state.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/view/pages/login_page.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/pages/detalhes_contato_page.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/pages/editor_contato_page.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/pages/lista_contatos_page_view.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/servico/presentation/presentation.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/view/pages/pages.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
@@ -59,7 +64,8 @@ class GoRouterRefreshListenable extends ChangeNotifier {
           path: '/contatos/:uid/:acao',
           builder: (context, state) {
             final acao = state.params['acao'];
-            final me = SettingsBloc.of(context).state.session!.contato;
+
+            final me = _ref.read(settingsNotifierProvider).session!.contato;
 
             if (acao == 'info') {
               return DetalhesContatoPage(me);

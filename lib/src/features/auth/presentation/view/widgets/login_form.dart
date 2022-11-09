@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:formz/formz.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/domain/models/models.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/extensions.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/helpers.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/widgets.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/models.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/login_form_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/states/auth_state.dart';
 
 class LoginForm extends ConsumerWidget {
   LoginForm({super.key});

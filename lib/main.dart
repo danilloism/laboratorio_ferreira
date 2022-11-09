@@ -2,11 +2,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/firebase_options.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/bloc/bloc.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/application/services/services.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/states/auth_state.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/data/data.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 import 'package:sembast/sembast.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/presentation.dart';
 
 final databaseProvider =
     Provider<Database>((ref) => throw UnimplementedError());
@@ -50,20 +52,21 @@ class _MyAppState extends ConsumerState<MyApp> {
   @override
   Widget build(BuildContext context) {
     ref.listen<AuthState>(authNotifierProvider, (previous, next) {
-      final session = ref.read(settingsProvider).session;
+      final session = ref.read(settingsNotifierProvider).session;
       if (next is LoggedIn && session != next.session) {
-        ref.read(settingsProvider.notifier).changeSession(next.session);
+        ref.read(settingsNotifierProvider.notifier).changeSession(next.session);
       }
 
       if (next is LoggedOut && session != null) {
-        ref.read(settingsProvider.notifier).changeSession();
+        ref.read(settingsNotifierProvider.notifier).changeSession();
       }
     });
     return MaterialApp.router(
       title: 'Laboratório Ferreira',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ref.watch(settingsProvider.select((value) => value.themeMode)),
+      themeMode: ref
+          .watch(settingsNotifierProvider.select((value) => value.themeMode)),
       routerConfig: ref.read(routerProvider),
     );
   }

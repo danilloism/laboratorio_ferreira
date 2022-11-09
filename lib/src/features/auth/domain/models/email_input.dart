@@ -1,6 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:formz/formz.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/models.dart';
 
 class EmailInput extends FormzInput<String, EmailInputError> {
   const EmailInput.pure() : super.pure('');

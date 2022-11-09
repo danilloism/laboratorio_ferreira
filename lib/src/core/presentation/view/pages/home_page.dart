@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart'
+    show Logo;
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key, required this.child});
