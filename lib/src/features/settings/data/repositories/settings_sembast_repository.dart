@@ -3,10 +3,26 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/session.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/contato.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/domain/models/setting.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
 import 'package:loggy/loggy.dart';
 import 'package:sembast/sembast.dart';
+
+int fastHash(String string) {
+  var hash = 0xcbf29ce484222325;
+
+  var i = 0;
+  while (i < string.length) {
+    final codeUnit = string.codeUnitAt(i++);
+    hash ^= codeUnit >> 8;
+    hash *= 0x100000001b3;
+    hash ^= codeUnit & 0xFF;
+    hash *= 0x100000001b3;
+  }
+
+  return hash;
+}
 
 extension ThemeModeToSembast on ThemeMode {
   Map<String, Object> toSembast() => {'value': index};
@@ -14,6 +30,10 @@ extension ThemeModeToSembast on ThemeMode {
 
 extension SessionToSembast on Session? {
   Map<String, Object?> toSembast() => {'value': this?.toJson()};
+}
+
+extension ContatoToSembast on Contato {
+  Map<String, Object?> toSembast() => {uid: toJson()};
 }
 
 enum SettingsItem { session, themeMode }
@@ -30,9 +50,17 @@ ThemeMode? _themeModeFromSembast(Map<String, Object?>? object) {
   return ThemeMode.values[object['value'] as int];
 }
 
+Contato? _contatoFromSembast(Map<String, Object?>? object,
+    {required String id}) {
+  if (object == null) return null;
+
+  return Contato.fromJson(object[id]);
+}
+
 class SettingsSembastRepository with UiLoggy implements SettingsRepository {
   final Database _database;
   final _store = stringMapStoreFactory.store('settings_store');
+  final _contatosStore = stringMapStoreFactory.store('contatos_store');
   late Setting _current;
 
   SettingsSembastRepository(this._database);
@@ -75,6 +103,16 @@ class SettingsSembastRepository with UiLoggy implements SettingsRepository {
               .record(setting.name)
               .put(txn, value.toSembast(), merge: true);
           _current = _current.copyWith(themeMode: value);
+          if (_current.session != null) {
+            final sessionContato = _current.session!.contato;
+            final contatoLocal =
+                await _contatosStore.record(sessionContato.uid).get(txn);
+            if (contatoLocal == null) {
+              _contatosStore
+                  .record(sessionContato.uid)
+                  .put(txn, sessionContato.toSembast());
+            }
+          }
           return _current;
         case SettingsItem.session:
           if (value is! Session?) throw TypeError();
