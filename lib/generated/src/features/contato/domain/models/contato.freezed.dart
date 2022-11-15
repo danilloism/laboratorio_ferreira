@@ -37,7 +37,8 @@ mixin _$Contato {
 /// @nodoc
 abstract class $ContatoCopyWith<$Res> {
   factory $ContatoCopyWith(Contato value, $Res Function(Contato) then) =
-      _$ContatoCopyWithImpl<$Res>;
+      _$ContatoCopyWithImpl<$Res, Contato>;
+  @useResult
   $Res call(
       {String nome,
       Set<String> telefones,
@@ -52,68 +53,72 @@ abstract class $ContatoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ContatoCopyWithImpl<$Res> implements $ContatoCopyWith<$Res> {
+class _$ContatoCopyWithImpl<$Res, $Val extends Contato>
+    implements $ContatoCopyWith<$Res> {
   _$ContatoCopyWithImpl(this._value, this._then);
 
-  final Contato _value;
   // ignore: unused_field
-  final $Res Function(Contato) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? nome = freezed,
-    Object? telefones = freezed,
-    Object? categorias = freezed,
-    Object? uid = freezed,
+    Object? nome = null,
+    Object? telefones = null,
+    Object? categorias = null,
+    Object? uid = null,
     Object? ativo = freezed,
     Object? account = freezed,
     Object? criadoEm = freezed,
     Object? atualizadoEm = freezed,
   }) {
     return _then(_value.copyWith(
-      nome: nome == freezed
+      nome: null == nome
           ? _value.nome
           : nome // ignore: cast_nullable_to_non_nullable
               as String,
-      telefones: telefones == freezed
+      telefones: null == telefones
           ? _value.telefones
           : telefones // ignore: cast_nullable_to_non_nullable
               as Set<String>,
-      categorias: categorias == freezed
+      categorias: null == categorias
           ? _value.categorias
           : categorias // ignore: cast_nullable_to_non_nullable
               as Set<Roles>,
-      uid: uid == freezed
+      uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      ativo: ativo == freezed
+      ativo: freezed == ativo
           ? _value.ativo
           : ativo // ignore: cast_nullable_to_non_nullable
               as bool?,
-      account: account == freezed
+      account: freezed == account
           ? _value.account
           : account // ignore: cast_nullable_to_non_nullable
               as Account?,
-      criadoEm: criadoEm == freezed
+      criadoEm: freezed == criadoEm
           ? _value.criadoEm
           : criadoEm // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      atualizadoEm: atualizadoEm == freezed
+      atualizadoEm: freezed == atualizadoEm
           ? _value.atualizadoEm
           : atualizadoEm // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $AccountCopyWith<$Res>? get account {
     if (_value.account == null) {
       return null;
     }
 
     return $AccountCopyWith<$Res>(_value.account!, (value) {
-      return _then(_value.copyWith(account: value));
+      return _then(_value.copyWith(account: value) as $Val);
     });
   }
 }
@@ -124,6 +129,7 @@ abstract class _$$_ContatoCopyWith<$Res> implements $ContatoCopyWith<$Res> {
           _$_Contato value, $Res Function(_$_Contato) then) =
       __$$_ContatoCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String nome,
       Set<String> telefones,
@@ -139,55 +145,54 @@ abstract class _$$_ContatoCopyWith<$Res> implements $ContatoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ContatoCopyWithImpl<$Res> extends _$ContatoCopyWithImpl<$Res>
+class __$$_ContatoCopyWithImpl<$Res>
+    extends _$ContatoCopyWithImpl<$Res, _$_Contato>
     implements _$$_ContatoCopyWith<$Res> {
   __$$_ContatoCopyWithImpl(_$_Contato _value, $Res Function(_$_Contato) _then)
-      : super(_value, (v) => _then(v as _$_Contato));
+      : super(_value, _then);
 
-  @override
-  _$_Contato get _value => super._value as _$_Contato;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? nome = freezed,
-    Object? telefones = freezed,
-    Object? categorias = freezed,
-    Object? uid = freezed,
+    Object? nome = null,
+    Object? telefones = null,
+    Object? categorias = null,
+    Object? uid = null,
     Object? ativo = freezed,
     Object? account = freezed,
     Object? criadoEm = freezed,
     Object? atualizadoEm = freezed,
   }) {
     return _then(_$_Contato(
-      nome: nome == freezed
+      nome: null == nome
           ? _value.nome
           : nome // ignore: cast_nullable_to_non_nullable
               as String,
-      telefones: telefones == freezed
+      telefones: null == telefones
           ? _value._telefones
           : telefones // ignore: cast_nullable_to_non_nullable
               as Set<String>,
-      categorias: categorias == freezed
+      categorias: null == categorias
           ? _value._categorias
           : categorias // ignore: cast_nullable_to_non_nullable
               as Set<Roles>,
-      uid: uid == freezed
+      uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      ativo: ativo == freezed
+      ativo: freezed == ativo
           ? _value.ativo
           : ativo // ignore: cast_nullable_to_non_nullable
               as bool?,
-      account: account == freezed
+      account: freezed == account
           ? _value.account
           : account // ignore: cast_nullable_to_non_nullable
               as Account?,
-      criadoEm: criadoEm == freezed
+      criadoEm: freezed == criadoEm
           ? _value.criadoEm
           : criadoEm // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      atualizadoEm: atualizadoEm == freezed
+      atualizadoEm: freezed == atualizadoEm
           ? _value.atualizadoEm
           : atualizadoEm // ignore: cast_nullable_to_non_nullable
               as DateTime?,
@@ -250,34 +255,36 @@ class _$_Contato implements _Contato {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Contato &&
-            const DeepCollectionEquality().equals(other.nome, nome) &&
+            (identical(other.nome, nome) || other.nome == nome) &&
             const DeepCollectionEquality()
                 .equals(other._telefones, _telefones) &&
             const DeepCollectionEquality()
                 .equals(other._categorias, _categorias) &&
-            const DeepCollectionEquality().equals(other.uid, uid) &&
-            const DeepCollectionEquality().equals(other.ativo, ativo) &&
-            const DeepCollectionEquality().equals(other.account, account) &&
-            const DeepCollectionEquality().equals(other.criadoEm, criadoEm) &&
-            const DeepCollectionEquality()
-                .equals(other.atualizadoEm, atualizadoEm));
+            (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.ativo, ativo) || other.ativo == ativo) &&
+            (identical(other.account, account) || other.account == account) &&
+            (identical(other.criadoEm, criadoEm) ||
+                other.criadoEm == criadoEm) &&
+            (identical(other.atualizadoEm, atualizadoEm) ||
+                other.atualizadoEm == atualizadoEm));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(nome),
+      nome,
       const DeepCollectionEquality().hash(_telefones),
       const DeepCollectionEquality().hash(_categorias),
-      const DeepCollectionEquality().hash(uid),
-      const DeepCollectionEquality().hash(ativo),
-      const DeepCollectionEquality().hash(account),
-      const DeepCollectionEquality().hash(criadoEm),
-      const DeepCollectionEquality().hash(atualizadoEm));
+      uid,
+      ativo,
+      account,
+      criadoEm,
+      atualizadoEm);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ContatoCopyWith<_$_Contato> get copyWith =>
       __$$_ContatoCopyWithImpl<_$_Contato>(this, _$identity);
 

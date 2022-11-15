@@ -28,34 +28,37 @@ mixin _$ListaContatosState {
 abstract class $ListaContatosStateCopyWith<$Res> {
   factory $ListaContatosStateCopyWith(
           ListaContatosState value, $Res Function(ListaContatosState) then) =
-      _$ListaContatosStateCopyWithImpl<$Res>;
+      _$ListaContatosStateCopyWithImpl<$Res, ListaContatosState>;
+  @useResult
   $Res call({List<Contato> contatos, bool isLoading});
 }
 
 /// @nodoc
-class _$ListaContatosStateCopyWithImpl<$Res>
+class _$ListaContatosStateCopyWithImpl<$Res, $Val extends ListaContatosState>
     implements $ListaContatosStateCopyWith<$Res> {
   _$ListaContatosStateCopyWithImpl(this._value, this._then);
 
-  final ListaContatosState _value;
   // ignore: unused_field
-  final $Res Function(ListaContatosState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? contatos = freezed,
-    Object? isLoading = freezed,
+    Object? contatos = null,
+    Object? isLoading = null,
   }) {
     return _then(_value.copyWith(
-      contatos: contatos == freezed
+      contatos: null == contatos
           ? _value.contatos
           : contatos // ignore: cast_nullable_to_non_nullable
               as List<Contato>,
-      isLoading: isLoading == freezed
+      isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 }
 
@@ -66,31 +69,30 @@ abstract class _$$_ListaContatosStateCopyWith<$Res>
           $Res Function(_$_ListaContatosState) then) =
       __$$_ListaContatosStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({List<Contato> contatos, bool isLoading});
 }
 
 /// @nodoc
 class __$$_ListaContatosStateCopyWithImpl<$Res>
-    extends _$ListaContatosStateCopyWithImpl<$Res>
+    extends _$ListaContatosStateCopyWithImpl<$Res, _$_ListaContatosState>
     implements _$$_ListaContatosStateCopyWith<$Res> {
   __$$_ListaContatosStateCopyWithImpl(
       _$_ListaContatosState _value, $Res Function(_$_ListaContatosState) _then)
-      : super(_value, (v) => _then(v as _$_ListaContatosState));
+      : super(_value, _then);
 
-  @override
-  _$_ListaContatosState get _value => super._value as _$_ListaContatosState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? contatos = freezed,
-    Object? isLoading = freezed,
+    Object? contatos = null,
+    Object? isLoading = null,
   }) {
     return _then(_$_ListaContatosState(
-      contatos: contatos == freezed
+      contatos: null == contatos
           ? _value._contatos
           : contatos // ignore: cast_nullable_to_non_nullable
               as List<Contato>,
-      isLoading: isLoading == freezed
+      isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -129,17 +131,17 @@ class _$_ListaContatosState extends _ListaContatosState {
         (other.runtimeType == runtimeType &&
             other is _$_ListaContatosState &&
             const DeepCollectionEquality().equals(other._contatos, _contatos) &&
-            const DeepCollectionEquality().equals(other.isLoading, isLoading));
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_contatos),
-      const DeepCollectionEquality().hash(isLoading));
+      runtimeType, const DeepCollectionEquality().hash(_contatos), isLoading);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ListaContatosStateCopyWith<_$_ListaContatosState> get copyWith =>
       __$$_ListaContatosStateCopyWithImpl<_$_ListaContatosState>(
           this, _$identity);

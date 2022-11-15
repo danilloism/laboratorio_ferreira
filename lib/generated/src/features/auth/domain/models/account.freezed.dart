@@ -34,7 +34,8 @@ mixin _$Account {
 /// @nodoc
 abstract class $AccountCopyWith<$Res> {
   factory $AccountCopyWith(Account value, $Res Function(Account) then) =
-      _$AccountCopyWithImpl<$Res>;
+      _$AccountCopyWithImpl<$Res, Account>;
+  @useResult
   $Res call(
       {String email,
       String? senha,
@@ -44,43 +45,46 @@ abstract class $AccountCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AccountCopyWithImpl<$Res> implements $AccountCopyWith<$Res> {
+class _$AccountCopyWithImpl<$Res, $Val extends Account>
+    implements $AccountCopyWith<$Res> {
   _$AccountCopyWithImpl(this._value, this._then);
 
-  final Account _value;
   // ignore: unused_field
-  final $Res Function(Account) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = freezed,
+    Object? email = null,
     Object? senha = freezed,
     Object? criadoEm = freezed,
     Object? atualizadoEm = freezed,
     Object? contatoUid = freezed,
   }) {
     return _then(_value.copyWith(
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      senha: senha == freezed
+      senha: freezed == senha
           ? _value.senha
           : senha // ignore: cast_nullable_to_non_nullable
               as String?,
-      criadoEm: criadoEm == freezed
+      criadoEm: freezed == criadoEm
           ? _value.criadoEm
           : criadoEm // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      atualizadoEm: atualizadoEm == freezed
+      atualizadoEm: freezed == atualizadoEm
           ? _value.atualizadoEm
           : atualizadoEm // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      contatoUid: contatoUid == freezed
+      contatoUid: freezed == contatoUid
           ? _value.contatoUid
           : contatoUid // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -90,6 +94,7 @@ abstract class _$$_AccountCopyWith<$Res> implements $AccountCopyWith<$Res> {
           _$_Account value, $Res Function(_$_Account) then) =
       __$$_AccountCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String email,
       String? senha,
@@ -99,40 +104,39 @@ abstract class _$$_AccountCopyWith<$Res> implements $AccountCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AccountCopyWithImpl<$Res> extends _$AccountCopyWithImpl<$Res>
+class __$$_AccountCopyWithImpl<$Res>
+    extends _$AccountCopyWithImpl<$Res, _$_Account>
     implements _$$_AccountCopyWith<$Res> {
   __$$_AccountCopyWithImpl(_$_Account _value, $Res Function(_$_Account) _then)
-      : super(_value, (v) => _then(v as _$_Account));
+      : super(_value, _then);
 
-  @override
-  _$_Account get _value => super._value as _$_Account;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = freezed,
+    Object? email = null,
     Object? senha = freezed,
     Object? criadoEm = freezed,
     Object? atualizadoEm = freezed,
     Object? contatoUid = freezed,
   }) {
     return _then(_$_Account(
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      senha: senha == freezed
+      senha: freezed == senha
           ? _value.senha
           : senha // ignore: cast_nullable_to_non_nullable
               as String?,
-      criadoEm: criadoEm == freezed
+      criadoEm: freezed == criadoEm
           ? _value.criadoEm
           : criadoEm // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      atualizadoEm: atualizadoEm == freezed
+      atualizadoEm: freezed == atualizadoEm
           ? _value.atualizadoEm
           : atualizadoEm // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      contatoUid: contatoUid == freezed
+      contatoUid: freezed == contatoUid
           ? _value.contatoUid
           : contatoUid // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -174,27 +178,24 @@ class _$_Account implements _Account {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Account &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.senha, senha) &&
-            const DeepCollectionEquality().equals(other.criadoEm, criadoEm) &&
-            const DeepCollectionEquality()
-                .equals(other.atualizadoEm, atualizadoEm) &&
-            const DeepCollectionEquality()
-                .equals(other.contatoUid, contatoUid));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.senha, senha) || other.senha == senha) &&
+            (identical(other.criadoEm, criadoEm) ||
+                other.criadoEm == criadoEm) &&
+            (identical(other.atualizadoEm, atualizadoEm) ||
+                other.atualizadoEm == atualizadoEm) &&
+            (identical(other.contatoUid, contatoUid) ||
+                other.contatoUid == contatoUid));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(senha),
-      const DeepCollectionEquality().hash(criadoEm),
-      const DeepCollectionEquality().hash(atualizadoEm),
-      const DeepCollectionEquality().hash(contatoUid));
+      runtimeType, email, senha, criadoEm, atualizadoEm, contatoUid);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AccountCopyWith<_$_Account> get copyWith =>
       __$$_AccountCopyWithImpl<_$_Account>(this, _$identity);
 

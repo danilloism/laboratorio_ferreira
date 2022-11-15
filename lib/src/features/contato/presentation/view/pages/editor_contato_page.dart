@@ -7,9 +7,9 @@ import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/extensions.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/helpers.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/contato.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/data/repositories/repositories.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/contato_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/widgets/widgets.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 
@@ -20,8 +20,7 @@ class EditorContatoPage extends ConsumerWidget {
         (ref) => EditorContatoNotifier(_contatoInicial));
   }
   final Contato _contatoInicial;
-  final _editorContatoPageProvider = StateProvider<EditorContatoPageState>(
-      (ref) => const EditorContatoPageState.editing());
+  final _isLoadingProvider = StateProvider<bool>((ref) => false);
 
   late final StateNotifierProvider<EditorContatoNotifier, Contato>
       _contatoProvider;
@@ -63,94 +62,91 @@ class EditorContatoPage extends ConsumerWidget {
           actions: [
             Consumer(
               builder: (context, ref, _) {
-                return ref.watch(_editorContatoPageProvider).when(
-                    done: () => const Center(
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: CircularProgressIndicator(),
-                          ),
-                        ),
-                    editing: () => IconButton(
-                          onPressed: () async {
-                            UiHelper.closeKeyboard();
-                            ref.read(_editorContatoPageProvider.state).state =
-                                const EditorContatoPageState.done();
+                final loading = ref.watch(_isLoadingProvider);
 
-                            final contatoNotifier =
-                                ref.read(_contatoProvider.notifier);
+                if (loading) {
+                  return const Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                }
 
-                            if (contatoNotifier.errors.isNotEmpty) {
-                              context.showErrorSnackBar(
-                                  message: Formatter.fromErrorList(
-                                          contatoNotifier.errors) ??
-                                      'Erro desconhecido.');
-                              ref.read(_editorContatoPageProvider.state).state =
-                                  const EditorContatoPageState.editing();
-                              return;
-                            }
+                return IconButton(
+                  onPressed: () async {
+                    UiHelper.closeKeyboard();
+                    ref.read(_isLoadingProvider.notifier).state = true;
 
-                            final contatoFinal = ref.read(_contatoProvider);
+                    final contatoNotifier = ref.read(_contatoProvider.notifier);
 
-                            if (_contatoInicial == contatoFinal) {
-                              context.pop();
-                              return;
-                            }
+                    if (contatoNotifier.errors.isNotEmpty) {
+                      context.showErrorSnackBar(
+                          message:
+                              Formatter.fromErrorList(contatoNotifier.errors) ??
+                                  'Erro desconhecido.');
+                      ref.read(_isLoadingProvider.notifier).state = false;
+                      return;
+                    }
 
-                            try {
-                              final repository =
-                                  context.read<ContatoRepository>(); //TODO
+                    final contatoFinal = ref.read(_contatoProvider);
 
-                              if (_contatoInicial.isEmpty) {
-                                //TODO
-                                // ignore: unused_local_variable
-                                final contatoCriado =
-                                    await repository.create(contatoFinal);
-                                context.pop();
-                                return;
-                              }
-                              final settings =
-                                  ref.read(settingsNotifierProvider);
-                              final contatoAtualizado =
-                                  await repository.update(contatoFinal);
-                              final itsMe = _contatoInicial.uid ==
-                                  settings.session?.contato.uid;
-                              if (itsMe) {
-                                final session = settings.session;
-                                ref
-                                    .read(settingsNotifierProvider.notifier)
-                                    .changeSession(session?.copyWith(
-                                        contato: contatoAtualizado));
-                              }
+                    if (_contatoInicial == contatoFinal) {
+                      context.pop();
+                      return;
+                    }
 
-                              context.pop();
-                            } on RepositoryException catch (e) {
-                              final erro = e.object?['data']['erro'];
+                    try {
+                      final repository =
+                          context.read<ContatoRepository>(); //TODO
 
-                              if (erro is List) {
-                                final erroCasted =
-                                    List<String?>.from(erro, growable: false);
+                      if (_contatoInicial.isEmpty) {
+                        //TODO
+                        // ignore: unused_local_variable
+                        final contatoCriado =
+                            await repository.create(contatoFinal);
+                        context.pop();
+                        return;
+                      }
+                      final settings = ref.read(settingsNotifierProvider);
+                      final contatoAtualizado =
+                          await repository.update(contatoFinal);
+                      final itsMe =
+                          _contatoInicial.uid == settings.session?.contato.uid;
+                      if (itsMe) {
+                        final session = settings.session;
+                        ref
+                            .read(settingsNotifierProvider.notifier)
+                            .changeSession(
+                                session?.copyWith(contato: contatoAtualizado));
+                      }
 
-                                context.showErrorSnackBar(
-                                    message:
-                                        Formatter.fromErrorList(erroCasted)!);
-                              }
+                      context.pop();
+                    } on RepositoryException catch (e) {
+                      final erro = e.object?['data']['erro'];
 
-                              if (erro is String?) {
-                                context.showErrorSnackBar(
-                                    message: '${erro ?? e.message}');
-                              }
+                      if (erro is List) {
+                        final erroCasted =
+                            List<String?>.from(erro, growable: false);
 
-                              ref.read(_editorContatoPageProvider.state).state =
-                                  const EditorContatoPageState.editing();
-                            } catch (e) {
-                              ref.read(_editorContatoPageProvider.state).state =
-                                  const EditorContatoPageState.editing();
-                              context.showErrorSnackBar(message: e.toString());
-                              return;
-                            }
-                          },
-                          icon: const Icon(Icons.done),
-                        ));
+                        context.showErrorSnackBar(
+                            message: Formatter.fromErrorList(erroCasted)!);
+                      }
+
+                      if (erro is String?) {
+                        context.showErrorSnackBar(
+                            message: '${erro ?? e.message}');
+                      }
+
+                      ref.read(_isLoadingProvider.notifier).state = false;
+                    } catch (e) {
+                      ref.read(_isLoadingProvider.notifier).state = false;
+                      context.showErrorSnackBar(message: e.toString());
+                      return;
+                    }
+                  },
+                  icon: const Icon(Icons.done),
+                );
               },
             ),
           ],

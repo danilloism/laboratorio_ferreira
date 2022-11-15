@@ -31,41 +31,46 @@ mixin _$Session {
 /// @nodoc
 abstract class $SessionCopyWith<$Res> {
   factory $SessionCopyWith(Session value, $Res Function(Session) then) =
-      _$SessionCopyWithImpl<$Res>;
+      _$SessionCopyWithImpl<$Res, Session>;
+  @useResult
   $Res call({String accessToken, Contato contato});
 
   $ContatoCopyWith<$Res> get contato;
 }
 
 /// @nodoc
-class _$SessionCopyWithImpl<$Res> implements $SessionCopyWith<$Res> {
+class _$SessionCopyWithImpl<$Res, $Val extends Session>
+    implements $SessionCopyWith<$Res> {
   _$SessionCopyWithImpl(this._value, this._then);
 
-  final Session _value;
   // ignore: unused_field
-  final $Res Function(Session) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = freezed,
-    Object? contato = freezed,
+    Object? accessToken = null,
+    Object? contato = null,
   }) {
     return _then(_value.copyWith(
-      accessToken: accessToken == freezed
+      accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
-      contato: contato == freezed
+      contato: null == contato
           ? _value.contato
           : contato // ignore: cast_nullable_to_non_nullable
               as Contato,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $ContatoCopyWith<$Res> get contato {
     return $ContatoCopyWith<$Res>(_value.contato, (value) {
-      return _then(_value.copyWith(contato: value));
+      return _then(_value.copyWith(contato: value) as $Val);
     });
   }
 }
@@ -76,6 +81,7 @@ abstract class _$$_AuthModelCopyWith<$Res> implements $SessionCopyWith<$Res> {
           _$_AuthModel value, $Res Function(_$_AuthModel) then) =
       __$$_AuthModelCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String accessToken, Contato contato});
 
   @override
@@ -83,26 +89,25 @@ abstract class _$$_AuthModelCopyWith<$Res> implements $SessionCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AuthModelCopyWithImpl<$Res> extends _$SessionCopyWithImpl<$Res>
+class __$$_AuthModelCopyWithImpl<$Res>
+    extends _$SessionCopyWithImpl<$Res, _$_AuthModel>
     implements _$$_AuthModelCopyWith<$Res> {
   __$$_AuthModelCopyWithImpl(
       _$_AuthModel _value, $Res Function(_$_AuthModel) _then)
-      : super(_value, (v) => _then(v as _$_AuthModel));
+      : super(_value, _then);
 
-  @override
-  _$_AuthModel get _value => super._value as _$_AuthModel;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = freezed,
-    Object? contato = freezed,
+    Object? accessToken = null,
+    Object? contato = null,
   }) {
     return _then(_$_AuthModel(
-      accessToken: accessToken == freezed
+      accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
               as String,
-      contato: contato == freezed
+      contato: null == contato
           ? _value.contato
           : contato // ignore: cast_nullable_to_non_nullable
               as Contato,
@@ -133,20 +138,18 @@ class _$_AuthModel implements _AuthModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AuthModel &&
-            const DeepCollectionEquality()
-                .equals(other.accessToken, accessToken) &&
-            const DeepCollectionEquality().equals(other.contato, contato));
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken) &&
+            (identical(other.contato, contato) || other.contato == contato));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(accessToken),
-      const DeepCollectionEquality().hash(contato));
+  int get hashCode => Object.hash(runtimeType, accessToken, contato);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AuthModelCopyWith<_$_AuthModel> get copyWith =>
       __$$_AuthModelCopyWithImpl<_$_AuthModel>(this, _$identity);
 

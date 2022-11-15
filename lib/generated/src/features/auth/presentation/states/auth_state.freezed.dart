@@ -26,10 +26,10 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Session session)? loggedIn,
-    TResult Function()? loggedOut,
-    TResult Function(Object error, dynamic extra)? error,
-    TResult Function()? unknown,
+    TResult? Function(Session session)? loggedIn,
+    TResult? Function()? loggedOut,
+    TResult? Function(Object error, dynamic extra)? error,
+    TResult? Function()? unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,10 +51,10 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoggedIn value)? loggedIn,
-    TResult Function(LoggedOut value)? loggedOut,
-    TResult Function(AuthError value)? error,
-    TResult Function(Unknown value)? unknown,
+    TResult? Function(LoggedIn value)? loggedIn,
+    TResult? Function(LoggedOut value)? loggedOut,
+    TResult? Function(AuthError value)? error,
+    TResult? Function(Unknown value)? unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,16 +71,18 @@ mixin _$AuthState {
 /// @nodoc
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
-      _$AuthStateCopyWithImpl<$Res>;
+      _$AuthStateCopyWithImpl<$Res, AuthState>;
 }
 
 /// @nodoc
-class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
+class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
+    implements $AuthStateCopyWith<$Res> {
   _$AuthStateCopyWithImpl(this._value, this._then);
 
-  final AuthState _value;
   // ignore: unused_field
-  final $Res Function(AuthState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -88,26 +90,26 @@ abstract class _$$LoggedInCopyWith<$Res> {
   factory _$$LoggedInCopyWith(
           _$LoggedIn value, $Res Function(_$LoggedIn) then) =
       __$$LoggedInCopyWithImpl<$Res>;
+  @useResult
   $Res call({Session session});
 
   $SessionCopyWith<$Res> get session;
 }
 
 /// @nodoc
-class __$$LoggedInCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+class __$$LoggedInCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$LoggedIn>
     implements _$$LoggedInCopyWith<$Res> {
   __$$LoggedInCopyWithImpl(_$LoggedIn _value, $Res Function(_$LoggedIn) _then)
-      : super(_value, (v) => _then(v as _$LoggedIn));
+      : super(_value, _then);
 
-  @override
-  _$LoggedIn get _value => super._value as _$LoggedIn;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? session = freezed,
+    Object? session = null,
   }) {
     return _then(_$LoggedIn(
-      session: session == freezed
+      session: null == session
           ? _value.session
           : session // ignore: cast_nullable_to_non_nullable
               as Session,
@@ -115,6 +117,7 @@ class __$$LoggedInCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $SessionCopyWith<$Res> get session {
     return $SessionCopyWith<$Res>(_value.session, (value) {
       return _then(_value.copyWith(session: value));
@@ -140,15 +143,15 @@ class _$LoggedIn extends LoggedIn {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoggedIn &&
-            const DeepCollectionEquality().equals(other.session, session));
+            (identical(other.session, session) || other.session == session));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(session));
+  int get hashCode => Object.hash(runtimeType, session);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$LoggedInCopyWith<_$LoggedIn> get copyWith =>
       __$$LoggedInCopyWithImpl<_$LoggedIn>(this, _$identity);
 
@@ -166,10 +169,10 @@ class _$LoggedIn extends LoggedIn {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Session session)? loggedIn,
-    TResult Function()? loggedOut,
-    TResult Function(Object error, dynamic extra)? error,
-    TResult Function()? unknown,
+    TResult? Function(Session session)? loggedIn,
+    TResult? Function()? loggedOut,
+    TResult? Function(Object error, dynamic extra)? error,
+    TResult? Function()? unknown,
   }) {
     return loggedIn?.call(session);
   }
@@ -203,10 +206,10 @@ class _$LoggedIn extends LoggedIn {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoggedIn value)? loggedIn,
-    TResult Function(LoggedOut value)? loggedOut,
-    TResult Function(AuthError value)? error,
-    TResult Function(Unknown value)? unknown,
+    TResult? Function(LoggedIn value)? loggedIn,
+    TResult? Function(LoggedOut value)? loggedOut,
+    TResult? Function(AuthError value)? error,
+    TResult? Function(Unknown value)? unknown,
   }) {
     return loggedIn?.call(this);
   }
@@ -245,14 +248,12 @@ abstract class _$$LoggedOutCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$LoggedOutCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+class __$$LoggedOutCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$LoggedOut>
     implements _$$LoggedOutCopyWith<$Res> {
   __$$LoggedOutCopyWithImpl(
       _$LoggedOut _value, $Res Function(_$LoggedOut) _then)
-      : super(_value, (v) => _then(v as _$LoggedOut));
-
-  @override
-  _$LoggedOut get _value => super._value as _$LoggedOut;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -288,10 +289,10 @@ class _$LoggedOut extends LoggedOut {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Session session)? loggedIn,
-    TResult Function()? loggedOut,
-    TResult Function(Object error, dynamic extra)? error,
-    TResult Function()? unknown,
+    TResult? Function(Session session)? loggedIn,
+    TResult? Function()? loggedOut,
+    TResult? Function(Object error, dynamic extra)? error,
+    TResult? Function()? unknown,
   }) {
     return loggedOut?.call();
   }
@@ -325,10 +326,10 @@ class _$LoggedOut extends LoggedOut {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoggedIn value)? loggedIn,
-    TResult Function(LoggedOut value)? loggedOut,
-    TResult Function(AuthError value)? error,
-    TResult Function(Unknown value)? unknown,
+    TResult? Function(LoggedIn value)? loggedIn,
+    TResult? Function(LoggedOut value)? loggedOut,
+    TResult? Function(AuthError value)? error,
+    TResult? Function(Unknown value)? unknown,
   }) {
     return loggedOut?.call(this);
   }
@@ -359,30 +360,27 @@ abstract class _$$AuthErrorCopyWith<$Res> {
   factory _$$AuthErrorCopyWith(
           _$AuthError value, $Res Function(_$AuthError) then) =
       __$$AuthErrorCopyWithImpl<$Res>;
+  @useResult
   $Res call({Object error, dynamic extra});
 }
 
 /// @nodoc
-class __$$AuthErrorCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+class __$$AuthErrorCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthError>
     implements _$$AuthErrorCopyWith<$Res> {
   __$$AuthErrorCopyWithImpl(
       _$AuthError _value, $Res Function(_$AuthError) _then)
-      : super(_value, (v) => _then(v as _$AuthError));
+      : super(_value, _then);
 
-  @override
-  _$AuthError get _value => super._value as _$AuthError;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = freezed,
-    Object? extra = freezed,
+    Object? error = null,
+    Object? extra = null,
   }) {
     return _then(_$AuthError(
-      error: error == freezed
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as Object,
-      extra: extra == freezed
+      error: null == error ? _value.error : error,
+      extra: null == extra
           ? _value.extra
           : extra // ignore: cast_nullable_to_non_nullable
               as dynamic,
@@ -422,6 +420,7 @@ class _$AuthError extends AuthError {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$AuthErrorCopyWith<_$AuthError> get copyWith =>
       __$$AuthErrorCopyWithImpl<_$AuthError>(this, _$identity);
 
@@ -439,10 +438,10 @@ class _$AuthError extends AuthError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Session session)? loggedIn,
-    TResult Function()? loggedOut,
-    TResult Function(Object error, dynamic extra)? error,
-    TResult Function()? unknown,
+    TResult? Function(Session session)? loggedIn,
+    TResult? Function()? loggedOut,
+    TResult? Function(Object error, dynamic extra)? error,
+    TResult? Function()? unknown,
   }) {
     return error?.call(this.error, extra);
   }
@@ -476,10 +475,10 @@ class _$AuthError extends AuthError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoggedIn value)? loggedIn,
-    TResult Function(LoggedOut value)? loggedOut,
-    TResult Function(AuthError value)? error,
-    TResult Function(Unknown value)? unknown,
+    TResult? Function(LoggedIn value)? loggedIn,
+    TResult? Function(LoggedOut value)? loggedOut,
+    TResult? Function(AuthError value)? error,
+    TResult? Function(Unknown value)? unknown,
   }) {
     return error?.call(this);
   }
@@ -519,13 +518,11 @@ abstract class _$$UnknownCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$UnknownCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+class __$$UnknownCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$Unknown>
     implements _$$UnknownCopyWith<$Res> {
   __$$UnknownCopyWithImpl(_$Unknown _value, $Res Function(_$Unknown) _then)
-      : super(_value, (v) => _then(v as _$Unknown));
-
-  @override
-  _$Unknown get _value => super._value as _$Unknown;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -561,10 +558,10 @@ class _$Unknown extends Unknown {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Session session)? loggedIn,
-    TResult Function()? loggedOut,
-    TResult Function(Object error, dynamic extra)? error,
-    TResult Function()? unknown,
+    TResult? Function(Session session)? loggedIn,
+    TResult? Function()? loggedOut,
+    TResult? Function(Object error, dynamic extra)? error,
+    TResult? Function()? unknown,
   }) {
     return unknown?.call();
   }
@@ -598,10 +595,10 @@ class _$Unknown extends Unknown {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(LoggedIn value)? loggedIn,
-    TResult Function(LoggedOut value)? loggedOut,
-    TResult Function(AuthError value)? error,
-    TResult Function(Unknown value)? unknown,
+    TResult? Function(LoggedIn value)? loggedIn,
+    TResult? Function(LoggedOut value)? loggedOut,
+    TResult? Function(AuthError value)? error,
+    TResult? Function(Unknown value)? unknown,
   }) {
     return unknown?.call(this);
   }

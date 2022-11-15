@@ -35,44 +35,47 @@ mixin _$ApiResponse<T> {
 abstract class $ApiResponseCopyWith<T, $Res> {
   factory $ApiResponseCopyWith(
           ApiResponse<T> value, $Res Function(ApiResponse<T>) then) =
-      _$ApiResponseCopyWithImpl<T, $Res>;
+      _$ApiResponseCopyWithImpl<T, $Res, ApiResponse<T>>;
+  @useResult
   $Res call({bool sucesso, T? dados, String? mensagem, dynamic erro});
 }
 
 /// @nodoc
-class _$ApiResponseCopyWithImpl<T, $Res>
+class _$ApiResponseCopyWithImpl<T, $Res, $Val extends ApiResponse<T>>
     implements $ApiResponseCopyWith<T, $Res> {
   _$ApiResponseCopyWithImpl(this._value, this._then);
 
-  final ApiResponse<T> _value;
   // ignore: unused_field
-  final $Res Function(ApiResponse<T>) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? sucesso = freezed,
+    Object? sucesso = null,
     Object? dados = freezed,
     Object? mensagem = freezed,
-    Object? erro = freezed,
+    Object? erro = null,
   }) {
     return _then(_value.copyWith(
-      sucesso: sucesso == freezed
+      sucesso: null == sucesso
           ? _value.sucesso
           : sucesso // ignore: cast_nullable_to_non_nullable
               as bool,
-      dados: dados == freezed
+      dados: freezed == dados
           ? _value.dados
           : dados // ignore: cast_nullable_to_non_nullable
               as T?,
-      mensagem: mensagem == freezed
+      mensagem: freezed == mensagem
           ? _value.mensagem
           : mensagem // ignore: cast_nullable_to_non_nullable
               as String?,
-      erro: erro == freezed
+      erro: null == erro
           ? _value.erro
           : erro // ignore: cast_nullable_to_non_nullable
               as dynamic,
-    ));
+    ) as $Val);
   }
 }
 
@@ -83,41 +86,40 @@ abstract class _$$_ApiResponseCopyWith<T, $Res>
           _$_ApiResponse<T> value, $Res Function(_$_ApiResponse<T>) then) =
       __$$_ApiResponseCopyWithImpl<T, $Res>;
   @override
+  @useResult
   $Res call({bool sucesso, T? dados, String? mensagem, dynamic erro});
 }
 
 /// @nodoc
 class __$$_ApiResponseCopyWithImpl<T, $Res>
-    extends _$ApiResponseCopyWithImpl<T, $Res>
+    extends _$ApiResponseCopyWithImpl<T, $Res, _$_ApiResponse<T>>
     implements _$$_ApiResponseCopyWith<T, $Res> {
   __$$_ApiResponseCopyWithImpl(
       _$_ApiResponse<T> _value, $Res Function(_$_ApiResponse<T>) _then)
-      : super(_value, (v) => _then(v as _$_ApiResponse<T>));
+      : super(_value, _then);
 
-  @override
-  _$_ApiResponse<T> get _value => super._value as _$_ApiResponse<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? sucesso = freezed,
+    Object? sucesso = null,
     Object? dados = freezed,
     Object? mensagem = freezed,
-    Object? erro = freezed,
+    Object? erro = null,
   }) {
     return _then(_$_ApiResponse<T>(
-      sucesso: sucesso == freezed
+      sucesso: null == sucesso
           ? _value.sucesso
           : sucesso // ignore: cast_nullable_to_non_nullable
               as bool,
-      dados: dados == freezed
+      dados: freezed == dados
           ? _value.dados
           : dados // ignore: cast_nullable_to_non_nullable
               as T?,
-      mensagem: mensagem == freezed
+      mensagem: freezed == mensagem
           ? _value.mensagem
           : mensagem // ignore: cast_nullable_to_non_nullable
               as String?,
-      erro: erro == freezed
+      erro: null == erro
           ? _value.erro
           : erro // ignore: cast_nullable_to_non_nullable
               as dynamic,
@@ -154,9 +156,10 @@ class _$_ApiResponse<T> implements _ApiResponse<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ApiResponse<T> &&
-            const DeepCollectionEquality().equals(other.sucesso, sucesso) &&
+            (identical(other.sucesso, sucesso) || other.sucesso == sucesso) &&
             const DeepCollectionEquality().equals(other.dados, dados) &&
-            const DeepCollectionEquality().equals(other.mensagem, mensagem) &&
+            (identical(other.mensagem, mensagem) ||
+                other.mensagem == mensagem) &&
             const DeepCollectionEquality().equals(other.erro, erro));
   }
 
@@ -164,13 +167,14 @@ class _$_ApiResponse<T> implements _ApiResponse<T> {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(sucesso),
+      sucesso,
       const DeepCollectionEquality().hash(dados),
-      const DeepCollectionEquality().hash(mensagem),
+      mensagem,
       const DeepCollectionEquality().hash(erro));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ApiResponseCopyWith<T, _$_ApiResponse<T>> get copyWith =>
       __$$_ApiResponseCopyWithImpl<T, _$_ApiResponse<T>>(this, _$identity);
 }

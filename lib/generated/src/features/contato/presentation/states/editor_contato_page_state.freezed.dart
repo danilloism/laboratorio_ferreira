@@ -24,8 +24,8 @@ mixin _$EditorContatoPageState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? done,
-    TResult Function()? editing,
+    TResult? Function()? done,
+    TResult? Function()? editing,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,8 +43,8 @@ mixin _$EditorContatoPageState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Done value)? done,
-    TResult Function(_Editing value)? editing,
+    TResult? Function(_Done value)? done,
+    TResult? Function(_Editing value)? editing,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,17 +60,19 @@ mixin _$EditorContatoPageState {
 abstract class $EditorContatoPageStateCopyWith<$Res> {
   factory $EditorContatoPageStateCopyWith(EditorContatoPageState value,
           $Res Function(EditorContatoPageState) then) =
-      _$EditorContatoPageStateCopyWithImpl<$Res>;
+      _$EditorContatoPageStateCopyWithImpl<$Res, EditorContatoPageState>;
 }
 
 /// @nodoc
-class _$EditorContatoPageStateCopyWithImpl<$Res>
+class _$EditorContatoPageStateCopyWithImpl<$Res,
+        $Val extends EditorContatoPageState>
     implements $EditorContatoPageStateCopyWith<$Res> {
   _$EditorContatoPageStateCopyWithImpl(this._value, this._then);
 
-  final EditorContatoPageState _value;
   // ignore: unused_field
-  final $Res Function(EditorContatoPageState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -81,13 +83,10 @@ abstract class _$$_DoneCopyWith<$Res> {
 
 /// @nodoc
 class __$$_DoneCopyWithImpl<$Res>
-    extends _$EditorContatoPageStateCopyWithImpl<$Res>
+    extends _$EditorContatoPageStateCopyWithImpl<$Res, _$_Done>
     implements _$$_DoneCopyWith<$Res> {
   __$$_DoneCopyWithImpl(_$_Done _value, $Res Function(_$_Done) _then)
-      : super(_value, (v) => _then(v as _$_Done));
-
-  @override
-  _$_Done get _value => super._value as _$_Done;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -121,8 +120,8 @@ class _$_Done extends _Done {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? done,
-    TResult Function()? editing,
+    TResult? Function()? done,
+    TResult? Function()? editing,
   }) {
     return done?.call();
   }
@@ -152,8 +151,8 @@ class _$_Done extends _Done {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Done value)? done,
-    TResult Function(_Editing value)? editing,
+    TResult? Function(_Done value)? done,
+    TResult? Function(_Editing value)? editing,
   }) {
     return done?.call(this);
   }
@@ -186,13 +185,10 @@ abstract class _$$_EditingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_EditingCopyWithImpl<$Res>
-    extends _$EditorContatoPageStateCopyWithImpl<$Res>
+    extends _$EditorContatoPageStateCopyWithImpl<$Res, _$_Editing>
     implements _$$_EditingCopyWith<$Res> {
   __$$_EditingCopyWithImpl(_$_Editing _value, $Res Function(_$_Editing) _then)
-      : super(_value, (v) => _then(v as _$_Editing));
-
-  @override
-  _$_Editing get _value => super._value as _$_Editing;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -226,8 +222,8 @@ class _$_Editing extends _Editing {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? done,
-    TResult Function()? editing,
+    TResult? Function()? done,
+    TResult? Function()? editing,
   }) {
     return editing?.call();
   }
@@ -257,8 +253,8 @@ class _$_Editing extends _Editing {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Done value)? done,
-    TResult Function(_Editing value)? editing,
+    TResult? Function(_Done value)? done,
+    TResult? Function(_Editing value)? editing,
   }) {
     return editing?.call(this);
   }

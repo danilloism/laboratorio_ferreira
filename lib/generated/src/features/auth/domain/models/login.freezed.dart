@@ -28,44 +28,48 @@ mixin _$Login {
 /// @nodoc
 abstract class $LoginCopyWith<$Res> {
   factory $LoginCopyWith(Login value, $Res Function(Login) then) =
-      _$LoginCopyWithImpl<$Res>;
+      _$LoginCopyWithImpl<$Res, Login>;
+  @useResult
   $Res call(
       {EmailInput email, SenhaInput senha, FormzStatus status, String? errors});
 }
 
 /// @nodoc
-class _$LoginCopyWithImpl<$Res> implements $LoginCopyWith<$Res> {
+class _$LoginCopyWithImpl<$Res, $Val extends Login>
+    implements $LoginCopyWith<$Res> {
   _$LoginCopyWithImpl(this._value, this._then);
 
-  final Login _value;
   // ignore: unused_field
-  final $Res Function(Login) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = freezed,
-    Object? senha = freezed,
-    Object? status = freezed,
+    Object? email = null,
+    Object? senha = null,
+    Object? status = null,
     Object? errors = freezed,
   }) {
     return _then(_value.copyWith(
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as EmailInput,
-      senha: senha == freezed
+      senha: null == senha
           ? _value.senha
           : senha // ignore: cast_nullable_to_non_nullable
               as SenhaInput,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
-      errors: errors == freezed
+      errors: freezed == errors
           ? _value.errors
           : errors // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -74,40 +78,39 @@ abstract class _$$_LoginCopyWith<$Res> implements $LoginCopyWith<$Res> {
   factory _$$_LoginCopyWith(_$_Login value, $Res Function(_$_Login) then) =
       __$$_LoginCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {EmailInput email, SenhaInput senha, FormzStatus status, String? errors});
 }
 
 /// @nodoc
-class __$$_LoginCopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res>
+class __$$_LoginCopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res, _$_Login>
     implements _$$_LoginCopyWith<$Res> {
   __$$_LoginCopyWithImpl(_$_Login _value, $Res Function(_$_Login) _then)
-      : super(_value, (v) => _then(v as _$_Login));
+      : super(_value, _then);
 
-  @override
-  _$_Login get _value => super._value as _$_Login;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = freezed,
-    Object? senha = freezed,
-    Object? status = freezed,
+    Object? email = null,
+    Object? senha = null,
+    Object? status = null,
     Object? errors = freezed,
   }) {
     return _then(_$_Login(
-      email: email == freezed
+      email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as EmailInput,
-      senha: senha == freezed
+      senha: null == senha
           ? _value.senha
           : senha // ignore: cast_nullable_to_non_nullable
               as SenhaInput,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FormzStatus,
-      errors: errors == freezed
+      errors: freezed == errors
           ? _value.errors
           : errors // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -146,22 +149,18 @@ class _$_Login implements _Login {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Login &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.senha, senha) &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other.errors, errors));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.senha, senha) || other.senha == senha) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.errors, errors) || other.errors == errors));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(senha),
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(errors));
+  int get hashCode => Object.hash(runtimeType, email, senha, status, errors);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LoginCopyWith<_$_Login> get copyWith =>
       __$$_LoginCopyWithImpl<_$_Login>(this, _$identity);
 }

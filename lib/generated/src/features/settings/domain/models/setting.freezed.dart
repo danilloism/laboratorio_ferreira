@@ -31,45 +31,50 @@ mixin _$Setting {
 /// @nodoc
 abstract class $SettingCopyWith<$Res> {
   factory $SettingCopyWith(Setting value, $Res Function(Setting) then) =
-      _$SettingCopyWithImpl<$Res>;
+      _$SettingCopyWithImpl<$Res, Setting>;
+  @useResult
   $Res call({Session? session, ThemeMode themeMode});
 
   $SessionCopyWith<$Res>? get session;
 }
 
 /// @nodoc
-class _$SettingCopyWithImpl<$Res> implements $SettingCopyWith<$Res> {
+class _$SettingCopyWithImpl<$Res, $Val extends Setting>
+    implements $SettingCopyWith<$Res> {
   _$SettingCopyWithImpl(this._value, this._then);
 
-  final Setting _value;
   // ignore: unused_field
-  final $Res Function(Setting) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? session = freezed,
-    Object? themeMode = freezed,
+    Object? themeMode = null,
   }) {
     return _then(_value.copyWith(
-      session: session == freezed
+      session: freezed == session
           ? _value.session
           : session // ignore: cast_nullable_to_non_nullable
               as Session?,
-      themeMode: themeMode == freezed
+      themeMode: null == themeMode
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $SessionCopyWith<$Res>? get session {
     if (_value.session == null) {
       return null;
     }
 
     return $SessionCopyWith<$Res>(_value.session!, (value) {
-      return _then(_value.copyWith(session: value));
+      return _then(_value.copyWith(session: value) as $Val);
     });
   }
 }
@@ -80,6 +85,7 @@ abstract class _$$_SettingCopyWith<$Res> implements $SettingCopyWith<$Res> {
           _$_Setting value, $Res Function(_$_Setting) then) =
       __$$_SettingCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({Session? session, ThemeMode themeMode});
 
   @override
@@ -87,25 +93,24 @@ abstract class _$$_SettingCopyWith<$Res> implements $SettingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_SettingCopyWithImpl<$Res> extends _$SettingCopyWithImpl<$Res>
+class __$$_SettingCopyWithImpl<$Res>
+    extends _$SettingCopyWithImpl<$Res, _$_Setting>
     implements _$$_SettingCopyWith<$Res> {
   __$$_SettingCopyWithImpl(_$_Setting _value, $Res Function(_$_Setting) _then)
-      : super(_value, (v) => _then(v as _$_Setting));
+      : super(_value, _then);
 
-  @override
-  _$_Setting get _value => super._value as _$_Setting;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? session = freezed,
-    Object? themeMode = freezed,
+    Object? themeMode = null,
   }) {
     return _then(_$_Setting(
-      session: session == freezed
+      session: freezed == session
           ? _value.session
           : session // ignore: cast_nullable_to_non_nullable
               as Session?,
-      themeMode: themeMode == freezed
+      themeMode: null == themeMode
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
@@ -137,19 +142,18 @@ class _$_Setting implements _Setting {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Setting &&
-            const DeepCollectionEquality().equals(other.session, session) &&
-            const DeepCollectionEquality().equals(other.themeMode, themeMode));
+            (identical(other.session, session) || other.session == session) &&
+            (identical(other.themeMode, themeMode) ||
+                other.themeMode == themeMode));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(session),
-      const DeepCollectionEquality().hash(themeMode));
+  int get hashCode => Object.hash(runtimeType, session, themeMode);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_SettingCopyWith<_$_Setting> get copyWith =>
       __$$_SettingCopyWithImpl<_$_Setting>(this, _$identity);
 

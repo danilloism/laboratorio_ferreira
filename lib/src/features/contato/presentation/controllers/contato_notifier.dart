@@ -79,3 +79,7 @@ class EditorContatoNotifier extends StateNotifier<Contato> {
     state = state.copyWith(telefones: listaTelefones);
   }
 }
+
+final editorContatoNotifierProvider =
+    StateNotifierProvider<EditorContatoNotifier, Contato>(
+        (ref) => throw UnimplementedError());
