@@ -21,7 +21,7 @@ class AppTheme {
 
   static ThemeData get darkTheme => ThemeData.from(
         colorScheme: _darkSeedColorScheme,
-        useMaterial3: true,
+        // useMaterial3: true,
       ).copyWith(
         appBarTheme: _appBarTheme,
         inputDecorationTheme: _inputTheme,
@@ -29,7 +29,7 @@ class AppTheme {
 
   static ThemeData get lightTheme => ThemeData.from(
         colorScheme: _lightSeedColorScheme,
-        useMaterial3: true,
+        // useMaterial3: true,
       ).copyWith(
         appBarTheme: _appBarTheme,
         inputDecorationTheme: _inputTheme,

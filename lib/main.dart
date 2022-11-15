@@ -44,23 +44,26 @@ class MyApp extends ConsumerStatefulWidget {
 class _MyAppState extends ConsumerState<MyApp> {
   @override
   void initState() {
-    ref.read(authNotifierProvider.notifier).init();
-    ref.read(networkStatusProvider.notifier).init();
+    Future(() => ref.read(networkStatusProvider.notifier).init());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    ref.listen<AuthState>(authNotifierProvider, (previous, next) {
+    ref.listen<AuthState>(authNotifierProvider, (previous, next) async {
       final session = ref.read(settingsNotifierProvider).session;
       if (next is LoggedIn && session != next.session) {
-        ref.read(settingsNotifierProvider.notifier).changeSession(next.session);
+        await ref
+            .read(settingsNotifierProvider.notifier)
+            .changeSession(next.session);
       }
 
       if (next is LoggedOut && session != null) {
-        ref.read(settingsNotifierProvider.notifier).changeSession();
+        await ref.read(settingsNotifierProvider.notifier).changeSession();
       }
     });
+    // Future(() => ref.read(authNotifierProvider.notifier).init());
+    // Future(() => ref.read(networkStatusProvider.notifier).init());
     return MaterialApp.router(
       title: 'Laboratório Ferreira',
       theme: AppTheme.lightTheme,

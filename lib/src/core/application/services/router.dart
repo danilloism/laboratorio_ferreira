@@ -13,14 +13,14 @@ import 'package:laboratorio_ferreira_mobile/src/features/servico/presentation/pr
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/view/pages/pages.dart';
 
-final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
-final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
+// final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
+// final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
 
 final routerProvider = Provider<GoRouter>((ref) {
   final router = GoRouterRefreshListenable(ref);
 
   return GoRouter(
-    navigatorKey: _rootNavigatorKey,
+    // navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: !Constants.isProduction,
     refreshListenable: router,
     initialLocation: '/splash',
@@ -37,48 +37,33 @@ class GoRouterRefreshListenable extends ChangeNotifier {
   }
 
   List<RouteBase> get _routes => [
-        ShellRoute(
-          navigatorKey: _shellNavigatorKey,
-          builder: (_, __, child) => HomePage(child: child),
+        GoRoute(
+          name: 'home',
+          path: '/',
+          builder: (context, state) => const HomePage(),
           routes: [
             GoRoute(
-              name: 'inicio',
-              path: '/inicio',
-              builder: (context, state) => const InicioPageView(),
+              name: 'viewcontato',
+              path: 'contatos/view/:id',
+              builder: (context, state) {
+                final me = _ref.read(settingsNotifierProvider).session!.contato;
+                return DetalhesContatoPage(me);
+              },
             ),
             GoRoute(
-              name: 'contatos',
-              path: '/contatos',
-              builder: (context, state) => const ContatosPageView(),
+              name: 'editcontato',
+              path: 'contatos/edit/:id',
+              builder: (context, state) {
+                final me = _ref.read(settingsNotifierProvider).session!.contato;
+                return EditorContatoPage(contato: me);
+              },
             ),
             GoRoute(
-              name: 'servicos',
-              path: '/servicos',
-              builder: (context, state) => const ServicosPageView(),
+              name: 'createcontato',
+              path: 'contatos/create',
+              builder: (context, state) => EditorContatoPage(),
             ),
           ],
-        ),
-        GoRoute(
-          parentNavigatorKey: _rootNavigatorKey,
-          name: 'acaoContato',
-          path: '/contatos/:uid/:acao',
-          builder: (context, state) {
-            final acao = state.params['acao'];
-
-            final me = _ref.read(settingsNotifierProvider).session!.contato;
-
-            if (acao == 'info') {
-              return DetalhesContatoPage(me);
-            }
-
-            return EditorContatoPage(contato: me);
-          },
-        ),
-        GoRoute(
-          parentNavigatorKey: _rootNavigatorKey,
-          name: 'criarContato',
-          path: '/contatos/criar',
-          builder: (context, state) => EditorContatoPage(),
         ),
         GoRoute(
           name: 'login',
@@ -91,7 +76,7 @@ class GoRouterRefreshListenable extends ChangeNotifier {
           builder: (context, state) => const WelcomePage(),
         ),
         GoRoute(
-          parentNavigatorKey: _rootNavigatorKey,
+          // parentNavigatorKey: _rootNavigatorKey,
           name: 'settings',
           path: '/settings',
           builder: (context, state) => const SettingsPage(),
@@ -101,7 +86,7 @@ class GoRouterRefreshListenable extends ChangeNotifier {
               path: 'editar_contato',
               redirect: (context, _) {
                 if (_ref.read(authNotifierProvider) is LoggedIn) {
-                  return '/contatos/me/editar';
+                  return '/contatos/edit/me';
                 }
 
                 return null;
@@ -117,17 +102,15 @@ class GoRouterRefreshListenable extends ChangeNotifier {
     switch (state.location) {
       case '/splash':
         return authState.whenOrNull(
-          loggedIn: (_) => '/inicio',
+          loggedIn: (_) => '/',
           loggedOut: () => '/login',
         );
 
-      case '/inicio':
-      case '/contatos':
-      case '/servicos':
+      case '/':
         return authState.whenOrNull(loggedOut: () => '/login');
 
       case '/login':
-        return authState.whenOrNull(loggedIn: (_) => '/inicio');
+        return authState.whenOrNull(loggedIn: (_) => '/');
 
       default:
         return null;

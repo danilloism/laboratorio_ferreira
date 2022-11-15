@@ -27,38 +27,45 @@ class EditorContatoPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Builder(builder: (context) {
-      return Scaffold(
+    return ProviderScope(
+      overrides: [
+        editorContatoNotifierProvider
+            .overrideWith((ref) => EditorContatoNotifier(_contatoInicial))
+      ],
+      child: Scaffold(
         appBar: AppBar(
           title: Text(
               _contatoInicial.isEmpty ? 'Criar Contato' : 'Editar Contato'),
-          leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                if (_contatoInicial != ref.read(_contatoProvider)) {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: const Text(
-                            'Há alterações não salvas, deseja mesmo voltar?'),
-                        actions: [
-                          ElevatedButton(
-                              onPressed: () =>
-                                  Navigator.of(context, rootNavigator: true)
-                                      .pop('dialog'),
-                              child: const Text('Não')),
-                          TextButton(
-                              onPressed: () => context.pop(),
-                              child: const Text('Sim'))
-                        ],
-                      );
-                    },
-                  );
-                } else {
-                  context.pop();
-                }
-              }),
+          leading: Consumer(builder: (context, ref, _) {
+            return IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  if (_contatoInicial !=
+                      ref.read(editorContatoNotifierProvider)) {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text(
+                              'Há alterações não salvas, deseja mesmo voltar?'),
+                          actions: [
+                            ElevatedButton(
+                                onPressed: () =>
+                                    Navigator.of(context, rootNavigator: true)
+                                        .pop('dialog'),
+                                child: const Text('Não')),
+                            TextButton(
+                                onPressed: () => context.pop(),
+                                child: const Text('Sim'))
+                          ],
+                        );
+                      },
+                    );
+                  } else {
+                    context.pop();
+                  }
+                });
+          }),
           actions: [
             Consumer(
               builder: (context, ref, _) {
@@ -78,7 +85,8 @@ class EditorContatoPage extends ConsumerWidget {
                     UiHelper.closeKeyboard();
                     ref.read(_isLoadingProvider.notifier).state = true;
 
-                    final contatoNotifier = ref.read(_contatoProvider.notifier);
+                    final contatoNotifier =
+                        ref.read(editorContatoNotifierProvider.notifier);
 
                     if (contatoNotifier.errors.isNotEmpty) {
                       context.showErrorSnackBar(
@@ -89,7 +97,8 @@ class EditorContatoPage extends ConsumerWidget {
                       return;
                     }
 
-                    final contatoFinal = ref.read(_contatoProvider);
+                    final contatoFinal =
+                        ref.read(editorContatoNotifierProvider);
 
                     if (_contatoInicial == contatoFinal) {
                       context.pop();
@@ -200,7 +209,7 @@ class EditorContatoPage extends ConsumerWidget {
             ),
           ),
         ),
-      );
-    });
+      ),
+    );
   }
 }

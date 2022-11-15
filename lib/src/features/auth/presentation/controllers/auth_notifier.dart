@@ -14,9 +14,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     Session? localSession,
   })  : _authRepo = authRepository,
         _localSession = localSession,
-        super(const AuthState.unknown());
-
-  void init() {
+        super(const AuthState.unknown()) {
     final tokenValido = _localSession != null &&
         !JwtDecoder.isExpired(_localSession!.accessToken);
 

@@ -65,9 +65,7 @@ class LoggedInInfoSection extends ConsumerWidget {
                     ),
                     IconButton(
                         onPressed: () {
-                          // context.pushNamed(
-                          //   Routes.editarContato.name,
-                          //   params: {'uid': 'me'});
+                          context.push('/settings/editar_contato');
                         },
                         icon: const Icon(Icons.edit_note_outlined))
                   ],

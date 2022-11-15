@@ -1,11 +1,15 @@
+import 'dart:async';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 enum NetworkStatus { on, off, unknown }
 
 class NetworkStatusNotifier extends StateNotifier<NetworkStatus> {
+  late final StreamSubscription _sub;
+
   NetworkStatusNotifier() : super(NetworkStatus.unknown) {
-    Connectivity().onConnectivityChanged.listen((event) {
+    _sub = Connectivity().onConnectivityChanged.listen((event) {
       switch (event) {
         case ConnectivityResult.wifi:
         case ConnectivityResult.mobile:
@@ -16,10 +20,16 @@ class NetworkStatusNotifier extends StateNotifier<NetworkStatus> {
           state = NetworkStatus.off;
           break;
       }
-    });
+    }, cancelOnError: true);
   }
 
   void init() {}
+
+  @override
+  void dispose() {
+    _sub.cancel();
+    super.dispose();
+  }
 }
 
 final networkStatusProvider =

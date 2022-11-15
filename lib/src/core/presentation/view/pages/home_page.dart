@@ -1,28 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart'
-    show Logo;
+    show InicioPageView, Logo;
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/pages/lista_contatos_page_view.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/servico/presentation/presentation.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key, required this.child});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
-  final Widget child;
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
-  int _getIndex(BuildContext context) {
-    final route = GoRouter.of(context);
-    final String location = route.location;
-
-    switch (location) {
-      case '/inicio':
-        return 0;
-      case '/contatos':
-        return 1;
-      case '/servicos':
-        return 2;
-      default:
-        return 0;
-    }
-  }
+class _HomePageState extends State<HomePage> {
+  var _index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -36,22 +27,18 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: child,
+      body: IndexedStack(
+        index: _index,
+        children: const [
+          InicioPageView(),
+          ContatosPageView(),
+          ServicosPageView(),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: false,
-        currentIndex: _getIndex(context),
-        onTap: (index) {
-          switch (index) {
-            case 0:
-              context.go('/inicio');
-              break;
-            case 1:
-              context.go('/contatos');
-              break;
-            case 2:
-              context.go('/servicos');
-          }
-        },
+        currentIndex: _index,
+        onTap: (index) => setState(() => _index = index),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_rounded),

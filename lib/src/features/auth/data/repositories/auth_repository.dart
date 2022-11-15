@@ -12,10 +12,12 @@ class AuthRepository {
   late final IHttpService _httpService;
   final _path = join(Constants.apiUrl, 'user');
 
-  String? get authToken => _httpService.authorizationToken;
+  late String? _authToken;
 
   AuthRepository({required IHttpService httpService})
-      : _httpService = httpService;
+      : _httpService = httpService {
+    _authToken = _httpService.authorizationToken;
+  }
 
   Future<Session> login(Account account) async {
     try {

@@ -20,11 +20,11 @@ class SettingsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final contato = ref.read(settingsNotifierProvider).session?.contato;
+    final contato = ref.watch(settingsNotifierProvider).session?.contato;
     ref.listen<AuthState>(authNotifierProvider, (previous, next) {
       if (GoRouter.of(context).location == '/settings') {
         next.whenOrNull(
-            loggedIn: (_) => context.go('/inicio'),
+            loggedIn: (_) => context.go('/'),
             loggedOut: () => context.go('/login'));
       }
     });

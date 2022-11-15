@@ -12,7 +12,7 @@ class CriarContatoButton extends StatelessWidget {
       children: [
         TextButton(
           onPressed: () {
-            context.pushNamed('criarContato');
+            context.push('/contatos/create');
           },
           child: Row(
             children: const [
