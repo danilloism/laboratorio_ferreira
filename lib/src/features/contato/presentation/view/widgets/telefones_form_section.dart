@@ -22,6 +22,7 @@ class TelefonesFormSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final ctxContainer = ProviderScope.containerOf(context);
     final telefonesState = ref.watch(
         editorContatoNotifierProvider.select((value) => value.telefones));
     final podeEditarTelefone = _podeEditarTelefone(ref);
@@ -35,21 +36,30 @@ class TelefonesFormSection extends ConsumerWidget {
             ...telefonesState.map(
               (telefone) => CustomActionChip(
                 label: Text(Formatter.applyPhoneMask(telefone)),
-                onPressed: () => podeEditarTelefone
-                    ? showDialog(
-                        context: context,
-                        builder: (context) =>
-                            EditorTelefoneDialog(telefone: telefone),
-                      )
-                    : null,
+                onPressed: () {
+                  podeEditarTelefone
+                      ? showDialog(
+                          context: context,
+                          builder: (context) => ProviderScope(
+                            parent: ctxContainer,
+                            child: EditorTelefoneDialog(telefone: telefone),
+                          ),
+                        )
+                      : null;
+                },
               ),
             ),
             if (podeEditarTelefone)
               CustomActionChip(
-                onPressed: () => showDialog(
-                  context: context,
-                  builder: (context) => EditorTelefoneDialog(),
-                ),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => ProviderScope(
+                      parent: ctxContainer,
+                      child: EditorTelefoneDialog(),
+                    ),
+                  );
+                },
                 label: const Icon(Icons.add),
                 padding: const EdgeInsets.all(6),
               ),
