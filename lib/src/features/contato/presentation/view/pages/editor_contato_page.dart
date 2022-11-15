@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
@@ -106,8 +105,7 @@ class EditorContatoPage extends ConsumerWidget {
                     }
 
                     try {
-                      final repository =
-                          context.read<ContatoRepository>(); //TODO
+                      final repository = ref.read(contatoRepositoryProvider);
 
                       if (_contatoInicial.isEmpty) {
                         //TODO

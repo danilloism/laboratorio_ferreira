@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/config/constants.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/application.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
@@ -128,3 +129,6 @@ class ContatoRepository {
     }
   }
 }
+
+final contatoRepositoryProvider = Provider(
+    (ref) => ContatoRepository(httpService: ref.watch(httpServiceProvider)));
