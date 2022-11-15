@@ -23,8 +23,6 @@ class NetworkStatusNotifier extends StateNotifier<NetworkStatus> {
     }, cancelOnError: true);
   }
 
-  void init() {}
-
   @override
   void dispose() {
     _sub.cancel();

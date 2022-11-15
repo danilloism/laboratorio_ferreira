@@ -10,8 +10,8 @@ abstract class IHttpService {
   Future post(String path, {dynamic data});
   Future get(String path, {Map<String, dynamic>? queryParams});
   Future put(String path, {dynamic data});
-
   Future patch(String path);
+  final CancelToken? cancelToken = null;
 }
 
 final httpServiceProvider = Provider<IHttpService>((ref) {
@@ -28,7 +28,10 @@ final httpServiceProvider = Provider<IHttpService>((ref) {
     ),
   )..interceptors.add(LoggyDioInterceptor());
 
-  ref.onDispose(() => dio.close());
-
-  return DioService(dio);
+  final service = DioService(dio);
+  ref.onDispose(() {
+    service.cancelToken?.cancel();
+    dio.close();
+  });
+  return service;
 });

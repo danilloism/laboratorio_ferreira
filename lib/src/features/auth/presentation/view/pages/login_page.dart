@@ -17,9 +17,9 @@ class LoginPage extends StatelessWidget {
         child: SizedBox.expand(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Logo(height: 150),
-              const SizedBox(height: 16),
+            children: const [
+              Logo(height: 150),
+              SizedBox(height: 16),
               LoginForm(),
             ],
           ),

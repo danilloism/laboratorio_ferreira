@@ -44,7 +44,11 @@ class MyApp extends ConsumerStatefulWidget {
 }
 
 class _MyAppState extends ConsumerState<MyApp> {
-  _refreshToken(WidgetRef ref) {
+  _initApp(WidgetRef ref) {
+    // Inicializar Network Status Provider
+    ref.read(networkStatusProvider);
+
+    // Refresh Token //
     final settingsNotifier = ref.read(settingsNotifierProvider);
     final session = settingsNotifier.session;
     if (session != null) {
@@ -68,45 +72,21 @@ class _MyAppState extends ConsumerState<MyApp> {
 
   @override
   void initState() {
-    Future(() => ref.read(networkStatusProvider.notifier).init());
-    Future(() => _refreshToken(ref));
+    Future(() => _initApp(ref));
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    ref.listen<AuthState>(authNotifierProvider, (previous, next) async {
+    ref.listen<AuthState>(authNotifierProvider, (previous, next) {
       final settingsNotifier = ref.read(settingsNotifierProvider);
       final session = settingsNotifier.session;
-      if (next is LoggedIn) {
-        if (session != next.session) {
-          await ref
-              .read(settingsNotifierProvider.notifier)
-              .changeSession(next.session);
-        }
-
-        if (previous is! LoggedOut && session != null) {
-          final tokenUsuarioLogado = session.accessToken;
-          final decodedToken = JwtDecoder.decode(tokenUsuarioLogado);
-          final iat = DateTime.fromMillisecondsSinceEpoch(0)
-              .add(Duration(seconds: decodedToken['iat']));
-          final dataAtual = DateTime.now();
-          final diferencaDias = iat.day - dataAtual.day;
-          if (diferencaDias <= 2) return;
-          ref.read(authRepositoryProvider).refreshToken().then((refreshToken) {
-            final currentAuthState = ref.read(authNotifierProvider);
-            if (currentAuthState is! LoggedIn) return;
-            final newSession =
-                session.copyWith(accessToken: refreshToken.accessToken);
-            ref
-                .read(settingsNotifierProvider.notifier)
-                .changeSession(newSession);
-          });
-        }
+      if (next is LoggedIn && session != next.session) {
+        ref.read(settingsNotifierProvider.notifier).changeSession(next.session);
       }
 
       if (next is LoggedOut && session != null) {
-        await ref.read(settingsNotifierProvider.notifier).changeSession();
+        ref.read(settingsNotifierProvider.notifier).changeSession();
       }
     });
 
