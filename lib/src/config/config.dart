@@ -1,3 +1,3 @@
 export 'assets.dart';
-export 'constants.dart';
+export 'environment.dart';
 export 'cores.dart';

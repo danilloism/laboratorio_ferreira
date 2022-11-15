@@ -15,10 +15,10 @@ class Init {
 
   static void executeAfterAsyncCall() {
     Loggy.initLoggy(
-      logPrinter: Constants.isProduction
+      logPrinter: Environment.isProduction
           ? const DefaultPrinter()
           : const PrettyDeveloperPrinter(),
-      logOptions: Constants.isProduction
+      logOptions: Environment.isProduction
           ? const LogOptions(LogLevel.error)
           : const LogOptions(
               LogLevel.all,

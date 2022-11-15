@@ -14,15 +14,9 @@ import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/c
 
 class EditorContatoPage extends ConsumerWidget {
   EditorContatoPage({super.key, Contato? contato})
-      : _contatoInicial = contato ?? Contato.empty {
-    _contatoProvider = StateNotifierProvider<EditorContatoNotifier, Contato>(
-        (ref) => EditorContatoNotifier(_contatoInicial));
-  }
+      : _contatoInicial = contato ?? Contato.empty;
   final Contato _contatoInicial;
   final _isLoadingProvider = StateProvider<bool>((ref) => false);
-
-  late final StateNotifierProvider<EditorContatoNotifier, Contato>
-      _contatoProvider;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

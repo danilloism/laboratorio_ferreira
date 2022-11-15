@@ -30,12 +30,12 @@ add {
   }
 
   @override
-  void didDisposeProvider(ProviderBase provider, ProviderContainer containers) {
+  void didDisposeProvider(ProviderBase provider, ProviderContainer container) {
     loggy.debug('''
 dispose {
   "provider": "${provider.name ?? provider.runtimeType}" 
 }''');
-    super.didDisposeProvider(provider, containers);
+    super.didDisposeProvider(provider, container);
   }
 
   @override

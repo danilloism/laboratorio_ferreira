@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:laboratorio_ferreira_mobile/src/config/constants.dart';
+import 'package:laboratorio_ferreira_mobile/src/config/environment.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/application.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/models.dart';
@@ -10,14 +10,10 @@ import 'package:path/path.dart';
 
 class AuthRepository {
   late final IHttpService _httpService;
-  final _path = join(Constants.apiUrl, 'user');
-
-  late String? _authToken;
+  final _path = join(Environment.apiUrl, 'user');
 
   AuthRepository({required IHttpService httpService})
-      : _httpService = httpService {
-    _authToken = _httpService.authorizationToken;
-  }
+      : _httpService = httpService;
 
   Future<Session> login(Account account) async {
     try {

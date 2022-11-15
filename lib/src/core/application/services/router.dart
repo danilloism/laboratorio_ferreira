@@ -8,8 +8,6 @@ import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/state
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/view/pages/login_page.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/pages/detalhes_contato_page.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/pages/editor_contato_page.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/pages/lista_contatos_page_view.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/servico/presentation/presentation.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/view/pages/pages.dart';
 
@@ -21,7 +19,7 @@ final routerProvider = Provider<GoRouter>((ref) {
 
   return GoRouter(
     // navigatorKey: _rootNavigatorKey,
-    debugLogDiagnostics: !Constants.isProduction,
+    debugLogDiagnostics: !Environment.isProduction,
     refreshListenable: router,
     initialLocation: '/splash',
     redirect: router._redirect,
