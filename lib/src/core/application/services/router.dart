@@ -11,14 +11,10 @@ import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/vi
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/view/pages/pages.dart';
 
-// final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
-// final _shellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'shell');
-
 final routerProvider = Provider<GoRouter>((ref) {
   final router = GoRouterRefreshListenable(ref);
 
   return GoRouter(
-    // navigatorKey: _rootNavigatorKey,
     debugLogDiagnostics: !Environment.isProduction,
     refreshListenable: router,
     initialLocation: '/splash',
@@ -74,7 +70,6 @@ class GoRouterRefreshListenable extends ChangeNotifier {
           builder: (context, state) => const WelcomePage(),
         ),
         GoRoute(
-          // parentNavigatorKey: _rootNavigatorKey,
           name: 'settings',
           path: '/settings',
           builder: (context, state) => const SettingsPage(),

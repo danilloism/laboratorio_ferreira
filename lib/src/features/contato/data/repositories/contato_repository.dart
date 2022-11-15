@@ -130,5 +130,5 @@ class ContatoRepository {
   }
 }
 
-final contatoRepositoryProvider = Provider(
+final contatoRepositoryProvider = Provider.autoDispose(
     (ref) => ContatoRepository(httpService: ref.watch(httpServiceProvider)));
