@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/build_context_extension.dart';
 
 class CustomActionChip extends StatelessWidget {
   const CustomActionChip({
@@ -17,7 +17,7 @@ class CustomActionChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return ActionChip(
       label: label,
-      onPressed: onPressed,
+      onPressed: onPressed ?? () {},
       disabledColor: context.theme.chipTheme.backgroundColor,
       padding: padding,
     );

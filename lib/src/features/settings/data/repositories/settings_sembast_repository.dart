@@ -2,23 +2,18 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/session.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/settings/domain/models/setting.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
 import 'package:loggy/loggy.dart';
 import 'package:sembast/sembast.dart';
 
 extension ThemeModeToSembast on ThemeMode {
-  Map<String, Object> toSembast() {
-    return {'value': index};
-  }
+  Map<String, Object> toSembast() => {'value': index};
 }
 
 extension SessionToSembast on Session? {
-  Map<String, Object?> toSembast() {
-    if (this == null) return {'value': null};
-
-    return {'value': this!.toJson()};
-  }
+  Map<String, Object?> toSembast() => {'value': this?.toJson()};
 }
 
 enum SettingsItem { session, themeMode }

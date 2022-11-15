@@ -1,26 +1,23 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/config/constants.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/auth.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/models/refresh_token.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/application/application.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/models.dart';
 import 'package:path/path.dart';
 
 class AuthRepository {
-  final IHttpService _httpService;
+  late final IHttpService _httpService;
   final _path = join(Constants.apiUrl, 'user');
-  String? _token;
 
-  String? get authToken => _token;
-
-  set authToken(String? value) {
-    _httpService.resetAuthTokenWithValueOrNull(value);
-    _token = value;
-  }
+  late String? _authToken;
 
   AuthRepository({required IHttpService httpService})
-      : _httpService = httpService;
+      : _httpService = httpService {
+    _authToken = _httpService.authorizationToken;
+  }
 
   Future<Session> login(Account account) async {
     try {
@@ -33,7 +30,6 @@ class AuthRepository {
           ApiResponse<Session>.fromJson(resposta.data, Session.fromJson);
       if (dto.sucesso) {
         final session = dto.dados!;
-        authToken = session.accessToken;
         return session;
       }
 
@@ -65,7 +61,6 @@ class AuthRepository {
       if (dto.sucesso) {
         final refreshToken = dto.dados!;
 
-        authToken = refreshToken.accessToken;
         return refreshToken;
       }
 
@@ -86,3 +81,6 @@ class AuthRepository {
     }
   }
 }
+
+final authRepositoryProvider = Provider<AuthRepository>(
+    (ref) => AuthRepository(httpService: ref.watch(httpServiceProvider)));
