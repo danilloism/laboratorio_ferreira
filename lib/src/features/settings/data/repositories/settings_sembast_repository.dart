@@ -86,7 +86,7 @@ class SettingsSembastRepository with UiLoggy implements SettingsRepository {
   }
 
   @override
-  Future<Map<String, Object?>?> get<T>(SettingsItem setting) async {
+  Future<Map<String, Object?>?> get(SettingsItem setting) async {
     final record = await _store.record(setting.name).get(_database);
     return record;
   }

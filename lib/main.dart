@@ -22,7 +22,7 @@ Future<void> main() async {
     Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
   ]);
   Init.executeAfterAsyncCall();
-
+  // final isar = await Isar.open([ContatoStorageModelSchema], inspector: true);
   final db = chamadasAssincronas[0] as Database;
   final settingsRepo = await Init.settingsRepo(db);
 
@@ -78,17 +78,17 @@ class _MyAppState extends ConsumerState<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    ref.listen<AuthState>(authNotifierProvider, (previous, next) {
-      final settingsNotifier = ref.read(settingsNotifierProvider);
-      final session = settingsNotifier.session;
-      if (next is LoggedIn && session != next.session) {
-        ref.read(settingsNotifierProvider.notifier).changeSession(next.session);
-      }
+    // ref.listen<AuthState>(authNotifierProvider, (previous, next) {
+    //   final settingsNotifier = ref.read(settingsNotifierProvider);
+    //   final session = settingsNotifier.session;
+    //   if (next is LoggedIn && session != next.session) {
+    //     ref.read(settingsNotifierProvider.notifier).changeSession(next.session);
+    //   }
 
-      if (next is LoggedOut && session != null) {
-        ref.read(settingsNotifierProvider.notifier).changeSession();
-      }
-    });
+    //   if (next is LoggedOut && session != null) {
+    //     ref.read(settingsNotifierProvider.notifier).changeSession();
+    //   }
+    // });
 
     return MaterialApp.router(
       title: 'Laboratório Ferreira',
