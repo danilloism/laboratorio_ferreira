@@ -1,16 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:isar/isar.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:laboratorio_ferreira_mobile/firebase_options.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/services/services.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/data/local_storage_models/account_storage_model.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/data/repositories/auth_repository.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/states/auth_state.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/data/local_storage_models/contato_storage_model.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/data/data.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 import 'package:sembast/sembast.dart';

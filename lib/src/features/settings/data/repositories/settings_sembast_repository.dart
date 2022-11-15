@@ -50,12 +50,12 @@ ThemeMode? _themeModeFromSembast(Map<String, Object?>? object) {
   return ThemeMode.values[object['value'] as int];
 }
 
-Contato? _contatoFromSembast(Map<String, Object?>? object,
-    {required String id}) {
-  if (object == null) return null;
+// Contato? _contatoFromSembast(Map<String, Object?>? object,
+//     {required String id}) {
+//   if (object == null) return null;
 
-  return Contato.fromJson(object[id]);
-}
+//   return Contato.fromJson(object[id]);
+// }
 
 class SettingsSembastRepository with UiLoggy implements SettingsRepository {
   final Database _database;
