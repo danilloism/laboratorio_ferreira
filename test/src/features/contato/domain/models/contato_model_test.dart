@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/core.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/common/data/models/contato.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/contato.dart';
 
 void main() {
   late Contato contato;
@@ -35,6 +35,10 @@ void main() {
       expect(categoriaFromJson, equals(categoriaFromInstance.toUpperCase()));
       expect(categoriaFromJson, isNot(categoriaFromInstance));
       expect(contatoFromJson, equals(contato));
+      expect(
+          contatoFromJson.telefones.length, equals(contato.telefones.length));
+      expect(
+          contatoFromJson.categorias.length, equals(contato.categorias.length));
     });
   });
 }
@@ -43,8 +47,8 @@ Contato genRandomContato() {
   final rand = Random().nextInt(Roles.values.length);
 
   return Contato(
-    nome: faker.person.name(),
-    telefones: List.generate(3, (_) => faker.phoneNumber.us()).toSet(),
+    nome: 'Teste',
+    telefones: {'655656565', '854564456'},
     categorias: List.generate(20, (_) => Roles.values[rand]).toSet(),
     uid: faker.guid.guid(),
   );
