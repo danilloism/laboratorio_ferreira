@@ -24,7 +24,6 @@ mixin _$Account {
   String? get senha => throw _privateConstructorUsedError;
   DateTime? get criadoEm => throw _privateConstructorUsedError;
   DateTime? get atualizadoEm => throw _privateConstructorUsedError;
-  String? get contatoUid => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,8 +39,7 @@ abstract class $AccountCopyWith<$Res> {
       {String email,
       String? senha,
       DateTime? criadoEm,
-      DateTime? atualizadoEm,
-      String? contatoUid});
+      DateTime? atualizadoEm});
 }
 
 /// @nodoc
@@ -61,7 +59,6 @@ class _$AccountCopyWithImpl<$Res, $Val extends Account>
     Object? senha = freezed,
     Object? criadoEm = freezed,
     Object? atualizadoEm = freezed,
-    Object? contatoUid = freezed,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -80,10 +77,6 @@ class _$AccountCopyWithImpl<$Res, $Val extends Account>
           ? _value.atualizadoEm
           : atualizadoEm // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      contatoUid: freezed == contatoUid
-          ? _value.contatoUid
-          : contatoUid // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 }
@@ -99,8 +92,7 @@ abstract class _$$_AccountCopyWith<$Res> implements $AccountCopyWith<$Res> {
       {String email,
       String? senha,
       DateTime? criadoEm,
-      DateTime? atualizadoEm,
-      String? contatoUid});
+      DateTime? atualizadoEm});
 }
 
 /// @nodoc
@@ -117,7 +109,6 @@ class __$$_AccountCopyWithImpl<$Res>
     Object? senha = freezed,
     Object? criadoEm = freezed,
     Object? atualizadoEm = freezed,
-    Object? contatoUid = freezed,
   }) {
     return _then(_$_Account(
       email: null == email
@@ -136,10 +127,6 @@ class __$$_AccountCopyWithImpl<$Res>
           ? _value.atualizadoEm
           : atualizadoEm // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      contatoUid: freezed == contatoUid
-          ? _value.contatoUid
-          : contatoUid // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -148,11 +135,7 @@ class __$$_AccountCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Account implements _Account {
   const _$_Account(
-      {required this.email,
-      this.senha,
-      this.criadoEm,
-      this.atualizadoEm,
-      this.contatoUid});
+      {required this.email, this.senha, this.criadoEm, this.atualizadoEm});
 
   factory _$_Account.fromJson(Map<String, dynamic> json) =>
       _$$_AccountFromJson(json);
@@ -165,12 +148,10 @@ class _$_Account implements _Account {
   final DateTime? criadoEm;
   @override
   final DateTime? atualizadoEm;
-  @override
-  final String? contatoUid;
 
   @override
   String toString() {
-    return 'Account(email: $email, senha: $senha, criadoEm: $criadoEm, atualizadoEm: $atualizadoEm, contatoUid: $contatoUid)';
+    return 'Account(email: $email, senha: $senha, criadoEm: $criadoEm, atualizadoEm: $atualizadoEm)';
   }
 
   @override
@@ -183,15 +164,13 @@ class _$_Account implements _Account {
             (identical(other.criadoEm, criadoEm) ||
                 other.criadoEm == criadoEm) &&
             (identical(other.atualizadoEm, atualizadoEm) ||
-                other.atualizadoEm == atualizadoEm) &&
-            (identical(other.contatoUid, contatoUid) ||
-                other.contatoUid == contatoUid));
+                other.atualizadoEm == atualizadoEm));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, email, senha, criadoEm, atualizadoEm, contatoUid);
+  int get hashCode =>
+      Object.hash(runtimeType, email, senha, criadoEm, atualizadoEm);
 
   @JsonKey(ignore: true)
   @override
@@ -212,8 +191,7 @@ abstract class _Account implements Account {
       {required final String email,
       final String? senha,
       final DateTime? criadoEm,
-      final DateTime? atualizadoEm,
-      final String? contatoUid}) = _$_Account;
+      final DateTime? atualizadoEm}) = _$_Account;
 
   factory _Account.fromJson(Map<String, dynamic> json) = _$_Account.fromJson;
 
@@ -225,8 +203,6 @@ abstract class _Account implements Account {
   DateTime? get criadoEm;
   @override
   DateTime? get atualizadoEm;
-  @override
-  String? get contatoUid;
   @override
   @JsonKey(ignore: true)
   _$$_AccountCopyWith<_$_Account> get copyWith =>
