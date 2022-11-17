@@ -1,3 +1,4 @@
+// coverage:ignore-file
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';

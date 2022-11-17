@@ -1,6 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/account.dart';
 
+import '../../../../../random_model_generators.dart';
+
 void main() {
   late Account account;
 
@@ -10,28 +12,20 @@ void main() {
 
   group('AccountModel', () {
     test('deve ser instanciado.', () {
-      account = const Account(email: '', senha: '');
-      expect(account, isA<Account>());
+      expect(
+          account,
+          allOf([
+            isA<Account>(),
+            isNotNull,
+          ]));
     });
 
     test('fromJson && toJson devem fazer a conversão corretamente.', () {
       final json = account.toJson();
 
-      final expected = Account.fromJson(json);
+      final accountFromJson = Account.fromJson(json);
 
-      expect(expected.email, equals(account.email));
-      expect(expected.senha, equals(account.senha));
-      expect(expected.atualizadoEm, equals(account.atualizadoEm));
-      expect(expected.criadoEm, equals(account.criadoEm));
+      expect(accountFromJson, equals(account));
     });
   });
-}
-
-Account genRandomAccount() {
-  return Account(
-    email: 'Teste',
-    senha: 'Teste',
-    criadoEm: DateTime.now(),
-    atualizadoEm: DateTime.now(),
-  );
 }
