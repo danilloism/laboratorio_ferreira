@@ -66,7 +66,7 @@ const AccountStorageModelSchema = CollectionSchema(
   getId: _accountStorageModelGetId,
   getLinks: _accountStorageModelGetLinks,
   attach: _accountStorageModelAttach,
-  version: '3.0.4',
+  version: '3.0.5',
 );
 
 int _accountStorageModelEstimateSize(

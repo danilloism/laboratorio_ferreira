@@ -86,7 +86,7 @@ const ContatoStorageModelSchema = CollectionSchema(
   getId: _contatoStorageModelGetId,
   getLinks: _contatoStorageModelGetLinks,
   attach: _contatoStorageModelAttach,
-  version: '3.0.4',
+  version: '3.0.5',
 );
 
 int _contatoStorageModelEstimateSize(
