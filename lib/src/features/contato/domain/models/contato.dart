@@ -96,6 +96,8 @@ extension Methods on Contato {
           .map((categoria) => categoria.index)
           .reduce((value, element) => value < element ? value : element);
 
+  Roles get maiorRole => Roles.values[hierarquia];
+
   bool temHierarquiaMenorQue(Roles role) => hierarquia > role.index;
 
   bool temHierarquiaMaiorQue(Roles role) => hierarquia < role.index;
