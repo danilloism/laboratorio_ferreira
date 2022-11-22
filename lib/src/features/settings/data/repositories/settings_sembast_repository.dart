@@ -35,6 +35,12 @@ ThemeMode? _themeModeFromSembast(Map<String, Object?>? object) {
   return ThemeMode.values[object['value'] as int];
 }
 
+bool? _m3FromSembast(Map<String, Object?>? object) {
+  if (object == null) return null;
+
+  return object['value'] as bool;
+}
+
 class SettingsSembastRepository with UiLoggy implements SettingsRepository {
   final Database _database;
   final _store = stringMapStoreFactory.store('settings_store');
@@ -45,14 +51,19 @@ class SettingsSembastRepository with UiLoggy implements SettingsRepository {
   @override
   Future<void> init() async {
     await _database.transaction((txn) async {
-      final sessionObject =
-          await _store.record(SettingsItem.session.name).get(txn);
-      final themeModeObject =
-          await _store.record(SettingsItem.themeMode.name).get(txn);
-      final session = _sessionFromSembast(sessionObject);
-      final themeMode = _themeModeFromSembast(themeModeObject);
+      final objects = await Future.wait([
+        _store.record(SettingsItem.session.name).get(txn),
+        _store.record(SettingsItem.themeMode.name).get(txn),
+        _store.record(SettingsItem.useMaterial3.name).get(txn)
+      ]);
 
-      _current = Setting(themeMode: themeMode ?? ThemeMode.system);
+      final session = _sessionFromSembast(objects[0]);
+      final themeMode = _themeModeFromSembast(objects[1]) ?? ThemeMode.system;
+      final useMaterial3 = _m3FromSembast(objects[2]) ?? false;
+      _current = Setting(
+        themeMode: themeMode,
+        useMaterial3: useMaterial3,
+      );
 
       if (session?.accessToken != null &&
           !JwtDecoder.isExpired(session!.accessToken)) {

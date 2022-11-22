@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
-
-import '../../../../../core/presentation/presentation.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
 
 const themeModeMap = {
   ThemeMode.system: 'Sistema',

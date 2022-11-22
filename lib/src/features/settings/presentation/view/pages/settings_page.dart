@@ -19,8 +19,9 @@ class SettingsPage extends ConsumerWidget {
     ref.listen<AuthState>(authNotifierProvider, (previous, next) {
       if (GoRouter.of(context).location == '/settings') {
         next.whenOrNull(
-            loggedIn: (_) => context.go('/'),
-            loggedOut: () => context.go('/login'));
+          loggedIn: (_) => context.pop(),
+          loggedOut: () => context.pop(),
+        );
       }
     });
     return Scaffold(
