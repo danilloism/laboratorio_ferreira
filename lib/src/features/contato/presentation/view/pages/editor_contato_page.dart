@@ -16,7 +16,7 @@ class EditorContatoPage extends ConsumerWidget {
   EditorContatoPage({super.key, Contato? contato})
       : _contatoInicial = contato ?? Contato.empty;
   final Contato _contatoInicial;
-  final _isLoadingProvider = StateProvider<bool>((ref) => false);
+  final _isLoadingProvider = StateProvider.autoDispose<bool>((ref) => false);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -155,7 +155,6 @@ class EditorContatoPage extends ConsumerWidget {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Form(
-            // key: _formKey,
             child: ListView(
               children: const [
                 SizedBox(height: 8),

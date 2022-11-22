@@ -15,7 +15,6 @@ _$_Account _$$_AccountFromJson(Map<String, dynamic> json) => _$_Account(
       atualizadoEm: json['atualizadoEm'] == null
           ? null
           : DateTime.parse(json['atualizadoEm'] as String),
-      contatoUid: json['contatoUid'] as String?,
     );
 
 const _$$_AccountFieldMap = <String, String>{
@@ -23,7 +22,6 @@ const _$$_AccountFieldMap = <String, String>{
   'senha': 'senha',
   'criadoEm': 'criadoEm',
   'atualizadoEm': 'atualizadoEm',
-  'contatoUid': 'contatoUid',
 };
 
 Map<String, dynamic> _$$_AccountToJson(_$_Account instance) {
@@ -40,6 +38,5 @@ Map<String, dynamic> _$$_AccountToJson(_$_Account instance) {
   writeNotNull('senha', instance.senha);
   writeNotNull('criadoEm', instance.criadoEm?.toIso8601String());
   writeNotNull('atualizadoEm', instance.atualizadoEm?.toIso8601String());
-  writeNotNull('contatoUid', instance.contatoUid);
   return val;
 }

@@ -10,13 +10,20 @@ import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/contr
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/login_form_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/states/auth_state.dart';
 
-class LoginForm extends ConsumerWidget {
-  LoginForm({super.key});
+class LoginForm extends ConsumerStatefulWidget {
+  const LoginForm({super.key});
 
-  final loginFormProvider = StateNotifierProvider<LoginFormNotifier, Login>(
-      (ref) => LoginFormNotifier());
+  @override
+  ConsumerState<LoginForm> createState() => _LoginFormState();
+}
 
-  void _submitForm({required BuildContext context, required WidgetRef ref}) {
+class _LoginFormState extends ConsumerState<LoginForm> {
+  final loginFormProvider =
+      StateNotifierProvider.autoDispose<LoginFormNotifier, Login>((ref) {
+    return LoginFormNotifier();
+  });
+
+  void _submitForm({required BuildContext context}) {
     final state = ref.read(loginFormProvider);
 
     if (!state.status.isValid) {
@@ -31,7 +38,7 @@ class LoginForm extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     ref.listen<AuthState>(authNotifierProvider, (previous, next) {
       next.whenOrNull(error: (error, __) {
         final notifier = ref.read(loginFormProvider.notifier);
@@ -65,10 +72,7 @@ class LoginForm extends ConsumerWidget {
               label: 'Senha',
               onChanged:
                   ref.read(loginFormProvider.notifier).senhaTeveAlteracao,
-              onFieldSubmitted: (_) => _submitForm(
-                context: context,
-                ref: ref,
-              ),
+              onFieldSubmitted: (_) => _submitForm(context: context),
             ),
           ),
           const SizedBox(height: 24),
@@ -87,10 +91,7 @@ class LoginForm extends ConsumerWidget {
                 ),
                 onPressed: () {
                   UiHelper.closeKeyboard();
-                  _submitForm(
-                    context: context,
-                    ref: ref,
-                  );
+                  _submitForm(context: context);
                 },
                 child: const Text('Entrar'),
               );

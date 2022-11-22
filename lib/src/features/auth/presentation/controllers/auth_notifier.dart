@@ -38,8 +38,8 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
-  void logout() {
-    // _authRepo.authToken = null;
+  Future<void> logout() async {
+    await _authRepo.logout();
     state = const AuthState.loggedOut();
   }
 }

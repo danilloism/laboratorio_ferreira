@@ -1,3 +1,4 @@
+// coverage:ignore-file
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -38,6 +39,7 @@ class Init {
     final dir = await getApplicationDocumentsDirectory();
     await dir.create(recursive: true);
     final dbPath = join(dir.path, 'lab_ferreira_sembast.db');
+
     return await databaseFactoryIo.openDatabase(dbPath);
   }
 

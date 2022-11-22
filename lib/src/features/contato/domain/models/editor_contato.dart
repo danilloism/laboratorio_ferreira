@@ -1,6 +1,6 @@
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/domain/models/models.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
 
 part '../../../../../generated/src/features/contato/domain/models/editor_contato.freezed.dart';

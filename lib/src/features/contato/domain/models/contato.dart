@@ -104,6 +104,7 @@ extension Methods on Contato {
 
   bool temHierarquiaMaiorOuIgualQue(Roles role) => hierarquia <= role.index;
 
+  bool isA(Roles role) => categorias.contains(role);
   bool get isDentistaEspacoOdontologico =>
       categorias.contains(Roles.colaborador) &&
       categorias.contains(Roles.dentista);

@@ -7,7 +7,7 @@ abstract class SettingsRepository {
 
   Future<bool> deleteSetting(SettingsItem setting);
 
-  Future<Map<String, Object?>?> get<T>(SettingsItem setting);
+  Future<Map<String, Object?>?> get(SettingsItem setting);
 
   Setting get activeStored;
 
