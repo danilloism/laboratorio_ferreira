@@ -39,9 +39,7 @@ class Init {
     final dir = await getApplicationDocumentsDirectory();
     await dir.create(recursive: true);
     final dbPath = join(dir.path, 'lab_ferreira_sembast.db');
-    // final isar = await Isar.open(
-    //     [ContatoStorageModelSchema, AccountStorageModelSchema],
-    //     inspector: true);
+
     return await databaseFactoryIo.openDatabase(dbPath);
   }
 
