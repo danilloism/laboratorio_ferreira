@@ -117,11 +117,53 @@ void main() {
       test(
           'objeto com categorias \'dentista\' e \'colaborador\' deve ser Dentista de Espaço Odontológico e vice-versa.',
           () {
-        contato = genRandomContato(categorias: {Roles.fornecedor});
+        contato = contato.copyWith(categorias: {Roles.fornecedor});
         expect(contato.isDentistaEspacoOdontologico, isFalse);
         contato =
-            genRandomContato(categorias: {Roles.colaborador, Roles.dentista});
+            contato.copyWith(categorias: {Roles.colaborador, Roles.dentista});
         expect(contato.isDentistaEspacoOdontologico, isTrue);
+      });
+
+      test('objeto deve possuir hierarquias correspondentes ao index do enum',
+          () {
+        contato = contato.copyWith(categorias: {Roles.admin, Roles.paciente});
+        expect(contato.hierarquia, equals(0));
+        expect(contato.maiorRole, equals(Roles.admin));
+
+        contato = contato.copyWith(categorias: {Roles.fornecedor});
+        expect(contato.hierarquia, equals(Roles.fornecedor.index));
+
+        contato =
+            contato.copyWith(categorias: {Roles.gerente, Roles.colaborador});
+        expect(contato.hierarquia, equals(Roles.gerente.index));
+        expect(contato.maiorRole, equals(Roles.gerente));
+        expect(contato.isA(Roles.gerente), isTrue);
+      });
+
+      test(
+          'comparações de hierarquia entre objetos deve retornar true ou false corretamente',
+          () {
+        final contatoPraComparar =
+            contato.copyWith(categorias: {Roles.gerente, Roles.colaborador});
+        contato =
+            contato.copyWith(categorias: {Roles.dentista, Roles.colaborador});
+
+        expect(
+          contatoPraComparar.temHierarquiaMaiorOuIgualQue(contato.maiorRole),
+          isTrue,
+        );
+        expect(
+          contatoPraComparar.temHierarquiaMaiorQue(contato.maiorRole),
+          isTrue,
+        );
+        expect(
+          contatoPraComparar.temHierarquiaMenorOuIgualQue(contato.maiorRole),
+          isFalse,
+        );
+        expect(
+          contatoPraComparar.temHierarquiaMenorQue(contato.maiorRole),
+          isFalse,
+        );
       });
     });
   });
