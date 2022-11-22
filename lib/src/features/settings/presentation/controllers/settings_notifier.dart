@@ -13,12 +13,21 @@ class SettingsNotifier extends StateNotifier<Setting> {
         super(settingsRepo.activeStored);
 
   Future<void> changeTheme(ThemeMode mode) async {
+    if (mode == state.themeMode) return;
     final done = await _repo.upsertSetting(SettingsItem.themeMode, mode);
     state = done;
   }
 
   Future<void> changeSession([Session? session]) async {
+    if (session == state.session) return;
     final newValue = await _repo.upsertSetting(SettingsItem.session, session);
+    state = newValue;
+  }
+
+  Future<void> changeUseMaterial3(bool value) async {
+    if (value == state.useMaterial3) return;
+    final newValue =
+        await _repo.upsertSetting(SettingsItem.useMaterial3, value);
     state = newValue;
   }
 }

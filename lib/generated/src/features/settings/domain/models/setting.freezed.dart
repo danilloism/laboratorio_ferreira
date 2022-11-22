@@ -14,16 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Setting _$SettingFromJson(Map<String, dynamic> json) {
-  return _Setting.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Setting {
   Session? get session => throw _privateConstructorUsedError;
   ThemeMode get themeMode => throw _privateConstructorUsedError;
+  bool get useMaterial3 => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SettingCopyWith<Setting> get copyWith => throw _privateConstructorUsedError;
 }
@@ -33,7 +29,7 @@ abstract class $SettingCopyWith<$Res> {
   factory $SettingCopyWith(Setting value, $Res Function(Setting) then) =
       _$SettingCopyWithImpl<$Res, Setting>;
   @useResult
-  $Res call({Session? session, ThemeMode themeMode});
+  $Res call({Session? session, ThemeMode themeMode, bool useMaterial3});
 
   $SessionCopyWith<$Res>? get session;
 }
@@ -53,6 +49,7 @@ class _$SettingCopyWithImpl<$Res, $Val extends Setting>
   $Res call({
     Object? session = freezed,
     Object? themeMode = null,
+    Object? useMaterial3 = null,
   }) {
     return _then(_value.copyWith(
       session: freezed == session
@@ -63,6 +60,10 @@ class _$SettingCopyWithImpl<$Res, $Val extends Setting>
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
+      useMaterial3: null == useMaterial3
+          ? _value.useMaterial3
+          : useMaterial3 // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -86,7 +87,7 @@ abstract class _$$_SettingCopyWith<$Res> implements $SettingCopyWith<$Res> {
       __$$_SettingCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Session? session, ThemeMode themeMode});
+  $Res call({Session? session, ThemeMode themeMode, bool useMaterial3});
 
   @override
   $SessionCopyWith<$Res>? get session;
@@ -104,6 +105,7 @@ class __$$_SettingCopyWithImpl<$Res>
   $Res call({
     Object? session = freezed,
     Object? themeMode = null,
+    Object? useMaterial3 = null,
   }) {
     return _then(_$_Setting(
       session: freezed == session
@@ -114,27 +116,34 @@ class __$$_SettingCopyWithImpl<$Res>
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
+      useMaterial3: null == useMaterial3
+          ? _value.useMaterial3
+          : useMaterial3 // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_Setting implements _Setting {
-  const _$_Setting({this.session, this.themeMode = ThemeMode.system});
 
-  factory _$_Setting.fromJson(Map<String, dynamic> json) =>
-      _$$_SettingFromJson(json);
+class _$_Setting implements _Setting {
+  const _$_Setting(
+      {this.session,
+      this.themeMode = ThemeMode.system,
+      this.useMaterial3 = false});
 
   @override
   final Session? session;
   @override
   @JsonKey()
   final ThemeMode themeMode;
+  @override
+  @JsonKey()
+  final bool useMaterial3;
 
   @override
   String toString() {
-    return 'Setting(session: $session, themeMode: $themeMode)';
+    return 'Setting(session: $session, themeMode: $themeMode, useMaterial3: $useMaterial3)';
   }
 
   @override
@@ -144,37 +153,34 @@ class _$_Setting implements _Setting {
             other is _$_Setting &&
             (identical(other.session, session) || other.session == session) &&
             (identical(other.themeMode, themeMode) ||
-                other.themeMode == themeMode));
+                other.themeMode == themeMode) &&
+            (identical(other.useMaterial3, useMaterial3) ||
+                other.useMaterial3 == useMaterial3));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, session, themeMode);
+  int get hashCode =>
+      Object.hash(runtimeType, session, themeMode, useMaterial3);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_SettingCopyWith<_$_Setting> get copyWith =>
       __$$_SettingCopyWithImpl<_$_Setting>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_SettingToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Setting implements Setting {
-  const factory _Setting({final Session? session, final ThemeMode themeMode}) =
-      _$_Setting;
-
-  factory _Setting.fromJson(Map<String, dynamic> json) = _$_Setting.fromJson;
+  const factory _Setting(
+      {final Session? session,
+      final ThemeMode themeMode,
+      final bool useMaterial3}) = _$_Setting;
 
   @override
   Session? get session;
   @override
   ThemeMode get themeMode;
+  @override
+  bool get useMaterial3;
   @override
   @JsonKey(ignore: true)
   _$$_SettingCopyWith<_$_Setting> get copyWith =>

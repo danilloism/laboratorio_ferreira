@@ -1,9 +1,12 @@
-import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:flex_seed_scheme/flex_seed_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/config/config.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 
 class AppTheme {
-  AppTheme._();
+  const AppTheme({this.useMaterial3 = false});
+  final bool useMaterial3;
 
   static ColorScheme get _lightSeedColorScheme => SeedColorScheme.fromSeeds(
         brightness: Brightness.light,
@@ -19,17 +22,17 @@ class AppTheme {
         tertiaryKey: Cores.marrom,
       );
 
-  static ThemeData get darkTheme => ThemeData.from(
+  ThemeData get darkTheme => ThemeData.from(
         colorScheme: _darkSeedColorScheme,
-        // useMaterial3: true,
+        useMaterial3: useMaterial3,
       ).copyWith(
         appBarTheme: _appBarTheme,
         inputDecorationTheme: _inputTheme,
       );
 
-  static ThemeData get lightTheme => ThemeData.from(
+  ThemeData get lightTheme => ThemeData.from(
         colorScheme: _lightSeedColorScheme,
-        // useMaterial3: true,
+        useMaterial3: useMaterial3,
       ).copyWith(
         appBarTheme: _appBarTheme,
         inputDecorationTheme: _inputTheme,
@@ -46,3 +49,9 @@ class AppTheme {
         filled: true,
       );
 }
+
+final appThemeProvider = Provider((ref) {
+  final useMaterial3 =
+      ref.watch(settingsNotifierProvider.select((value) => value.useMaterial3));
+  return AppTheme(useMaterial3: useMaterial3);
+});

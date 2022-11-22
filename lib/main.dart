@@ -89,11 +89,11 @@ class _MyAppState extends ConsumerState<MyApp> {
     //     ref.read(settingsNotifierProvider.notifier).changeSession();
     //   }
     // });
-
+    final appTheme = ref.watch(appThemeProvider);
     return MaterialApp.router(
       title: 'Laboratório Ferreira',
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
+      theme: appTheme.lightTheme,
+      darkTheme: appTheme.darkTheme,
       themeMode: ref
           .watch(settingsNotifierProvider.select((value) => value.themeMode)),
       routerConfig: ref.read(routerProvider),
