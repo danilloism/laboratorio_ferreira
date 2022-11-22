@@ -13,6 +13,10 @@ extension ThemeModeToSembast on ThemeMode {
   Map<String, Object> toSembast() => {'value': index};
 }
 
+extension BoolToSembast on bool {
+  Map<String, Object?> toSembast() => {'value': this};
+}
+
 extension SessionToSembast on Session? {
   Map<String, Object?> toSembast() => {'value': this?.toJson()};
 }
@@ -65,8 +69,8 @@ class SettingsSembastRepository with UiLoggy implements SettingsRepository {
         useMaterial3: useMaterial3,
       );
 
-      if (session?.accessToken != null &&
-          !JwtDecoder.isExpired(session!.accessToken)) {
+      final token = session?.accessToken;
+      if (token != null && !JwtDecoder.isExpired(token)) {
         _current = _current.copyWith(session: session);
       }
     });
@@ -100,7 +104,7 @@ class SettingsSembastRepository with UiLoggy implements SettingsRepository {
           return _current;
         case SettingsItem.useMaterial3:
           if (value is! bool) throw TypeError();
-          await putRecord({'value': value});
+          await putRecord(value.toSembast());
           _current = _current.copyWith(useMaterial3: value);
           return _current;
       }
