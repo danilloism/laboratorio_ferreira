@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 extension BuildContextExtensions on BuildContext {
-  void showErrorSnackBar({required String message}) =>
-      showSnackbar(message: message, backgroundColor: Colors.red);
+  void showErrorSnackBar({required String message}) => showSnackbar(
+      message: message,
+      backgroundColor: Colors.red,
+      messageStyle: const TextStyle(color: Colors.white));
 
-  void showSnackbar({required String message, Color? backgroundColor}) {
+  void showSnackbar(
+      {required String message,
+      Color? backgroundColor,
+      TextStyle? messageStyle}) {
     scaffoldMessenger
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(
-        content: Text(message),
+        content: Text(message, style: messageStyle),
         backgroundColor: backgroundColor,
       ));
   }
