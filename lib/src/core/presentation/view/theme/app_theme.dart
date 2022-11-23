@@ -15,6 +15,11 @@ class AppTheme {
         tertiaryKey: Cores.marrom,
       );
 
+  static ChipThemeData get _chipTheme => ChipThemeData(
+        shape: RoundedRectangleBorder(borderRadius: _borderRadius),
+        side: const BorderSide(width: 1),
+      );
+
   static ColorScheme get _darkSeedColorScheme => SeedColorScheme.fromSeeds(
         brightness: Brightness.dark,
         primaryKey: Cores.verdeEscuro,
@@ -28,6 +33,7 @@ class AppTheme {
       ).copyWith(
         appBarTheme: _appBarTheme,
         inputDecorationTheme: _inputTheme,
+        chipTheme: _chipTheme,
       );
 
   ThemeData get lightTheme => ThemeData.from(
@@ -36,18 +42,22 @@ class AppTheme {
       ).copyWith(
         appBarTheme: _appBarTheme,
         inputDecorationTheme: _inputTheme,
+        chipTheme: _chipTheme,
       );
 
   static AppBarTheme get _appBarTheme =>
       const AppBarTheme(centerTitle: true, toolbarHeight: 80);
 
-  static InputDecorationTheme get _inputTheme => const InputDecorationTheme(
+  static InputDecorationTheme get _inputTheme => InputDecorationTheme(
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderRadius: _borderRadius,
           borderSide: BorderSide.none,
         ),
         filled: true,
       );
+
+  static BorderRadius get _borderRadius =>
+      const BorderRadius.all(Radius.circular(10));
 }
 
 final appThemeProvider = Provider((ref) {
