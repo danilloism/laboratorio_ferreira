@@ -26,43 +26,41 @@ class TelefonesFormSection extends ConsumerWidget {
     final podeEditarTelefone = _podeEditarTelefone(ref);
     return FormSection(
       title: 'Telefone(s)',
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Wrap(
-          spacing: 10,
-          children: [
-            ...telefonesState.map(
-              (telefone) => CustomActionChip(
-                label: Text(Formatter.applyPhoneMask(telefone)),
-                onPressed: () {
-                  podeEditarTelefone
-                      ? showDialog(
-                          context: context,
-                          builder: (context) => ProviderScope(
-                            parent: ctxContainer,
-                            child: EditorTelefoneDialog(telefone: telefone),
-                          ),
-                        )
-                      : null;
-                },
-              ),
+      child: Wrap(
+        spacing: 10,
+        children: [
+          ...telefonesState.map(
+            (telefone) => CustomActionChip(
+              label: Text(Formatter.applyPhoneMask(telefone)),
+              onPressed: podeEditarTelefone
+                  ? () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => ProviderScope(
+                          parent: ctxContainer,
+                          child: EditorTelefoneDialog(telefone: telefone),
+                        ),
+                      );
+                    }
+                  : null,
+              onDeleted: podeEditarTelefone ? () {} : null,
+              tooltip: podeEditarTelefone ? 'Editar telefone' : null,
             ),
-            if (podeEditarTelefone)
-              CustomActionChip(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => ProviderScope(
-                      parent: ctxContainer,
-                      child: EditorTelefoneDialog(),
-                    ),
-                  );
-                },
-                label: const Icon(Icons.add),
-                padding: const EdgeInsets.all(6),
-              ),
-          ],
-        ),
+          ),
+          if (podeEditarTelefone)
+            CustomActionChip(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => ProviderScope(
+                    parent: ctxContainer,
+                    child: EditorTelefoneDialog(),
+                  ),
+                );
+              },
+              label: const Icon(Icons.add),
+            ),
+        ],
       ),
     );
   }

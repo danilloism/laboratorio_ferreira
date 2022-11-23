@@ -128,41 +128,6 @@ class EditorTelefoneDialog extends ConsumerWidget {
             );
           },
         ),
-        // BlocBuilder<EditorTelefoneCubit, TelefoneInput>(
-        //   builder: (ctx, state) => Column(
-        //     mainAxisSize: MainAxisSize.min,
-        //     children: [
-        //       CustomTextFormField(
-        //         initialValue: telefoneInitialValue.isEmpty
-        //             ? null
-        //             : Formatter.applyPhoneMask(telefoneInitialValue),
-        //         keyboardType: TextInputType.number,
-        //         onFieldSubmitted: (_) => _submit(
-        //           isEditar: isEditar,
-        //           ref: ref,
-        //           input: state,
-        //           context: context,
-        //           initialValue: telefoneInitialValue,
-        //         ),
-        //         inputFormatters: [
-        //           Mask.generic(masks: ['(##) #####-####'])
-        //         ],
-        //         onChanged: (value) {
-        //           EditorTelefoneCubit.of(context)
-        //               .teveAlteracao(Formatter.unmaskPhone(value));
-        //         },
-        //       ),
-        //       Padding(
-        //         padding: const EdgeInsets.only(top: 8.0),
-        //         child: Visibility(
-        //           visible: state.error != null && !state.pure,
-        //           child: Text(state.error?.name ?? '',
-        //               style: const TextStyle(color: Colors.red)),
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
       );
     });
   }
