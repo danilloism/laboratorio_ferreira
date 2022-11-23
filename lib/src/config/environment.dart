@@ -1,3 +1,4 @@
+// coverage:ignore-file
 class Environment {
   Environment._();
 

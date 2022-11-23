@@ -3,7 +3,13 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part '../../../../generated/src/core/domain/models/api_response.freezed.dart';
 part '../../../../generated/src/core/domain/models/api_response.g.dart';
 
-@Freezed(toJson: false, genericArgumentFactories: true)
+@Freezed(
+  toJson: false,
+  genericArgumentFactories: true,
+  copyWith: false,
+  equal: false,
+  toStringOverride: false,
+)
 class ApiResponse<T> with _$ApiResponse<T> {
   const factory ApiResponse({
     required bool sucesso,

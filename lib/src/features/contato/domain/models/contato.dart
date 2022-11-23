@@ -22,12 +22,12 @@ class Contato with _$Contato {
       _$ContatoFromJson(json as Map<String, dynamic>);
 
   static List<Contato> fromJsonList(Object? json) {
-    final payload = json as Map<String, dynamic>;
-    assert(payload['dados'] is List);
+    var payload = json as dynamic;
+    assert(payload is List || payload['dados'] is List);
 
-    final listaDadosCrus = payload['dados'] as List;
+    payload = payload is List ? payload : payload['dados'];
 
-    return listaDadosCrus.map(Contato.fromJson).toList();
+    return List.castFrom(payload).map(Contato.fromJson).toList();
   }
 
   static Contato get empty => const Contato(
