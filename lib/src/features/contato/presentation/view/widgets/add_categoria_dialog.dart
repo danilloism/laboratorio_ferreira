@@ -42,7 +42,7 @@ class AddCategoriaDialog extends StatelessWidget {
           return CustomWrap(
             children: Roles.values
                 .where((role) => !contato.isA(role))
-                .map((role) => CustomActionChip(
+                .map((role) => CustomChip(
                       label: Text(role.capitalized),
                       selected:
                           ref.watch(_selectedCategoriasProvider).contains(role),

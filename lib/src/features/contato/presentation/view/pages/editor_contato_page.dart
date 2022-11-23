@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/extensions.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/helpers.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/confirm_modal.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/data/repositories/repositories.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/editor_contato_notifier.dart';
@@ -35,24 +36,14 @@ class EditorContatoPage extends ConsumerWidget {
                 onPressed: () {
                   if (_contatoInicial !=
                       ref.read(editorContatoNotifierProvider)) {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: const Text(
-                              'Há alterações não salvas, deseja mesmo voltar?'),
-                          actions: [
-                            ElevatedButton(
-                                onPressed: () =>
-                                    Navigator.of(context, rootNavigator: true)
-                                        .pop('dialog'),
-                                child: const Text('Não')),
-                            TextButton(
-                                onPressed: () => context.pop(),
-                                child: const Text('Sim'))
-                          ],
-                        );
-                      },
+                    context.openModal(
+                      ConfirmModal(
+                        message:
+                            'Há alterações não salvas, deseja mesmo voltar?',
+                        onConfirm: context.pop,
+                        popOnConfirm: false,
+                      ),
+                      useProviderScope: false,
                     );
                   } else {
                     context.pop();

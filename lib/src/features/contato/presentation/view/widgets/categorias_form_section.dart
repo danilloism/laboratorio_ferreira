@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/build_context_extension.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/editor_contato_notifier.dart';
@@ -29,7 +30,7 @@ class CategoriasFormSection extends ConsumerWidget {
       title: 'Categorias',
       child: CustomWrap(
         children: [
-          ...categorias.map((categoria) => CustomActionChip(
+          ...categorias.map((categoria) => CustomChip(
                 key: ValueKey('chip-$categoria'),
                 label: Text(categoria.capitalized),
                 onDeleted:
@@ -41,18 +42,9 @@ class CategoriasFormSection extends ConsumerWidget {
                         : null,
               )),
           if (usuario.temHierarquiaMaiorOuIgualQue(Roles.gerente))
-            CustomActionChip(
+            CustomChip(
               label: const Icon(Icons.add),
-              onPressed: () {
-                final ctxContainer = ProviderScope.containerOf(context);
-                showDialog(
-                  context: context,
-                  builder: (context) => ProviderScope(
-                    parent: ctxContainer,
-                    child: AddCategoriaDialog(),
-                  ),
-                );
-              },
+              onPressed: () => context.openModal(AddCategoriaDialog()),
             ),
         ],
       ),

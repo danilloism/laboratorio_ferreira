@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/build_context_extension.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/formatter.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/helpers.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/misc/helpers/editor_contato_helper.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/editor_contato_notifier.dart';
@@ -20,7 +22,6 @@ class TelefonesFormSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ctxContainer = ProviderScope.containerOf(context);
     final telefonesState = ref.watch(
         editorContatoNotifierProvider.select((value) => value.telefones));
     final podeEditarTelefone = _podeEditarTelefone(ref);
@@ -30,19 +31,12 @@ class TelefonesFormSection extends ConsumerWidget {
         spacing: 10,
         children: [
           ...telefonesState.map(
-            (telefone) => CustomActionChip(
+            (telefone) => CustomChip(
               key: ValueKey('chip-$telefone'),
               label: Text(Formatter.applyPhoneMask(telefone)),
               onPressed: podeEditarTelefone
-                  ? () {
-                      showDialog(
-                        context: context,
-                        builder: (context) => ProviderScope(
-                          parent: ctxContainer,
-                          child: EditorTelefoneDialog(telefone: telefone),
-                        ),
-                      );
-                    }
+                  ? () => context
+                      .openModal(EditorTelefoneDialog(telefone: telefone))
                   : null,
               onDeleted: podeEditarTelefone
                   ? () => ref
@@ -53,16 +47,8 @@ class TelefonesFormSection extends ConsumerWidget {
             ),
           ),
           if (podeEditarTelefone)
-            CustomActionChip(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => ProviderScope(
-                    parent: ctxContainer,
-                    child: EditorTelefoneDialog(),
-                  ),
-                );
-              },
+            CustomChip(
+              onPressed: () => context.openModal(EditorTelefoneDialog()),
               label: const Icon(Icons.add),
             ),
         ],

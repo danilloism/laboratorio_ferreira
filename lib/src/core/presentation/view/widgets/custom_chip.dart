@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/build_context_extension.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/confirm_modal.dart';
 
-class CustomActionChip extends StatelessWidget {
-  const CustomActionChip({
+class CustomChip extends StatelessWidget {
+  const CustomChip({
     super.key,
     required this.label,
     this.onPressed,
@@ -10,11 +12,13 @@ class CustomActionChip extends StatelessWidget {
     this.tooltip,
     this.onSelected,
     this.selected = false,
+    this.confirmDeleteAction = true,
   });
 
   final Widget label;
   final void Function()? onPressed;
   final void Function()? onDeleted;
+  final bool confirmDeleteAction;
   final void Function(bool)? onSelected;
   final String? tooltip;
   final bool selected;
@@ -42,7 +46,19 @@ class CustomActionChip extends StatelessWidget {
       ),
       deleteIconColor: Colors.red,
       deleteButtonTooltipMessage: 'Deletar item',
-      onDeleted: onDeleted,
+      onDeleted: onDeleted != null
+          ? () {
+              if (confirmDeleteAction) {
+                context.openModal(
+                  ConfirmModal(
+                      message: 'Tem certeza que deseja deletar esse item?',
+                      onConfirm: onDeleted!),
+                );
+                return;
+              }
+              onDeleted?.call();
+            }
+          : null,
       tooltip: tooltip,
       onSelected: onSelected,
       selected: selected,
