@@ -5,6 +5,7 @@ import 'package:laboratorio_ferreira_mobile/src/features/auth/data/repositories/
 import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/models.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/states/auth_state.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/data/data.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 
 class AuthNotifier extends StateNotifier<AuthState> {
   final AuthRepository _authRepo;
@@ -49,3 +50,6 @@ final authNotifierProvider = StateNotifierProvider<AuthNotifier, AuthState>(
         authRepository: ref.watch(authRepositoryProvider),
         localSession:
             ref.watch(settingsRepositoryProvider).activeStored.session));
+
+final usuarioLogadoProvider =
+    Provider((ref) => ref.watch(settingsNotifierProvider).session?.contato);

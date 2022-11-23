@@ -8,7 +8,7 @@ import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/extensions.
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/helpers.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/data/repositories/repositories.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/contato_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/editor_contato_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/widgets/widgets.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 
@@ -16,7 +16,7 @@ class EditorContatoPage extends ConsumerWidget {
   EditorContatoPage({super.key, Contato? contato})
       : _contatoInicial = contato ?? Contato.empty;
   final Contato _contatoInicial;
-  final _isLoadingProvider = StateProvider.autoDispose<bool>((ref) => false);
+  final _isLoadingProvider = StateProvider<bool>((ref) => false);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -163,39 +163,6 @@ class EditorContatoPage extends ConsumerWidget {
                 TelefonesFormSection(),
                 SizedBox(height: 4),
                 CategoriasFormSection(),
-                // if (_podeEditarCategorias(userSession))
-                //   Padding(
-                //     padding: const EdgeInsets.symmetric(vertical: 20),
-                //     child: FormSection(
-                //       title: 'Categorias',
-                //       child: Column(
-                //         crossAxisAlignment: CrossAxisAlignment.start,
-                //         children: [
-                //           Wrap(
-                //             spacing: 10,
-                //             children: contato.categorias
-                //                 .map((categoria) => Chip(
-                //                       label: Text(categoria.capitalized),
-                //                     ))
-                //                 .toList(),
-                //           ),
-                //           if (_podeEditarCategorias(userSession))
-                //             EditarCategoriasButton(
-                //                 ref: ref, notifierProvider: _contatoProvider),
-                //         ],
-                //       ),
-                //     ),
-                //   ),
-                // FormSection(
-                //     title: 'Telefones',
-                //     child: Column(
-                //       children: _telefonesControllers
-                //           .map((controller) => CustomTextFormField(
-                //                 keyboardType: TextInputType.phone,
-                //                 controller: controller,
-                //               ))
-                //           .toList(),
-                //     )),
               ],
             ),
           ),

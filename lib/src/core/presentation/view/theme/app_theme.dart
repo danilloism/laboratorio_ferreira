@@ -15,11 +15,6 @@ class AppTheme {
         tertiaryKey: Cores.marrom,
       );
 
-  static ChipThemeData get _chipTheme => ChipThemeData(
-        shape: RoundedRectangleBorder(borderRadius: _borderRadius),
-        side: const BorderSide(width: 1),
-      );
-
   static ColorScheme get _darkSeedColorScheme => SeedColorScheme.fromSeeds(
         brightness: Brightness.dark,
         primaryKey: Cores.verdeEscuro,
@@ -33,7 +28,6 @@ class AppTheme {
       ).copyWith(
         appBarTheme: _appBarTheme,
         inputDecorationTheme: _inputTheme,
-        chipTheme: _chipTheme,
       );
 
   ThemeData get lightTheme => ThemeData.from(
@@ -42,7 +36,6 @@ class AppTheme {
       ).copyWith(
         appBarTheme: _appBarTheme,
         inputDecorationTheme: _inputTheme,
-        chipTheme: _chipTheme,
       );
 
   static AppBarTheme get _appBarTheme =>

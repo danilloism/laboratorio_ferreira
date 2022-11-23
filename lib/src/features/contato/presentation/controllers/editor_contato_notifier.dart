@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/domain/enums/roles.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/formatter.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
 
@@ -71,12 +72,21 @@ class EditorContatoNotifier extends StateNotifier<Contato> {
 
   void removerTelefone(String telefone) {
     telefone = Formatter.unmaskPhone(telefone);
-    final listaTelefones = {...state.telefones};
-    final removeu = listaTelefones.remove(telefone);
-    if (removeu && listaTelefones.isEmpty) {
+    final listaTelefones = {...state.telefones}..remove(telefone);
+    if (listaTelefones.isEmpty) {
       _errors.add(_EditorContatoNotifierErrors.telefonesVazio);
     }
     state = state.copyWith(telefones: listaTelefones);
+  }
+
+  void removerCategoria(Roles categoria) {
+    final categorias = {...state.categorias}..remove(categoria);
+    state = state.copyWith(categorias: {...categorias});
+  }
+
+  void adicionarCategorias(Iterable<Roles> categorias) {
+    final categoriasAtualizado = {...state.categorias}..addAll(categorias);
+    state = state.copyWith(categorias: {...categoriasAtualizado});
   }
 }
 

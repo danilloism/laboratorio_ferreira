@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/formatter.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/misc/helpers/editor_contato_helper.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/contato_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/editor_contato_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/widgets/editor_telefone_dialog.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 
@@ -31,6 +31,7 @@ class TelefonesFormSection extends ConsumerWidget {
         children: [
           ...telefonesState.map(
             (telefone) => CustomActionChip(
+              key: ValueKey('chip-$telefone'),
               label: Text(Formatter.applyPhoneMask(telefone)),
               onPressed: podeEditarTelefone
                   ? () {
@@ -43,7 +44,11 @@ class TelefonesFormSection extends ConsumerWidget {
                       );
                     }
                   : null,
-              onDeleted: podeEditarTelefone ? () {} : null,
+              onDeleted: podeEditarTelefone
+                  ? () => ref
+                      .read(editorContatoNotifierProvider.notifier)
+                      .removerTelefone(telefone)
+                  : null,
               tooltip: podeEditarTelefone ? 'Editar telefone' : null,
             ),
           ),
