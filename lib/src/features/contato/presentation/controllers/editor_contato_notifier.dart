@@ -72,19 +72,25 @@ class EditorContatoNotifier extends StateNotifier<Contato> {
 
   void removerTelefone(String telefone) {
     telefone = Formatter.unmaskPhone(telefone);
-    final listaTelefones = {...state.telefones}..remove(telefone);
-    if (listaTelefones.isEmpty) {
+    final telefones = {...state.telefones}..remove(telefone);
+    if (telefones.isEmpty) {
       _errors.add(_EditorContatoNotifierErrors.telefonesVazio);
     }
-    state = state.copyWith(telefones: listaTelefones);
+    state = state.copyWith(telefones: telefones);
   }
 
   void removerCategoria(Roles categoria) {
     final categorias = {...state.categorias}..remove(categoria);
+    if (categorias.isEmpty) {
+      _errors.add(_EditorContatoNotifierErrors.categoriasVazio);
+    }
     state = state.copyWith(categorias: {...categorias});
   }
 
   void adicionarCategorias(Iterable<Roles> categorias) {
+    if (_errors.contains(_EditorContatoNotifierErrors.categoriasVazio)) {
+      _errors.remove(_EditorContatoNotifierErrors.categoriasVazio);
+    }
     final categoriasAtualizado = {...state.categorias}..addAll(categorias);
     state = state.copyWith(categorias: {...categoriasAtualizado});
   }
