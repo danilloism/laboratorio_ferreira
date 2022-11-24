@@ -15,7 +15,7 @@ class FormSection extends StatelessWidget {
         if (title != null)
           Text(
             title!,
-            style: context.theme.textTheme.headline6,
+            style: context.theme.textTheme.titleLarge,
             textAlign: TextAlign.start,
           ),
         if (title != null) const SizedBox(height: 8),

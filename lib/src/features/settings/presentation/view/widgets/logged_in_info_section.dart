@@ -19,7 +19,7 @@ class LoggedInInfoSection extends ConsumerWidget {
         Text(
           'Olá, ${contato.nome.split(' ')[0]}',
           textAlign: TextAlign.center,
-          style: context.theme.textTheme.headline5,
+          style: context.theme.textTheme.headlineSmall,
         ),
         const Divider(thickness: 1.5),
         const SizedBox(height: 8),

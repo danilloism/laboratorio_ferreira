@@ -25,13 +25,13 @@ class DetalhesContatoPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Telefones', style: context.theme.textTheme.headline5),
+              Text('Telefones', style: context.theme.textTheme.headlineSmall),
               Wrap(
                   children: _contato.telefones
                       .map((telefone) => Chip(label: Text(telefone)))
                       .toList()),
               const SizedBox(height: 16),
-              Text('Categorias', style: context.theme.textTheme.headline5),
+              Text('Categorias', style: context.theme.textTheme.headlineSmall),
               Wrap(
                   children: _contato.categorias
                       .map((categoria) =>
