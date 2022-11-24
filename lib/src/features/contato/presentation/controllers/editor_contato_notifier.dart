@@ -1,4 +1,3 @@
-import 'dart:collection';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/enums/roles.dart';

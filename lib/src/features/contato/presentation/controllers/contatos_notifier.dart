@@ -7,12 +7,12 @@ class ContatoNotifier extends StateNotifier<AsyncValue<List<Contato>>> {
 
   final ContatoRepository _repo;
 
-  Future loadContatos() async {
+  Future<void> loadContatos() async {
     _setLoading();
     _executeGetMany();
   }
 
-  Future createContato(Contato contato) async {
+  Future<void> createContato(Contato contato) async {
     await _repo.create(contato);
     loadContatos();
   }

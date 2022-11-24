@@ -54,6 +54,9 @@ class _MyAppState extends ConsumerState<MyApp> {
     final session = settingsNotifier.session;
     if (session != null) {
       final tokenUsuarioLogado = session.accessToken;
+
+      ref.read(contatoNotifierProvider.notifier).loadContatos();
+
       final decodedToken = JwtDecoder.decode(tokenUsuarioLogado);
       final iat = DateTime.fromMillisecondsSinceEpoch(0)
           .add(Duration(seconds: decodedToken['iat']));
