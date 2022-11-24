@@ -30,6 +30,10 @@ class ContatoRepository {
         whichRepository: ContatoRepository,
       );
     } on DioError catch (e) {
+      if (CancelToken.isCancel(e)) {
+        rethrow;
+      }
+
       throw RepositoryException(
         object: {
           'data': e.response?.data,
@@ -60,6 +64,10 @@ class ContatoRepository {
         whichRepository: ContatoRepository,
       );
     } on DioError catch (e) {
+      if (CancelToken.isCancel(e)) {
+        rethrow;
+      }
+
       throw RepositoryException(
         object: {
           'data': e.response?.data,
@@ -88,6 +96,10 @@ class ContatoRepository {
         whichRepository: ContatoRepository,
       );
     } on DioError catch (e) {
+      if (CancelToken.isCancel(e)) {
+        rethrow;
+      }
+
       throw RepositoryException(
         object: {
           'data': e.response?.data,
@@ -117,6 +129,10 @@ class ContatoRepository {
         whichRepository: ContatoRepository,
       );
     } on DioError catch (e) {
+      if (CancelToken.isCancel(e)) {
+        rethrow;
+      }
+
       throw RepositoryException(
         object: {
           'data': e.response?.data,
