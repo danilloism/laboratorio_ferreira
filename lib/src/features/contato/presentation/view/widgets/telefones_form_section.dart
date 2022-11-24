@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/build_context_extension.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/formatter.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/helpers.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/misc/helpers/editor_contato_helper.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/contato_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/editor_contato_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/widgets/editor_telefone_dialog.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 
@@ -20,49 +22,36 @@ class TelefonesFormSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ctxContainer = ProviderScope.containerOf(context);
     final telefonesState = ref.watch(
         editorContatoNotifierProvider.select((value) => value.telefones));
     final podeEditarTelefone = _podeEditarTelefone(ref);
     return FormSection(
       title: 'Telefone(s)',
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Wrap(
-          spacing: 10,
-          children: [
-            ...telefonesState.map(
-              (telefone) => CustomActionChip(
-                label: Text(Formatter.applyPhoneMask(telefone)),
-                onPressed: () {
-                  podeEditarTelefone
-                      ? showDialog(
-                          context: context,
-                          builder: (context) => ProviderScope(
-                            parent: ctxContainer,
-                            child: EditorTelefoneDialog(telefone: telefone),
-                          ),
-                        )
-                      : null;
-                },
-              ),
+      child: Wrap(
+        spacing: 10,
+        children: [
+          ...telefonesState.map(
+            (telefone) => CustomChip(
+              key: ValueKey('chip-$telefone'),
+              label: Text(Formatter.applyPhoneMask(telefone)),
+              onPressed: podeEditarTelefone
+                  ? () => context
+                      .openModal(EditorTelefoneDialog(telefone: telefone))
+                  : null,
+              onDeleted: podeEditarTelefone
+                  ? () => ref
+                      .read(editorContatoNotifierProvider.notifier)
+                      .removerTelefone(telefone)
+                  : null,
+              tooltip: podeEditarTelefone ? 'Editar telefone' : null,
             ),
-            if (podeEditarTelefone)
-              CustomActionChip(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => ProviderScope(
-                      parent: ctxContainer,
-                      child: EditorTelefoneDialog(),
-                    ),
-                  );
-                },
-                label: const Icon(Icons.add),
-                padding: const EdgeInsets.all(6),
-              ),
-          ],
-        ),
+          ),
+          if (podeEditarTelefone)
+            CustomChip(
+              onPressed: () => context.openModal(EditorTelefoneDialog()),
+              label: const Icon(Icons.add),
+            ),
+        ],
       ),
     );
   }

@@ -30,7 +30,7 @@ final httpServiceProvider = Provider<IHttpService>((ref) {
 
   final service = DioService(dio);
   ref.onDispose(() {
-    service.cancelToken?.cancel();
+    // service.cancelToken?.cancel();
     dio.close();
   });
   return service;

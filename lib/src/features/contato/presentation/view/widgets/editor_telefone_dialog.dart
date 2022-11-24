@@ -2,10 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/formatter.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/contato_notifier.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/telefone_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/editor_contato_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/editor_telefone_notifier.dart';
 import 'package:mask/mask.dart';
 
 class EditorTelefoneDialog extends ConsumerWidget {
@@ -15,15 +14,14 @@ class EditorTelefoneDialog extends ConsumerWidget {
   }
 
   final String initialValue;
-  late final AutoDisposeStateNotifierProvider<TelefoneNotifier, TelefoneInput>
-      telefoneProvider;
+  late final AutoDisposeStateNotifierProvider<EditorTelefoneNotifier,
+      TelefoneInput> telefoneProvider;
 
   void _submit({
     required bool isEditar,
     required TelefoneInput input,
     required WidgetRef ref,
     required BuildContext context,
-    // required String initialValue,
   }) {
     if (!input.valid) return;
 
@@ -80,9 +78,7 @@ class EditorTelefoneDialog extends ConsumerWidget {
                           isEditar: isEditar,
                           input: telefoneState,
                           context: context,
-                          ref: ref
-                          // initialValue: telefoneInitialValue,
-                          ),
+                          ref: ref),
                   child: isEditar
                       ? const Text('Alterar')
                       : const Text('Adicionar'));
@@ -96,7 +92,8 @@ class EditorTelefoneDialog extends ConsumerWidget {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                CustomTextFormField(
+                TextFormField(
+                  autofocus: true,
                   initialValue: initialValue.isEmpty
                       ? null
                       : Formatter.applyPhoneMask(initialValue),
@@ -128,41 +125,6 @@ class EditorTelefoneDialog extends ConsumerWidget {
             );
           },
         ),
-        // BlocBuilder<EditorTelefoneCubit, TelefoneInput>(
-        //   builder: (ctx, state) => Column(
-        //     mainAxisSize: MainAxisSize.min,
-        //     children: [
-        //       CustomTextFormField(
-        //         initialValue: telefoneInitialValue.isEmpty
-        //             ? null
-        //             : Formatter.applyPhoneMask(telefoneInitialValue),
-        //         keyboardType: TextInputType.number,
-        //         onFieldSubmitted: (_) => _submit(
-        //           isEditar: isEditar,
-        //           ref: ref,
-        //           input: state,
-        //           context: context,
-        //           initialValue: telefoneInitialValue,
-        //         ),
-        //         inputFormatters: [
-        //           Mask.generic(masks: ['(##) #####-####'])
-        //         ],
-        //         onChanged: (value) {
-        //           EditorTelefoneCubit.of(context)
-        //               .teveAlteracao(Formatter.unmaskPhone(value));
-        //         },
-        //       ),
-        //       Padding(
-        //         padding: const EdgeInsets.only(top: 8.0),
-        //         child: Visibility(
-        //           visible: state.error != null && !state.pure,
-        //           child: Text(state.error?.name ?? '',
-        //               style: const TextStyle(color: Colors.red)),
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // ),
       );
     });
   }

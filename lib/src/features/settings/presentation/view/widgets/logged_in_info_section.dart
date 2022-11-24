@@ -19,7 +19,7 @@ class LoggedInInfoSection extends ConsumerWidget {
         Text(
           'Olá, ${contato.nome.split(' ')[0]}',
           textAlign: TextAlign.center,
-          style: context.theme.textTheme.headline5,
+          style: context.theme.textTheme.headlineSmall,
         ),
         const Divider(thickness: 1.5),
         const SizedBox(height: 8),
@@ -44,17 +44,21 @@ class LoggedInInfoSection extends ConsumerWidget {
                   ],
                 ),
                 const Text('Telefones:'),
-                Wrap(
-                  spacing: 10,
-                  children: [
-                    ...contato.telefones.map((telefone) => Chip(
-                          label: Text(
-                            Formatter.applyPhoneMask(telefone),
-                            style: context.theme.textTheme.bodyMedium,
-                          ),
-                        )),
-                  ],
-                ),
+                Consumer(builder: (context, ref, _) {
+                  final contatoRef = ref.watch(settingsNotifierProvider
+                      .select((value) => value.session!.contato));
+                  return Wrap(
+                    spacing: 10,
+                    children: [
+                      ...contatoRef.telefones.map((telefone) => Chip(
+                            label: Text(
+                              Formatter.applyPhoneMask(telefone),
+                              style: context.theme.textTheme.bodyMedium,
+                            ),
+                          )),
+                    ],
+                  );
+                }),
                 const Divider(thickness: 1.1),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

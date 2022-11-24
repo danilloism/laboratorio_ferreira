@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/ui_helper.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/build_context_extension.dart';
 
 class CriarContatoButton extends StatelessWidget {
   const CriarContatoButton({super.key});
@@ -25,7 +25,7 @@ class CriarContatoButton extends StatelessWidget {
         IconButton(
           onPressed: () {},
           icon: const Icon(Icons.arrow_drop_down_circle_outlined),
-          color: UiHelper.textButtonColor(context),
+          color: context.textButtonColor,
         ),
       ],
     );

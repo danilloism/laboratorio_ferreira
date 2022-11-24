@@ -8,6 +8,7 @@ import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.d
 import 'package:laboratorio_ferreira_mobile/src/features/auth/data/repositories/auth_repository.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/states/auth_state.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/contatos_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/data/data.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 import 'package:sembast/sembast.dart';
@@ -53,6 +54,9 @@ class _MyAppState extends ConsumerState<MyApp> {
     final session = settingsNotifier.session;
     if (session != null) {
       final tokenUsuarioLogado = session.accessToken;
+
+      ref.read(contatoNotifierProvider.notifier).loadContatos();
+
       final decodedToken = JwtDecoder.decode(tokenUsuarioLogado);
       final iat = DateTime.fromMillisecondsSinceEpoch(0)
           .add(Duration(seconds: decodedToken['iat']));
@@ -78,6 +82,11 @@ class _MyAppState extends ConsumerState<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(contatoNotifierProvider.notifier, (previous, next) {
+      if (ref.read(authNotifierProvider) is LoggedIn) {
+        next.loadContatos();
+      }
+    });
     // ref.listen<AuthState>(authNotifierProvider, (previous, next) {
     //   final settingsNotifier = ref.read(settingsNotifierProvider);
     //   final session = settingsNotifier.session;

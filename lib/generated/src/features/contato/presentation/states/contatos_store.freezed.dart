@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of '../../../../../../src/features/contato/presentation/states/lista_contatos_state.dart';
+part of '../../../../../../src/features/contato/presentation/states/contatos_store.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,28 +15,28 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ListaContatosState {
+mixin _$ContatosStore {
   List<Contato> get contatos => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ListaContatosStateCopyWith<ListaContatosState> get copyWith =>
+  $ContatosStoreCopyWith<ContatosStore> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ListaContatosStateCopyWith<$Res> {
-  factory $ListaContatosStateCopyWith(
-          ListaContatosState value, $Res Function(ListaContatosState) then) =
-      _$ListaContatosStateCopyWithImpl<$Res, ListaContatosState>;
+abstract class $ContatosStoreCopyWith<$Res> {
+  factory $ContatosStoreCopyWith(
+          ContatosStore value, $Res Function(ContatosStore) then) =
+      _$ContatosStoreCopyWithImpl<$Res, ContatosStore>;
   @useResult
   $Res call({List<Contato> contatos, bool isLoading});
 }
 
 /// @nodoc
-class _$ListaContatosStateCopyWithImpl<$Res, $Val extends ListaContatosState>
-    implements $ListaContatosStateCopyWith<$Res> {
-  _$ListaContatosStateCopyWithImpl(this._value, this._then);
+class _$ContatosStoreCopyWithImpl<$Res, $Val extends ContatosStore>
+    implements $ContatosStoreCopyWith<$Res> {
+  _$ContatosStoreCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -63,22 +63,22 @@ class _$ListaContatosStateCopyWithImpl<$Res, $Val extends ListaContatosState>
 }
 
 /// @nodoc
-abstract class _$$_ListaContatosStateCopyWith<$Res>
-    implements $ListaContatosStateCopyWith<$Res> {
-  factory _$$_ListaContatosStateCopyWith(_$_ListaContatosState value,
-          $Res Function(_$_ListaContatosState) then) =
-      __$$_ListaContatosStateCopyWithImpl<$Res>;
+abstract class _$$_ContatosStoreCopyWith<$Res>
+    implements $ContatosStoreCopyWith<$Res> {
+  factory _$$_ContatosStoreCopyWith(
+          _$_ContatosStore value, $Res Function(_$_ContatosStore) then) =
+      __$$_ContatosStoreCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Contato> contatos, bool isLoading});
 }
 
 /// @nodoc
-class __$$_ListaContatosStateCopyWithImpl<$Res>
-    extends _$ListaContatosStateCopyWithImpl<$Res, _$_ListaContatosState>
-    implements _$$_ListaContatosStateCopyWith<$Res> {
-  __$$_ListaContatosStateCopyWithImpl(
-      _$_ListaContatosState _value, $Res Function(_$_ListaContatosState) _then)
+class __$$_ContatosStoreCopyWithImpl<$Res>
+    extends _$ContatosStoreCopyWithImpl<$Res, _$_ContatosStore>
+    implements _$$_ContatosStoreCopyWith<$Res> {
+  __$$_ContatosStoreCopyWithImpl(
+      _$_ContatosStore _value, $Res Function(_$_ContatosStore) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +87,7 @@ class __$$_ListaContatosStateCopyWithImpl<$Res>
     Object? contatos = null,
     Object? isLoading = null,
   }) {
-    return _then(_$_ListaContatosState(
+    return _then(_$_ContatosStore(
       contatos: null == contatos
           ? _value._contatos
           : contatos // ignore: cast_nullable_to_non_nullable
@@ -102,8 +102,8 @@ class __$$_ListaContatosStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ListaContatosState extends _ListaContatosState {
-  const _$_ListaContatosState(
+class _$_ContatosStore extends _ContatosStore {
+  const _$_ContatosStore(
       {final List<Contato> contatos = const [], this.isLoading = true})
       : _contatos = contatos,
         super._();
@@ -122,14 +122,14 @@ class _$_ListaContatosState extends _ListaContatosState {
 
   @override
   String toString() {
-    return 'ListaContatosState(contatos: $contatos, isLoading: $isLoading)';
+    return 'ContatosStore(contatos: $contatos, isLoading: $isLoading)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ListaContatosState &&
+            other is _$_ContatosStore &&
             const DeepCollectionEquality().equals(other._contatos, _contatos) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading));
@@ -142,16 +142,14 @@ class _$_ListaContatosState extends _ListaContatosState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ListaContatosStateCopyWith<_$_ListaContatosState> get copyWith =>
-      __$$_ListaContatosStateCopyWithImpl<_$_ListaContatosState>(
-          this, _$identity);
+  _$$_ContatosStoreCopyWith<_$_ContatosStore> get copyWith =>
+      __$$_ContatosStoreCopyWithImpl<_$_ContatosStore>(this, _$identity);
 }
 
-abstract class _ListaContatosState extends ListaContatosState {
-  const factory _ListaContatosState(
-      {final List<Contato> contatos,
-      final bool isLoading}) = _$_ListaContatosState;
-  const _ListaContatosState._() : super._();
+abstract class _ContatosStore extends ContatosStore {
+  const factory _ContatosStore(
+      {final List<Contato> contatos, final bool isLoading}) = _$_ContatosStore;
+  const _ContatosStore._() : super._();
 
   @override
   List<Contato> get contatos;
@@ -159,6 +157,6 @@ abstract class _ListaContatosState extends ListaContatosState {
   bool get isLoading;
   @override
   @JsonKey(ignore: true)
-  _$$_ListaContatosStateCopyWith<_$_ListaContatosState> get copyWith =>
+  _$$_ContatosStoreCopyWith<_$_ContatosStore> get copyWith =>
       throw _privateConstructorUsedError;
 }
