@@ -3,57 +3,33 @@ import 'dart:collection';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/enums/roles.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/formatter.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/application/managers/editor_contato_error_manager.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
 
-enum _EditorContatoNotifierErrors {
-  nomeVazio('Campo "Nome" deve ser preenchido.'),
-  telefonesVazio('O contato deve ter no mínimo 1 telefone.'),
-  categoriasVazio('O contato deve ter no mínimo 1 categoria.'),
-  nomeMaiorQue80('O campo "Contato" deve ter no máximo 80 caracteres.');
-
-  final String message;
-
-  const _EditorContatoNotifierErrors(this.message);
-}
-
 class EditorContatoNotifier extends StateNotifier<Contato> {
+  late final EditorContatoErrorManager _errorManager;
+
   EditorContatoNotifier(super.state) {
     if (state.isEmpty) {
-      _errors.addAll([
-        _EditorContatoNotifierErrors.nomeVazio,
-        _EditorContatoNotifierErrors.telefonesVazio
-      ]);
+      _errorManager = EditorContatoErrorManager.nomeVazioTelefonesVazio();
       if (state.categorias.isEmpty) {
-        _errors.add(_EditorContatoNotifierErrors.categoriasVazio);
+        _errorManager.addCategoriaVazio();
       }
+      return;
     }
+
+    _errorManager = EditorContatoErrorManager();
   }
 
-  final _errors = <_EditorContatoNotifierErrors>{};
-
-  List<String> get errors =>
-      UnmodifiableListView(_errors.map((error) => error.message));
+  List<String> get errors => _errorManager.errors;
 
   void nomeTeveAlteracao(String value) {
-    if (value.trim().isEmpty) {
-      _errors.add(_EditorContatoNotifierErrors.nomeVazio);
-    } else if (_errors.contains(_EditorContatoNotifierErrors.nomeVazio)) {
-      _errors.remove(_EditorContatoNotifierErrors.nomeVazio);
-    }
-
-    if (value.length > 80) {
-      _errors.add(_EditorContatoNotifierErrors.nomeMaiorQue80);
-    } else if (_errors.contains(_EditorContatoNotifierErrors.nomeMaiorQue80)) {
-      _errors.remove(_EditorContatoNotifierErrors.nomeMaiorQue80);
-    }
-
+    _errorManager.handleAlteracaoNome(value);
     state = state.copyWith(nome: value);
   }
 
   void adicionarTelefone(String telefone) {
-    if (_errors.contains(_EditorContatoNotifierErrors.telefonesVazio)) {
-      _errors.remove(_EditorContatoNotifierErrors.telefonesVazio);
-    }
+    _errorManager.handleAdicionarTelefone();
 
     telefone = Formatter.unmaskPhone(telefone);
     state = state.copyWith(telefones: {...state.telefones}..add(telefone));
@@ -73,24 +49,18 @@ class EditorContatoNotifier extends StateNotifier<Contato> {
   void removerTelefone(String telefone) {
     telefone = Formatter.unmaskPhone(telefone);
     final telefones = {...state.telefones}..remove(telefone);
-    if (telefones.isEmpty) {
-      _errors.add(_EditorContatoNotifierErrors.telefonesVazio);
-    }
+    _errorManager.handleRemoverTelefone(telefones.length);
     state = state.copyWith(telefones: telefones);
   }
 
   void removerCategoria(Roles categoria) {
     final categorias = {...state.categorias}..remove(categoria);
-    if (categorias.isEmpty) {
-      _errors.add(_EditorContatoNotifierErrors.categoriasVazio);
-    }
+    _errorManager.handleRemoverCategoria(categorias.length);
     state = state.copyWith(categorias: {...categorias});
   }
 
   void adicionarCategorias(Iterable<Roles> categorias) {
-    if (_errors.contains(_EditorContatoNotifierErrors.categoriasVazio)) {
-      _errors.remove(_EditorContatoNotifierErrors.categoriasVazio);
-    }
+    _errorManager.handleAdicionarCategoria();
     final categoriasAtualizado = {...state.categorias}..addAll(categorias);
     state = state.copyWith(categorias: {...categoriasAtualizado});
   }

@@ -3,6 +3,7 @@ import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/config/environment.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/services/dio_service.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 
 abstract class IHttpService {
@@ -30,7 +31,7 @@ final httpServiceProvider = Provider<IHttpService>((ref) {
 
   final service = DioService(dio);
   ref.onDispose(() {
-    service.cancelToken?.cancel();
+    // service.cancelToken?.cancel();
     dio.close();
   });
   return service;

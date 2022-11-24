@@ -91,7 +91,7 @@ extension Methods on Contato {
       this == Contato.emptyColaborador;
 
   int get hierarquia => categorias.isEmpty
-      ? 6
+      ? 7
       : categorias
           .map((categoria) => categoria.index)
           .reduce((value, element) => value < element ? value : element);

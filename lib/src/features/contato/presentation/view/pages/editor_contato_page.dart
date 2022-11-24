@@ -9,6 +9,7 @@ import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/helpers.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/confirm_modal.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/data/repositories/repositories.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/contatos_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/editor_contato_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/widgets/widgets.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
@@ -95,8 +96,9 @@ class EditorContatoPage extends ConsumerWidget {
                       if (_contatoInicial.isEmpty) {
                         //TODO
                         // ignore: unused_local_variable
-                        final contatoCriado =
-                            await repository.create(contatoFinal);
+                        final contatoCriado = await ref
+                            .read(contatoNotifierProvider.notifier)
+                            .createContato(contatoFinal);
                         context.pop();
                         return;
                       }
