@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/enums/roles.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/contato.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/editor_contato_notifier.dart';
 
@@ -40,25 +41,38 @@ class AddCategoriaDialog extends StatelessWidget {
         builder: (context, ref, child) {
           final contato = ref.read(editorContatoNotifierProvider);
           return CustomWrap(
-            children: Roles.values
-                .where((role) => !contato.isA(role))
-                .map((role) => CustomChip(
+            children: [
+              ...Roles.values
+                  .where((role) =>
+                      !contato.isA(role) &&
+                      ref
+                          .read(usuarioLogadoProvider)!
+                          .temHierarquiaMaiorOuIgualQue(role) &&
+                      !role.isAdmin)
+                  .map(
+                    (role) => CustomChip(
                       label: Text(role.capitalized),
                       selected:
                           ref.watch(_selectedCategoriasProvider).contains(role),
                       onSelected: (selected) {
-                        final notifier =
+                        final selectedCategoriesNotifier =
                             ref.read(_selectedCategoriasProvider.notifier);
 
                         if (selected) {
-                          notifier.state = {...notifier.state, role};
+                          selectedCategoriesNotifier.state = {
+                            ...selectedCategoriesNotifier.state,
+                            role
+                          };
                           return;
                         }
 
-                        notifier.state = {...notifier.state..remove(role)};
+                        selectedCategoriesNotifier.state = {
+                          ...selectedCategoriesNotifier.state..remove(role)
+                        };
                       },
-                    ))
-                .toList(),
+                    ),
+                  ),
+            ],
           );
         },
       ),

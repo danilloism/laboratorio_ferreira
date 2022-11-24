@@ -33,6 +33,7 @@ class CategoriasFormSection extends ConsumerWidget {
           ...categorias.map((categoria) => CustomChip(
                 key: ValueKey('chip-$categoria'),
                 label: Text(categoria.capitalized),
+                confirmDeleteAction: false,
                 onDeleted:
                     usuario.temHierarquiaMaiorOuIgualQue(Roles.gerente) &&
                             usuario.temHierarquiaMaiorQue(categoria)
@@ -41,7 +42,8 @@ class CategoriasFormSection extends ConsumerWidget {
                             .removerCategoria(categoria)
                         : null,
               )),
-          if (usuario.temHierarquiaMaiorOuIgualQue(Roles.gerente))
+          if (usuario.temHierarquiaMaiorOuIgualQue(Roles.gerente) &&
+              categorias.length <= 6)
             CustomChip(
               label: const Icon(Icons.add),
               onPressed: () => context.openModal(AddCategoriaDialog()),

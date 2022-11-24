@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/widgets.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/widgets/contatos_list.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/widgets/criar_contato_button.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 
@@ -20,10 +21,12 @@ class ContatosPageView extends ConsumerWidget {
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
+          // crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SearchBar(),
             const SizedBox(height: 8),
             Row(
+              // mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: podeCriarContato
                   ? MainAxisAlignment.spaceBetween
                   : MainAxisAlignment.end,
@@ -41,6 +44,7 @@ class ContatosPageView extends ConsumerWidget {
                 ),
               ],
             ),
+            const ContatosList(),
           ],
         ),
       ),

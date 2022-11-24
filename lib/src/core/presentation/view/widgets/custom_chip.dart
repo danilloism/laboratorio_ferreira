@@ -29,12 +29,14 @@ class CustomChip extends StatelessWidget {
     return RawChip(
       label: label,
       onPressed: onPressed,
+      // padding: const EdgeInsets.all(12),
+      labelPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       deleteIcon: Row(
         mainAxisSize: MainAxisSize.min,
         children: const [
           VerticalDivider(
-            thickness: 2,
-            width: 3,
+            thickness: 1,
+            width: 5,
           ),
           SizedBox(width: 1),
           Icon(
