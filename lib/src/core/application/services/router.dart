@@ -7,7 +7,7 @@ import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/contr
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/states/auth_state.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/view/pages/login_page.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/pages/detalhes_contato_page.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/pages/editor_contato_page.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/view/editor_contato_page.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/view/pages/pages.dart';
 

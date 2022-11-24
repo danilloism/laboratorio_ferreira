@@ -4,8 +4,8 @@ import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/build_context_extension.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_notifier.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/editor_contato_notifier.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/widgets/add_categoria_dialog.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/view/widgets/add_categoria_dialog.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/contato.dart';
 
 class CategoriasFormSection extends ConsumerWidget {

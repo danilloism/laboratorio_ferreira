@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -9,19 +7,23 @@ import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/helpers.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/confirm_modal.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/data/repositories/repositories.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/is_loading_controller.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/view/widgets/categorias_form_section.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/view/widgets/name_form_section.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/view/widgets/telefones_form_section.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/contatos_notifier.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/editor_contato_notifier.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/widgets/widgets.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 
 class EditorContatoPage extends ConsumerWidget {
   EditorContatoPage({super.key, Contato? contato})
       : _contatoInicial = contato ?? Contato.empty;
   final Contato _contatoInicial;
-  final _isLoadingProvider = StateProvider<bool>((ref) => false);
+  // final _isLoadingProvider = StateProvider<bool>((ref) => false);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isLoadingNotifier = ref.read(isLoadingProvider.notifier);
     return ProviderScope(
       overrides: [
         editorContatoNotifierProvider
@@ -54,7 +56,7 @@ class EditorContatoPage extends ConsumerWidget {
           actions: [
             Consumer(
               builder: (context, ref, _) {
-                final loading = ref.watch(_isLoadingProvider);
+                final loading = ref.watch(isLoadingProvider);
 
                 if (loading) {
                   return const Center(
@@ -68,7 +70,8 @@ class EditorContatoPage extends ConsumerWidget {
                 return IconButton(
                   onPressed: () async {
                     UiHelper.closeKeyboard();
-                    ref.read(_isLoadingProvider.notifier).state = true;
+                    // ref.read(_isLoadingProvider.notifier).state = true;
+                    isLoadingNotifier.switchValue();
 
                     final contatoNotifier =
                         ref.read(editorContatoNotifierProvider.notifier);
@@ -78,7 +81,8 @@ class EditorContatoPage extends ConsumerWidget {
                           message:
                               Formatter.fromErrorList(contatoNotifier.errors) ??
                                   'Erro desconhecido.');
-                      ref.read(_isLoadingProvider.notifier).state = false;
+                      // ref.read(_isLoadingProvider.notifier).state = false;
+                      isLoadingNotifier.switchValue();
                       return;
                     }
 
@@ -94,13 +98,10 @@ class EditorContatoPage extends ConsumerWidget {
                       final repository = ref.read(contatoRepositoryProvider);
 
                       if (_contatoInicial.isEmpty) {
-                        //TODO
-                        // ignore: unused_local_variable
-                        final contatoCriado = await ref
+                        return await ref
                             .read(contatoNotifierProvider.notifier)
-                            .createContato(contatoFinal);
-                        context.pop();
-                        return;
+                            .createContato(contatoFinal)
+                            .whenComplete(() => context.pop());
                       }
                       final settings = ref.read(settingsNotifierProvider);
                       final contatoAtualizado =
@@ -115,6 +116,7 @@ class EditorContatoPage extends ConsumerWidget {
                                 session?.copyWith(contato: contatoAtualizado));
                       }
 
+                      // ignore: use_build_context_synchronously
                       context.pop();
                     } on RepositoryException catch (e) {
                       final erro = e.object?['data']['erro'];
@@ -132,9 +134,11 @@ class EditorContatoPage extends ConsumerWidget {
                             message: '${erro ?? e.message}');
                       }
 
-                      ref.read(_isLoadingProvider.notifier).state = false;
+                      // ref.read(_isLoadingProvider.notifier).state = false;
+                      isLoadingNotifier.switchValue();
                     } catch (e) {
-                      ref.read(_isLoadingProvider.notifier).state = false;
+                      // ref.read(_isLoadingProvider.notifier).state = false;
+                      isLoadingNotifier.switchValue();
                       context.showErrorSnackBar(message: e.toString());
                       return;
                     }
