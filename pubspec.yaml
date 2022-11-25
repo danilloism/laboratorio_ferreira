@@ -30,8 +30,8 @@ dependencies:
   jwt_decoder: ^2.0.1
   loggy: ^2.0.3
   mask: ^1.0.4
-  path: ^1.8.2
   path_provider: ^2.0.11
+  riverpod_annotation: ^1.0.6
   sembast: ^3.3.1
 
 dev_dependencies:
@@ -44,6 +44,7 @@ dev_dependencies:
   freezed: ^2.2.1
   json_serializable: ^6.5.4
   mocktail: ^0.3.0
+  riverpod_generator: ^1.0.6
 
 flutter_native_splash:
   image: assets/laboratorioferreira_logo_sem_fundo.png

@@ -1,18 +1,16 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/telefone_input.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class EditorTelefoneNotifier extends StateNotifier<TelefoneInput> {
-  EditorTelefoneNotifier([String? telefone])
-      : super(telefone != null
-            ? TelefoneInput.dirty(telefone)
-            : const TelefoneInput.pure());
+part '../../../../../../../generated/src/features/contato/presentation/components/editor_contato/controllers/editor_telefone_notifier.g.dart';
 
-  void teveAlteracao(String value) {
-    final telefone = TelefoneInput.dirty(value);
-    state = telefone;
+@riverpod
+class EditorTelefoneController extends _$EditorTelefoneController {
+  @override
+  TelefoneInput build([String? initialValue]) {
+    return initialValue != null
+        ? TelefoneInput.dirty(initialValue)
+        : const TelefoneInput.pure();
   }
-}
 
-final telefoneNotifierProvider = StateNotifierProvider.family
-    .autoDispose<EditorTelefoneNotifier, TelefoneInput, String?>(
-        (ref, telefone) => EditorTelefoneNotifier(telefone));
+  void teveAlteracao(String value) => state = TelefoneInput.dirty(value);
+}

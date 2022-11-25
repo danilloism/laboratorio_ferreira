@@ -10,12 +10,11 @@ import 'package:mask/mask.dart';
 class EditorTelefoneDialog extends ConsumerWidget {
   EditorTelefoneDialog({super.key, String? telefone})
       : initialValue = telefone ?? '' {
-    telefoneProvider = telefoneNotifierProvider(telefone);
+    telefoneProvider = editorTelefoneControllerProvider(telefone);
   }
 
   final String initialValue;
-  late final AutoDisposeStateNotifierProvider<EditorTelefoneNotifier,
-      TelefoneInput> telefoneProvider;
+  late final EditorTelefoneControllerProvider telefoneProvider;
 
   void _submit({
     required bool isEditar,
