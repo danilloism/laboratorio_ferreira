@@ -19,6 +19,7 @@ class EditorContatoPage extends ConsumerWidget {
   EditorContatoPage({super.key, Contato? contato})
       : _contatoInicial = contato ?? Contato.empty;
   final Contato _contatoInicial;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -69,73 +70,64 @@ class EditorContatoPage extends ConsumerWidget {
                 return IconButton(
                   onPressed: () async {
                     UiHelper.closeKeyboard();
-                    isLoadingController.switchValue();
 
-                    final contatoNotifier =
-                        ref.read(editorContatoNotifierProvider.notifier);
-
-                    if (contatoNotifier.errors.isNotEmpty) {
-                      context.showErrorSnackBar(
-                          message:
-                              Formatter.fromErrorList(contatoNotifier.errors) ??
-                                  'Erro desconhecido.');
+                    if (_formKey.currentState!.validate()) {
                       isLoadingController.switchValue();
-                      return;
-                    }
 
-                    final contatoFinal =
-                        ref.read(editorContatoNotifierProvider);
+                      final contatoFinal =
+                          ref.read(editorContatoNotifierProvider);
 
-                    if (_contatoInicial == contatoFinal) {
-                      context.pop();
-                      return;
-                    }
-
-                    try {
-                      final repository = ref.read(contatoRepositoryProvider);
-
-                      if (_contatoInicial.isEmpty) {
-                        return await ref
-                            .read(contatoNotifierProvider.notifier)
-                            .createContato(contatoFinal)
-                            .whenComplete(() => context.pop());
-                      }
-                      final settings = ref.read(settingsNotifierProvider);
-                      final contatoAtualizado =
-                          await repository.update(contatoFinal);
-                      final itsMe =
-                          _contatoInicial.uid == settings.session?.contato.uid;
-                      if (itsMe) {
-                        final session = settings.session;
-                        ref
-                            .read(settingsNotifierProvider.notifier)
-                            .changeSession(
-                                session?.copyWith(contato: contatoAtualizado));
+                      if (_contatoInicial == contatoFinal) {
+                        context.pop();
+                        return;
                       }
 
-                      // ignore: use_build_context_synchronously
-                      context.pop();
-                    } on RepositoryException catch (e) {
-                      final erro = e.object?['data']['erro'];
+                      try {
+                        final repository = ref.read(contatoRepositoryProvider);
 
-                      if (erro is List) {
-                        final erroCasted =
-                            List<String?>.from(erro, growable: false);
+                        if (_contatoInicial.isEmpty) {
+                          return await ref
+                              .read(contatoNotifierProvider.notifier)
+                              .createContato(contatoFinal)
+                              .whenComplete(() => context.pop());
+                        }
+                        final settings = ref.read(settingsNotifierProvider);
+                        final contatoAtualizado =
+                            await repository.update(contatoFinal);
+                        final itsMe = _contatoInicial.uid ==
+                            settings.session?.contato.uid;
+                        if (itsMe) {
+                          final session = settings.session;
+                          ref
+                              .read(settingsNotifierProvider.notifier)
+                              .changeSession(session?.copyWith(
+                                  contato: contatoAtualizado));
+                        }
 
-                        context.showErrorSnackBar(
-                            message: Formatter.fromErrorList(erroCasted)!);
+                        // ignore: use_build_context_synchronously
+                        context.pop();
+                      } on RepositoryException catch (e) {
+                        final erro = e.object?['data']['erro'];
+
+                        if (erro is List) {
+                          final erroCasted =
+                              List<String?>.from(erro, growable: false);
+
+                          context.showErrorSnackBar(
+                              message: Formatter.fromErrorList(erroCasted)!);
+                        }
+
+                        if (erro is String?) {
+                          context.showErrorSnackBar(
+                              message: '${erro ?? e.message}');
+                        }
+
+                        isLoadingController.switchValue();
+                      } catch (e) {
+                        isLoadingController.switchValue();
+                        context.showErrorSnackBar(message: e.toString());
+                        return;
                       }
-
-                      if (erro is String?) {
-                        context.showErrorSnackBar(
-                            message: '${erro ?? e.message}');
-                      }
-
-                      isLoadingController.switchValue();
-                    } catch (e) {
-                      isLoadingController.switchValue();
-                      context.showErrorSnackBar(message: e.toString());
-                      return;
                     }
                   },
                   icon: const Icon(Icons.done),
@@ -147,6 +139,7 @@ class EditorContatoPage extends ConsumerWidget {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Form(
+            key: _formKey,
             child: ListView(
               children: const [
                 SizedBox(height: 8),

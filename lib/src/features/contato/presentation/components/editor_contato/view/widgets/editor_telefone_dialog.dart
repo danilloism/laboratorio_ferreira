@@ -105,6 +105,19 @@ class EditorTelefoneDialog extends ConsumerWidget {
                   inputFormatters: [
                     Mask.generic(masks: ['(##) #####-####'])
                   ],
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return TelefoneInputError.empty.message;
+                    }
+                    if (value.length > 11) {
+                      return TelefoneInputError.lengthOverflow.message;
+                    }
+                    if (value.length < 11) {
+                      return TelefoneInputError.minLengthRequired.message;
+                    }
+
+                    return null;
+                  },
                   onChanged: (value) {
                     ref
                         .read(telefoneProvider.notifier)
@@ -115,7 +128,7 @@ class EditorTelefoneDialog extends ConsumerWidget {
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Visibility(
                     visible: telefoneState.error != null && !telefoneState.pure,
-                    child: Text(telefoneState.error?.name ?? '',
+                    child: Text(telefoneState.error?.message ?? '',
                         style: const TextStyle(color: Colors.red)),
                   ),
                 ),

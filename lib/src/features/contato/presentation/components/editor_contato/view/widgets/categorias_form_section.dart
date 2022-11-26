@@ -19,35 +19,64 @@ class CategoriasFormSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final categorias = ref
-        .watch(
-            editorContatoNotifierProvider.select((value) => value.categorias))
-        .toList()
-      ..sort((a, b) => a.name.compareTo(b.name));
     final usuario = ref.read(usuarioLogadoProvider)!;
     // final contatoSendoEditado = ref.read(editorContatoNotifierProvider);
-    return FormSection(
-      title: 'Categorias',
-      child: CustomWrap(
-        children: [
-          ...categorias.map((categoria) => CustomChip(
-                key: ValueKey('chip-$categoria'),
-                label: Text(categoria.capitalized),
-                confirmDeleteAction: false,
-                onDeleted:
-                    usuario.temHierarquiaMaiorOuIgualQue(Roles.gerente) &&
-                            usuario.temHierarquiaMaiorQue(categoria)
-                        ? () => ref
-                            .read(editorContatoNotifierProvider.notifier)
-                            .removerCategoria(categoria)
-                        : null,
-              )),
-          if (usuario.temHierarquiaMaiorOuIgualQue(Roles.gerente) &&
-              categorias.length <= 6)
-            CustomChip.add(
-              () => context.openModal(AddCategoriaDialog()),
-            ),
-        ],
+    return FormField<Set<Roles>>(
+      validator: (value) => value == null || value.isEmpty
+          ? 'Contato deve possuir pelo menos uma categoria.'
+          : null,
+      initialValue: ref.read(editorContatoNotifierProvider).categorias,
+      builder: (formFieldState) => FormSection(
+        title: 'Categorias',
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Consumer(builder: (context, ref, _) {
+              ref.listen(
+                  editorContatoNotifierProvider
+                      .select((value) => value.categorias), (_, next) {
+                formFieldState.didChange(next);
+              });
+              final categorias = ref
+                  .watch(editorContatoNotifierProvider
+                      .select((value) => value.categorias))
+                  .toList()
+                ..sort((a, b) => a.name.compareTo(b.name));
+              return CustomWrap(
+                children: [
+                  ...categorias.map((categoria) => CustomChip(
+                        key: ValueKey('chip-$categoria'),
+                        label: Text(categoria.capitalized),
+                        confirmDeleteAction: false,
+                        onDeleted: usuario.temHierarquiaMaiorOuIgualQue(
+                                    Roles.gerente) &&
+                                usuario.temHierarquiaMaiorQue(categoria)
+                            ? () => ref
+                                .read(editorContatoNotifierProvider.notifier)
+                                .removerCategoria(categoria)
+                            : null,
+                      )),
+                  if (usuario.temHierarquiaMaiorOuIgualQue(Roles.gerente) &&
+                      categorias.length <= 6)
+                    CustomChip.add(
+                      () => context.openModal(AddCategoriaDialog()),
+                    ),
+                ],
+              );
+            }),
+            if (formFieldState.hasError)
+              Padding(
+                padding: const EdgeInsets.only(left: 8, top: 10),
+                child: Text(
+                  formFieldState.errorText!,
+                  style: TextStyle(
+                    color: context.theme.colorScheme.error,
+                    fontSize: 12.5,
+                  ),
+                ),
+              )
+          ],
+        ),
       ),
     );
   }

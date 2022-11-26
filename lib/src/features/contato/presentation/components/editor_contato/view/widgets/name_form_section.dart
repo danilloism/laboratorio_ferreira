@@ -10,10 +10,18 @@ class NameFormSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return FormSection(
       title: 'Nome',
-      child: CustomTextFormField(
+      child: TextFormField(
         onChanged:
             ref.read(editorContatoNotifierProvider.notifier).nomeTeveAlteracao,
         initialValue: ref.read(editorContatoNotifierProvider).nome,
+        validator: (value) {
+          final nome = value?.trim();
+          if (nome == null || nome.isEmpty) {
+            return 'Campo "Nome" deve ser preenchido';
+          }
+          if (nome.length > 80) return 'Campo nome deve ter até 80 caracteres';
+          return null;
+        },
       ),
     );
   }
