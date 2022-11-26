@@ -17,20 +17,14 @@ final databaseProvider =
     Provider<Database>((ref) => throw UnimplementedError());
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final chamadasAssincronas = await Future.wait([
-    Init.database(),
-    Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
-  ]);
-  Init.executeAfterAsyncCall();
-
-  final db = chamadasAssincronas[0] as Database;
-  final settingsRepo = await Init.settingsRepo(db);
+  final initItems = await Init.execute();
 
   runApp(ProviderScope(
     overrides: [
-      settingsRepositoryProvider.overrideWithValue(settingsRepo),
-      databaseProvider.overrideWithValue(db),
+      settingsRepositoryProvider
+          .overrideWithValue(initItems[InitializationItem.settingsRepo]),
+      databaseProvider
+          .overrideWithValue(initItems[InitializationItem.database]),
     ],
     observers: [RiverpodLogger()],
     child: const MyApp(),
