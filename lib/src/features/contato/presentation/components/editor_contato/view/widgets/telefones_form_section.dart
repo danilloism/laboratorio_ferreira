@@ -5,7 +5,7 @@ import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/formatter.dart
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/helpers.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/misc/helpers/editor_contato_helper.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/view/widgets/editor_telefone_dialog.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 
@@ -14,7 +14,7 @@ class TelefonesFormSection extends ConsumerWidget {
 
   bool _podeEditarTelefone(WidgetRef ref) {
     final editorContato = ref.read(editorContatoNotifierProvider);
-    final usuarioLogado = ref.read(settingsNotifierProvider).session!.contato;
+    final usuarioLogado = ref.read(settingsControllerProvider).session!.contato;
 
     return EditorContatoHelper.usuarioLogadoPodeEditarContato(
         usuarioLogado: usuarioLogado, contatoSendoEditado: editorContato);

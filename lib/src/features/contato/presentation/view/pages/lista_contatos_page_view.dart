@@ -13,7 +13,7 @@ class ContatosPageView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final usuarioLogado =
-        ref.watch(settingsNotifierProvider).session?.contato ?? Contato.empty;
+        ref.watch(settingsControllerProvider).session?.contato ?? Contato.empty;
     final podeCriarContato =
         usuarioLogado.temHierarquiaMaiorOuIgualQue(Roles.gerente) ||
             usuarioLogado.isDentistaEspacoOdontologico;

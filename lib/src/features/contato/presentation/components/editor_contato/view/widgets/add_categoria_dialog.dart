@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/enums/roles.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/contato.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/selected_categorias_controller.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_controller.dart';
 
 class AddCategoriaDialog extends StatelessWidget {
   AddCategoriaDialog({super.key});

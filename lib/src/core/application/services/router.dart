@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/config/config.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/states/auth_state.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/view/pages/login_page.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/pages/detalhes_contato_page.dart';
@@ -27,7 +27,8 @@ class GoRouterRefreshListenable extends ChangeNotifier {
   final Ref _ref;
 
   GoRouterRefreshListenable(this._ref) {
-    _ref.listen<AuthState>(authNotifierProvider, (_, __) => notifyListeners());
+    _ref.listen<AuthState>(
+        authControllerProvider, (_, __) => notifyListeners());
   }
 
   List<RouteBase> get _routes => [
@@ -40,7 +41,8 @@ class GoRouterRefreshListenable extends ChangeNotifier {
               name: 'viewcontato',
               path: 'contatos/view/:id',
               builder: (context, state) {
-                final me = _ref.read(settingsNotifierProvider).session!.contato;
+                final me =
+                    _ref.read(settingsControllerProvider).session!.contato;
                 return DetalhesContatoPage(me);
               },
             ),
@@ -48,7 +50,8 @@ class GoRouterRefreshListenable extends ChangeNotifier {
               name: 'editcontato',
               path: 'contatos/edit/:id',
               builder: (context, state) {
-                final me = _ref.read(settingsNotifierProvider).session!.contato;
+                final me =
+                    _ref.read(settingsControllerProvider).session!.contato;
                 return EditorContatoPage(contato: me);
               },
             ),
@@ -78,7 +81,7 @@ class GoRouterRefreshListenable extends ChangeNotifier {
               name: 'settingsEditarContato',
               path: 'editar_contato',
               redirect: (context, _) {
-                if (_ref.read(authNotifierProvider) is LoggedIn) {
+                if (_ref.read(authControllerProvider) is LoggedIn) {
                   return '/contatos/edit/me';
                 }
 
@@ -90,7 +93,7 @@ class GoRouterRefreshListenable extends ChangeNotifier {
       ];
 
   String? _redirect(BuildContext context, GoRouterState state) {
-    final authState = _ref.read(authNotifierProvider);
+    final authState = _ref.read(authControllerProvider);
 
     switch (state.location) {
       case '/splash':

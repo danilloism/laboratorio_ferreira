@@ -19,7 +19,7 @@ class ThemeDropdowns extends StatelessWidget {
         Consumer(
           builder: (context, ref, _) {
             return DropdownMenu<bool>(
-              value: ref.watch(settingsNotifierProvider
+              value: ref.watch(settingsControllerProvider
                   .select((value) => value.useMaterial3)),
               selectedItemBuilder: (context) => const [
                 Center(
@@ -50,7 +50,7 @@ class ThemeDropdowns extends StatelessWidget {
                 )
               ],
               onChanged: (value) => ref
-                  .read(settingsNotifierProvider.notifier)
+                  .read(settingsControllerProvider.notifier)
                   .changeUseMaterial3(value!),
             );
           },
@@ -59,7 +59,7 @@ class ThemeDropdowns extends StatelessWidget {
         Consumer(builder: (context, ref, _) {
           return DropdownMenu<ThemeMode>(
             value: ref.watch(
-                settingsNotifierProvider.select((value) => value.themeMode)),
+                settingsControllerProvider.select((value) => value.themeMode)),
             selectedItemBuilder: (context) => ThemeMode.values
                 .map(
                   (mode) => Center(
@@ -78,8 +78,9 @@ class ThemeDropdowns extends StatelessWidget {
                   ),
                 )
                 .toList(),
-            onChanged: (value) =>
-                ref.read(settingsNotifierProvider.notifier).changeTheme(value!),
+            onChanged: (value) => ref
+                .read(settingsControllerProvider.notifier)
+                .changeTheme(value!),
           );
         }),
       ],

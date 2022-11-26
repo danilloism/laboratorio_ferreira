@@ -8,15 +8,20 @@ import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/models.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 import 'package:path/path.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part '../../../../../generated/src/features/auth/data/repositories/auth_repository.g.dart';
 
 class AuthRepository {
   final IHttpService _httpService;
-  final Ref _ref;
+  final SettingsController _settingsNotifier;
   final _path = join(Environment.apiUrl, 'user');
 
-  AuthRepository(Ref ref)
-      : _httpService = ref.watch(httpServiceProvider),
-        _ref = ref;
+  AuthRepository({
+    required IHttpService httpService,
+    required SettingsController settingsNotifier,
+  })  : _httpService = httpService,
+        _settingsNotifier = settingsNotifier;
 
   Future<Session> login(Account account) async {
     Session? session;
@@ -54,7 +59,7 @@ class AuthRepository {
       rethrow;
     } finally {
       if (session != null) {
-        _ref.read(settingsNotifierProvider.notifier).changeSession(session);
+        _settingsNotifier.changeSession(session);
       }
     }
   }
@@ -95,9 +100,13 @@ class AuthRepository {
   }
 
   Future<void> logout() async {
-    return await _ref.read(settingsNotifierProvider.notifier).changeSession();
+    return await _settingsNotifier.changeSession();
   }
 }
 
-final authRepositoryProvider =
-    Provider<AuthRepository>((ref) => AuthRepository(ref));
+@riverpod
+AuthRepository authRepository(AuthRepositoryRef ref) {
+  return AuthRepository(
+      httpService: ref.watch(httpServiceProvider),
+      settingsNotifier: ref.watch(settingsControllerProvider.notifier));
+}

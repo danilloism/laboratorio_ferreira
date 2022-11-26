@@ -3,8 +3,8 @@ import 'package:laboratorio_ferreira_mobile/src/core/domain/enums/roles.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/formatter.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
 
-class EditorContatoNotifier extends StateNotifier<Contato> {
-  EditorContatoNotifier(super.state);
+class EditorContatoController extends StateNotifier<Contato> {
+  EditorContatoController(super.state);
 
   void nomeTeveAlteracao(String value) {
     state = state.copyWith(nome: value);
@@ -44,5 +44,5 @@ class EditorContatoNotifier extends StateNotifier<Contato> {
 }
 
 final editorContatoNotifierProvider =
-    StateNotifierProvider<EditorContatoNotifier, Contato>(
+    StateNotifierProvider<EditorContatoController, Contato>(
         (ref) => throw UnimplementedError());

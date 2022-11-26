@@ -6,7 +6,7 @@ import 'package:laboratorio_ferreira_mobile/firebase_options.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/services/services.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/data/repositories/auth_repository.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/states/auth_state.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/contatos_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/data/data.dart';
@@ -50,12 +50,12 @@ class _MyAppState extends ConsumerState<MyApp> {
     ref.read(networkStatusProvider);
 
     // Refresh Token //
-    final settingsNotifier = ref.read(settingsNotifierProvider);
+    final settingsNotifier = ref.read(settingsControllerProvider);
     final session = settingsNotifier.session;
     if (session != null) {
       final tokenUsuarioLogado = session.accessToken;
 
-      ref.read(contatoNotifierProvider.notifier).loadContatos();
+      ref.read(contatoControllerProvider.notifier).loadContatos();
 
       final decodedToken = JwtDecoder.decode(tokenUsuarioLogado);
       final iat = DateTime.fromMillisecondsSinceEpoch(0)
@@ -64,11 +64,11 @@ class _MyAppState extends ConsumerState<MyApp> {
       final diferencaDias = iat.day - dataAtual.day;
       if (diferencaDias <= 2) return;
       ref.read(authRepositoryProvider).refreshToken().then((refreshToken) {
-        final currentAuthState = ref.read(authNotifierProvider);
+        final currentAuthState = ref.read(authControllerProvider);
         if (currentAuthState is! LoggedIn) return;
         final newSession =
             session.copyWith(accessToken: refreshToken.accessToken);
-        ref.read(settingsNotifierProvider.notifier).changeSession(newSession);
+        ref.read(settingsControllerProvider.notifier).changeSession(newSession);
       });
     }
     return;
@@ -82,8 +82,8 @@ class _MyAppState extends ConsumerState<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    ref.listen(contatoNotifierProvider.notifier, (previous, next) {
-      if (ref.read(authNotifierProvider) is LoggedIn) {
+    ref.listen(contatoControllerProvider.notifier, (previous, next) {
+      if (ref.read(authControllerProvider) is LoggedIn) {
         next.loadContatos();
       }
     });
@@ -104,7 +104,7 @@ class _MyAppState extends ConsumerState<MyApp> {
       theme: appTheme.lightTheme,
       darkTheme: appTheme.darkTheme,
       themeMode: ref
-          .watch(settingsNotifierProvider.select((value) => value.themeMode)),
+          .watch(settingsControllerProvider.select((value) => value.themeMode)),
       routerConfig: ref.read(routerProvider),
     );
   }

@@ -12,7 +12,7 @@ import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/co
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/view/widgets/name_form_section.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/view/widgets/telefones_form_section.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/contatos_notifier.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 
 class EditorContatoPage extends ConsumerWidget {
@@ -27,7 +27,7 @@ class EditorContatoPage extends ConsumerWidget {
     return ProviderScope(
       overrides: [
         editorContatoNotifierProvider
-            .overrideWith((ref) => EditorContatoNotifier(_contatoInicial))
+            .overrideWith((ref) => EditorContatoController(_contatoInicial))
       ],
       child: Scaffold(
         appBar: AppBar(
@@ -87,11 +87,11 @@ class EditorContatoPage extends ConsumerWidget {
 
                         if (_contatoInicial.isEmpty) {
                           return await ref
-                              .read(contatoNotifierProvider.notifier)
+                              .read(contatoControllerProvider.notifier)
                               .createContato(contatoFinal)
                               .whenComplete(() => context.pop());
                         }
-                        final settings = ref.read(settingsNotifierProvider);
+                        final settings = ref.read(settingsControllerProvider);
                         final contatoAtualizado =
                             await repository.update(contatoFinal);
                         final itsMe = _contatoInicial.uid ==
@@ -99,7 +99,7 @@ class EditorContatoPage extends ConsumerWidget {
                         if (itsMe) {
                           final session = settings.session;
                           ref
-                              .read(settingsNotifierProvider.notifier)
+                              .read(settingsControllerProvider.notifier)
                               .changeSession(session?.copyWith(
                                   contato: contatoAtualizado));
                         }
