@@ -1,7 +1,9 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/main.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/domain/models/setting.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part '../../../../../generated/src/features/settings/data/repositories/settings_repository.g.dart';
 
 abstract class SettingsRepository {
   Future<Setting> upsertSetting(SettingsItem setting, dynamic value);
@@ -15,5 +17,6 @@ abstract class SettingsRepository {
   Future<void> init();
 }
 
-final settingsRepositoryProvider = Provider<SettingsRepository>(
-    (ref) => SettingsSembastRepository(ref.watch(databaseProvider)));
+@Riverpod(keepAlive: true)
+SettingsRepository settingsRepository(SettingsRepositoryRef ref) =>
+    SettingsSembastRepository(ref.watch(databaseProvider));

@@ -6,7 +6,6 @@ import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/sess
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/contato.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/domain/models/setting.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
-import 'package:loggy/loggy.dart';
 import 'package:sembast/sembast.dart';
 
 extension ThemeModeToSembast on ThemeMode {
@@ -45,7 +44,7 @@ bool? _m3FromSembast(Map<String, Object?>? object) {
   return object['value'] as bool;
 }
 
-class SettingsSembastRepository with UiLoggy implements SettingsRepository {
+class SettingsSembastRepository implements SettingsRepository {
   final Database _database;
   final _store = stringMapStoreFactory.store('settings_store');
   late Setting _current;
