@@ -5,7 +5,6 @@ import 'package:laboratorio_ferreira_mobile/src/config/environment.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/application.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/models.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 import 'package:path/path.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -13,18 +12,13 @@ part '../../../../../generated/src/features/auth/data/repositories/auth_reposito
 
 class AuthRepository {
   final IHttpService _httpService;
-  final SettingsController _settingsNotifier;
   final _path = join(Environment.apiUrl, 'user');
 
   AuthRepository({
     required IHttpService httpService,
-    required SettingsController settingsNotifier,
-  })  : _httpService = httpService,
-        _settingsNotifier = settingsNotifier;
+  }) : _httpService = httpService;
 
   Future<Session> login(Account account) async {
-    Session? session;
-
     try {
       final Response resposta = await _httpService.post(
         join(_path, 'login'),
@@ -34,8 +28,7 @@ class AuthRepository {
       final dto =
           ApiResponse<Session>.fromJson(resposta.data, Session.fromJson);
       if (dto.sucesso) {
-        session = dto.dados!;
-        return session;
+        return dto.dados!;
       }
 
       throw RepositoryException(
@@ -56,10 +49,6 @@ class AuthRepository {
       );
     } catch (e) {
       rethrow;
-    } finally {
-      if (session != null) {
-        _settingsNotifier.changeSession(session);
-      }
     }
   }
 
@@ -97,15 +86,8 @@ class AuthRepository {
       rethrow;
     }
   }
-
-  Future<void> logout() async {
-    return await _settingsNotifier.changeSession();
-  }
 }
 
 @riverpod
-AuthRepository authRepository(AuthRepositoryRef ref) {
-  return AuthRepository(
-      httpService: ref.watch(httpServiceProvider),
-      settingsNotifier: ref.watch(settingsControllerProvider.notifier));
-}
+AuthRepository authRepository(AuthRepositoryRef ref) =>
+    AuthRepository(httpService: ref.watch(httpServiceProvider));

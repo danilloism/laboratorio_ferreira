@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $authRepositoryHash() => r'90e9ebe556b1963b7d19db6dc0a3a8e95ab93f25';
+String $authRepositoryHash() => r'4d965802b8ee5149f97448fb85ea36d37fe7c74a';
 
 /// See also [authRepository].
 final authRepositoryProvider = AutoDisposeProvider<AuthRepository>(

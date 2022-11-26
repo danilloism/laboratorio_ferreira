@@ -6,7 +6,6 @@ import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/extensions.
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/states/auth_state.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/view/widgets/logged_in_info_section.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/view/widgets/theme_dropdowns.dart';
 
@@ -15,7 +14,7 @@ class SettingsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final contato = ref.watch(settingsControllerProvider).session?.contato;
+    final usuarioLogado = ref.watch(usuarioLogadoProvider);
     ref.listen<AuthState>(authControllerProvider, (previous, next) {
       if (GoRouter.of(context).location == '/settings') {
         next.whenOrNull(
@@ -36,8 +35,7 @@ class SettingsPage extends ConsumerWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if (ref.read(authControllerProvider) is LoggedIn)
-                        const LoggedInInfoSection(),
+                      if (usuarioLogado != null) const LoggedInInfoSection(),
                       Card(
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -51,8 +49,8 @@ class SettingsPage extends ConsumerWidget {
                           ),
                         ),
                       ),
-                      if (contato == null ||
-                          !contato
+                      if (usuarioLogado == null ||
+                          !usuarioLogado
                               .temHierarquiaMaiorOuIgualQue(Roles.colaborador))
                         Card(
                           child: Column(
@@ -67,7 +65,7 @@ class SettingsPage extends ConsumerWidget {
                 ],
               ),
             ),
-            if (ref.read(authControllerProvider) is LoggedIn)
+            if (usuarioLogado != null)
               Align(
                 alignment: Alignment.bottomRight,
                 child: Padding(

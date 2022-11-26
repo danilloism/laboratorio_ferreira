@@ -51,7 +51,7 @@ class ThemeDropdowns extends StatelessWidget {
               ],
               onChanged: (value) => ref
                   .read(settingsControllerProvider.notifier)
-                  .changeUseMaterial3(value!),
+                  .useMaterial3(value!),
             );
           },
         ),

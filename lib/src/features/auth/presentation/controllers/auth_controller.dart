@@ -38,7 +38,6 @@ class AuthController extends _$AuthController {
   }
 
   Future<void> logout() async {
-    await ref.read(authRepositoryProvider).logout();
     state = const AuthState.loggedOut();
   }
 }

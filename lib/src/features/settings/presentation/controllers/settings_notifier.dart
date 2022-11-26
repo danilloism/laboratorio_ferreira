@@ -29,7 +29,7 @@ class SettingsController extends _$SettingsController {
     state = newValue;
   }
 
-  Future<void> changeUseMaterial3(bool value) async {
+  Future<void> useMaterial3(bool value) async {
     if (value == state.useMaterial3) return;
     final newValue = await ref
         .read(settingsRepositoryProvider)
