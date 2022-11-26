@@ -19,11 +19,10 @@ class EditorContatoPage extends ConsumerWidget {
   EditorContatoPage({super.key, Contato? contato})
       : _contatoInicial = contato ?? Contato.empty;
   final Contato _contatoInicial;
-  // final _isLoadingProvider = StateProvider<bool>((ref) => false);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isLoadingNotifier = ref.read(isLoadingProvider.notifier);
+    final isLoadingController = ref.read(isLoadingControllerProvider.notifier);
     return ProviderScope(
       overrides: [
         editorContatoNotifierProvider
@@ -56,7 +55,7 @@ class EditorContatoPage extends ConsumerWidget {
           actions: [
             Consumer(
               builder: (context, ref, _) {
-                final loading = ref.watch(isLoadingProvider);
+                final loading = ref.watch(isLoadingControllerProvider);
 
                 if (loading) {
                   return const Center(
@@ -70,8 +69,7 @@ class EditorContatoPage extends ConsumerWidget {
                 return IconButton(
                   onPressed: () async {
                     UiHelper.closeKeyboard();
-                    // ref.read(_isLoadingProvider.notifier).state = true;
-                    isLoadingNotifier.switchValue();
+                    isLoadingController.switchValue();
 
                     final contatoNotifier =
                         ref.read(editorContatoNotifierProvider.notifier);
@@ -81,8 +79,7 @@ class EditorContatoPage extends ConsumerWidget {
                           message:
                               Formatter.fromErrorList(contatoNotifier.errors) ??
                                   'Erro desconhecido.');
-                      // ref.read(_isLoadingProvider.notifier).state = false;
-                      isLoadingNotifier.switchValue();
+                      isLoadingController.switchValue();
                       return;
                     }
 
@@ -134,11 +131,9 @@ class EditorContatoPage extends ConsumerWidget {
                             message: '${erro ?? e.message}');
                       }
 
-                      // ref.read(_isLoadingProvider.notifier).state = false;
-                      isLoadingNotifier.switchValue();
+                      isLoadingController.switchValue();
                     } catch (e) {
-                      // ref.read(_isLoadingProvider.notifier).state = false;
-                      isLoadingNotifier.switchValue();
+                      isLoadingController.switchValue();
                       context.showErrorSnackBar(message: e.toString());
                       return;
                     }

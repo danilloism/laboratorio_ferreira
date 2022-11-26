@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../../../../../../../../src/features/contato/presentation/components/editor_contato/controllers/editor_telefone_notifier.dart';
+part of '../../../../../../../../src/features/contato/presentation/components/editor_contato/controllers/editor_telefone_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator

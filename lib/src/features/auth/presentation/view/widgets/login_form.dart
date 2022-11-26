@@ -61,13 +61,13 @@ class _LoginFormState extends ConsumerState<LoginForm> {
               keyboardType: TextInputType.emailAddress,
               onChanged:
                   ref.read(loginFormProvider.notifier).emailTeveAlteracao,
-              inputAction: TextInputAction.next,
+              textInputAction: TextInputAction.next,
             ),
           ),
           const SizedBox(height: 16),
           FormSection(
             child: CustomTextFormField(
-              inputAction: TextInputAction.go,
+              textInputAction: TextInputAction.go,
               obscureText: true,
               label: 'Senha',
               onChanged:

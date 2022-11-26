@@ -4,6 +4,14 @@ import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/build_conte
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/confirm_modal.dart';
 
 class CustomChip extends StatelessWidget {
+  final Widget label;
+  final void Function()? onPressed;
+  final void Function()? onDeleted;
+  final bool confirmDeleteAction;
+  final void Function(bool)? onSelected;
+  final String? tooltip;
+  final bool selected;
+
   const CustomChip({
     super.key,
     required this.label,
@@ -15,13 +23,15 @@ class CustomChip extends StatelessWidget {
     this.confirmDeleteAction = true,
   });
 
-  final Widget label;
-  final void Function()? onPressed;
-  final void Function()? onDeleted;
-  final bool confirmDeleteAction;
-  final void Function(bool)? onSelected;
-  final String? tooltip;
-  final bool selected;
+  factory CustomChip.add(void Function()? onPressed) =>
+      CustomChip.icon(Icons.add, onPressed: onPressed);
+
+  CustomChip.icon(IconData icon, {this.onPressed, this.tooltip, super.key})
+      : label = Icon(icon, size: 20),
+        onSelected = null,
+        onDeleted = null,
+        selected = false,
+        confirmDeleteAction = true;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +39,6 @@ class CustomChip extends StatelessWidget {
     return RawChip(
       label: label,
       onPressed: onPressed,
-      // padding: const EdgeInsets.all(12),
       labelPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       deleteIcon: Row(
         mainAxisSize: MainAxisSize.min,
@@ -53,8 +62,9 @@ class CustomChip extends StatelessWidget {
               if (confirmDeleteAction) {
                 context.openModal(
                   ConfirmModal(
-                      message: 'Tem certeza que deseja deletar esse item?',
-                      onConfirm: onDeleted!),
+                    message: 'Tem certeza que deseja deletar esse item?',
+                    onConfirm: onDeleted!,
+                  ),
                 );
                 return;
               }

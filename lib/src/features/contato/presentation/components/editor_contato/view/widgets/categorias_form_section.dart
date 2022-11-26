@@ -44,9 +44,8 @@ class CategoriasFormSection extends ConsumerWidget {
               )),
           if (usuario.temHierarquiaMaiorOuIgualQue(Roles.gerente) &&
               categorias.length <= 6)
-            CustomChip(
-              label: const Icon(Icons.add),
-              onPressed: () => context.openModal(AddCategoriaDialog()),
+            CustomChip.add(
+              () => context.openModal(AddCategoriaDialog()),
             ),
         ],
       ),

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../../../../../../../../src/features/contato/presentation/components/editor_contato/controllers/is_loading_controller.dart';
+part of '../../../../../../../../src/features/contato/presentation/components/editor_contato/controllers/selected_categorias_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,21 +29,23 @@ class _SystemHash {
   }
 }
 
-String $IsLoadingControllerHash() =>
-    r'6bbf166772046201e57d17947c5ba4a56196f788';
+String $SelectedCategoriasControllerHash() =>
+    r'7941530d2dae66cc3090e37f3a9cbe7c7c866c48';
 
-/// See also [IsLoadingController].
-final isLoadingControllerProvider =
-    AutoDisposeNotifierProvider<IsLoadingController, bool>(
-  IsLoadingController.new,
-  name: r'isLoadingControllerProvider',
+/// See also [SelectedCategoriasController].
+final selectedCategoriasControllerProvider =
+    AutoDisposeNotifierProvider<SelectedCategoriasController, Set<Roles>>(
+  SelectedCategoriasController.new,
+  name: r'selectedCategoriasControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $IsLoadingControllerHash,
+      : $SelectedCategoriasControllerHash,
 );
-typedef IsLoadingControllerRef = AutoDisposeNotifierProviderRef<bool>;
+typedef SelectedCategoriasControllerRef
+    = AutoDisposeNotifierProviderRef<Set<Roles>>;
 
-abstract class _$IsLoadingController extends AutoDisposeNotifier<bool> {
+abstract class _$SelectedCategoriasController
+    extends AutoDisposeNotifier<Set<Roles>> {
   @override
-  bool build();
+  Set<Roles> build();
 }

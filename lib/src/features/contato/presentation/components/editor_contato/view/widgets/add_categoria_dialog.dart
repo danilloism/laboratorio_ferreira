@@ -4,13 +4,13 @@ import 'package:laboratorio_ferreira_mobile/src/core/domain/enums/roles.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/contato.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/selected_categorias_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_notifier.dart';
 
 class AddCategoriaDialog extends StatelessWidget {
   AddCategoriaDialog({super.key});
 
-  final _selectedCategoriasProvider =
-      StateProvider.autoDispose<Set<Roles>>((ref) => {});
+  final _selectedCategoriasProvider = selectedCategoriasControllerProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -59,16 +59,11 @@ class AddCategoriaDialog extends StatelessWidget {
                             ref.read(_selectedCategoriasProvider.notifier);
 
                         if (selected) {
-                          selectedCategoriesNotifier.state = {
-                            ...selectedCategoriesNotifier.state,
-                            role
-                          };
+                          selectedCategoriesNotifier.add(role);
                           return;
                         }
 
-                        selectedCategoriesNotifier.state = {
-                          ...selectedCategoriesNotifier.state..remove(role)
-                        };
+                        selectedCategoriesNotifier.remove(role);
                       },
                     ),
                   ),

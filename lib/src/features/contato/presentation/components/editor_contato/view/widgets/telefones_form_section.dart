@@ -27,8 +27,7 @@ class TelefonesFormSection extends ConsumerWidget {
     final podeEditarTelefone = _podeEditarTelefone(ref);
     return FormSection(
       title: 'Telefone(s)',
-      child: Wrap(
-        spacing: 10,
+      child: CustomWrap(
         children: [
           ...telefonesState.map(
             (telefone) => CustomChip(
@@ -47,10 +46,7 @@ class TelefonesFormSection extends ConsumerWidget {
             ),
           ),
           if (podeEditarTelefone)
-            CustomChip(
-              onPressed: () => context.openModal(EditorTelefoneDialog()),
-              label: const Icon(Icons.add),
-            ),
+            CustomChip.add(() => context.openModal(EditorTelefoneDialog())),
         ],
       ),
     );

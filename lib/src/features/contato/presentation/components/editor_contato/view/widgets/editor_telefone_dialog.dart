@@ -4,16 +4,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/formatter.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_notifier.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_telefone_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_telefone_controller.dart';
 import 'package:mask/mask.dart';
 
 class EditorTelefoneDialog extends ConsumerWidget {
-  EditorTelefoneDialog({super.key, String? telefone})
-      : initialValue = telefone ?? '' {
+  EditorTelefoneDialog({super.key, this.telefone = ''}) {
     telefoneProvider = editorTelefoneControllerProvider(telefone);
   }
 
-  final String initialValue;
+  final String telefone;
   late final EditorTelefoneControllerProvider telefoneProvider;
 
   void _submit({
@@ -25,14 +24,14 @@ class EditorTelefoneDialog extends ConsumerWidget {
     if (!input.valid) return;
 
     final notifier = ref.read(editorContatoNotifierProvider.notifier);
-    final telefone = input.value;
+    final newValue = input.value;
     if (isEditar) {
       notifier.alterarTelefone(
-        currentValue: initialValue,
-        newValue: telefone,
+        currentValue: telefone,
+        newValue: newValue,
       );
     } else {
-      notifier.adicionarTelefone(telefone);
+      notifier.adicionarTelefone(newValue);
     }
     Navigator.pop(context);
   }
@@ -40,7 +39,7 @@ class EditorTelefoneDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Builder(builder: (context) {
-      final isEditar = initialValue.isNotEmpty;
+      final isEditar = telefone.isNotEmpty;
       return AlertDialog(
         title: isEditar
             ? Row(
@@ -51,7 +50,7 @@ class EditorTelefoneDialog extends ConsumerWidget {
                     onPressed: () {
                       ref
                           .read(editorContatoNotifierProvider.notifier)
-                          .removerTelefone(initialValue);
+                          .removerTelefone(telefone);
                       Navigator.pop(context);
                     },
                     icon: const Icon(CupertinoIcons.trash),
@@ -93,9 +92,9 @@ class EditorTelefoneDialog extends ConsumerWidget {
               children: [
                 TextFormField(
                   autofocus: true,
-                  initialValue: initialValue.isEmpty
+                  initialValue: telefone.isEmpty
                       ? null
-                      : Formatter.applyPhoneMask(initialValue),
+                      : Formatter.applyPhoneMask(telefone),
                   keyboardType: TextInputType.number,
                   onFieldSubmitted: (_) => _submit(
                     isEditar: isEditar,
