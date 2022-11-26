@@ -1,15 +1,12 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:laboratorio_ferreira_mobile/firebase_options.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/services/services.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/data/repositories/auth_repository.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/states/auth_state.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/contatos_notifier.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/data/data.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 import 'package:sembast/sembast.dart';
 
@@ -17,16 +14,11 @@ final databaseProvider =
     Provider<Database>((ref) => throw UnimplementedError());
 
 Future<void> main() async {
-  final initItems = await Init.execute();
+  final initContainer = await Init.container;
 
   runApp(ProviderScope(
-    overrides: [
-      settingsRepositoryProvider
-          .overrideWithValue(initItems[InitializationItem.settingsRepo]),
-      databaseProvider
-          .overrideWithValue(initItems[InitializationItem.database]),
-    ],
-    observers: [RiverpodLogger()],
+    parent: initContainer,
+    // observers: [RiverpodLogger()],
     child: const MyApp(),
   ));
 }
