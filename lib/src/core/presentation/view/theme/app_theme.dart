@@ -1,7 +1,7 @@
 import 'package:flex_seed_scheme/flex_seed_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:laboratorio_ferreira_mobile/src/config/config.dart';
+import 'package:laboratorio_ferreira_mobile/generated/colors.gen.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 
 class AppTheme {
@@ -10,16 +10,16 @@ class AppTheme {
 
   static ColorScheme get _lightSeedColorScheme => SeedColorScheme.fromSeeds(
         brightness: Brightness.light,
-        primaryKey: Cores.verdeEscuro,
-        secondaryKey: Cores.verdeClaro,
-        tertiaryKey: Cores.marrom,
+        primaryKey: ColorName.verdeEscuro,
+        secondaryKey: ColorName.verdeClaro,
+        tertiaryKey: ColorName.marrom,
       );
 
   static ColorScheme get _darkSeedColorScheme => SeedColorScheme.fromSeeds(
         brightness: Brightness.dark,
-        primaryKey: Cores.verdeEscuro,
-        secondaryKey: Cores.verde,
-        tertiaryKey: Cores.marrom,
+        primaryKey: ColorName.verdeEscuro,
+        secondaryKey: ColorName.verde,
+        tertiaryKey: ColorName.marrom,
       );
 
   ThemeData get darkTheme => ThemeData.from(

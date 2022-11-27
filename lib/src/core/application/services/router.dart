@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laboratorio_ferreira_mobile/src/config/config.dart';
+import 'package:laboratorio_ferreira_mobile/environment.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/states/auth_state.dart';

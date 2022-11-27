@@ -1,0 +1,118 @@
+[
+    {
+     "uid": "24dc5c66-f61d-4551-b632-b9eaa107b63d",
+     "nome": "George Mayert",
+     "telefones": ["62995305195", "62995304564"],
+     "categorias": ["ADMIN", "GERENTE", "COLABORADOR", "PACIENTE"],
+     "criadoEm": "2022-07-31T12:06:15.192Z",
+     "atualizadoEm": "2022-11-27T03:10:21.075Z",
+     "ativo": true,
+     "account": {
+      "email": "Laney.Flatley72@gmail.com",
+      "password": "cZnF2TOssCT2OuX",
+      "criadoEm": "2022-06-01T03:39:07.514Z",
+      "atualizadoEm": "2022-11-26T19:01:04.509Z"
+     }
+    },
+    {
+     "uid": "ab42ff94-b687-4ff2-9f17-71062261f229",
+     "nome": "Tom Larkin",
+     "telefones": ["62995305195", "62995304564"],
+     "categorias": ["ADMIN", "GERENTE", "COLABORADOR", "PACIENTE"],
+     "criadoEm": "2022-01-02T10:57:37.006Z",
+     "atualizadoEm": "2022-11-26T23:40:27.166Z",
+     "ativo": true
+    },
+    {
+     "uid": "c0f76350-7069-483e-a7b3-34054cad5d2e",
+     "nome": "Debra Gorczany Jr.",
+     "telefones": ["62995305195", "62995304564"],
+     "categorias": ["ADMIN", "GERENTE", "COLABORADOR", "PACIENTE"],
+     "criadoEm": "2022-11-25T10:56:10.123Z",
+     "atualizadoEm": "2022-11-27T06:45:07.976Z",
+     "ativo": true,
+     "account": {
+      "email": "Donnell.Lindgren@yahoo.com",
+      "password": "gZit1hkMVOFiHcO",
+      "criadoEm": "2022-08-27T01:27:11.153Z",
+      "atualizadoEm": "2022-11-27T11:35:12.518Z"
+     },
+     "_id": "3"
+    },
+    {
+     "uid": "8b5584e3-fefb-4b30-a116-e462045fb7a3",
+     "nome": "Mrs. Valerie Batz",
+     "telefones": ["62995305195", "62995304564"],
+     "categorias": ["ADMIN", "GERENTE", "COLABORADOR", "PACIENTE"],
+     "criadoEm": "2022-03-11T02:14:08.254Z",
+     "atualizadoEm": "2022-11-27T02:59:57.021Z",
+     "ativo": true,
+     "account": {
+      "email": "Wilfrid73@hotmail.com",
+      "password": "k2XdAbSwBKgmN3U",
+      "criadoEm": "2022-09-16T01:36:57.989Z",
+      "atualizadoEm": "2022-11-27T05:48:03.855Z"
+     },
+     "_id": "4"
+    },
+    {
+     "uid": "239d01dd-fa4b-48a0-afcc-bb396f5efdbe",
+     "nome": "Mrs. Rosalie Metz",
+     "telefones": ["62995305195", "62995304564"],
+     "categorias": ["ADMIN", "GERENTE", "COLABORADOR", "PACIENTE"],
+     "criadoEm": "2022-09-25T20:20:16.766Z",
+     "atualizadoEm": "2022-11-27T09:19:58.438Z",
+     "ativo": true
+    },
+    {
+     "uid": "e366e906-1e57-4e9a-a52e-6f9b184fee6a",
+     "nome": "Ms. Lawrence Fritsch",
+     "telefones": ["62995305195", "62995304564"],
+     "categorias": ["ADMIN", "GERENTE", "COLABORADOR", "PACIENTE"],
+     "criadoEm": "2022-07-29T12:45:40.272Z",
+     "atualizadoEm": "2022-11-27T06:18:01.165Z",
+     "ativo": true
+    },
+    {
+     "uid": "0fe36105-66a6-4d6d-a535-a2ba59c758ce",
+     "nome": "James Rohan",
+     "telefones": ["62995305195", "62995304564"],
+     "categorias": ["ADMIN", "GERENTE", "COLABORADOR", "PACIENTE"],
+     "criadoEm": "2022-07-11T19:45:46.143Z",
+     "atualizadoEm": "2022-11-26T16:36:40.621Z",
+     "ativo": true
+    },
+    {
+     "uid": "6180fb05-1a33-46c8-95b1-9554eaa471ae",
+     "nome": "Taylor Morissette",
+     "telefones": ["62995305195", "62995304564"],
+     "categorias": ["ADMIN", "GERENTE", "COLABORADOR", "PACIENTE"],
+     "criadoEm": "2022-03-31T14:59:54.256Z",
+     "atualizadoEm": "2022-11-26T20:44:05.871Z",
+     "ativo": true
+    },
+    {
+     "uid": "725f4ad8-73a6-4723-b60c-706109427fee",
+     "nome": "Verna Adams DDS",
+     "telefones": ["62995305195", "62995304564"],
+     "categorias": ["ADMIN", "GERENTE", "COLABORADOR", "PACIENTE"],
+     "criadoEm": "2022-01-11T23:24:38.494Z",
+     "atualizadoEm": "2022-11-27T05:34:15.722Z",
+     "ativo": true
+    },
+    {
+     "uid": "9c8cbd20-b150-4280-9429-6184b4cb2107",
+     "nome": "Brian Konopelski",
+     "telefones": ["62995305195", "62995304564"],
+     "categorias": ["ADMIN", "GERENTE", "COLABORADOR", "PACIENTE"],
+     "criadoEm": "2022-02-24T03:56:44.305Z",
+     "atualizadoEm": "2022-11-27T11:45:02.764Z",
+     "ativo": true,
+     "account": {
+      "email": "Columbus45@hotmail.com",
+      "password": "soxARLIg9rXrSZk",
+      "criadoEm": "2022-11-10T21:21:31.698Z",
+      "atualizadoEm": "2022-11-26T23:58:44.281Z"
+     }
+    }
+   ]

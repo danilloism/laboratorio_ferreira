@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:laboratorio_ferreira_mobile/src/config/environment.dart';
+import 'package:laboratorio_ferreira_mobile/environment.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/application.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/models.dart';
