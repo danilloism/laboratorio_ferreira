@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:laboratorio_ferreira_mobile/src/config/environment.dart';
+import 'package:laboratorio_ferreira_mobile/environment.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/application.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
