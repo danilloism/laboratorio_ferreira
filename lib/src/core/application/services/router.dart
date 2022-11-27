@@ -6,6 +6,7 @@ import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.d
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/states/auth_state.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/view/pages/login_page.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/controllers/contatos_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/pages/detalhes_contato_page.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/view/pages/editor_contato_page.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
@@ -43,7 +44,17 @@ class GoRouterRefreshListenable extends ChangeNotifier {
               builder: (context, state) {
                 final me =
                     _ref.read(settingsControllerProvider).session!.contato;
-                return DetalhesContatoPage(me);
+
+                final param = state.params['id'];
+                if (param == 'me' || param == me.uid) {
+                  return DetalhesContatoPage(me);
+                }
+
+                final contato = _ref
+                    .read(contatosControllerProvider)
+                    .requireValue
+                    .singleWhere((element) => element.uid == param);
+                return DetalhesContatoPage(contato);
               },
             ),
             GoRoute(
@@ -52,7 +63,17 @@ class GoRouterRefreshListenable extends ChangeNotifier {
               builder: (context, state) {
                 final me =
                     _ref.read(settingsControllerProvider).session!.contato;
-                return EditorContatoPage(contato: me);
+                final param = state.params['id'];
+                if (param == 'me' || param == me.uid) {
+                  return EditorContatoPage(contato: me);
+                }
+
+                final contato = _ref
+                    .read(contatosControllerProvider)
+                    .requireValue
+                    .singleWhere((element) => element.uid == param);
+
+                return EditorContatoPage(contato: contato);
               },
             ),
             GoRoute(

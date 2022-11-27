@@ -4,8 +4,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part '../../../../../generated/src/features/contato/presentation/controllers/contatos_notifier.g.dart';
 
-@riverpod
-class ContatoController extends _$ContatoController {
+@Riverpod(keepAlive: true)
+class ContatosController extends _$ContatosController {
   @override
   AsyncValue<List<Contato>> build() {
     return const AsyncValue.loading();
@@ -26,7 +26,9 @@ class ContatoController extends _$ContatoController {
   }
 
   Future _executeGetMany() async {
-    state = await AsyncValue.guard(
-        () => ref.read(contatoRepositoryProvider).getMany());
+    final contatos = await AsyncValue.guard(
+      () => ref.read(contatoRepositoryProvider).getMany(),
+    );
+    state = contatos;
   }
 }

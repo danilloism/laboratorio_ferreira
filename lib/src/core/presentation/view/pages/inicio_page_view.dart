@@ -6,8 +6,10 @@ class InicioPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SafeArea(
-      child: ColoredBox(
-        color: Colors.red,
+      child: Center(
+        child: ColoredBox(
+          color: Colors.red,
+        ),
       ),
     );
   }

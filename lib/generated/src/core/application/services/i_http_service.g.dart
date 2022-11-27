@@ -29,16 +29,16 @@ class _SystemHash {
   }
 }
 
-String $httpServiceHash() => r'a7589ee4c58ab3bed314b06a4048371ae076d03b';
+String $httpServiceHash() => r'25d0a14e99bced0f96eb72cb3e33dd7b9756f375';
 
 /// See also [httpService].
-final httpServiceProvider = AutoDisposeProvider<IHttpService>(
+final httpServiceProvider = Provider<IHttpService>(
   httpService,
   name: r'httpServiceProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : $httpServiceHash,
 );
-typedef HttpServiceRef = AutoDisposeProviderRef<IHttpService>;
+typedef HttpServiceRef = ProviderRef<IHttpService>;
 String $dioHash() => r'9b5a2cac23a0143bc0d6c42a9bda35e7f04c8a98';
 
 /// See also [dio].

@@ -15,7 +15,7 @@ class DetalhesContatoPage extends StatelessWidget {
         title: Text(_contato.nome),
         actions: [
           IconButton(
-              onPressed: () => context.push('/contatos/${_contato.uid}/editar'),
+              onPressed: () => context.push('/contatos/edit/${_contato.uid}'),
               icon: const Icon(Icons.edit)),
         ],
       ),

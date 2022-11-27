@@ -3,6 +3,7 @@ import 'package:laboratorio_ferreira_mobile/environment.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/application.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/pagination.dart';
 import 'package:path/path.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -82,10 +83,19 @@ class ContatoRepository {
     }
   }
 
-  Future<List<Contato>> getMany({Map<String, dynamic>? queryParams}) async {
+  Future<List<Contato>> getMany(
+      {Map<String, dynamic>? queryParams, Pagination? pagination}) async {
     try {
-      final Response resposta =
-          await _httpService.get(_path, queryParams: queryParams);
+      queryParams ??= {};
+      if (pagination != null) {
+        queryParams['take'] = pagination.take;
+        queryParams['skip'] = pagination.skip;
+      }
+
+      final Response resposta = await _httpService.get(
+        _path,
+        queryParams: queryParams.isEmpty ? null : queryParams,
+      );
       final dto = ApiResponse<List<Contato>>.fromJson(
           resposta.data, Contato.fromJsonList);
 
@@ -148,6 +158,6 @@ class ContatoRepository {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 ContatoRepository contatoRepository(ContatoRepositoryRef ref) =>
     ContatoRepository(httpService: ref.watch(httpServiceProvider));

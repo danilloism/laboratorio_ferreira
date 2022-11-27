@@ -87,7 +87,7 @@ class EditorContatoPage extends ConsumerWidget {
 
                         if (_contatoInicial.isEmpty) {
                           return await ref
-                              .read(contatoControllerProvider.notifier)
+                              .read(contatosControllerProvider.notifier)
                               .createContato(contatoFinal)
                               .whenComplete(() => context.pop());
                         }

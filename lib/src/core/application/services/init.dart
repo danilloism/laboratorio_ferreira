@@ -71,7 +71,7 @@ class Init {
     final settingsNotifier = container.read(settingsControllerProvider);
     final session = settingsNotifier.session;
     if (session != null) {
-      container.read(contatoControllerProvider.notifier).loadContatos();
+      container.read(contatosControllerProvider.notifier).loadContatos();
 
       final tokenUsuarioLogado = session.accessToken;
       final decodedToken = JwtDecoder.decode(tokenUsuarioLogado);
@@ -102,10 +102,7 @@ class Init {
       if (next is LoggedIn && session != next.session) {
         container
             .read(settingsControllerProvider.notifier)
-            .changeSession(next.session)
-            .whenComplete(() => container
-                .read(contatoControllerProvider.notifier)
-                .loadContatos());
+            .changeSession(next.session);
       }
 
       if (next is LoggedOut && session != null) {
@@ -115,7 +112,9 @@ class Init {
   }
 
   static void _initPostAsyncCalls() {
-    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+    if (Environment.isProduction) {
+      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+    }
     SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.edgeToEdge,
       overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top],

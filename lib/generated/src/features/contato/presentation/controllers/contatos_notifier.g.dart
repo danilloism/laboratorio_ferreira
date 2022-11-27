@@ -29,22 +29,21 @@ class _SystemHash {
   }
 }
 
-String $ContatoControllerHash() => r'6e2540f7aa37c2d0e104af3d4a667d6ec7612dfe';
+String $ContatosControllerHash() => r'e504026eacc8c32d9acb2864556bd365b054b7b0';
 
-/// See also [ContatoController].
-final contatoControllerProvider =
-    AutoDisposeNotifierProvider<ContatoController, AsyncValue<List<Contato>>>(
-  ContatoController.new,
-  name: r'contatoControllerProvider',
+/// See also [ContatosController].
+final contatosControllerProvider =
+    NotifierProvider<ContatosController, AsyncValue<List<Contato>>>(
+  ContatosController.new,
+  name: r'contatosControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $ContatoControllerHash,
+      : $ContatosControllerHash,
 );
-typedef ContatoControllerRef
-    = AutoDisposeNotifierProviderRef<AsyncValue<List<Contato>>>;
+typedef ContatosControllerRef = NotifierProviderRef<AsyncValue<List<Contato>>>;
 
-abstract class _$ContatoController
-    extends AutoDisposeNotifier<AsyncValue<List<Contato>>> {
+abstract class _$ContatosController
+    extends Notifier<AsyncValue<List<Contato>>> {
   @override
   AsyncValue<List<Contato>> build();
 }
