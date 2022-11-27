@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/environment.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/services/dio_service.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part '../../../../generated/src/core/application/services/i_http_service.g.dart';
 
 abstract class IHttpService {
   String? get authorizationToken;
@@ -11,27 +13,31 @@ abstract class IHttpService {
   Future get(String path, {Map<String, dynamic>? queryParams});
   Future put(String path, {dynamic data});
   Future patch(String path);
-  final CancelToken? cancelToken = null;
 }
 
-final httpServiceProvider = Provider<IHttpService>((ref) {
+@riverpod
+IHttpService httpService(HttpServiceRef ref) {
+  return DioService(
+    ref.watch(dioProvider),
+    cancelToken: ref.watch(cancelTokenProvider),
+  );
+}
+
+@riverpod
+Dio dio(DioRef ref) {
   final token = ref.watch(
-      settingsNotifierProvider.select((value) => value.session?.accessToken));
+      settingsControllerProvider.select((value) => value.session?.accessToken));
 
   final headers = token != null ? {'Authorization': 'Bearer $token'} : null;
 
-  final dio = Dio(
+  return Dio(
     BaseOptions(
       baseUrl: Environment.apiUrl,
       responseType: ResponseType.json,
       headers: headers,
     ),
   )..interceptors.add(LoggyDioInterceptor());
+}
 
-  final service = DioService(dio);
-  ref.onDispose(() {
-    // service.cancelToken?.cancel();
-    dio.close();
-  });
-  return service;
-});
+@riverpod
+CancelToken cancelToken(CancelTokenRef ref) => CancelToken();

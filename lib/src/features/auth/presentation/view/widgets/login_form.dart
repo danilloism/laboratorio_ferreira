@@ -6,7 +6,7 @@ import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/extensions.
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/helpers.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/widgets.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/models.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/login_form_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/states/auth_state.dart';
 
@@ -33,13 +33,13 @@ class _LoginFormState extends ConsumerState<LoginForm> {
 
     ref.read(loginFormProvider.notifier).submit();
     ref
-        .read(authNotifierProvider.notifier)
+        .read(authControllerProvider.notifier)
         .login(Account(email: state.email.value, senha: state.senha.value));
   }
 
   @override
   Widget build(BuildContext context) {
-    ref.listen<AuthState>(authNotifierProvider, (previous, next) {
+    ref.listen<AuthState>(authControllerProvider, (previous, next) {
       next.whenOrNull(error: (error, __) {
         final notifier = ref.read(loginFormProvider.notifier);
         if (error is RepositoryException) {
@@ -61,13 +61,13 @@ class _LoginFormState extends ConsumerState<LoginForm> {
               keyboardType: TextInputType.emailAddress,
               onChanged:
                   ref.read(loginFormProvider.notifier).emailTeveAlteracao,
-              inputAction: TextInputAction.next,
+              textInputAction: TextInputAction.next,
             ),
           ),
           const SizedBox(height: 16),
           FormSection(
             child: CustomTextFormField(
-              inputAction: TextInputAction.go,
+              textInputAction: TextInputAction.go,
               obscureText: true,
               label: 'Senha',
               onChanged:

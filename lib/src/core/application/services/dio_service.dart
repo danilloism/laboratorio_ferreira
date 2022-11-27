@@ -3,9 +3,8 @@ import 'package:laboratorio_ferreira_mobile/src/core/application/services/i_http
 
 class DioService implements IHttpService {
   final Dio client;
-  @override
   final CancelToken? cancelToken;
-  DioService(this.client) : cancelToken = CancelToken();
+  DioService(this.client, {this.cancelToken});
 
   @override
   Future<Response> post(String path, {data}) async =>

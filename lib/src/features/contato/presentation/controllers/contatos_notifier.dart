@@ -1,11 +1,15 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/data/repositories/contato_repository.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/contato.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class ContatoNotifier extends StateNotifier<AsyncValue<List<Contato>>> {
-  ContatoNotifier(this._repo) : super(const AsyncValue.loading());
+part '../../../../../generated/src/features/contato/presentation/controllers/contatos_notifier.g.dart';
 
-  final ContatoRepository _repo;
+@riverpod
+class ContatoController extends _$ContatoController {
+  @override
+  AsyncValue<List<Contato>> build() {
+    return const AsyncValue.loading();
+  }
 
   Future<void> loadContatos() async {
     _setLoading();
@@ -13,7 +17,7 @@ class ContatoNotifier extends StateNotifier<AsyncValue<List<Contato>>> {
   }
 
   Future<void> createContato(Contato contato) async {
-    await _repo.create(contato);
+    await ref.read(contatoRepositoryProvider).create(contato);
     loadContatos();
   }
 
@@ -22,11 +26,7 @@ class ContatoNotifier extends StateNotifier<AsyncValue<List<Contato>>> {
   }
 
   Future _executeGetMany() async {
-    state = await AsyncValue.guard(() => _repo.getMany());
+    state = await AsyncValue.guard(
+        () => ref.read(contatoRepositoryProvider).getMany());
   }
 }
-
-final contatoNotifierProvider =
-    StateNotifierProvider<ContatoNotifier, AsyncValue<List<Contato>>>(
-  (ref) => ContatoNotifier(ref.watch(contatoRepositoryProvider)),
-);

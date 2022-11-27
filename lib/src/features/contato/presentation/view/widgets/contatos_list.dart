@@ -9,7 +9,7 @@ class ContatosList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Expanded(
-      child: ref.watch(contatoNotifierProvider).when(
+      child: ref.watch(contatoControllerProvider).when(
           data: (contatos) => ListView.builder(
                 itemBuilder: (context, index) {
                   return ContatoCard(contato: contatos[index]);

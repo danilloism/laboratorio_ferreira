@@ -12,7 +12,7 @@ class LoggedInInfoSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final settings = ref.read(settingsNotifierProvider);
+    final settings = ref.read(settingsControllerProvider);
     final contato = settings.session!.contato;
     return Column(
       children: [
@@ -45,7 +45,7 @@ class LoggedInInfoSection extends ConsumerWidget {
                 ),
                 const Text('Telefones:'),
                 Consumer(builder: (context, ref, _) {
-                  final contatoRef = ref.watch(settingsNotifierProvider
+                  final contatoRef = ref.watch(settingsControllerProvider
                       .select((value) => value.session!.contato));
                   return Wrap(
                     spacing: 10,
@@ -82,7 +82,7 @@ class LoggedInInfoSection extends ConsumerWidget {
         ),
         const SizedBox(height: 4),
         if (ref
-            .read(settingsNotifierProvider)
+            .read(settingsControllerProvider)
             .session!
             .contato
             .temHierarquiaMaiorOuIgualQue(Roles.gerente))

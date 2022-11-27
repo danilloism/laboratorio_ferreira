@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/environment.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/application.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
 import 'package:path/path.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part '../../../../../generated/src/features/contato/data/repositories/contato_repository.g.dart';
 
 class ContatoRepository {
   final IHttpService _httpService;
@@ -146,5 +148,6 @@ class ContatoRepository {
   }
 }
 
-final contatoRepositoryProvider = Provider(
-    (ref) => ContatoRepository(httpService: ref.watch(httpServiceProvider)));
+@riverpod
+ContatoRepository contatoRepository(ContatoRepositoryRef ref) =>
+    ContatoRepository(httpService: ref.watch(httpServiceProvider));

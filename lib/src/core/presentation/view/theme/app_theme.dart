@@ -54,7 +54,7 @@ class AppTheme {
 }
 
 final appThemeProvider = Provider((ref) {
-  final useMaterial3 =
-      ref.watch(settingsNotifierProvider.select((value) => value.useMaterial3));
+  final useMaterial3 = ref
+      .watch(settingsControllerProvider.select((value) => value.useMaterial3));
   return AppTheme(useMaterial3: useMaterial3);
 });

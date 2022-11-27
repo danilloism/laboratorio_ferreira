@@ -5,9 +5,9 @@ enum TelefoneInputError {
   minLengthRequired('Telefone inválido, verifique se ddd foi informado.'),
   lengthOverflow('Telefone possui mais números que o permitido.');
 
-  final String name;
+  final String message;
 
-  const TelefoneInputError(this.name);
+  const TelefoneInputError(this.message);
 }
 
 class TelefoneInput extends FormzInput<String, TelefoneInputError> {
