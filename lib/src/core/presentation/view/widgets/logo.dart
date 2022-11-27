@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:laboratorio_ferreira_mobile/src/config/config.dart';
+
+import 'package:laboratorio_ferreira_mobile/generated/assets.dart';
 
 class Logo extends StatelessWidget {
   const Logo({super.key, this.height});
@@ -13,10 +14,10 @@ class Logo extends StatelessWidget {
         color: Colors.white,
         gradient: LinearGradient(
           colors: [
-            Cores.verdeClaro,
-            Cores.marmore,
-            Cores.marmore,
-            Cores.branco,
+            ColorName.verdeClaro,
+            ColorName.marmore,
+            ColorName.marmore,
+            ColorName.branco,
           ],
           begin: AlignmentDirectional.topCenter,
           end: AlignmentDirectional.bottomEnd,
@@ -30,8 +31,7 @@ class Logo extends StatelessWidget {
           ),
         ],
       ),
-      child: Image.asset(
-        Assets.laboratorioferreiraLogoTransparente,
+      child: Assets.images.laboratorioferreiraLogoSemFundo.image(
         fit: BoxFit.contain,
         height: height,
         filterQuality: FilterQuality.high,

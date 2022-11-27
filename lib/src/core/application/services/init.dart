@@ -3,7 +3,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_loggy/flutter_loggy.dart';
-import 'package:laboratorio_ferreira_mobile/src/config/config.dart';
+import 'package:laboratorio_ferreira_mobile/environment.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
 import 'package:loggy/loggy.dart';
 import 'package:path/path.dart';

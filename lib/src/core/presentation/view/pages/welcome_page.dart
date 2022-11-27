@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laboratorio_ferreira_mobile/src/config/config.dart';
+import 'package:laboratorio_ferreira_mobile/generated/colors.gen.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart'
     show Logo;
 
@@ -11,7 +11,7 @@ class WelcomePage extends StatelessWidget {
     return Scaffold(
       body: SizedBox.expand(
         child: ColoredBox(
-          color: Cores.branco,
+          color: ColorName.branco,
           child: SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
