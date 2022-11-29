@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../../../../../../src/features/auth/presentation/controllers/auth_controller.dart';
+part of '../../../../../../src/features/auth/presentation/controllers/login_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,30 +29,20 @@ class _SystemHash {
   }
 }
 
-String $AuthControllerHash() => r'43044a07c0b2717ced9431542dffa6c46535f04f';
+String $LoginControllerHash() => r'e0a48089b069ac573258085e96277453abd7b9cc';
 
-/// See also [AuthController].
-final authControllerProvider = NotifierProvider<AuthController, AuthState>(
-  AuthController.new,
-  name: r'authControllerProvider',
+/// See also [LoginController].
+final loginControllerProvider =
+    AutoDisposeNotifierProvider<LoginController, Login>(
+  LoginController.new,
+  name: r'loginControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $AuthControllerHash,
+      : $LoginControllerHash,
 );
-typedef AuthControllerRef = NotifierProviderRef<AuthState>;
+typedef LoginControllerRef = AutoDisposeNotifierProviderRef<Login>;
 
-abstract class _$AuthController extends Notifier<AuthState> {
+abstract class _$LoginController extends AutoDisposeNotifier<Login> {
   @override
-  AuthState build();
+  Login build();
 }
-
-String $usuarioLogadoHash() => r'e513fcd849a9d5cd39b85d25a769c0fe7d67b494';
-
-/// See also [usuarioLogado].
-final usuarioLogadoProvider = AutoDisposeProvider<Contato?>(
-  usuarioLogado,
-  name: r'usuarioLogadoProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $usuarioLogadoHash,
-);
-typedef UsuarioLogadoRef = AutoDisposeProviderRef<Contato?>;

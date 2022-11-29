@@ -18,12 +18,11 @@ class AuthRepository {
     required IHttpService httpService,
   }) : _httpService = httpService;
 
-  Future<Session> login(Account account) async {
-    assert(account.senha != null);
+  Future<Session> login(Login login) async {
     try {
       final Response resposta = await _httpService.post(
         join(_path, 'login'),
-        data: account.toJson(),
+        data: login.toJson(),
       );
 
       final dto =

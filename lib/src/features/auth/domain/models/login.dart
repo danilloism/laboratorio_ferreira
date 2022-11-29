@@ -1,15 +1,18 @@
-import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/models.dart';
 
 part '../../../../../generated/src/features/auth/domain/models/login.freezed.dart';
+part '../../../../../generated/src/features/auth/domain/models/login.g.dart';
 
-@freezed
+@Freezed(
+  toJson: true,
+  equal: false,
+  toStringOverride: false,
+  fromJson: false,
+)
 class Login with _$Login {
   const factory Login({
-    @Default(EmailInput.pure()) EmailInput email,
-    @Default(SenhaInput.pure()) SenhaInput senha,
-    @Default(FormzStatus.pure) FormzStatus status,
-    String? errors,
+    @Default('') String email,
+    @Default('') String senha,
+    @JsonKey(ignore: true) @Default(false) bool submissionInProgress,
   }) = _Login;
 }

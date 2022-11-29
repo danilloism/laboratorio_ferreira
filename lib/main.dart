@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:form_builder_validators/localization/l10n.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/services/services.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
 
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 import 'package:sembast/sembast.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 final databaseProvider =
     Provider<Database>((ref) => throw UnimplementedError());
+
+const locale = Locale('pt', 'BR');
 
 Future<void> main() async {
   final initContainer = await Init.container;
@@ -27,6 +31,14 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final appTheme = ref.watch(appThemeProvider);
     return MaterialApp.router(
+      supportedLocales: const [locale],
+      locale: locale,
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        FormBuilderLocalizations.delegate,
+      ],
       title: 'Laboratório Ferreira',
       theme: appTheme.lightTheme,
       darkTheme: appTheme.darkTheme,

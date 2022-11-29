@@ -9,8 +9,8 @@ class AuthState with _$AuthState {
 
   const factory AuthState.loggedOut() = LoggedOut;
 
-  const factory AuthState.error({required Object error, dynamic extra}) =
-      AuthError;
+  const factory AuthState.error(
+      {required Object error, StackTrace? stackTrace}) = AuthError;
 
   const factory AuthState.unknown() = Unknown;
 
