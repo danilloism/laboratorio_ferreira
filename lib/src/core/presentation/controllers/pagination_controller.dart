@@ -36,11 +36,10 @@ class PaginationController<T> extends StateNotifier<PaginationState<T>> {
     if (state is PaginationLoading || state is PaginationOnGoingLoading) return;
     state = PaginationOnGoingLoading(_items);
     if (_timer.isActive) {
-      Timer(const Duration(milliseconds: 2),
-          () => state = PaginationData(_items));
+      Timer(const Duration(seconds: 2), () => state = PaginationData(_items));
       return;
     }
-    _timer = Timer(const Duration(seconds: 2), () {});
+    _timer = Timer(const Duration(seconds: 3), () {});
 
     final result = await PaginationState.guard(
       () => _fetchItems(pagination: _pagination),
