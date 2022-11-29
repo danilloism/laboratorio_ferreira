@@ -47,3 +47,9 @@ Account genRandomAccount({
     atualizadoEm: includeAtualizadoEm ? DateTime.now() : null,
   );
 }
+
+Session genRandomSession({bool validJwt = true}) {
+  return Session(
+      accessToken: validJwt ? faker.jwt.valid() : faker.jwt.expired(),
+      contato: genRandomContato());
+}

@@ -19,6 +19,7 @@ class AuthRepository {
   }) : _httpService = httpService;
 
   Future<Session> login(Account account) async {
+    assert(account.senha != null);
     try {
       final Response resposta = await _httpService.post(
         join(_path, 'login'),
