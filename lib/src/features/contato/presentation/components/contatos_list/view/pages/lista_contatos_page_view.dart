@@ -6,9 +6,9 @@ import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/build_conte
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/widgets.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/widgets/contatos_list.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/widgets/criar_contato_button.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/widgets/on_going_bottom.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/contatos_list/view/widgets/criar_contato_button.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/contatos_list/view/widgets/on_going_bottom.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/contatos_list/view/widgets/contatos_list.dart';
 
 class ContatosPageView extends HookConsumerWidget {
   const ContatosPageView({super.key});

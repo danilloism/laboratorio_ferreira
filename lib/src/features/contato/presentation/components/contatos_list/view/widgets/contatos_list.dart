@@ -5,7 +5,7 @@ import 'package:laboratorio_ferreira_mobile/src/core/presentation/states/paginat
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/paginated_async_sliver.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/data/repositories/contato_repository.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/contato.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/widgets/contato_card.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/contatos_list/view/widgets/contato_card.dart';
 
 final contatosFetchProvider = StateNotifierProvider.autoDispose<
     PaginationController<Contato>, PaginationState<Contato>>(
