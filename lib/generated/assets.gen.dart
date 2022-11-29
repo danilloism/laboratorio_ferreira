@@ -9,16 +9,6 @@
 
 import 'package:flutter/widgets.dart';
 
-class $AssetsFixturesGen {
-  const $AssetsFixturesGen();
-
-  /// File path: assets/fixtures/contato_list_fixture.json
-  String get contatoListFixture => 'assets/fixtures/contato_list_fixture.json';
-
-  /// List of all assets
-  List<String> get values => [contatoListFixture];
-}
-
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
@@ -38,7 +28,6 @@ class $AssetsImagesGen {
 class Assets {
   Assets._();
 
-  static const $AssetsFixturesGen fixtures = $AssetsFixturesGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 

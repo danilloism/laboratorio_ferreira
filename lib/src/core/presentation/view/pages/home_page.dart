@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart'
     show InicioPageView, Logo;
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/view/pages/lista_contatos_page_view.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/contatos_list/view/pages/lista_contatos_page_view.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/servico/presentation/presentation.dart';
 
 class HomePage extends StatefulWidget {

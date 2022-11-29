@@ -29,14 +29,14 @@ class _SystemHash {
   }
 }
 
-String $contatoRepositoryHash() => r'6faf6896846c6a0ca3c48b88a65b9db53901fec0';
+String $contatoRepositoryHash() => r'df268a0c052e700ae386ef86bf56143c355ed1db';
 
 /// See also [contatoRepository].
-final contatoRepositoryProvider = AutoDisposeProvider<ContatoRepository>(
+final contatoRepositoryProvider = Provider<ContatoRepository>(
   contatoRepository,
   name: r'contatoRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : $contatoRepositoryHash,
 );
-typedef ContatoRepositoryRef = AutoDisposeProviderRef<ContatoRepository>;
+typedef ContatoRepositoryRef = ProviderRef<ContatoRepository>;
