@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart'
-    show DropdownMenu;
+    show CustomDropdownMenu;
 
 const themeModeMap = {
   ThemeMode.system: 'Sistema',
@@ -19,7 +19,7 @@ class ThemeDropdowns extends StatelessWidget {
       children: [
         Consumer(
           builder: (context, ref, _) {
-            return DropdownMenu<bool>(
+            return CustomDropdownMenu<bool>(
               value: ref.watch(settingsControllerProvider
                   .select((value) => value.useMaterial3)),
               selectedItemBuilder: (context) => const [
@@ -58,7 +58,7 @@ class ThemeDropdowns extends StatelessWidget {
         ),
         const SizedBox(width: 12),
         Consumer(builder: (context, ref, _) {
-          return DropdownMenu<ThemeMode>(
+          return CustomDropdownMenu<ThemeMode>(
             value: ref.watch(
                 settingsControllerProvider.select((value) => value.themeMode)),
             selectedItemBuilder: (context) => ThemeMode.values
