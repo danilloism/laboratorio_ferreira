@@ -1,75 +1,72 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/enums/roles.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/contato.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/selected_categorias_controller.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_controller.dart';
 
 class AddCategoriaDialog extends StatelessWidget {
-  AddCategoriaDialog({super.key});
+  AddCategoriaDialog({
+    super.key,
+    required this.onSave,
+    required this.categorias,
+  });
+  final FutureOr<void> Function(Set<Roles>) onSave;
+  final Set<Roles> categorias;
 
-  final _selectedCategoriasProvider = selectedCategoriasControllerProvider;
+  final _key = GlobalKey<FormBuilderState>();
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: const Center(child: Text('Selecionar Categorias')),
-      actions: [
-        TextButton(
-            onPressed: () {
-              Navigator.pop(context);
+    return FormBuilder(
+      key: _key,
+      child: AlertDialog(
+        title: const Center(child: Text('Selecionar Categorias')),
+        actions: [
+          TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Cancelar')),
+          Consumer(
+            builder: (context, ref, child) {
+              return ElevatedButton(
+                  onPressed: () {
+                    if (_key.currentState!.validate()) {
+                      final categoriasSelecionadas = _key.currentState
+                          ?.fields['selected_categorias']?.value as List<Roles>;
+                      onSave(categoriasSelecionadas.toSet());
+                      Navigator.pop(context);
+                    }
+                  },
+                  child: const Text('Adicionar'));
             },
-            child: const Text('Cancelar')),
-        Consumer(
-          builder: (context, ref, child) {
-            return ElevatedButton(
-                onPressed: () {
-                  final categoriasSelecionadas =
-                      ref.read(_selectedCategoriasProvider);
-                  ref
-                      .read(editorContatoNotifierProvider.notifier)
-                      .adicionarCategorias(categoriasSelecionadas);
-                  Navigator.pop(context);
-                },
-                child: const Text('Adicionar'));
-          },
-        ),
-      ],
-      content: Consumer(
-        builder: (context, ref, child) {
-          final contato = ref.read(editorContatoNotifierProvider);
-          return CustomWrap(
-            children: [
-              ...Roles.values
-                  .where((role) =>
-                      !contato.isA(role) &&
-                      ref
-                          .read(usuarioLogadoProvider)!
-                          .temHierarquiaMaiorOuIgualQue(role) &&
-                      !role.isAdmin)
-                  .map(
-                    (role) => CustomChip(
-                      label: Text(role.capitalized),
-                      selected:
-                          ref.watch(_selectedCategoriasProvider).contains(role),
-                      onSelected: (selected) {
-                        final selectedCategoriesNotifier =
-                            ref.read(_selectedCategoriasProvider.notifier);
-
-                        if (selected) {
-                          selectedCategoriesNotifier.add(role);
-                          return;
-                        }
-
-                        selectedCategoriesNotifier.remove(role);
-                      },
-                    ),
+          ),
+        ],
+        content: FormBuilderFilterChip(
+          decoration: InputDecoration(
+            errorText:
+                _key.currentState?.fields['selected_categorias']?.errorText,
+            contentPadding: const EdgeInsets.all(0),
+            fillColor: Colors.transparent,
+          ),
+          spacing: 8,
+          name: 'selected_categorias',
+          initialValue: const <Roles>[],
+          validator: (value) => value?.isEmpty ?? true
+              ? 'Ao menos uma categoria deve ser selecionada.'
+              : null,
+          options: categorias
+              .map(
+                (categoria) => FormBuilderChipOption<Roles>(
+                  value: categoria,
+                  child: Text(
+                    categoria.capitalized,
                   ),
-            ],
-          );
-        },
+                ),
+              )
+              .toList(),
+        ),
       ),
     );
   }

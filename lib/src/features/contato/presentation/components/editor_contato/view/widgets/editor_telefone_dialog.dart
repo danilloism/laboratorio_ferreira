@@ -7,7 +7,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/formatter.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_controller.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_telefone_controller.dart';
 import 'package:mask/mask.dart';
 
 class EditorTelefoneDialog extends StatelessWidget {
@@ -15,12 +14,10 @@ class EditorTelefoneDialog extends StatelessWidget {
     super.key,
     this.telefone = '',
     required this.onSave,
-  }) {
-    telefoneProvider = editorTelefoneControllerProvider(telefone);
-  }
+  });
 
   final String telefone;
-  late final EditorTelefoneControllerProvider telefoneProvider;
+
   final _key = GlobalKey<FormBuilderState>();
   final FutureOr<void> Function(String value) onSave;
 
