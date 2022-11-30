@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
 import 'package:laboratorio_ferreira_mobile/environment.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/services/dio_service.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part '../../../../generated/src/core/application/services/i_http_service.g.dart';
@@ -30,13 +30,19 @@ Dio dio(DioRef ref) {
 
   final headers = token != null ? {'Authorization': 'Bearer $token'} : null;
 
-  return Dio(
+  final client = Dio(
     BaseOptions(
       baseUrl: Environment.apiUrl,
       responseType: ResponseType.json,
       headers: headers,
     ),
-  )..interceptors.add(LoggyDioInterceptor());
+  );
+
+  if (!Environment.isProduction) {
+    client.interceptors.add(PrettyDioLogger());
+  }
+
+  return client;
 }
 
 @riverpod
