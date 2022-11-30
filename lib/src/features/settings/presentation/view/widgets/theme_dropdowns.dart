@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart'
+    show DropdownMenu;
 
 const themeModeMap = {
   ThemeMode.system: 'Sistema',
