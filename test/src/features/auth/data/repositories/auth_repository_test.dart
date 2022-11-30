@@ -33,7 +33,7 @@ void main() {
           ));
 
       final session =
-          await authRepository.login(const Account(email: '', senha: ''));
+          await authRepository.login(const Login(email: '', senha: ''));
       verify(() => httpServiceMock.post(
             any(),
             data: any(named: 'data'),
@@ -73,7 +73,7 @@ void main() {
             data: data,
           ));
 
-      expect(() => authRepository.login(const Account(email: '', senha: '')),
+      expect(() => authRepository.login(const Login(email: '', senha: '')),
           throwsA(isA<RepositoryException>()));
       verify(() => httpServiceMock.post(
             any(),
@@ -92,7 +92,7 @@ void main() {
 
     test('deve lançar assertion se senha for null', () {
       expect(
-        () => authRepository.login(const Account(email: '')),
+        () => authRepository.login(const Login(email: '')),
         throwsAssertionError,
       );
       verifyNever(() => httpServiceMock.post(
@@ -118,7 +118,7 @@ void main() {
         requestOptions: RequestOptions(path: ''),
       ));
 
-      expect(() => authRepository.login(const Account(email: '', senha: '')),
+      expect(() => authRepository.login(const Login(email: '', senha: '')),
           throwsA(isA<RepositoryException>()));
       verify(() => httpServiceMock.post(
             any(),
@@ -141,7 +141,7 @@ void main() {
             data: any(named: 'data'),
           )).thenThrow(const FormatException());
 
-      expect(() => authRepository.login(const Account(email: '', senha: '')),
+      expect(() => authRepository.login(const Login(email: '', senha: '')),
           throwsA(isA<FormatException>()));
       verify(() => httpServiceMock.post(
             any(),
