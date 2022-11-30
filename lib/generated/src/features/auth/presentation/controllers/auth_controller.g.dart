@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $AuthControllerHash() => r'ef69dc4afc498d676974532f5b76602e697467fe';
+String $AuthControllerHash() => r'43044a07c0b2717ced9431542dffa6c46535f04f';
 
 /// See also [AuthController].
 final authControllerProvider = NotifierProvider<AuthController, AuthState>(

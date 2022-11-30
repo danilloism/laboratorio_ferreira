@@ -33,7 +33,7 @@ void main() {
           ));
 
       final session =
-          await authRepository.login(const Account(email: '', senha: ''));
+          await authRepository.login(const Login(email: '', senha: ''));
       verify(() => httpServiceMock.post(
             any(),
             data: any(named: 'data'),
@@ -73,32 +73,12 @@ void main() {
             data: data,
           ));
 
-      expect(() => authRepository.login(const Account(email: '', senha: '')),
+      expect(() => authRepository.login(const Login(email: '', senha: '')),
           throwsA(isA<RepositoryException>()));
       verify(() => httpServiceMock.post(
             any(),
             data: any(named: 'data'),
           )).called(1);
-      verifyNever(() => httpServiceMock.get(
-            any(),
-            queryParams: any(named: 'queryParams'),
-          ));
-      verifyNever(() => httpServiceMock.put(
-            any(),
-            data: any(named: 'data'),
-          ));
-      verifyNever(() => httpServiceMock.patch(any()));
-    });
-
-    test('deve lançar assertion se senha for null', () {
-      expect(
-        () => authRepository.login(const Account(email: '')),
-        throwsAssertionError,
-      );
-      verifyNever(() => httpServiceMock.post(
-            any(),
-            data: any(named: 'data'),
-          ));
       verifyNever(() => httpServiceMock.get(
             any(),
             queryParams: any(named: 'queryParams'),
@@ -118,7 +98,7 @@ void main() {
         requestOptions: RequestOptions(path: ''),
       ));
 
-      expect(() => authRepository.login(const Account(email: '', senha: '')),
+      expect(() => authRepository.login(const Login(email: '', senha: '')),
           throwsA(isA<RepositoryException>()));
       verify(() => httpServiceMock.post(
             any(),
@@ -141,7 +121,7 @@ void main() {
             data: any(named: 'data'),
           )).thenThrow(const FormatException());
 
-      expect(() => authRepository.login(const Account(email: '', senha: '')),
+      expect(() => authRepository.login(const Login(email: '', senha: '')),
           throwsA(isA<FormatException>()));
       verify(() => httpServiceMock.post(
             any(),

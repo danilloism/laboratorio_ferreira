@@ -16,11 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Login {
-  EmailInput get email => throw _privateConstructorUsedError;
-  SenhaInput get senha => throw _privateConstructorUsedError;
-  FormzStatus get status => throw _privateConstructorUsedError;
-  String? get errors => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get senha => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  bool get submissionInProgress => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LoginCopyWith<Login> get copyWith => throw _privateConstructorUsedError;
 }
@@ -31,7 +32,9 @@ abstract class $LoginCopyWith<$Res> {
       _$LoginCopyWithImpl<$Res, Login>;
   @useResult
   $Res call(
-      {EmailInput email, SenhaInput senha, FormzStatus status, String? errors});
+      {String email,
+      String senha,
+      @JsonKey(ignore: true) bool submissionInProgress});
 }
 
 /// @nodoc
@@ -49,26 +52,21 @@ class _$LoginCopyWithImpl<$Res, $Val extends Login>
   $Res call({
     Object? email = null,
     Object? senha = null,
-    Object? status = null,
-    Object? errors = freezed,
+    Object? submissionInProgress = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as EmailInput,
+              as String,
       senha: null == senha
           ? _value.senha
           : senha // ignore: cast_nullable_to_non_nullable
-              as SenhaInput,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
-      errors: freezed == errors
-          ? _value.errors
-          : errors // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      submissionInProgress: null == submissionInProgress
+          ? _value.submissionInProgress
+          : submissionInProgress // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -80,7 +78,9 @@ abstract class _$$_LoginCopyWith<$Res> implements $LoginCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {EmailInput email, SenhaInput senha, FormzStatus status, String? errors});
+      {String email,
+      String senha,
+      @JsonKey(ignore: true) bool submissionInProgress});
 }
 
 /// @nodoc
@@ -94,92 +94,70 @@ class __$$_LoginCopyWithImpl<$Res> extends _$LoginCopyWithImpl<$Res, _$_Login>
   $Res call({
     Object? email = null,
     Object? senha = null,
-    Object? status = null,
-    Object? errors = freezed,
+    Object? submissionInProgress = null,
   }) {
     return _then(_$_Login(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as EmailInput,
+              as String,
       senha: null == senha
           ? _value.senha
           : senha // ignore: cast_nullable_to_non_nullable
-              as SenhaInput,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as FormzStatus,
-      errors: freezed == errors
-          ? _value.errors
-          : errors // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      submissionInProgress: null == submissionInProgress
+          ? _value.submissionInProgress
+          : submissionInProgress // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable(createFactory: false)
 class _$_Login implements _Login {
   const _$_Login(
-      {this.email = const EmailInput.pure(),
-      this.senha = const SenhaInput.pure(),
-      this.status = FormzStatus.pure,
-      this.errors});
+      {this.email = '',
+      this.senha = '',
+      @JsonKey(ignore: true) this.submissionInProgress = false});
 
   @override
   @JsonKey()
-  final EmailInput email;
+  final String email;
   @override
   @JsonKey()
-  final SenhaInput senha;
+  final String senha;
   @override
-  @JsonKey()
-  final FormzStatus status;
-  @override
-  final String? errors;
-
-  @override
-  String toString() {
-    return 'Login(email: $email, senha: $senha, status: $status, errors: $errors)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Login &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.senha, senha) || other.senha == senha) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.errors, errors) || other.errors == errors));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, email, senha, status, errors);
+  @JsonKey(ignore: true)
+  final bool submissionInProgress;
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_LoginCopyWith<_$_Login> get copyWith =>
       __$$_LoginCopyWithImpl<_$_Login>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_LoginToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Login implements Login {
   const factory _Login(
-      {final EmailInput email,
-      final SenhaInput senha,
-      final FormzStatus status,
-      final String? errors}) = _$_Login;
+      {final String email,
+      final String senha,
+      @JsonKey(ignore: true) final bool submissionInProgress}) = _$_Login;
 
   @override
-  EmailInput get email;
+  String get email;
   @override
-  SenhaInput get senha;
+  String get senha;
   @override
-  FormzStatus get status;
-  @override
-  String? get errors;
+  @JsonKey(ignore: true)
+  bool get submissionInProgress;
   @override
   @JsonKey(ignore: true)
   _$$_LoginCopyWith<_$_Login> get copyWith =>

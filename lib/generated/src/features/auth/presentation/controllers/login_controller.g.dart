@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../../../../../../../../src/features/contato/presentation/components/editor_contato/controllers/selected_categorias_controller.dart';
+part of '../../../../../../src/features/auth/presentation/controllers/login_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,23 +29,20 @@ class _SystemHash {
   }
 }
 
-String $SelectedCategoriasControllerHash() =>
-    r'7941530d2dae66cc3090e37f3a9cbe7c7c866c48';
+String $LoginControllerHash() => r'e0a48089b069ac573258085e96277453abd7b9cc';
 
-/// See also [SelectedCategoriasController].
-final selectedCategoriasControllerProvider =
-    AutoDisposeNotifierProvider<SelectedCategoriasController, Set<Roles>>(
-  SelectedCategoriasController.new,
-  name: r'selectedCategoriasControllerProvider',
+/// See also [LoginController].
+final loginControllerProvider =
+    AutoDisposeNotifierProvider<LoginController, Login>(
+  LoginController.new,
+  name: r'loginControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $SelectedCategoriasControllerHash,
+      : $LoginControllerHash,
 );
-typedef SelectedCategoriasControllerRef
-    = AutoDisposeNotifierProviderRef<Set<Roles>>;
+typedef LoginControllerRef = AutoDisposeNotifierProviderRef<Login>;
 
-abstract class _$SelectedCategoriasController
-    extends AutoDisposeNotifier<Set<Roles>> {
+abstract class _$LoginController extends AutoDisposeNotifier<Login> {
   @override
-  Set<Roles> build();
+  Login build();
 }

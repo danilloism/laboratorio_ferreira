@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
@@ -18,11 +19,10 @@ class EditorContatoPage extends ConsumerWidget {
   EditorContatoPage({super.key, Contato? contato})
       : _contatoInicial = contato ?? Contato.empty;
   final Contato _contatoInicial;
-  final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormBuilderState>();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isLoadingController = ref.read(isLoadingControllerProvider.notifier);
     return ProviderScope(
       overrides: [
         editorContatoNotifierProvider
@@ -69,12 +69,19 @@ class EditorContatoPage extends ConsumerWidget {
                 return IconButton(
                   onPressed: () async {
                     UiHelper.closeKeyboard();
-
+                    final isLoadingController =
+                        ref.read(isLoadingControllerProvider.notifier);
                     if (_formKey.currentState!.validate()) {
                       isLoadingController.switchValue();
 
                       final contatoFinal =
                           ref.read(editorContatoNotifierProvider);
+
+                      if (contatoFinal.nome.isEmpty) {
+                        _formKey.currentState
+                            ?.invalidateField(name: 'telefones');
+                        return;
+                      }
 
                       if (_contatoInicial == contatoFinal) {
                         context.pop();
@@ -138,7 +145,7 @@ class EditorContatoPage extends ConsumerWidget {
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Form(
+          child: FormBuilder(
             key: _formKey,
             child: ListView(
               children: const [
@@ -146,7 +153,7 @@ class EditorContatoPage extends ConsumerWidget {
                 NameFormSection(),
                 SizedBox(height: 20),
                 TelefonesFormSection(),
-                SizedBox(height: 4),
+                SizedBox(height: 20),
                 CategoriasFormSection(),
               ],
             ),

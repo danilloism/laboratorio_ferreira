@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/build_context_extension.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/formatter.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/helpers.dart';
@@ -23,62 +25,70 @@ class TelefonesFormSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final podeEditarTelefone = _podeEditarTelefone(ref);
-    return FormField<Set<String>>(
+    return FormBuilderField<Set<String>>(
+      name: 'telefones',
       initialValue: ref.read(editorContatoNotifierProvider).telefones,
-      validator: (value) => value == null || value.isEmpty
-          ? 'Contato deve possuir pelo menos um telefone.'
-          : null,
-      builder: (formFieldState) => FormSection(
-        title: 'Telefone(s)',
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Consumer(
-              builder: (context, ref, _) {
-                ref.listen(
-                    editorContatoNotifierProvider
-                        .select((value) => value.telefones), (_, next) {
-                  formFieldState.didChange(next);
-                });
-                final telefonesState = ref.watch(editorContatoNotifierProvider
-                    .select((value) => value.telefones));
-                return CustomWrap(
-                  children: [
-                    ...telefonesState.map(
-                      (telefone) => CustomChip(
-                        key: ValueKey('chip-$telefone'),
-                        label: Text(Formatter.applyPhoneMask(telefone)),
-                        onPressed: podeEditarTelefone
-                            ? () => context.openModal(
-                                EditorTelefoneDialog(telefone: telefone))
-                            : null,
-                        onDeleted: podeEditarTelefone
-                            ? () => ref
-                                .read(editorContatoNotifierProvider.notifier)
-                                .removerTelefone(telefone)
-                            : null,
-                        tooltip: podeEditarTelefone ? 'Editar telefone' : null,
-                      ),
+      validator: FormBuilderValidators.compose([
+        FormBuilderValidators.required(),
+        FormBuilderValidators.minLength(1),
+      ]),
+      builder: (field) => InputDecorator(
+        decoration: InputDecoration(
+          errorText: field.errorText,
+          contentPadding: const EdgeInsets.all(0),
+          fillColor: Colors.transparent,
+        ),
+        child: FormSection(
+          title: 'Telefone(s)',
+          child: Consumer(
+            builder: (context, ref, _) {
+              ref.listen(
+                  editorContatoNotifierProvider
+                      .select((value) => value.telefones), (_, next) {
+                field.didChange(next);
+              });
+              final telefonesState = ref.watch(editorContatoNotifierProvider
+                  .select((value) => value.telefones));
+              return CustomWrap(
+                children: [
+                  ...telefonesState.map(
+                    (telefone) => CustomChip(
+                      key: ValueKey('chip-$telefone'),
+                      label: Text(Formatter.applyPhoneMask(telefone)),
+                      onPressed: podeEditarTelefone
+                          ? () => context.openModal(
+                                EditorTelefoneDialog(
+                                  telefone: telefone,
+                                  onSave: (value) => ref
+                                      .read(editorContatoNotifierProvider
+                                          .notifier)
+                                      .alterarTelefone(
+                                        currentValue: telefone,
+                                        newValue: value,
+                                      ),
+                                ),
+                                useProviderScope: false,
+                              )
+                          : null,
+                      onDeleted: podeEditarTelefone
+                          ? () => ref
+                              .read(editorContatoNotifierProvider.notifier)
+                              .removerTelefone(telefone)
+                          : null,
+                      tooltip: podeEditarTelefone ? 'Editar telefone' : null,
                     ),
-                    if (podeEditarTelefone)
-                      CustomChip.add(
-                          () => context.openModal(EditorTelefoneDialog())),
-                  ],
-                );
-              },
-            ),
-            if (formFieldState.hasError)
-              Padding(
-                padding: const EdgeInsets.only(left: 8, top: 10),
-                child: Text(
-                  formFieldState.errorText!,
-                  style: TextStyle(
-                    color: context.theme.colorScheme.error,
-                    fontSize: 12.5,
                   ),
-                ),
-              )
-          ],
+                  if (podeEditarTelefone)
+                    CustomChip.add(() => context.openModal(
+                        EditorTelefoneDialog(
+                            onSave: ref
+                                .read(editorContatoNotifierProvider.notifier)
+                                .adicionarTelefone),
+                        useProviderScope: false)),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

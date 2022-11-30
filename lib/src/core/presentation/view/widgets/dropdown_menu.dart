@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class DropdownMenu<T> extends DropdownButton<T> {
-  DropdownMenu({
+class CustomDropdownMenu<T> extends DropdownButton<T> {
+  CustomDropdownMenu({
     super.key,
     required super.items,
     required super.onChanged,

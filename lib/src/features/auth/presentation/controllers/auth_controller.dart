@@ -26,9 +26,9 @@ class AuthController extends _$AuthController {
     return const AuthState.loggedOut();
   }
 
-  Future<void> login(Account account) async {
+  Future<void> login(Login login) async {
     try {
-      final session = await ref.read(authRepositoryProvider).login(account);
+      final session = await ref.read(authRepositoryProvider).login(login);
       state = AuthState.loggedIn(session: session);
     } on RepositoryException catch (e) {
       state = AuthState.error(error: e);
