@@ -7,7 +7,6 @@ import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/w
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/contatos_list/view/widgets/criar_contato_button.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/contatos_list/view/widgets/on_going_bottom.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/contatos_list/view/widgets/contatos_list.dart';
 
 class ContatosPageView extends HookConsumerWidget {
