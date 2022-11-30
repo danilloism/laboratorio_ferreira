@@ -22,11 +22,12 @@ class PaginationController<T> extends StateNotifier<PaginationState<T>> {
 
   void _init() {
     if (_items.isEmpty) {
-      _fetchFirstBatch();
+      fetchFirstBatch();
     }
   }
 
-  Future<void> _fetchFirstBatch() async {
+  Future<void> fetchFirstBatch() async {
+    assert(_items.isEmpty);
     state = const PaginationLoading();
     final result = await PaginationState.guard(() => _fetchItems());
     _updateData(result);

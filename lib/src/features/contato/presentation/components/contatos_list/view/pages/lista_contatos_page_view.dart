@@ -72,7 +72,7 @@ class ContatosPageView extends HookConsumerWidget {
               ),
             ),
             const ContatosList(),
-            const OnGoingBottom(),
+            // const OnGoingBottom(),
           ],
         ),
       ),

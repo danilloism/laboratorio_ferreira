@@ -31,6 +31,8 @@ class ContatosList extends ConsumerWidget {
           childCount: contatos.length,
         ),
       ),
+      onTryAgainClicked:
+          ref.read(contatosFetchProvider.notifier).fetchFirstBatch,
     );
   }
 }
