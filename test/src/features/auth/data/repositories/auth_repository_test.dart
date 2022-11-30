@@ -90,26 +90,6 @@ void main() {
       verifyNever(() => httpServiceMock.patch(any()));
     });
 
-    test('deve lançar assertion se senha for null', () {
-      expect(
-        () => authRepository.login(const Login(email: '')),
-        throwsAssertionError,
-      );
-      verifyNever(() => httpServiceMock.post(
-            any(),
-            data: any(named: 'data'),
-          ));
-      verifyNever(() => httpServiceMock.get(
-            any(),
-            queryParams: any(named: 'queryParams'),
-          ));
-      verifyNever(() => httpServiceMock.put(
-            any(),
-            data: any(named: 'data'),
-          ));
-      verifyNever(() => httpServiceMock.patch(any()));
-    });
-
     test('deve lançar RepositoryException se cliente lançar um erro', () {
       when(() => httpServiceMock.post(
             any(),
