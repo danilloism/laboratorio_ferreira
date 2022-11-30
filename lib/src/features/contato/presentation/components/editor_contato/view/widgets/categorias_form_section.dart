@@ -68,7 +68,24 @@ class CategoriasFormSection extends ConsumerWidget {
                     if (usuario.temHierarquiaMaiorOuIgualQue(Roles.gerente) &&
                         categorias.length <= 6)
                       CustomChip.add(
-                        () => context.openModal(AddCategoriaDialog()),
+                        () => context.openModal(
+                          AddCategoriaDialog(
+                            categorias: Roles.values
+                                .where((role) =>
+                                    !ref
+                                        .read(editorContatoNotifierProvider)
+                                        .isA(role) &&
+                                    ref
+                                        .read(usuarioLogadoProvider)!
+                                        .temHierarquiaMaiorOuIgualQue(role) &&
+                                    !role.isAdmin)
+                                .toSet(),
+                            onSave: ref
+                                .read(editorContatoNotifierProvider.notifier)
+                                .adicionarCategorias,
+                          ),
+                          useProviderScope: false,
+                        ),
                       ),
                   ],
                 );
