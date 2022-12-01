@@ -6,7 +6,7 @@ PagingController usePagingController<PageKeyType, ItemType>({
   required PageKeyType firstPageKey,
   int? invisibleItemsThreshold,
 }) {
-  return use(_PagingControllerHook(
+  return use<PagingController>(_PagingControllerHook<PageKeyType, ItemType>(
     firstPageKey: firstPageKey,
     invisibleItemsThreshold: invisibleItemsThreshold,
   ));
@@ -16,31 +16,29 @@ class _PagingControllerHook<PageKeyType, ItemType>
     extends Hook<PagingController> {
   const _PagingControllerHook({
     required this.firstPageKey,
-    // ignore: unused_element
-    super.keys,
     this.invisibleItemsThreshold,
   });
   final PageKeyType firstPageKey;
   final int? invisibleItemsThreshold;
 
   @override
-  HookState<PagingController, Hook<PagingController>> createState() =>
-      _PagingControllerHookState();
+  _PagingControllerHookState<PageKeyType, ItemType> createState() =>
+      _PagingControllerHookState<PageKeyType, ItemType>();
 }
 
-class _PagingControllerHookState<PageKeyType, ItemType>
-    extends HookState<PagingController, _PagingControllerHook> {
+class _PagingControllerHookState<PageKeyType, ItemType> extends HookState<
+    PagingController, _PagingControllerHook<PageKeyType, ItemType>> {
   late final controller = PagingController<PageKeyType, ItemType>(
-    firstPageKey: hook.firstPageKey,
-    invisibleItemsThreshold: hook.invisibleItemsThreshold,
-  );
+      firstPageKey: hook.firstPageKey,
+      invisibleItemsThreshold: hook.invisibleItemsThreshold);
 
   @override
-  PagingController build(BuildContext context) => controller;
+  PagingController<PageKeyType, ItemType> build(BuildContext context) =>
+      controller;
 
   @override
-  void dispose() => controller.dispose();
-
-  @override
-  String get debugLabel => 'usePagingController';
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 }
