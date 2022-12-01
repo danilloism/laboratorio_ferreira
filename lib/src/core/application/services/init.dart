@@ -20,9 +20,12 @@ import 'package:loggy/loggy.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sembast/sembast_io.dart';
+import 'dart:io' show Platform;
 
 class Init {
   const Init._();
+
+  static bool get _platformIsWindows => Platform.isWindows;
 
   static Future<ProviderContainer> get container async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -35,10 +38,17 @@ class Init {
       observers: [RiverpodLogger()],
     );
 
-    await Future.wait([
-      Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
-      Init._initDatabase(container),
-    ]);
+    if (_platformIsWindows) {
+      await Future.wait([
+        Init._initDatabase(container),
+      ]);
+    } else {
+      await Future.wait([
+        Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
+        Init._initDatabase(container),
+      ]);
+    }
+
     await _initSettingsRepo(container);
     _initPostAsyncCalls();
     _initListeners(container);
