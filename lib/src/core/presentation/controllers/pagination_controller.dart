@@ -1,62 +1,43 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/presentation/states/pagination_state.dart';
+import 'package:laboratorio_ferreira_mobile/src/core/presentation/states/store.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/pagination.dart';
 
-class PaginationController<T> extends StateNotifier<PaginationState<T>> {
-  PaginationController({
+// part '../../../../generated/src/core/presentation/controllers/pagination_controller.g.dart';
+
+class AsyncPaginationController<T> extends StateNotifier<AsyncValue<void>> {
+  AsyncPaginationController({
     required Future<List<T>> Function({Pagination? pagination}) fetchItems,
     required int itemsPerBatch,
-  })  : _pagination = Pagination(skip: 0, take: itemsPerBatch),
+    required Store<T> store,
+  })  : _pagination = Pagination(skip: store.length, take: itemsPerBatch),
         _fetchItems = fetchItems,
-        super(const PaginationLoading()) {
-    _init();
+        _store = store,
+        super(const AsyncLoading()) {
+    if (_store.isEmpty) {
+      fetchData();
+    }
   }
 
   final Future<List<T>> Function({Pagination? pagination}) _fetchItems;
-  final List<T> _items = [];
   Pagination _pagination;
+  final Store<T> _store;
 
-  var _timer = Timer(const Duration(microseconds: 0), () {});
-
-  void _init() {
-    if (_items.isEmpty) {
-      fetchFirstBatch();
-    }
-  }
-
-  Future<void> fetchFirstBatch() async {
-    assert(_items.isEmpty);
-    state = const PaginationLoading();
-    final result = await PaginationState.guard(() => _fetchItems());
-    _updateData(result);
-  }
-
-  Future<void> fetchNext() async {
-    if (state is PaginationLoading || state is PaginationOnGoingLoading) return;
-    state = PaginationOnGoingLoading(_items);
-    if (_timer.isActive) {
-      Timer(const Duration(seconds: 2), () => state = PaginationData(_items));
-      return;
-    }
-    _timer = Timer(const Duration(seconds: 3), () {});
-
-    final result = await PaginationState.guard(
-      () => _fetchItems(pagination: _pagination),
-      onGoingItems: _items,
-    );
+  Future<void> fetchData() async {
+    final result =
+        await AsyncValue.guard(() => _fetchItems(pagination: _pagination));
     _updateData(result);
   }
 
   void _increasePagination() {
-    _pagination = _pagination.copyWith(skip: _pagination.skip + _items.length);
+    _pagination = _pagination.copyWith(skip: _store.length);
   }
 
-  void _updateData(PaginationState<T> result) {
-    if (result is PaginationData<T>) {
-      final newItems = result.items;
-      state = PaginationData([..._items..addAll(newItems)]);
+  void _updateData(AsyncValue<List<T>> result) {
+    if (result is AsyncData<List<T>>) {
+      final newItems = result.requireValue;
+      state = AsyncData(_store.addAll(newItems));
       _increasePagination();
       return;
     }
@@ -64,3 +45,50 @@ class PaginationController<T> extends StateNotifier<PaginationState<T>> {
     state = result;
   }
 }
+
+// @riverpod
+// class PaginationController<T> extends FamilyAsyncNotifier<void, Future<List<T>>> {
+//   // PaginationController({
+//   //   required Future<List<T>> Function({Pagination? pagination}) fetchItems,
+//   //   required int itemsPerBatch,
+//   //   required Store<T> store,
+//   // })  : _pagination = Pagination(skip: store.length, take: itemsPerBatch),
+//   //       _fetchItems = fetchItems,
+//   //       _store = store,
+//   //       super(const AsyncLoading()) {
+//   //   if (_store.isEmpty) {
+//   //     fetchData();
+//   //   }
+//   // }
+//
+//   Future<void> build({
+//     required Future<List<T>> Function({Pagination? pagination}) fetchItems,
+//     required int itemsPerBatch,
+//     required Store<T> store,
+//   }) async {}
+//
+//   late final Future<List<T>> Function({Pagination? pagination}) _fetchItems;
+//   late Pagination _pagination;
+//   late final Store<T> _store;
+//
+//   Future<void> fetchData() async {
+//     final result =
+//         await AsyncValue.guard(() => _fetchItems(pagination: _pagination));
+//     _updateData(result);
+//   }
+//
+//   void _increasePagination() {
+//     _pagination = _pagination.copyWith(skip: _store.length);
+//   }
+//
+//   void _updateData(AsyncValue<List<T>> result) {
+//     if (result is AsyncData<List<T>>) {
+//       final newItems = result.requireValue;
+//       state = AsyncData(_store.addAll(newItems));
+//       _increasePagination();
+//       return;
+//     }
+//
+//     state = result;
+//   }
+// }
