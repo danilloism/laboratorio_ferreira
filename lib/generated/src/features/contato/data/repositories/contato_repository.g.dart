@@ -29,14 +29,302 @@ class _SystemHash {
   }
 }
 
-String $contatoRepositoryHash() => r'df268a0c052e700ae386ef86bf56143c355ed1db';
+String $contatoRepositoryHash() => r'6faf6896846c6a0ca3c48b88a65b9db53901fec0';
 
 /// See also [contatoRepository].
-final contatoRepositoryProvider = Provider<ContatoRepository>(
+final contatoRepositoryProvider = AutoDisposeProvider<ContatoRepository>(
   contatoRepository,
   name: r'contatoRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : $contatoRepositoryHash,
 );
-typedef ContatoRepositoryRef = ProviderRef<ContatoRepository>;
+typedef ContatoRepositoryRef = AutoDisposeProviderRef<ContatoRepository>;
+String $getOneContatoHash() => r'986d45c2729747ee283b4ea7d05f41465f7994fe';
+
+/// See also [getOneContato].
+class GetOneContatoProvider extends AutoDisposeFutureProvider<Contato> {
+  GetOneContatoProvider(
+    this.id,
+  ) : super(
+          (ref) => getOneContato(
+            ref,
+            id,
+          ),
+          from: getOneContatoProvider,
+          name: r'getOneContatoProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : $getOneContatoHash,
+        );
+
+  final String id;
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetOneContatoProvider && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+typedef GetOneContatoRef = AutoDisposeFutureProviderRef<Contato>;
+
+/// See also [getOneContato].
+final getOneContatoProvider = GetOneContatoFamily();
+
+class GetOneContatoFamily extends Family<AsyncValue<Contato>> {
+  GetOneContatoFamily();
+
+  GetOneContatoProvider call(
+    String id,
+  ) {
+    return GetOneContatoProvider(
+      id,
+    );
+  }
+
+  @override
+  AutoDisposeFutureProvider<Contato> getProviderOverride(
+    covariant GetOneContatoProvider provider,
+  ) {
+    return call(
+      provider.id,
+    );
+  }
+
+  @override
+  List<ProviderOrFamily>? get allTransitiveDependencies => null;
+
+  @override
+  List<ProviderOrFamily>? get dependencies => null;
+
+  @override
+  String? get name => r'getOneContatoProvider';
+}
+
+String $getManyContatosHash() => r'c023c2694fea7c760a3d01a32b5450fcf0ea9557';
+
+/// See also [getManyContatos].
+class GetManyContatosProvider extends AutoDisposeFutureProvider<List<Contato>> {
+  GetManyContatosProvider({
+    this.queryParams,
+    this.pagination,
+  }) : super(
+          (ref) => getManyContatos(
+            ref,
+            queryParams: queryParams,
+            pagination: pagination,
+          ),
+          from: getManyContatosProvider,
+          name: r'getManyContatosProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : $getManyContatosHash,
+        );
+
+  final Map<String, dynamic>? queryParams;
+  final Pagination? pagination;
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetManyContatosProvider &&
+        other.queryParams == queryParams &&
+        other.pagination == pagination;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, queryParams.hashCode);
+    hash = _SystemHash.combine(hash, pagination.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+typedef GetManyContatosRef = AutoDisposeFutureProviderRef<List<Contato>>;
+
+/// See also [getManyContatos].
+final getManyContatosProvider = GetManyContatosFamily();
+
+class GetManyContatosFamily extends Family<AsyncValue<List<Contato>>> {
+  GetManyContatosFamily();
+
+  GetManyContatosProvider call({
+    Map<String, dynamic>? queryParams,
+    Pagination? pagination,
+  }) {
+    return GetManyContatosProvider(
+      queryParams: queryParams,
+      pagination: pagination,
+    );
+  }
+
+  @override
+  AutoDisposeFutureProvider<List<Contato>> getProviderOverride(
+    covariant GetManyContatosProvider provider,
+  ) {
+    return call(
+      queryParams: provider.queryParams,
+      pagination: provider.pagination,
+    );
+  }
+
+  @override
+  List<ProviderOrFamily>? get allTransitiveDependencies => null;
+
+  @override
+  List<ProviderOrFamily>? get dependencies => null;
+
+  @override
+  String? get name => r'getManyContatosProvider';
+}
+
+String $updateContatoHash() => r'bee0d4fe01561bfd3344773fbf6b0831125a9296';
+
+/// See also [updateContato].
+class UpdateContatoProvider extends AutoDisposeFutureProvider<Contato> {
+  UpdateContatoProvider(
+    this.contato,
+  ) : super(
+          (ref) => updateContato(
+            ref,
+            contato,
+          ),
+          from: updateContatoProvider,
+          name: r'updateContatoProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : $updateContatoHash,
+        );
+
+  final Contato contato;
+
+  @override
+  bool operator ==(Object other) {
+    return other is UpdateContatoProvider && other.contato == contato;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, contato.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+typedef UpdateContatoRef = AutoDisposeFutureProviderRef<Contato>;
+
+/// See also [updateContato].
+final updateContatoProvider = UpdateContatoFamily();
+
+class UpdateContatoFamily extends Family<AsyncValue<Contato>> {
+  UpdateContatoFamily();
+
+  UpdateContatoProvider call(
+    Contato contato,
+  ) {
+    return UpdateContatoProvider(
+      contato,
+    );
+  }
+
+  @override
+  AutoDisposeFutureProvider<Contato> getProviderOverride(
+    covariant UpdateContatoProvider provider,
+  ) {
+    return call(
+      provider.contato,
+    );
+  }
+
+  @override
+  List<ProviderOrFamily>? get allTransitiveDependencies => null;
+
+  @override
+  List<ProviderOrFamily>? get dependencies => null;
+
+  @override
+  String? get name => r'updateContatoProvider';
+}
+
+String $createContatoHash() => r'1d701096a0c3f6288752651f655bee565966056c';
+
+/// See also [createContato].
+class CreateContatoProvider extends AutoDisposeFutureProvider<Contato> {
+  CreateContatoProvider(
+    this.contato,
+  ) : super(
+          (ref) => createContato(
+            ref,
+            contato,
+          ),
+          from: createContatoProvider,
+          name: r'createContatoProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : $createContatoHash,
+        );
+
+  final Contato contato;
+
+  @override
+  bool operator ==(Object other) {
+    return other is CreateContatoProvider && other.contato == contato;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, contato.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+typedef CreateContatoRef = AutoDisposeFutureProviderRef<Contato>;
+
+/// See also [createContato].
+final createContatoProvider = CreateContatoFamily();
+
+class CreateContatoFamily extends Family<AsyncValue<Contato>> {
+  CreateContatoFamily();
+
+  CreateContatoProvider call(
+    Contato contato,
+  ) {
+    return CreateContatoProvider(
+      contato,
+    );
+  }
+
+  @override
+  AutoDisposeFutureProvider<Contato> getProviderOverride(
+    covariant CreateContatoProvider provider,
+  ) {
+    return call(
+      provider.contato,
+    );
+  }
+
+  @override
+  List<ProviderOrFamily>? get allTransitiveDependencies => null;
+
+  @override
+  List<ProviderOrFamily>? get dependencies => null;
+
+  @override
+  String? get name => r'createContatoProvider';
+}

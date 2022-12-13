@@ -15,11 +15,11 @@ abstract class IHttpService {
   Future patch(String path);
 }
 
-@Riverpod(keepAlive: true)
+@riverpod
 IHttpService httpService(HttpServiceRef ref) {
   return DioService(
-    ref.read(dioProvider),
-    cancelToken: ref.read(cancelTokenProvider),
+    ref.watch(dioProvider),
+    cancelToken: CancelToken(),
   );
 }
 
@@ -44,6 +44,3 @@ Dio dio(DioRef ref) {
 
   return client;
 }
-
-@riverpod
-CancelToken cancelToken(CancelTokenRef ref) => CancelToken();
