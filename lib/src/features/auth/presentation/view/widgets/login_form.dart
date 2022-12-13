@@ -5,7 +5,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/models/models.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/extensions.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/helpers.dart';
-import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/validator.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/widgets.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/login_controller.dart';
