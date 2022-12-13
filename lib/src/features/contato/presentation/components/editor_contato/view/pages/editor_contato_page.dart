@@ -8,11 +8,12 @@ import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/helpers.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/confirm_modal.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/data/repositories/repositories.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/is_loading_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/view/widgets/categorias_form_section.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/view/widgets/criar_account_section.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/view/widgets/name_form_section.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/view/widgets/telefones_form_section.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 
 class EditorContatoPage extends ConsumerWidget {
@@ -20,6 +21,7 @@ class EditorContatoPage extends ConsumerWidget {
       : _contatoInicial = contato ?? Contato.empty;
   final Contato _contatoInicial;
   final _formKey = GlobalKey<FormBuilderState>();
+  bool get isCriar => _contatoInicial.isEmpty;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,8 +32,7 @@ class EditorContatoPage extends ConsumerWidget {
       ],
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
-              _contatoInicial.isEmpty ? 'Criar Contato' : 'Editar Contato'),
+          title: Text(isCriar ? 'Criar Contato' : 'Editar Contato'),
           leading: Consumer(builder: (context, ref, _) {
             return IconButton(
                 icon: const Icon(Icons.arrow_back),
@@ -91,7 +92,7 @@ class EditorContatoPage extends ConsumerWidget {
                       try {
                         final repository = ref.read(contatoRepositoryProvider);
 
-                        if (_contatoInicial.isEmpty) {
+                        if (isCriar) {
                           await ref
                               .read(contatoRepositoryProvider)
                               .create(contatoFinal)
@@ -148,13 +149,17 @@ class EditorContatoPage extends ConsumerWidget {
           child: FormBuilder(
             key: _formKey,
             child: ListView(
-              children: const [
-                SizedBox(height: 8),
-                NameFormSection(),
-                SizedBox(height: 20),
-                TelefonesFormSection(),
-                SizedBox(height: 20),
-                CategoriasFormSection(),
+              children: [
+                const SizedBox(height: 8),
+                const NameFormSection(),
+                const SizedBox(height: 20),
+                const TelefonesFormSection(),
+                const SizedBox(height: 20),
+                const CategoriasFormSection(),
+                if (isCriar) ...[
+                  const SizedBox(height: 20),
+                  const CriarAccountSection(),
+                ]
               ],
             ),
           ),
