@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/models/models.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/extensions.dart';
@@ -52,10 +51,7 @@ class LoginForm extends HookConsumerWidget {
                 name: 'email',
                 decoration: const InputDecoration(labelText: 'Email'),
                 controller: emailController,
-                validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.email(),
-                  FormBuilderValidators.required(),
-                ]),
+                validator: Validator.email(),
                 keyboardType: TextInputType.emailAddress,
                 onChanged: (value) => ref
                     .read(loginControllerProvider.notifier)
@@ -75,11 +71,7 @@ class LoginForm extends HookConsumerWidget {
                     .read(loginControllerProvider.notifier)
                     .senhaTeveAlteracao(value ?? ''),
                 onSubmitted: (_) => _submitForm(ref),
-                validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.minLength(4),
-                  FormBuilderValidators.maxLength(20),
-                  FormBuilderValidators.required(),
-                ]),
+                validator: Validator.senha(),
               ),
             ),
             const SizedBox(height: 24),

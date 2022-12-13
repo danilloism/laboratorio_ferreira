@@ -158,6 +158,29 @@ class ContatoRepository {
   }
 }
 
-@Riverpod(keepAlive: true)
+@riverpod
 ContatoRepository contatoRepository(ContatoRepositoryRef ref) =>
     ContatoRepository(httpService: ref.watch(httpServiceProvider));
+
+@riverpod
+Future<Contato> getOneContato(GetOneContatoRef ref, String id) {
+  return ref.watch(contatoRepositoryProvider).getOne(id);
+}
+
+@riverpod
+Future<List<Contato>> getManyContatos(GetManyContatosRef ref,
+    {Map<String, dynamic>? queryParams, Pagination? pagination}) {
+  return ref
+      .watch(contatoRepositoryProvider)
+      .getMany(queryParams: queryParams, pagination: pagination);
+}
+
+@riverpod
+Future<Contato> updateContato(UpdateContatoRef ref, Contato contato) {
+  return ref.watch(contatoRepositoryProvider).update(contato);
+}
+
+@riverpod
+Future<Contato> createContato(CreateContatoRef ref, Contato contato) {
+  return ref.watch(contatoRepositoryProvider).create(contato);
+}

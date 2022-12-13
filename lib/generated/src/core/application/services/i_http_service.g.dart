@@ -29,16 +29,16 @@ class _SystemHash {
   }
 }
 
-String $httpServiceHash() => r'25d0a14e99bced0f96eb72cb3e33dd7b9756f375';
+String $httpServiceHash() => r'd5c2db66059e4f58e8e574adc8679ed4191bd1c3';
 
 /// See also [httpService].
-final httpServiceProvider = Provider<IHttpService>(
+final httpServiceProvider = AutoDisposeProvider<IHttpService>(
   httpService,
   name: r'httpServiceProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : $httpServiceHash,
 );
-typedef HttpServiceRef = ProviderRef<IHttpService>;
+typedef HttpServiceRef = AutoDisposeProviderRef<IHttpService>;
 String $dioHash() => r'f30016ae1a8a225fc3baa9fb94c1a94769b78ffa';
 
 /// See also [dio].
@@ -49,13 +49,3 @@ final dioProvider = AutoDisposeProvider<Dio>(
       const bool.fromEnvironment('dart.vm.product') ? null : $dioHash,
 );
 typedef DioRef = AutoDisposeProviderRef<Dio>;
-String $cancelTokenHash() => r'55a6d3ec799c5766c7da3da624663ad35714244b';
-
-/// See also [cancelToken].
-final cancelTokenProvider = AutoDisposeProvider<CancelToken>(
-  cancelToken,
-  name: r'cancelTokenProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $cancelTokenHash,
-);
-typedef CancelTokenRef = AutoDisposeProviderRef<CancelToken>;
