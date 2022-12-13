@@ -6,6 +6,7 @@ import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/extensions.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/helpers.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/confirm_modal.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/data/repositories/repositories.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_controller.dart';
@@ -150,7 +151,10 @@ class EditorContatoPage extends ConsumerWidget {
                 const TelefonesFormSection(),
                 const SizedBox(height: 20),
                 const CategoriasFormSection(),
-                if (isCriar) ...[
+                if (isCriar &&
+                    ref
+                        .read(usuarioLogadoProvider)!
+                        .temHierarquiaMaiorOuIgualQue(Roles.gerente)) ...[
                   const SizedBox(height: 20),
                   const CriarAccountSection(),
                 ]
