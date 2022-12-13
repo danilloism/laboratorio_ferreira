@@ -8,6 +8,7 @@ import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/state
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/view/pages/login_page.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/detalhes_contato/view/pages/detalhes_contato_page.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/view/pages/editor_contato_page.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/store/contatos_store.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/view/pages/pages.dart';
 
@@ -44,16 +45,15 @@ class GoRouterRefreshListenable extends ChangeNotifier {
                 final me =
                     _ref.read(settingsControllerProvider).session!.contato;
 
-                // final param = state.params['id'];
-                // if (param == 'me' || param == me.uid) {
-                return DetalhesContatoPage(me);
-                // }
-                //
-                // final contato = (_ref.read(contatosFetchProvider)
-                //         as PaginationData<Contato>)
-                //     .items
-                //     .singleWhere((element) => element.uid == param);
-                // return DetalhesContatoPage(contato);
+                final param = state.params['id'];
+                if (param == 'me' || param == me.uid) {
+                  return DetalhesContatoPage(me);
+                }
+
+                final contato = _ref
+                    .read(contatosStoreProvider)
+                    .singleWhere((element) => element.uid == param);
+                return DetalhesContatoPage(contato);
               },
             ),
             GoRoute(
@@ -62,17 +62,16 @@ class GoRouterRefreshListenable extends ChangeNotifier {
               builder: (context, state) {
                 final me =
                     _ref.read(settingsControllerProvider).session!.contato;
-                // final param = state.params['id'];
-                // if (param == 'me' || param == me.uid) {
-                return EditorContatoPage(contato: me);
-                // }
-                //
-                // final contato = (_ref.read(contatosFetchProvider)
-                //         as PaginationData<Contato>)
-                //     .items
-                //     .singleWhere((element) => element.uid == param);
-                //
-                // return EditorContatoPage(contato: contato);
+                final param = state.params['id'];
+                if (param == 'me' || param == me.uid) {
+                  return EditorContatoPage(contato: me);
+                }
+
+                final contato = _ref
+                    .read(contatosStoreProvider)
+                    .singleWhere((element) => element.uid == param);
+
+                return EditorContatoPage(contato: contato);
               },
             ),
             GoRoute(

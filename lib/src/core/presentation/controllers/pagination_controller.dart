@@ -9,7 +9,7 @@ import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/p
 class AsyncPaginationController<T> extends StateNotifier<AsyncValue<void>> {
   AsyncPaginationController({
     required Future<List<T>> Function({Pagination? pagination}) fetchItems,
-    required int itemsPerBatch,
+    int itemsPerBatch = 15,
     required Store<T> store,
   })  : _pagination = Pagination(skip: store.length, take: itemsPerBatch),
         _fetchItems = fetchItems,
