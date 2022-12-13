@@ -78,12 +78,6 @@ class EditorContatoPage extends ConsumerWidget {
                       final contatoFinal =
                           ref.read(editorContatoNotifierProvider);
 
-                      if (contatoFinal.nome.isEmpty) {
-                        _formKey.currentState
-                            ?.invalidateField(name: 'telefones');
-                        return;
-                      }
-
                       if (_contatoInicial == contatoFinal) {
                         context.pop();
                         return;

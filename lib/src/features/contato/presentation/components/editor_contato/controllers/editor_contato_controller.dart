@@ -41,6 +41,10 @@ class EditorContatoController extends StateNotifier<Contato> {
     final categoriasAtualizado = {...state.categorias}..addAll(categorias);
     state = state.copyWith(categorias: categoriasAtualizado);
   }
+
+  void emailTeveAlteracao(String value) {}
+
+  void senhaTeveAlteracao(String value) {}
 }
 
 final editorContatoNotifierProvider =

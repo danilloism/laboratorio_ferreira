@@ -3,9 +3,11 @@ import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/extensions.
 
 class FormSection extends StatelessWidget {
   final String? title;
+  final TextStyle? titleStyle;
   final Widget child;
 
-  const FormSection({super.key, this.title, required this.child});
+  const FormSection(
+      {super.key, this.title, this.titleStyle, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class FormSection extends StatelessWidget {
         if (title != null)
           Text(
             title!,
-            style: context.theme.textTheme.titleLarge,
+            style: titleStyle ?? context.theme.textTheme.titleLarge,
             textAlign: TextAlign.start,
           ),
         if (title != null) const SizedBox(height: 8),
