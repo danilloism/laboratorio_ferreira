@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/enums/roles.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/formatter.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/account.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
 
 class EditorContatoController extends StateNotifier<Contato> {
@@ -42,9 +43,35 @@ class EditorContatoController extends StateNotifier<Contato> {
     state = state.copyWith(categorias: categoriasAtualizado);
   }
 
-  void emailTeveAlteracao(String value) {}
+  void emailTeveAlteracao(String value) {
+    if (value.trim().isEmpty && (state.account?.senha ?? '').isEmpty) {
+      removerAccount();
+    }
 
-  void senhaTeveAlteracao(String value) {}
+    if (state.account == null) {
+      state = state.copyWith(account: Account(email: value));
+      return;
+    }
+
+    state = state.copyWith.account!(email: value);
+  }
+
+  void senhaTeveAlteracao(String value) {
+    if (value.trim().isEmpty && (state.account?.email ?? '').isEmpty) {
+      removerAccount();
+    }
+
+    if (state.account == null) {
+      state = state.copyWith(account: Account(senha: value, email: ''));
+      return;
+    }
+
+    state = state.copyWith.account!(senha: value);
+  }
+
+  void removerAccount() {
+    state = state.copyWith(account: null);
+  }
 }
 
 final editorContatoNotifierProvider =

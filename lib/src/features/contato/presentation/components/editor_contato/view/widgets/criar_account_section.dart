@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/build_context_extension.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/is_loading_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/view/widgets/criar_account_fields.dart';
 
@@ -21,6 +22,10 @@ class _CriarAccountSectionState extends ConsumerState<CriarAccountSection> {
     setState(() {
       _checkboxValue = value;
     });
+
+    if (_checkboxValue == false) {
+      ref.read(editorContatoNotifierProvider.notifier).removerAccount();
+    }
   }
 
   @override
