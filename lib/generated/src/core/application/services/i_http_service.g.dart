@@ -39,7 +39,7 @@ final httpServiceProvider = Provider<IHttpService>(
       const bool.fromEnvironment('dart.vm.product') ? null : $httpServiceHash,
 );
 typedef HttpServiceRef = ProviderRef<IHttpService>;
-String $dioHash() => r'9b5a2cac23a0143bc0d6c42a9bda35e7f04c8a98';
+String $dioHash() => r'f30016ae1a8a225fc3baa9fb94c1a94769b78ffa';
 
 /// See also [dio].
 final dioProvider = AutoDisposeProvider<Dio>(
