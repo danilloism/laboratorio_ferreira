@@ -9,6 +9,6 @@ class Setting with _$Setting {
   const factory Setting({
     Session? session,
     @Default(ThemeMode.system) ThemeMode themeMode,
-    @Default(false) bool useMaterial3,
+    @Default(true) bool useMaterial3,
   }) = _Setting;
 }

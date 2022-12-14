@@ -130,7 +130,7 @@ class _$_Setting implements _Setting {
   const _$_Setting(
       {this.session,
       this.themeMode = ThemeMode.system,
-      this.useMaterial3 = false});
+      this.useMaterial3 = true});
 
   @override
   final Session? session;

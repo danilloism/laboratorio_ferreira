@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $SettingsControllerHash() => r'd4f8a739f4d7dcedd958f96a6f31fd96cb464a3a';
+String $SettingsControllerHash() => r'8df33490bd3542b26f4bbc900cac69e57896de3b';
 
 /// See also [SettingsController].
 final settingsControllerProvider =

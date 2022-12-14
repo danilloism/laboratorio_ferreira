@@ -5,21 +5,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_loggy/flutter_loggy.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:laboratorio_ferreira_mobile/environment.dart';
+import 'package:laboratorio_ferreira_mobile/consts.dart';
 import 'package:laboratorio_ferreira_mobile/firebase_options.dart';
-import 'package:laboratorio_ferreira_mobile/main.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/services/services.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/controllers/controllers.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/data/repositories/auth_repository.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/states/auth_state.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
 import 'package:loggy/loggy.dart';
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:sembast/sembast_io.dart';
 
 class Init {
   const Init._();
@@ -28,19 +24,13 @@ class Init {
     WidgetsFlutterBinding.ensureInitialized();
     _initLoggy();
 
-    final container = ProviderContainer(
-      overrides: [
-        databaseProvider.overrideWith((ref) => throw UnimplementedError())
-      ],
-      observers: [RiverpodLogger()],
-    );
+    final container = ProviderContainer(observers: [RiverpodLogger()]);
 
     await Future.wait([
       Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
-      Init._initDatabase(container),
+      Init._initDatabase(),
     ]);
 
-    await _initSettingsRepo(container);
     _initPostAsyncCalls();
     _initListeners(container);
     _tryRefreshToken(container);
@@ -121,18 +111,8 @@ class Init {
     );
   }
 
-  static Future<void> _initDatabase(ProviderContainer container) async {
-    final dir = await getApplicationDocumentsDirectory();
-    await dir.create(recursive: true);
-    final dbPath = join(dir.path, 'lab_ferreira_sembast.db');
-
-    final db = await databaseFactoryIo.openDatabase(dbPath);
-
-    container.updateOverrides([databaseProvider.overrideWith((ref) => db)]);
-  }
-
-  static Future<void> _initSettingsRepo(ProviderContainer container) async {
-    final settingsRepo = container.read(settingsRepositoryProvider);
-    return await settingsRepo.init();
+  static Future<void> _initDatabase() async {
+    await Hive.initFlutter();
+    await Hive.openBox(HiveConsts.settingsBoxName);
   }
 }
