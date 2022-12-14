@@ -31,8 +31,16 @@ class SettingsHiveRepository implements SettingsRepository {
 
   @override
   Session? get session {
-    final sessionMap = _getValueOrNull(HiveConsts.sessionKey);
-    return sessionMap == null ? null : Session.fromJson(sessionMap);
+    final hiveValue = _getValueOrNull(HiveConsts.sessionKey);
+
+    if (hiveValue == null) return null;
+
+    final sessionMap = Map<String, dynamic>.from(hiveValue);
+    sessionMap['contato'] = Map<String, dynamic>.from(sessionMap['contato']);
+    sessionMap['contato']['account'] =
+        Map<String, dynamic>.from(sessionMap['contato']['account']);
+
+    return Session.fromJson(sessionMap);
   }
 
   @override

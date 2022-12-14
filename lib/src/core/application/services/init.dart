@@ -61,8 +61,6 @@ class Init {
     final settingsNotifier = container.read(settingsControllerProvider);
     final session = settingsNotifier.session;
     if (session != null) {
-      // container.read(contatosControllerProvider.notifier).loadContatos();
-
       final tokenUsuarioLogado = session.accessToken;
       final decodedToken = JwtDecoder.decode(tokenUsuarioLogado);
       final iat = DateTime.fromMillisecondsSinceEpoch(0)

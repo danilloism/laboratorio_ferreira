@@ -11,8 +11,6 @@ import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/co
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/store/contatos_store.dart';
 import 'package:very_good_infinite_list/very_good_infinite_list.dart';
 
-const itemsPerPage = 10;
-
 final contatosListController = StateNotifierProvider.autoDispose<
     AsyncPaginationController<Contato>, AsyncValue>(
   (ref) => AsyncPaginationController<Contato>(
