@@ -10,30 +10,24 @@ part '../../../../../generated/src/features/settings/presentation/controllers/se
 class SettingsController extends _$SettingsController {
   @override
   Setting build() {
-    return ref.read(settingsRepositoryProvider).activeStored;
+    return ref.read(settingsRepositoryProvider).current;
   }
 
   Future<void> changeTheme(ThemeMode mode) async {
     if (mode == state.themeMode) return;
-    final done = await ref
-        .read(settingsRepositoryProvider)
-        .upsertSetting(SettingsItem.themeMode, mode);
-    state = done;
+    await ref.read(settingsRepositoryProvider).setThemeMode(mode);
+    state = state.copyWith(themeMode: mode);
   }
 
   Future<void> changeSession([Session? session]) async {
     if (session == state.session) return;
-    final newValue = await ref
-        .read(settingsRepositoryProvider)
-        .upsertSetting(SettingsItem.session, session);
-    state = newValue;
+    await ref.read(settingsRepositoryProvider).setSession(session);
+    state = state.copyWith(session: session);
   }
 
   Future<void> useMaterial3(bool value) async {
     if (value == state.useMaterial3) return;
-    final newValue = await ref
-        .read(settingsRepositoryProvider)
-        .upsertSetting(SettingsItem.useMaterial3, value);
-    state = newValue;
+    await ref.read(settingsRepositoryProvider).setUseMaterial3(value);
+    state = state.copyWith(useMaterial3: value);
   }
 }

@@ -1,22 +1,24 @@
-import 'package:laboratorio_ferreira_mobile/main.dart';
+import 'package:flutter/material.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/session.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/settings/data/repositories/settings_hive_repository.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/domain/models/setting.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/settings.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part '../../../../../generated/src/features/settings/data/repositories/settings_repository.g.dart';
 
 abstract class SettingsRepository {
-  Future<Setting> upsertSetting(SettingsItem setting, dynamic value);
+  Setting get current;
+  ThemeMode get themeMode;
+  bool get useMaterial3;
+  Session? get session;
 
-  Future<bool> deleteSetting(SettingsItem setting);
+  Future<Session?> setSession(Session? session);
 
-  Future<Map<String, Object?>?> get(SettingsItem setting);
+  Future<ThemeMode> setThemeMode(ThemeMode themeMode);
 
-  Setting get activeStored;
-
-  Future<void> init();
+  Future<bool> setUseMaterial3(bool value);
 }
 
-@Riverpod(keepAlive: true)
+@riverpod
 SettingsRepository settingsRepository(SettingsRepositoryRef ref) =>
-    SettingsSembastRepository(ref.watch(databaseProvider));
+    const SettingsHiveRepository();
