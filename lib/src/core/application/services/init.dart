@@ -85,16 +85,15 @@ class Init {
 
   static void _initListeners(ProviderContainer container) {
     container.listen<AuthState>(authControllerProvider, (previous, next) {
-      final settingsNotifier = container.read(settingsControllerProvider);
-      final session = settingsNotifier.session;
+      final settingsNotifier =
+          container.read(settingsControllerProvider.notifier);
+      final session = container.read(settingsControllerProvider).session;
       if (next is LoggedIn && session != next.session) {
-        container
-            .read(settingsControllerProvider.notifier)
-            .changeSession(next.session);
+        settingsNotifier.changeSession(next.session);
       }
 
       if (next is LoggedOut && session != null) {
-        container.read(settingsControllerProvider.notifier).changeSession();
+        settingsNotifier.changeSession();
       }
     });
   }
