@@ -61,27 +61,30 @@ class Init {
     final settingsNotifier = container.read(settingsControllerProvider);
     final session = settingsNotifier.session;
     if (session != null) {
-      // container.read(contatosControllerProvider.notifier).loadContatos();
-
       final tokenUsuarioLogado = session.accessToken;
+
+      if (JwtDecoder.isExpired(tokenUsuarioLogado)) return;
+
       final decodedToken = JwtDecoder.decode(tokenUsuarioLogado);
       final iat = DateTime.fromMillisecondsSinceEpoch(0)
           .add(Duration(seconds: decodedToken['iat']));
       final dataAtual = DateTime.now();
-      final diferencaDias = iat.day - dataAtual.day;
-      if (diferencaDias <= 2) return;
-      container
-          .read(authRepositoryProvider)
-          .refreshToken()
-          .then((refreshToken) {
-        final currentAuthState = container.read(authControllerProvider);
-        if (currentAuthState is! LoggedIn) return;
-        final newSession =
-            session.copyWith(accessToken: refreshToken.accessToken);
+      final diferencaDias = dataAtual.difference(iat).inDays;
+
+      if (diferencaDias > 2) {
         container
-            .read(settingsControllerProvider.notifier)
-            .changeSession(newSession);
-      });
+            .read(authRepositoryProvider)
+            .refreshToken()
+            .then((refreshToken) {
+          final currentAuthState = container.read(authControllerProvider);
+          if (currentAuthState is! LoggedIn) return;
+          final newSession =
+              session.copyWith(accessToken: refreshToken.accessToken);
+          container
+              .read(settingsControllerProvider.notifier)
+              .changeSession(newSession);
+        });
+      }
     }
   }
 
