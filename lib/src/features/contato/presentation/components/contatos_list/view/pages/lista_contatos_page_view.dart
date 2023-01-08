@@ -73,6 +73,29 @@ class ContatosPageView extends ConsumerWidget {
                 isLoading: contatosList.isLoading,
                 debounceDuration: const Duration(seconds: 3),
                 hasError: contatosList.hasError,
+                errorBuilder: (context) {
+                  return Center(
+                    child: Card(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Text('Ops, parece que aconteceu um erro...'),
+                          TextButton(
+                              onPressed: contatosListNotifier.fetchData,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Text('Recarregar'),
+                                  SizedBox(width: 8),
+                                  Icon(Icons.refresh),
+                                ],
+                              )),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               );
             }),
           ),
