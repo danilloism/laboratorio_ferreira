@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $LoginControllerHash() => r'e0a48089b069ac573258085e96277453abd7b9cc';
+String _$LoginControllerHash() => r'e0a48089b069ac573258085e96277453abd7b9cc';
 
 /// See also [LoginController].
 final loginControllerProvider =
@@ -38,7 +38,7 @@ final loginControllerProvider =
   name: r'loginControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $LoginControllerHash,
+      : _$LoginControllerHash,
 );
 typedef LoginControllerRef = AutoDisposeNotifierProviderRef<Login>;
 

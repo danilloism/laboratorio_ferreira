@@ -29,23 +29,23 @@ class _SystemHash {
   }
 }
 
-String $httpServiceHash() => r'd5c2db66059e4f58e8e574adc8679ed4191bd1c3';
+String _$httpServiceHash() => r'd5c2db66059e4f58e8e574adc8679ed4191bd1c3';
 
 /// See also [httpService].
 final httpServiceProvider = AutoDisposeProvider<IHttpService>(
   httpService,
   name: r'httpServiceProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $httpServiceHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$httpServiceHash,
 );
 typedef HttpServiceRef = AutoDisposeProviderRef<IHttpService>;
-String $dioHash() => r'f30016ae1a8a225fc3baa9fb94c1a94769b78ffa';
+String _$dioHash() => r'f03ebf1c159e8b4b00d240583ae92c37019b5e73';
 
 /// See also [dio].
 final dioProvider = AutoDisposeProvider<Dio>(
   dio,
   name: r'dioProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $dioHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$dioHash,
 );
 typedef DioRef = AutoDisposeProviderRef<Dio>;

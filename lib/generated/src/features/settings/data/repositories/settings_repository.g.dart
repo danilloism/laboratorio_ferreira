@@ -29,7 +29,8 @@ class _SystemHash {
   }
 }
 
-String $settingsRepositoryHash() => r'f95981cada1e4f1cff6128e3f3c291f4588d0fbe';
+String _$settingsRepositoryHash() =>
+    r'f95981cada1e4f1cff6128e3f3c291f4588d0fbe';
 
 /// See also [settingsRepository].
 final settingsRepositoryProvider = AutoDisposeProvider<SettingsRepository>(
@@ -37,6 +38,6 @@ final settingsRepositoryProvider = AutoDisposeProvider<SettingsRepository>(
   name: r'settingsRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $settingsRepositoryHash,
+      : _$settingsRepositoryHash,
 );
 typedef SettingsRepositoryRef = AutoDisposeProviderRef<SettingsRepository>;

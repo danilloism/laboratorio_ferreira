@@ -44,5 +44,17 @@ class AuthController extends _$AuthController {
 
 @riverpod
 Contato? usuarioLogado(UsuarioLogadoRef ref) {
-  return ref.watch(settingsControllerProvider).session?.contato;
+  return ref.watch(sessionProvider.select((value) => value?.contato));
+}
+
+@riverpod
+String? token(TokenRef ref) {
+  return ref.watch(sessionProvider.select((value) => value?.accessToken));
+}
+
+@riverpod
+Session? session(SessionRef ref) {
+  return ref
+      .watch(authControllerProvider)
+      .whenOrNull(loggedIn: (session) => session);
 }

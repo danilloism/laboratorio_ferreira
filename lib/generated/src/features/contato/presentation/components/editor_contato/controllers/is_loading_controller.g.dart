@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $IsLoadingControllerHash() =>
+String _$IsLoadingControllerHash() =>
     r'6bbf166772046201e57d17947c5ba4a56196f788';
 
 /// See also [IsLoadingController].
@@ -39,7 +39,7 @@ final isLoadingControllerProvider =
   name: r'isLoadingControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $IsLoadingControllerHash,
+      : _$IsLoadingControllerHash,
 );
 typedef IsLoadingControllerRef = AutoDisposeNotifierProviderRef<bool>;
 

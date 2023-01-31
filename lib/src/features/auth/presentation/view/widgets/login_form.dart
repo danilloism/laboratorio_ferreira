@@ -85,7 +85,9 @@ class LoginForm extends HookConsumerWidget {
                 return ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 50, vertical: 15),
+                      horizontal: 50,
+                      vertical: 15,
+                    ),
                   ),
                   onPressed: () {
                     UiHelper.closeKeyboard();

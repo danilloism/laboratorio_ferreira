@@ -12,10 +12,10 @@ import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/st
 import 'package:very_good_infinite_list/very_good_infinite_list.dart';
 
 final contatosListController = StateNotifierProvider.autoDispose<
-    AsyncPaginationController<Contato>, AsyncValue>(
+    AsyncPaginationController<Contato>, AsyncValue<void>>(
   (ref) => AsyncPaginationController<Contato>(
-    fetchItems: ref.read(contatoRepositoryProvider).getMany,
-    store: ref.read(contatosStoreProvider.notifier),
+    fetchItems: ref.watch(contatoRepositoryProvider).getMany,
+    store: ref.watch(contatosStoreProvider.notifier),
     itemsPerBatch: 10,
   ),
 );
@@ -65,6 +65,7 @@ class ContatosPageView extends ConsumerWidget {
               final contatosListNotifier =
                   ref.read(contatosListController.notifier);
               return InfiniteList(
+                hasReachedMax: contatosListNotifier.hasReachedMax,
                 itemCount: ref.watch(contatosStoreProvider).length,
                 itemBuilder: (context, index) => ContatoCard(
                     contato: ref.read(contatosStoreProvider)[index]),

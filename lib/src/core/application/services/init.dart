@@ -21,8 +21,8 @@ class Init {
   const Init._();
 
   static Future<ProviderContainer> get container async {
-    WidgetsFlutterBinding.ensureInitialized();
     _initLoggy();
+    WidgetsFlutterBinding.ensureInitialized();
 
     final container = ProviderContainer(observers: [RiverpodLogger()]);
 
@@ -66,7 +66,7 @@ class Init {
       final iat = DateTime.fromMillisecondsSinceEpoch(0)
           .add(Duration(seconds: decodedToken['iat']));
       final dataAtual = DateTime.now();
-      final diferencaDias = iat.day - dataAtual.day;
+      final diferencaDias = dataAtual.difference(iat).inDays;
       if (diferencaDias <= 2) return;
       container
           .read(authRepositoryProvider)
@@ -99,9 +99,7 @@ class Init {
   }
 
   static void _initPostAsyncCalls() {
-    if (Environment.isProduction) {
-      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-    }
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
     SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.edgeToEdge,
       overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top],

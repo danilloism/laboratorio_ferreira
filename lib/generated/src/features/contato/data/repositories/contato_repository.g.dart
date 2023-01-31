@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $contatoRepositoryHash() => r'6faf6896846c6a0ca3c48b88a65b9db53901fec0';
+String _$contatoRepositoryHash() => r'6faf6896846c6a0ca3c48b88a65b9db53901fec0';
 
 /// See also [contatoRepository].
 final contatoRepositoryProvider = AutoDisposeProvider<ContatoRepository>(
@@ -37,10 +37,10 @@ final contatoRepositoryProvider = AutoDisposeProvider<ContatoRepository>(
   name: r'contatoRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $contatoRepositoryHash,
+      : _$contatoRepositoryHash,
 );
 typedef ContatoRepositoryRef = AutoDisposeProviderRef<ContatoRepository>;
-String $getOneContatoHash() => r'986d45c2729747ee283b4ea7d05f41465f7994fe';
+String _$getOneContatoHash() => r'986d45c2729747ee283b4ea7d05f41465f7994fe';
 
 /// See also [getOneContato].
 class GetOneContatoProvider extends AutoDisposeFutureProvider<Contato> {
@@ -56,7 +56,7 @@ class GetOneContatoProvider extends AutoDisposeFutureProvider<Contato> {
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $getOneContatoHash,
+                  : _$getOneContatoHash,
         );
 
   final String id;
@@ -110,7 +110,7 @@ class GetOneContatoFamily extends Family<AsyncValue<Contato>> {
   String? get name => r'getOneContatoProvider';
 }
 
-String $getManyContatosHash() => r'c023c2694fea7c760a3d01a32b5450fcf0ea9557';
+String _$getManyContatosHash() => r'c023c2694fea7c760a3d01a32b5450fcf0ea9557';
 
 /// See also [getManyContatos].
 class GetManyContatosProvider extends AutoDisposeFutureProvider<List<Contato>> {
@@ -128,7 +128,7 @@ class GetManyContatosProvider extends AutoDisposeFutureProvider<List<Contato>> {
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $getManyContatosHash,
+                  : _$getManyContatosHash,
         );
 
   final Map<String, dynamic>? queryParams;
@@ -189,7 +189,7 @@ class GetManyContatosFamily extends Family<AsyncValue<List<Contato>>> {
   String? get name => r'getManyContatosProvider';
 }
 
-String $updateContatoHash() => r'bee0d4fe01561bfd3344773fbf6b0831125a9296';
+String _$updateContatoHash() => r'bee0d4fe01561bfd3344773fbf6b0831125a9296';
 
 /// See also [updateContato].
 class UpdateContatoProvider extends AutoDisposeFutureProvider<Contato> {
@@ -205,7 +205,7 @@ class UpdateContatoProvider extends AutoDisposeFutureProvider<Contato> {
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $updateContatoHash,
+                  : _$updateContatoHash,
         );
 
   final Contato contato;
@@ -259,7 +259,7 @@ class UpdateContatoFamily extends Family<AsyncValue<Contato>> {
   String? get name => r'updateContatoProvider';
 }
 
-String $createContatoHash() => r'1d701096a0c3f6288752651f655bee565966056c';
+String _$createContatoHash() => r'1d701096a0c3f6288752651f655bee565966056c';
 
 /// See also [createContato].
 class CreateContatoProvider extends AutoDisposeFutureProvider<Contato> {
@@ -275,7 +275,7 @@ class CreateContatoProvider extends AutoDisposeFutureProvider<Contato> {
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $createContatoHash,
+                  : _$createContatoHash,
         );
 
   final Contato contato;

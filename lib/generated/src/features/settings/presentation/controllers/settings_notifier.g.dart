@@ -29,7 +29,8 @@ class _SystemHash {
   }
 }
 
-String $SettingsControllerHash() => r'8df33490bd3542b26f4bbc900cac69e57896de3b';
+String _$SettingsControllerHash() =>
+    r'8df33490bd3542b26f4bbc900cac69e57896de3b';
 
 /// See also [SettingsController].
 final settingsControllerProvider =
@@ -38,7 +39,7 @@ final settingsControllerProvider =
   name: r'settingsControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $SettingsControllerHash,
+      : _$SettingsControllerHash,
 );
 typedef SettingsControllerRef = NotifierProviderRef<Setting>;
 

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:laboratorio_ferreira_mobile/consts.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/services/dio_service.dart';
-import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -25,8 +25,7 @@ IHttpService httpService(HttpServiceRef ref) {
 
 @riverpod
 Dio dio(DioRef ref) {
-  final token = ref.watch(
-      settingsControllerProvider.select((value) => value.session?.accessToken));
+  final token = ref.watch(tokenProvider);
 
   final headers = token != null ? {'Authorization': 'Bearer $token'} : null;
 
