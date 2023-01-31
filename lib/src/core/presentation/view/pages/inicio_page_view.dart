@@ -5,12 +5,27 @@ class InicioPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Center(
-        child: ColoredBox(
-          color: Colors.red,
+    return SafeArea(
+        child: Column(
+      children: [
+        DecoratedBox(
+          decoration: const BoxDecoration(color: Colors.red),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('Contatos'),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text('Ver todos'),
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      ],
+    ));
   }
 }

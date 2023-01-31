@@ -9,14 +9,15 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.push('/settings'),
         child: const Icon(Icons.settings),
       ),
-      body: SafeArea(
-        child: SizedBox.expand(
+      body: Center(
+        child: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Logo(height: 150),
               const SizedBox(height: 16),

@@ -7,6 +7,7 @@ import 'package:laboratorio_ferreira_mobile/src/core/misc/extensions/extensions.
 import 'package:laboratorio_ferreira_mobile/src/core/misc/helpers/helpers.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/view/widgets/confirm_modal.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
+import 'package:laboratorio_ferreira_mobile/src/features/contato/application/services/contato_service.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/data/repositories/repositories.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_controller.dart';
@@ -84,30 +85,36 @@ class EditorContatoPage extends ConsumerWidget {
                       }
 
                       try {
-                        final repository = ref.read(contatoRepositoryProvider);
+                        // final repository = ref.read(contatoRepositoryProvider);
+                        final service = ref.read(contatoServiceProvider);
 
                         if (isCriar) {
                           await ref
                               .read(contatoRepositoryProvider)
-                              .create(contatoFinal)
-                              .whenComplete(() => context.pop());
+                              .create(contatoFinal);
+                          if (context.mounted) {
+                            context.pop();
+                          }
                           return;
                         }
-                        final settings = ref.read(settingsControllerProvider);
-                        final contatoAtualizado =
-                            await repository.update(contatoFinal);
+                        // final settings = ref.read(settingsControllerProvider);
                         final itsMe = _contatoInicial.uid ==
-                            settings.session?.contato.uid;
+                            ref.read(usuarioLogadoProvider)?.uid;
+                        final updated = await service.update(
+                            oldValue: _contatoInicial,
+                            newValue: contatoFinal,
+                            updateStore: !itsMe);
                         if (itsMe) {
-                          final session = settings.session;
-                          ref
+                          final session = ref.read(sessionProvider);
+                          await ref
                               .read(settingsControllerProvider.notifier)
-                              .changeSession(session?.copyWith(
-                                  contato: contatoAtualizado));
+                              .changeSession(
+                                  session?.copyWith(contato: updated));
                         }
 
-                        // ignore: use_build_context_synchronously
-                        context.pop();
+                        if (context.mounted) {
+                          context.pop();
+                        }
                       } on RepositoryException catch (e) {
                         final erro = e.object?['data']['erro'];
 

@@ -8,12 +8,13 @@ class AsyncPaginationController<T> extends StateNotifier<AsyncValue<void>> {
   AsyncPaginationController({
     required Future<List<T>> Function({Pagination? pagination}) fetchItems,
     this.itemsPerBatch = 20,
-    required Store<T> store,
-  })  : _pagination = Pagination(skip: store.length, take: itemsPerBatch),
+    required Store<T> storeNotifier,
+  })  : _pagination =
+            Pagination(skip: storeNotifier.length, take: itemsPerBatch),
         _fetchItems = fetchItems,
-        _store = store,
+        _storeNotifier = storeNotifier,
         super(const AsyncLoading()) {
-    if (_store.isEmpty) {
+    if (_storeNotifier.isEmpty) {
       fetchData();
     }
   }
@@ -22,11 +23,11 @@ class AsyncPaginationController<T> extends StateNotifier<AsyncValue<void>> {
   bool _hasReachedMax = false;
 
   bool get hasReachedMax => _hasReachedMax;
-  List<T> get items => _store.items;
+  List<T> get items => _storeNotifier.items;
 
   final Future<List<T>> Function({Pagination? pagination}) _fetchItems;
   Pagination _pagination;
-  final Store<T> _store;
+  final Store<T> _storeNotifier;
 
   Future<void> fetchData() async {
     state = const AsyncLoading();
@@ -37,7 +38,7 @@ class AsyncPaginationController<T> extends StateNotifier<AsyncValue<void>> {
   }
 
   void _increasePagination() {
-    _pagination = _pagination.copyWith(skip: _store.length);
+    _pagination = _pagination.copyWith(skip: _storeNotifier.length);
   }
 
   void _updateData(AsyncValue<List<T>> result) {
@@ -48,7 +49,7 @@ class AsyncPaginationController<T> extends StateNotifier<AsyncValue<void>> {
         _hasReachedMax = true;
       }
 
-      state = AsyncData(_store.addAll(newItems));
+      state = AsyncData(_storeNotifier.addAll(newItems));
       _increasePagination();
       return;
     }

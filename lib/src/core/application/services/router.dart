@@ -45,14 +45,14 @@ class GoRouterRefreshListenable extends ChangeNotifier {
                 final me =
                     _ref.read(settingsControllerProvider).session!.contato;
 
-                final param = state.params['id'];
-                if (param == 'me' || param == me.uid) {
+                final id = state.params['id'];
+                if (id == 'me' || id == me.uid) {
                   return DetalhesContatoPage(me);
                 }
 
                 final contato = _ref
                     .read(contatosStoreProvider)
-                    .singleWhere((element) => element.uid == param);
+                    .singleWhere((element) => element.uid == id);
                 return DetalhesContatoPage(contato);
               },
             ),
