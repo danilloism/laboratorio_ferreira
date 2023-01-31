@@ -22,6 +22,7 @@ class AsyncPaginationController<T> extends StateNotifier<AsyncValue<void>> {
   bool _hasReachedMax = false;
 
   bool get hasReachedMax => _hasReachedMax;
+  List<T> get items => _store.items;
 
   final Future<List<T>> Function({Pagination? pagination}) _fetchItems;
   Pagination _pagination;

@@ -15,7 +15,7 @@ final contatosListController = StateNotifierProvider.autoDispose<
     AsyncPaginationController<Contato>, AsyncValue<void>>(
   (ref) => AsyncPaginationController<Contato>(
     fetchItems: ref.watch(contatoRepositoryProvider).getMany,
-    store: ref.watch(contatosStoreProvider.notifier),
+    store: ref.read(contatosStoreProvider.notifier),
     itemsPerBatch: 10,
   ),
 );
@@ -66,9 +66,9 @@ class ContatosPageView extends ConsumerWidget {
                   ref.read(contatosListController.notifier);
               return InfiniteList(
                 hasReachedMax: contatosListNotifier.hasReachedMax,
-                itemCount: ref.watch(contatosStoreProvider).length,
-                itemBuilder: (context, index) => ContatoCard(
-                    contato: ref.read(contatosStoreProvider)[index]),
+                itemCount: contatosListNotifier.items.length,
+                itemBuilder: (context, index) =>
+                    ContatoCard(contato: contatosListNotifier.items[index]),
                 onFetchData: contatosListNotifier.fetchData,
                 emptyBuilder: (_) => const Text('Nada por aqui...'),
                 isLoading: contatosList.isLoading,
