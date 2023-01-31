@@ -45,7 +45,6 @@ class EditorContatoPage extends ConsumerWidget {
                         message:
                             'Há alterações não salvas, deseja mesmo voltar?',
                         onConfirm: context.pop,
-                        popOnConfirm: false,
                       ),
                       useProviderScope: false,
                     );
