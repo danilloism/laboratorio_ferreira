@@ -1,5 +1,3 @@
-@Skip('Atualmente falhando no GH Actions mas passando localmente')
-
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/application.dart';
