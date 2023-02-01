@@ -1,8 +1,8 @@
 import 'package:envied/envied.dart';
 
-part '../generated/env/env.g.dart';
+part 'generated/env.g.dart';
 
-@Envied(path: 'lib/env/.env', obfuscate: true, requireEnvFile: true)
+@Envied(path: '.env', obfuscate: true, requireEnvFile: true)
 abstract class Env {
   @EnviedField(varName: 'FIREBASE_PROJECT_ID')
   static final firebaseProjectId = _Env.firebaseProjectId;

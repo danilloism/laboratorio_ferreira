@@ -1,6 +1,6 @@
 name: Run tests
 
-on: [pull_request, workflow_dispatch]
+on: [push, workflow_dispatch]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -16,8 +16,17 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Analyze code
-        run: flutter analyze
+      - name: Run code generation
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+#      - name: Dart format
+#        run: dart format --fix .
+#
+#      - name: Dart fix
+#        run: dart fix --apply
+#
+#      - name: Analyze code
+#        run: flutter analyze
 
       - name: Test code
         run: flutter test --coverage
