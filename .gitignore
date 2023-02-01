@@ -52,4 +52,3 @@ coverage
 **/*GoogleService*.*
 **/firebase_app_id_file.json
 **/.env.production
-**/*env.g.dart

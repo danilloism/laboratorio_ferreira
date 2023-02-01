@@ -17,20 +17,8 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Run code generation
-        run: flutter pub run build_runner build --delete-conflicting-outputs
-
       - name: Analyze code
         run: flutter analyze
-
-      - name: Zip generated code to upload
-        run: zip -r gen.zip lib/generated
-
-      - name: Upload generated code for next job
-        uses: actions/upload-artifact@v3
-        with:
-          name: gen
-          path: gen.zip
 
   test:
     needs: analyze
@@ -44,16 +32,6 @@ jobs:
         with:
           channel: 'stable'
           cache: true
-
-      - name: Download generated code from previous job
-        uses: actions/download-artifact@v3
-        with:
-          name: gen
-
-      - name: Unzip generated code
-        run: |
-          unzip -o gen.zip
-          rm gen.zip
 
       - name: Install dependencies
         run: flutter pub get
