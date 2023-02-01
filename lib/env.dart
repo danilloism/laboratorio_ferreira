@@ -4,7 +4,7 @@ part 'generated/env.g.dart';
 
 const _defaultValue = 'default';
 
-@Envied(path: '.env', obfuscate: true, requireEnvFile: true)
+@Envied(obfuscate: true, requireEnvFile: true)
 abstract class Env {
   @EnviedField(varName: 'FIREBASE_PROJECT_ID', defaultValue: _defaultValue)
   static final firebaseProjectId = _Env.firebaseProjectId;
