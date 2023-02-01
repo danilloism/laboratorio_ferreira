@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:laboratorio_ferreira_mobile/consts.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/presentation/states/auth_state.dart';
@@ -16,7 +16,7 @@ final routerProvider = Provider<GoRouter>((ref) {
   final router = GoRouterRefreshListenable(ref);
 
   return GoRouter(
-    debugLogDiagnostics: !Environment.isProduction,
+    debugLogDiagnostics: !kReleaseMode,
     refreshListenable: router,
     initialLocation: '/splash',
     redirect: router._redirect,

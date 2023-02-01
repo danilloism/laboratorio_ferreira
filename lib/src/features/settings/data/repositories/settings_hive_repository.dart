@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:laboratorio_ferreira_mobile/consts.dart';
+import 'package:laboratorio_ferreira_mobile/env.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/session.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/data/data.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/domain/models/models.dart';
@@ -8,7 +8,7 @@ import 'package:laboratorio_ferreira_mobile/src/features/settings/domain/models/
 class SettingsHiveRepository implements SettingsRepository {
   const SettingsHiveRepository();
 
-  Box get _box => Hive.box(HiveConsts.settingsBoxName);
+  Box get _box => Hive.box(Env.localDbSettingsBoxName);
 
   @override
   Setting get current {
@@ -21,17 +21,16 @@ class SettingsHiveRepository implements SettingsRepository {
 
   @override
   ThemeMode get themeMode {
-    final themeModeIndex = _getValue(HiveConsts.themeModeKey, defaultValue: 0);
+    final themeModeIndex = _getValue(Env.localDbThemeModeKey, defaultValue: 0);
     return ThemeMode.values[themeModeIndex];
   }
 
   @override
-  bool get useMaterial3 =>
-      _getValue(HiveConsts.useMaterial3Key, defaultValue: true);
+  bool get useMaterial3 => _getValue(Env.localDbUseM3Key, defaultValue: true);
 
   @override
   Session? get session {
-    final hiveValue = _getValueOrNull(HiveConsts.sessionKey);
+    final hiveValue = _getValueOrNull(Env.localDbSessionKey);
 
     if (hiveValue == null) return null;
 
@@ -45,19 +44,19 @@ class SettingsHiveRepository implements SettingsRepository {
 
   @override
   Future<Session?> setSession(Session? session) async {
-    await _setValue(HiveConsts.sessionKey, session?.toJson());
+    await _setValue(Env.localDbSessionKey, session?.toJson());
     return session;
   }
 
   @override
   Future<ThemeMode> setThemeMode(ThemeMode themeMode) async {
-    await _setValue(HiveConsts.themeModeKey, themeMode.index);
+    await _setValue(Env.localDbThemeModeKey, themeMode.index);
     return themeMode;
   }
 
   @override
   Future<bool> setUseMaterial3(bool value) async {
-    await _setValue(HiveConsts.useMaterial3Key, value);
+    await _setValue(Env.localDbUseM3Key, value);
     return useMaterial3;
   }
 

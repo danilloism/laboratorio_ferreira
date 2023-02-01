@@ -1,13 +1,14 @@
 // coverage:ignore-file
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_loggy/flutter_loggy.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:laboratorio_ferreira_mobile/consts.dart';
+import 'package:laboratorio_ferreira_mobile/env.dart';
 import 'package:laboratorio_ferreira_mobile/firebase_options.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/services/services.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/controllers/controllers.dart';
@@ -26,6 +27,9 @@ class Init {
 
     final container = ProviderContainer(observers: [RiverpodLogger()]);
 
+    print(DefaultFirebaseOptions.currentPlatform.projectId);
+    print(kReleaseMode);
+
     await Future.wait([
       Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
       Init._initDatabase(),
@@ -40,10 +44,10 @@ class Init {
 
   static void _initLoggy() {
     Loggy.initLoggy(
-      logPrinter: Environment.isProduction
+      logPrinter: kReleaseMode
           ? const DefaultPrinter()
           : const PrettyDeveloperPrinter(),
-      logOptions: Environment.isProduction
+      logOptions: kReleaseMode
           ? const LogOptions(LogLevel.error)
           : const LogOptions(
               LogLevel.all,
@@ -108,6 +112,6 @@ class Init {
 
   static Future<void> _initDatabase() async {
     await Hive.initFlutter();
-    await Hive.openBox(HiveConsts.settingsBoxName);
+    await Hive.openBox(Env.localDbSettingsBoxName);
   }
 }

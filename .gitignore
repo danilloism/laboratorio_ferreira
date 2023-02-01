@@ -50,6 +50,6 @@ coverage
 .vscode
 **/google-services.json
 **/*GoogleService*.*
-ios/firebase_app_id_file.json
-**/*.env.production
+**/firebase_app_id_file.json
+**/.env.production
 **/*env.g.dart
