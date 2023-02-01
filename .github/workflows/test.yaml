@@ -52,9 +52,9 @@ jobs:
 
       - name: Unzip generated code
         run: |
+          ls
           mkdir lib/generated
           unzip gen.zip lib/generated
-          ls
           rm gen.zip
 
       - name: Install dependencies
