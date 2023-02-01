@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:laboratorio_ferreira_mobile/consts.dart';
+import 'package:laboratorio_ferreira_mobile/env.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/application.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/models.dart';
@@ -11,7 +11,7 @@ part '../../../../../generated/src/features/contato/data/repositories/contato_re
 
 class ContatoRepository {
   final IHttpService _httpService;
-  final _path = join(Environment.apiUrl, 'contatos');
+  final _path = join(Env.apiUrl, 'contatos');
 
   ContatoRepository({required IHttpService httpService})
       : _httpService = httpService;

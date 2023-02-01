@@ -13,11 +13,20 @@ class Store<T> extends FamilyNotifier<List<T>, Iterable<T>> {
 
   bool get isEmpty => state.isEmpty;
   int get length => state.length;
-  List<T> get currentItems => UnmodifiableListView(state);
+  List<T> get items => UnmodifiableListView(state);
 
   void add(T item) => state = [..._items..add(item)];
 
   void addAll(Iterable<T> items) => state = [..._items..addAll(items)];
 
   bool contains(T item) => state.contains(item);
+
+  void update({required T oldValue, required T newValue}) {
+    final itemsList = [..._items];
+    final index = itemsList.indexOf(oldValue);
+
+    itemsList[index] = newValue;
+
+    state = [...itemsList];
+  }
 }

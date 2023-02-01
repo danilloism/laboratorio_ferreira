@@ -4,6 +4,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:laboratorio_ferreira_mobile/env.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -50,22 +51,21 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD9TPmwAj0DyPCNLSk3i_fNAVZ1s2d3Tdo',
-    appId: '1:459886866921:android:87e41e7862a842a60d1b78',
-    messagingSenderId: '459886866921',
-    projectId: 'laboratorio-ferreira',
-    storageBucket: 'laboratorio-ferreira.appspot.com',
+  static final FirebaseOptions android = FirebaseOptions(
+    apiKey: Env.firebaseAndroidApiKey,
+    appId: Env.firebaseAndroidAppId,
+    messagingSenderId: Env.firebaseMessagingSenderId,
+    projectId: Env.firebaseProjectId,
+    storageBucket: Env.firebaseStorageBucket,
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAK0IUXUJ3dfZeyca7b24QNGR2OhHZcowE',
-    appId: '1:459886866921:ios:01aaae2087ab83e80d1b78',
-    messagingSenderId: '459886866921',
-    projectId: 'laboratorio-ferreira',
-    storageBucket: 'laboratorio-ferreira.appspot.com',
-    iosClientId:
-        '459886866921-0noctu8bebihcc3kbenbvilmtmgt6m8e.apps.googleusercontent.com',
-    iosBundleId: 'com.dnn.laboratorioFerreiraMobile',
+  static final FirebaseOptions ios = FirebaseOptions(
+    apiKey: Env.firebaseIosApiKey,
+    appId: Env.firebaseIosAppId,
+    messagingSenderId: Env.firebaseMessagingSenderId,
+    projectId: Env.firebaseProjectId,
+    storageBucket: Env.firebaseStorageBucket,
+    iosClientId: Env.firebaseIosClientId,
+    iosBundleId: Env.firebaseIosBundleId,
   );
 }

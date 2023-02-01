@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../../../../../../src/features/settings/presentation/controllers/settings_notifier.dart';
+part of '../../../../../../src/features/contato/application/services/contato_service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,21 +29,14 @@ class _SystemHash {
   }
 }
 
-String _$SettingsControllerHash() =>
-    r'8df33490bd3542b26f4bbc900cac69e57896de3b';
+String _$contatoServiceHash() => r'35bc20dfafe22da1fcee05e6d8607b074b88c167';
 
-/// See also [SettingsController].
-final settingsControllerProvider =
-    NotifierProvider<SettingsController, Setting>(
-  SettingsController.new,
-  name: r'settingsControllerProvider',
+/// See also [contatoService].
+final contatoServiceProvider = AutoDisposeProvider<ContatoService>(
+  contatoService,
+  name: r'contatoServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$SettingsControllerHash,
+      : _$contatoServiceHash,
 );
-typedef SettingsControllerRef = NotifierProviderRef<Setting>;
-
-abstract class _$SettingsController extends Notifier<Setting> {
-  @override
-  Setting build();
-}
+typedef ContatoServiceRef = AutoDisposeProviderRef<ContatoService>;

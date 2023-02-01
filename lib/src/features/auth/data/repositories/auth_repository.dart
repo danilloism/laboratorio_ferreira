@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:laboratorio_ferreira_mobile/consts.dart';
+import 'package:laboratorio_ferreira_mobile/env.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/application.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/models.dart';
@@ -12,7 +12,7 @@ part '../../../../../generated/src/features/auth/data/repositories/auth_reposito
 
 class AuthRepository {
   final IHttpService _httpService;
-  final _path = join(Environment.apiUrl, 'user');
+  final _path = join(Env.apiUrl, 'user');
 
   AuthRepository({
     required IHttpService httpService,

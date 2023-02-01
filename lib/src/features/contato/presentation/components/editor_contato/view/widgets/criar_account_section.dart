@@ -33,17 +33,13 @@ class _CriarAccountSectionState extends ConsumerState<CriarAccountSection> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            Checkbox(
-              value: _checkboxValue,
-              onChanged: onCheckboxChanged,
-            ),
-            Text(
-              'Criar conta de usuário',
-              style: context.theme.textTheme.titleLarge,
-            ),
-          ],
+        CheckboxListTile(
+          title: Text(
+            'Criar conta de usuário',
+            style: context.theme.textTheme.titleLarge,
+          ),
+          value: _checkboxValue,
+          onChanged: onCheckboxChanged,
         ),
         if (_checkboxValue != false) ...[
           const CriarAccountFields(),

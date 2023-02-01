@@ -11,13 +11,11 @@ import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/co
 import 'package:laboratorio_ferreira_mobile/src/features/contato/presentation/store/contatos_store.dart';
 import 'package:very_good_infinite_list/very_good_infinite_list.dart';
 
-const itemsPerPage = 10;
-
 final contatosListController = StateNotifierProvider.autoDispose<
-    AsyncPaginationController<Contato>, AsyncValue>(
+    AsyncPaginationController<Contato>, AsyncValue<void>>(
   (ref) => AsyncPaginationController<Contato>(
-    fetchItems: ref.read(contatoRepositoryProvider).getMany,
-    store: ref.read(contatosStoreProvider.notifier),
+    fetchItems: ref.watch(contatoRepositoryProvider).getMany,
+    storeNotifier: ref.read(contatosStoreProvider.notifier),
     itemsPerBatch: 10,
   ),
 );
@@ -32,7 +30,7 @@ class ContatosPageView extends ConsumerWidget {
         usuarioLogado.temHierarquiaMaiorOuIgualQue(Roles.gerente) ||
             usuarioLogado.isDentistaEspacoOdontologico;
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Column(
         children: [
           Column(
@@ -62,19 +60,44 @@ class ContatosPageView extends ConsumerWidget {
           ),
           Expanded(
             child: Consumer(builder: (context, ref, _) {
-              final contatosList = ref.watch(contatosListController);
+              final contatosListAsyncValue = ref.watch(contatosListController);
+              final items = ref.watch(contatosStoreProvider);
 
               final contatosListNotifier =
                   ref.read(contatosListController.notifier);
               return InfiniteList(
-                itemCount: ref.watch(contatosStoreProvider).length,
-                itemBuilder: (context, index) => ContatoCard(
-                    contato: ref.read(contatosStoreProvider)[index]),
+                hasReachedMax: contatosListNotifier.hasReachedMax,
+                itemCount: items.length,
+                itemBuilder: (context, index) =>
+                    ContatoCard(contato: items[index]),
                 onFetchData: contatosListNotifier.fetchData,
                 emptyBuilder: (_) => const Text('Nada por aqui...'),
-                isLoading: contatosList.isLoading,
+                isLoading: contatosListAsyncValue.isLoading,
                 debounceDuration: const Duration(seconds: 3),
-                hasError: contatosList.hasError,
+                hasError: contatosListAsyncValue.hasError,
+                errorBuilder: (context) {
+                  return Center(
+                    child: Card(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Text('Ops, parece que aconteceu um erro...'),
+                          TextButton(
+                              onPressed: contatosListNotifier.fetchData,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Text('Recarregar'),
+                                  SizedBox(width: 8),
+                                  Icon(Icons.refresh),
+                                ],
+                              )),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               );
             }),
           ),
