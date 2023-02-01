@@ -39,6 +39,9 @@ jobs:
     needs: analyze
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -52,8 +55,6 @@ jobs:
 
       - name: Unzip generated code
         run: |
-          ls
-          mkdir lib/generated
           unzip gen.zip lib/generated
           rm gen.zip
 
