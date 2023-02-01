@@ -61,5 +61,6 @@ jobs:
 
       - name: Unzip app
         run: |
-          unzip app.zip .
+          unzip app.zip
           rm app.zip
+          ls -a
