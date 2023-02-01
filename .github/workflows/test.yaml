@@ -2,39 +2,6 @@ name: Run tests
 
 on: [push, workflow_dispatch]
 jobs:
-  test:
-    needs: analyze
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-          cache: true
-
-      - name: Download generated code from previous job
-        uses: actions/download-artifact@v3
-        with:
-          name: gen
-
-      - name: Unzip generated code
-        run: |
-          unzip gen.zip lib/generated
-          rm gen.zip
-
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Test code
-        run: flutter test --coverage
-
-      - name: Upload code coverage
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{secrets.CODECOV_TOKEN}}
-          files: coverage/lcov.info
-          fail_ci_if_error: true
-
   analyze:
     runs-on: ubuntu-latest
     steps:
@@ -67,3 +34,38 @@ jobs:
         with:
           name: gen
           path: gen.zip
+
+  test:
+    needs: analyze
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Download generated code from previous job
+        uses: actions/download-artifact@v3
+        with:
+          name: gen
+
+      - name: Unzip generated code
+        run: |
+          mkdir lib/generated
+          unzip gen.zip lib/generated
+          ls
+          rm gen.zip
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Test code
+        run: flutter test --coverage
+
+      - name: Upload code coverage
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
+          files: coverage/lcov.info
+          fail_ci_if_error: true
