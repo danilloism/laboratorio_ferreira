@@ -66,6 +66,9 @@ class Init {
     final session = settingsNotifier.session;
     if (session != null) {
       final tokenUsuarioLogado = session.accessToken;
+
+      if (JwtDecoder.isExpired(tokenUsuarioLogado)) return;
+
       final decodedToken = JwtDecoder.decode(tokenUsuarioLogado);
       final iat = DateTime.fromMillisecondsSinceEpoch(0)
           .add(Duration(seconds: decodedToken['iat']));
@@ -80,10 +83,11 @@ class Init {
         if (currentAuthState is! LoggedIn) return;
         final newSession =
             session.copyWith(accessToken: refreshToken.accessToken);
-        container
-            .read(settingsControllerProvider.notifier)
-            .changeSession(newSession);
-      });
+          container
+              .read(settingsControllerProvider.notifier)
+              .changeSession(newSession);
+        });
+      }
     }
   }
 
