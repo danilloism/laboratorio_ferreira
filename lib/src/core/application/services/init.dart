@@ -27,9 +27,6 @@ class Init {
 
     final container = ProviderContainer(observers: [RiverpodLogger()]);
 
-    print(DefaultFirebaseOptions.currentPlatform.projectId);
-    print(kReleaseMode);
-
     await Future.wait([
       Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
       Init._initDatabase(),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_builder_validators/localization/l10n.dart';
-import 'package:laboratorio_ferreira_mobile/env.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/application/services/services.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/presentation/presentation.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/settings/presentation/controllers/settings_notifier.dart';
@@ -26,7 +25,6 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appTheme = ref.watch(appThemeProvider);
-    print(Env.firebaseIosBundleId);
     return MaterialApp.router(
       supportedLocales: const [locale],
       locale: locale,
