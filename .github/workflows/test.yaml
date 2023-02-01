@@ -12,18 +12,18 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Download compressed app from previous job
+      - name: Download generated code from previous job
         uses: actions/download-artifact@v3
         with:
-          name: app
+          name: gen
 
-      - name: Unzip app
+      - name: Unzip generated code
         run: |
-          unzip app.zip
-          rm app.zip
+          unzip gen.zip lib/generated
+          rm gen.zip
 
-      #      - name: Install dependencies
-      #        run: flutter pub get
+      - name: Install dependencies
+        run: flutter pub get
 
       - name: Test code
         run: flutter test --coverage
@@ -59,11 +59,11 @@ jobs:
       - name: Analyze code
         run: flutter analyze
 
-      - name: Zip project files to upload
-        run: zip -r app.zip .
+      - name: Zip generated code to upload
+        run: zip -r gen.zip lib/generated
 
-      - name: Upload project for next job
+      - name: Upload generated code for next job
         uses: actions/upload-artifact@v3
         with:
-          name: app
-          path: app.zip
+          name: gen
+          path: gen.zip
