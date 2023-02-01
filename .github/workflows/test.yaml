@@ -55,7 +55,7 @@ jobs:
 
       - name: Unzip generated code
         run: |
-          unzip gen.zip -d lib/generated
+          unzip gen.zip
           rm gen.zip
 
       - name: Install dependencies
