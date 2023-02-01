@@ -12,6 +12,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+          cache: true
 
       - name: Install dependencies
         run: flutter pub get
@@ -21,19 +22,43 @@ jobs:
 
 #      - name: Dart format
 #        run: dart format --fix .
-#
-#      - name: Dart fix
-#        run: dart fix --apply
-#
-#      - name: Analyze code
-#        run: flutter analyze
+      #
+      #      - name: Dart fix
+      #        run: dart fix --apply
+      #
+      #      - name: Analyze code
+      #        run: flutter analyze
 
       - name: Test code
         run: flutter test --coverage
 
-      - name: Upload code coverage
-        uses: codecov/codecov-action@v3
+      - name: Zip project files to upload
+        run: zip -r app.zip .
+
+      - name: Upload project for next job
+        uses: actions/upload-artifact@v3
         with:
-          token: ${{secrets.CODECOV_TOKEN}}
-          files: coverage/lcov.info
-          fail_ci_if_error: true
+          name: app
+          path: app.zip
+
+  #      - name: Upload code coverage
+  #        uses: codecov/codecov-action@v3
+  #        with:
+  #          token: ${{secrets.CODECOV_TOKEN}}
+  #          files: coverage/lcov.info
+  #          fail_ci_if_error: true
+
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      #      - name: Checkout
+      #        uses: actions/checkout@v3
+      - name: Download compressed app from previous job
+        uses: actions/download-artifact@v3
+        with:
+          name: app
+
+      - name: Unzip app
+        run: |
+          unzip app.zip .
+          rm app.zip
