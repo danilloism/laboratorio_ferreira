@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         title: const SizedBox(child: Logo(height: 70)),
         actions: [
           IconButton(
