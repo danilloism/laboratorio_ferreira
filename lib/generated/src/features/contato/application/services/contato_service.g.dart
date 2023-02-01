@@ -39,5 +39,4 @@ final contatoServiceProvider = AutoDisposeProvider<ContatoService>(
       ? null
       : _$contatoServiceHash,
 );
-
 typedef ContatoServiceRef = AutoDisposeProviderRef<ContatoService>;

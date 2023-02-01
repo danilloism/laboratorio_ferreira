@@ -39,5 +39,4 @@ final authRepositoryProvider = AutoDisposeProvider<AuthRepository>(
       ? null
       : _$authRepositoryHash,
 );
-
 typedef AuthRepositoryRef = AutoDisposeProviderRef<AuthRepository>;

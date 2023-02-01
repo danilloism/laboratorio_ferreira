@@ -39,9 +39,7 @@ final contatoRepositoryProvider = AutoDisposeProvider<ContatoRepository>(
       ? null
       : _$contatoRepositoryHash,
 );
-
 typedef ContatoRepositoryRef = AutoDisposeProviderRef<ContatoRepository>;
-
 String _$getOneContatoHash() => r'986d45c2729747ee283b4ea7d05f41465f7994fe';
 
 /// See also [getOneContato].

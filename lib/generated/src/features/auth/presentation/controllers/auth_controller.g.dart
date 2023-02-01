@@ -39,7 +39,6 @@ final authControllerProvider = NotifierProvider<AuthController, AuthState>(
       ? null
       : _$AuthControllerHash,
 );
-
 typedef AuthControllerRef = NotifierProviderRef<AuthState>;
 
 abstract class _$AuthController extends Notifier<AuthState> {
@@ -57,9 +56,7 @@ final usuarioLogadoProvider = AutoDisposeProvider<Contato?>(
       ? null
       : _$usuarioLogadoHash,
 );
-
 typedef UsuarioLogadoRef = AutoDisposeProviderRef<Contato?>;
-
 String _$tokenHash() => r'b8e811cddbc6f44fcb43d7a5d3dca6e1cbd4bb6a';
 
 /// See also [token].
@@ -69,9 +66,7 @@ final tokenProvider = AutoDisposeProvider<String?>(
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$tokenHash,
 );
-
 typedef TokenRef = AutoDisposeProviderRef<String?>;
-
 String _$sessionHash() => r'746a2c3263c5e8e08dfd972f332c4c2874786929';
 
 /// See also [session].
@@ -81,5 +76,4 @@ final sessionProvider = AutoDisposeProvider<Session?>(
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$sessionHash,
 );
-
 typedef SessionRef = AutoDisposeProviderRef<Session?>;

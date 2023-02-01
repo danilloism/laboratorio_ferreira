@@ -41,7 +41,6 @@ final settingsControllerProvider =
       ? null
       : _$SettingsControllerHash,
 );
-
 typedef SettingsControllerRef = NotifierProviderRef<Setting>;
 
 abstract class _$SettingsController extends Notifier<Setting> {

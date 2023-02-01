@@ -40,5 +40,4 @@ final settingsRepositoryProvider = AutoDisposeProvider<SettingsRepository>(
       ? null
       : _$settingsRepositoryHash,
 );
-
 typedef SettingsRepositoryRef = AutoDisposeProviderRef<SettingsRepository>;

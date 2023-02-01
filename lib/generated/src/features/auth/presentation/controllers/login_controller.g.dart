@@ -40,7 +40,6 @@ final loginControllerProvider =
       ? null
       : _$LoginControllerHash,
 );
-
 typedef LoginControllerRef = AutoDisposeNotifierProviderRef<Login>;
 
 abstract class _$LoginController extends AutoDisposeNotifier<Login> {
