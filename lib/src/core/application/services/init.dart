@@ -83,11 +83,10 @@ class Init {
         if (currentAuthState is! LoggedIn) return;
         final newSession =
             session.copyWith(accessToken: refreshToken.accessToken);
-          container
-              .read(settingsControllerProvider.notifier)
-              .changeSession(newSession);
-        });
-      }
+        container
+            .read(settingsControllerProvider.notifier)
+            .changeSession(newSession);
+      });
     }
   }
 
