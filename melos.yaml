@@ -12,9 +12,33 @@ scripts:
       flutter: true
       dir-exists: test
 
+  unit_test:flutter:
+    run: melos run unit_test:flutter_select --no-select
+    description: Run tests on all Flutter packages and apps.
+    select-package:
+      flutter: true
+      dir-exists: test
+
   unit_test:dart_select:
     run: melos exec --dir-exists="test" --fail-fast -- dart test --no-pub --coverage
     description: Run Dart tests on selected package or app.
     select-package:
       flutter: false
       dir-exists: test
+
+  unit_test:dart:
+    run: melos run unit_test:dart_select --no-select
+    description: Run tests on all only-Dart packages and apps.
+    select-package:
+      flutter: false
+      dir-exists: test
+
+  analyze:dart_select:
+    run: melos exec dart analyze .
+    select-package:
+      flutter: false
+
+  analyze:flutter_select:
+    run: melos exec flutter analyze .
+    select-package:
+      flutter: true

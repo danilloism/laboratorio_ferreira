@@ -1,6 +1,6 @@
-import 'package:desktop/counter/counter.dart';
-import 'package:desktop/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:laboratorio_ferreira_desktop/counter/counter.dart';
+import 'package:laboratorio_ferreira_desktop/l10n/l10n.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
