@@ -1,8 +1,13 @@
 name: laboratorio_ferreira
 
 packages:
-  - 'apps/*'
-  - 'packages/*'
+  - apps/*
+  - packages/*
+
+command:
+  bootstrap:
+    runPubGetInParallel: false
+    usePubspecOverrides: true
 
 scripts:
   flutter:unit_test:
@@ -43,3 +48,10 @@ scripts:
   dart:analyze_all:
     run: melos run analyze:dart --no-select
 
+  format:
+    exec: dart format . --fix
+    select-package:
+      dir-exists: lib
+
+  format:all:
+    run: melos run format --no-select
