@@ -5,40 +5,41 @@ packages:
   - 'packages/*'
 
 scripts:
-  unit_test:flutter:
+  flutter:unit_test:
     run: melos exec --dir-exists="test" --fail-fast -- flutter test --no-pub --coverage
     description: Run Flutter tests on selected package or app.
     select-package:
       flutter: true
       dir-exists: test
 
-  unit_test:flutter_all:
+  flutter:unit_test_all:
     run: melos run unit_test:flutter --no-select
     description: Run tests on all Flutter packages and apps.
 
-  unit_test:dart:
+  flutter:analyze:
+    exec: flutter analyze .
+    select-package:
+      flutter: true
+
+  flutter:analyze_all:
+    run: melos run analyze:flutter --no-select
+
+  dart:unit_test:
     run: melos exec --dir-exists="test" --fail-fast -- dart test --no-pub --coverage
     description: Run Dart tests on selected package or app.
     select-package:
       flutter: false
       dir-exists: test
 
-  unit_test:dart_all:
+  dart:unit_test_all:
     run: melos run unit_test:dart --no-select
     description: Run tests on all only-Dart packages and apps.
 
-  analyze:dart:
-    run: melos exec dart analyze .
+  dart:analyze:
+    exec: dart analyze .
     select-package:
       flutter: false
 
-  analyze:dart_all:
+  dart:analyze_all:
     run: melos run analyze:dart --no-select
 
-  analyze:flutter:
-    run: melos exec flutter analyze .
-    select-package:
-      flutter: true
-
-  analyze:flutter_all:
-    run: melos run analyze:flutter --no-select
