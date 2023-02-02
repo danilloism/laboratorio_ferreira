@@ -1,0 +1,57 @@
+name: laboratorio_ferreira
+
+packages:
+  - apps/*
+  - packages/*
+
+command:
+  bootstrap:
+    runPubGetInParallel: false
+    usePubspecOverrides: true
+
+scripts:
+  flutter:unit_test:
+    run: melos exec --dir-exists="test" --fail-fast -- flutter test --no-pub --coverage
+    description: Run Flutter tests on selected package or app.
+    select-package:
+      flutter: true
+      dir-exists: test
+
+  flutter:unit_test_all:
+    run: melos run unit_test:flutter --no-select
+    description: Run tests on all Flutter packages and apps.
+
+  flutter:analyze:
+    exec: flutter analyze .
+    select-package:
+      flutter: true
+
+  flutter:analyze_all:
+    run: melos run analyze:flutter --no-select
+
+  dart:unit_test:
+    run: melos exec --dir-exists="test" --fail-fast -- dart test --no-pub --coverage
+    description: Run Dart tests on selected package or app.
+    select-package:
+      flutter: false
+      dir-exists: test
+
+  dart:unit_test_all:
+    run: melos run unit_test:dart --no-select
+    description: Run tests on all only-Dart packages and apps.
+
+  dart:analyze:
+    exec: dart analyze .
+    select-package:
+      flutter: false
+
+  dart:analyze_all:
+    run: melos run analyze:dart --no-select
+
+  format:
+    exec: dart format . --fix
+    select-package:
+      dir-exists: lib
+
+  format:all:
+    run: melos run format --no-select

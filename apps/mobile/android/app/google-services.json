@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "540598642215",
+    "project_id": "laboratorio-ferreira-dev",
+    "storage_bucket": "laboratorio-ferreira-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540598642215:android:d23502c0b47af89a2c5002",
+        "android_client_info": {
+          "package_name": "com.dnn.laboratorio_ferreira_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "540598642215-80kf2kk5kat21kro3f2sfssdbrelpvk2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA56WeWIo5W2MdAD06XxGhmkq6Z42PyHE4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "540598642215-80kf2kk5kat21kro3f2sfssdbrelpvk2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
