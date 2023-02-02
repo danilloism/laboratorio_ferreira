@@ -3,3 +3,18 @@ name: laboratorio_ferreira
 packages:
   - 'apps/*'
   - 'packages/*'
+
+scripts:
+  unit_test:flutter_select:
+    run: melos exec --dir-exists="test" --fail-fast -- flutter test --no-pub --coverage
+    description: Run Flutter tests on selected package or app.
+    select-package:
+      flutter: true
+      dir-exists: test
+
+  unit_test:dart_select:
+    run: melos exec --dir-exists="test" --fail-fast -- dart test --no-pub --coverage
+    description: Run Dart tests on selected package or app.
+    select-package:
+      flutter: false
+      dir-exists: test
