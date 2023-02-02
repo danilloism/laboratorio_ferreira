@@ -4,16 +4,29 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13489e0d-e954-4c31-a5d4-c709b2750e78" name="Changes" comment="resolve desktop configs">
+    <list default="true" id="13489e0d-e954-4c31-a5d4-c709b2750e78" name="Changes" comment="foldable">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/melos_flutter_test_laboratorio_ferreira_desktop.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/test/random_model_generators.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/test/helpers/random_model_generators.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/test/src/core/domain/models/api_response_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/test/src/core/domain/models/api_response_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/test/src/features/auth/data/repositories/auth_repository_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/test/src/features/auth/data/repositories/auth_repository_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/test/src/features/auth/domain/models/account_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/test/src/features/auth/domain/models/account_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/test/src/features/contato/domain/models/contato_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/test/src/features/contato/domain/models/contato_test.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
   <component name="FoldableProjectSettings">
-    <option name="PATTERNS" value=".dart_tool .github .run android ios .metadata *.lock README.md linux macos windows .vscode" />
+    <option name="PATTERNS" value=".dart_tool .github .run android ios .metadata *.lock README.md linux macos windows .vscode .idea" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -31,23 +44,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "io.flutter.reload.alreadyRun": "true",
-    "last_opened_file_path": "/home/danilloism/Projetos/laboratorio_ferreira",
-    "settings.editor.selected.configurable": "FoldableProjectViewConfigurable",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/danilloism/Projetos/laboratorio_ferreira&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;FoldableProjectViewConfigurable&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/mobile/test/helpers" />
+    </key>
+  </component>
   <component name="RunManager" selected="Shell Script.Melos -&gt; Bootstrap Workspace">
     <list>
+      <item itemvalue="Flutter.Flutter Run -&gt; 'laboratorio_ferreira_desktop'" />
       <item itemvalue="Flutter.Flutter Run -&gt; 'laboratorio_ferreira_mobile'" />
-      <item itemvalue="Flutter Test.Flutter Test -&gt; 'laboratorio_ferreira_desktop'" />
       <item itemvalue="Shell Script.Clean" />
       <item itemvalue="Shell Script.Generate" />
       <item itemvalue="Shell Script.Melos -&gt; Bootstrap Workspace" />
@@ -134,7 +152,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675352544833</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="foldable">
+      <created>1675352813722</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1675352813722</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,6 +179,7 @@
     <MESSAGE value="add linux and macos do desktop project" />
     <MESSAGE value="remove web folder from desktop app" />
     <MESSAGE value="resolve desktop configs" />
-    <option name="LAST_COMMIT_MESSAGE" value="resolve desktop configs" />
+    <MESSAGE value="foldable" />
+    <option name="LAST_COMMIT_MESSAGE" value="foldable" />
   </component>
 </project>

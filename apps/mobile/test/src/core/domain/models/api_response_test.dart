@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:laboratorio_ferreira_mobile/src/core/domain/domain.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/contato.dart';
 
-import '../../../../random_model_generators.dart';
+import '../../../../helpers/random_model_generators.dart';
 
 main() {
   late ApiResponse response;

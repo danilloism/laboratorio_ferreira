@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/account.dart';
 
-import '../../../../../random_model_generators.dart';
+import '../../../../../helpers/random_model_generators.dart';
 
 void main() {
   late Account account;

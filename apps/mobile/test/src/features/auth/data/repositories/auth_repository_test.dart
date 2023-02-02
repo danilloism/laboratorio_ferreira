@@ -7,7 +7,7 @@ import 'package:laboratorio_ferreira_mobile/src/features/auth/domain/models/mode
 import 'package:laboratorio_ferreira_mobile/src/features/contato/domain/models/contato.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../../../random_model_generators.dart';
+import '../../../../../helpers/random_model_generators.dart';
 
 class HttpServiceMock extends Mock implements IHttpService {}
 
