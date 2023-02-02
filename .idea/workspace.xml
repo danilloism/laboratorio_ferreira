@@ -4,72 +4,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13489e0d-e954-4c31-a5d4-c709b2750e78" name="Changes" comment="add desktop app">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/melos_flutter_test_desktop.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/melos_run_unit_test_dart_select.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/melos_run_unit_test_flutter_select.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/.github/PULL_REQUEST_TEMPLATE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/.github/dependabot.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/.github/workflows/main.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/.idea/runConfigurations/development.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/.idea/runConfigurations/production.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/.idea/runConfigurations/staging.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/.metadata" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/.vscode/extensions.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/.vscode/launch.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/analysis_options.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/coverage_badge.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/l10n.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/lib/app/app.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/lib/app/view/app.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/lib/bootstrap.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/lib/counter/counter.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/lib/counter/cubit/counter_cubit.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/lib/counter/view/counter_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/lib/l10n/arb/app_en.arb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/lib/l10n/arb/app_es.arb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/lib/l10n/l10n.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/lib/main_development.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/lib/main_production.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/lib/main_staging.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/pubspec.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/pubspec.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/test/app/view/app_test.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/test/counter/cubit/counter_cubit_test.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/test/counter/view/counter_page_test.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/test/helpers/helpers.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/test/helpers/pump_app.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/web/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/web/icons/Icon-192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/web/icons/Icon-512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/web/icons/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/web/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/web/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/windows/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/windows/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/windows/flutter/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/windows/flutter/generated_plugin_registrant.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/windows/flutter/generated_plugins.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/windows/runner/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/windows/runner/Runner.rc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/windows/runner/flutter_window.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/windows/runner/flutter_window.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/windows/runner/main.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/windows/runner/resource.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/windows/runner/resources/app_icon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/windows/runner/runner.exe.manifest" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/windows/runner/utils.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/windows/runner/utils.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/windows/runner/win32_window.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/desktop/windows/runner/win32_window.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/melos.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/melos.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/melos_laboratorio_ferreira.iml" beforeDir="false" afterPath="$PROJECT_DIR$/melos_laboratorio_ferreira.iml" afterDir="false" />
+    <list default="true" id="13489e0d-e954-4c31-a5d4-c709b2750e78" name="Changes" comment="remove web folder from desktop app">
+      <change beforePath="$PROJECT_DIR$/apps/desktop/web/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/desktop/web/icons/Icon-192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/desktop/web/icons/Icon-512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/desktop/web/icons/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/desktop/web/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/desktop/web/manifest.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +74,28 @@
       <option name="project" value="LOCAL" />
       <updated>1675350554147</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add desktop app">
+      <created>1675350586971</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1675350586971</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add linux and macos do desktop project">
+      <created>1675350876601</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1675350876601</updated>
+    </task>
+    <task id="LOCAL-00006" summary="remove web folder from desktop app">
+      <created>1675350916157</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1675350916157</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -150,6 +112,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="setup melos" />
     <MESSAGE value="add desktop app" />
-    <option name="LAST_COMMIT_MESSAGE" value="add desktop app" />
+    <MESSAGE value="add linux and macos do desktop project" />
+    <MESSAGE value="remove web folder from desktop app" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove web folder from desktop app" />
   </component>
 </project>
