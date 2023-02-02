@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="13489e0d-e954-4c31-a5d4-c709b2750e78" name="Changes" comment="setup melos">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codestream.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/melos_bootstrap.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/melos_clean.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/melos_flutter_run_laboratorio_ferreira_mobile.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/.github/workflows/build_apk.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/.github/workflows/test.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/.metadata" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/.run/Clean.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/.run/Generate.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/.run/Test All.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/.run/Update.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/.run/Watch Generate.run.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/analysis_options.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/google-services.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/debug/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/kotlin/com/dnn/laboratorio_ferreira_mobile/MainActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/drawable-hdpi/android12splash.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/drawable-hdpi/splash.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/drawable-mdpi/android12splash.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/drawable-mdpi/splash.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/drawable-v21/background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/drawable-v21/launch_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/drawable-xhdpi/android12splash.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/drawable-xhdpi/splash.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/drawable-xxhdpi/android12splash.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/drawable-xxhdpi/splash.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/drawable-xxxhdpi/android12splash.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/drawable-xxxhdpi/splash.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/drawable/background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/drawable/launch_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/values-night/styles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/values-v31/styles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/app/src/profile/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/android/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/assets/colors/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/assets/images/laboratorioferreira_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/assets/images/laboratorioferreira_logo_sem_fundo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/build.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/env/.env.development" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/env/.env.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Flutter/AppFrameworkInfo.plist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Flutter/Debug.xcconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Flutter/Release.xcconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner.xcworkspace/contents.xcworkspacedata" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/AppDelegate.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/LaunchBackground.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/LaunchBackground.imageset/background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Base.lproj/LaunchScreen.storyboard" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Base.lproj/Main.storyboard" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/GoogleService-Info.plist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Info.plist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/Runner/Runner-Bridging-Header.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/ios/firebase_app_id_file.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/env.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/firebase_options.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/assets.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/assets.gen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/colors.gen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/env.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/core/application/services/i_http_service.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/core/domain/models/api_response.freezed.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/core/domain/models/api_response.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/auth/data/repositories/auth_repository.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/auth/domain/models/account.freezed.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/auth/domain/models/account.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/auth/domain/models/login.freezed.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/auth/domain/models/login.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/auth/domain/models/session.freezed.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/auth/domain/models/session.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/auth/presentation/controllers/auth_controller.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/auth/presentation/controllers/login_controller.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/auth/presentation/states/auth_state.freezed.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/contato/application/services/contato_service.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/contato/data/repositories/contato_repository.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/contato/domain/models/contato.freezed.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/contato/domain/models/contato.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/contato/domain/models/pagination.freezed.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/contato/presentation/components/editor_contato/controllers/is_loading_controller.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/settings/data/repositories/settings_repository.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/settings/domain/models/setting.freezed.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/generated/src/features/settings/presentation/controllers/settings_notifier.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/main.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/application/application.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/application/services/dio_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/application/services/i_http_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/application/services/init.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/application/services/riverpod_logger.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/application/services/router.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/application/services/services.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/domain/domain.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/domain/enums/enums.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/domain/enums/roles.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/domain/models/api_response.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/domain/models/models.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/domain/models/repository_exception.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/misc/extensions/build_context_extension.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/misc/extensions/extensions.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/misc/extensions/map_extension.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/misc/extensions/nullable_string_extension.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/misc/extensions/riverpod_extension.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/misc/helpers/formatter.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/misc/helpers/helpers.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/misc/helpers/ui_helper.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/misc/helpers/validator.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/misc/misc.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/controllers/controllers.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/controllers/network_status_notifier.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/controllers/pagination_controller.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/presentation.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/states/store.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/view/pages/home_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/view/pages/inicio_page_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/view/pages/pages.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/view/pages/welcome_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/view/theme/app_theme.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/view/theme/theme.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/view/view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/view/widgets/async_value_box.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/view/widgets/confirm_modal.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/view/widgets/custom_chip.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/view/widgets/custom_text_form_field.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/view/widgets/custom_wrap.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/view/widgets/dropdown_menu.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/view/widgets/form_section.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/view/widgets/logo.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/view/widgets/scroll_to_top_button.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/view/widgets/search_bar.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/core/presentation/view/widgets/widgets.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/auth/data/repositories/auth_repository.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/auth/domain/models/account.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/auth/domain/models/login.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/auth/domain/models/models.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/auth/domain/models/refresh_token.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/auth/domain/models/session.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/auth/presentation/controllers/auth_controller.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/auth/presentation/controllers/login_controller.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/auth/presentation/states/auth_state.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/auth/presentation/view/pages/login_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/auth/presentation/view/widgets/login_form.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/application/services/contato_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/data/repositories/contato_repository.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/data/repositories/repositories.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/domain/models/contato.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/domain/models/models.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/domain/models/pagination.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/misc/helpers/editor_contato_helper.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/presentation/components/contatos_list/view/pages/lista_contatos_page_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/presentation/components/contatos_list/view/widgets/contato_card.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/presentation/components/contatos_list/view/widgets/criar_contato_button.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/presentation/components/detalhes_contato/view/pages/detalhes_contato_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_controller.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/presentation/components/editor_contato/controllers/is_loading_controller.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/presentation/components/editor_contato/view/pages/editor_contato_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/presentation/components/editor_contato/view/widgets/add_categoria_dialog.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/presentation/components/editor_contato/view/widgets/categorias_form_section.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/presentation/components/editor_contato/view/widgets/criar_account_fields.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/presentation/components/editor_contato/view/widgets/criar_account_section.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/presentation/components/editor_contato/view/widgets/editor_telefone_dialog.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/presentation/components/editor_contato/view/widgets/name_form_section.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/presentation/components/editor_contato/view/widgets/telefones_form_section.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/contato/presentation/store/contatos_store.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/servico/presentation/presentation.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/servico/presentation/view/pages/pages.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/servico/presentation/view/pages/servicos_page_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/servico/presentation/view/view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/servico/servico.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/settings/data/data.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/settings/data/repositories/repositories.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/settings/data/repositories/settings_hive_repository.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/settings/data/repositories/settings_repository.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/settings/domain/models/models.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/settings/domain/models/setting.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/settings/presentation/controllers/settings_notifier.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/settings/presentation/view/pages/pages.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/settings/presentation/view/pages/settings_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/settings/presentation/view/view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/settings/presentation/view/widgets/gerenciar_contas_section.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/settings/presentation/view/widgets/logged_in_info_section.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/settings/presentation/view/widgets/theme_dropdowns.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/settings/presentation/view/widgets/widgets.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/lib/src/features/settings/settings.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/pubspec.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/pubspec.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/test/random_model_generators.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/test/src/core/domain/enums/roles_test.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/test/src/core/domain/models/api_response_test.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/test/src/features/auth/data/repositories/auth_repository_test.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/test/src/features/auth/domain/models/account_test.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/test/src/features/contato/domain/models/contato_test.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/melos.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/melos_laboratorio_ferreira.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/build_apk.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/test.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.metadata" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.run/Clean.run.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.run/Generate.run.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.run/Test All.run.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.run/Update.run.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.run/Watch Generate.run.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_options.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/google-services.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/debug/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/kotlin/com/dnn/laboratorio_ferreira_mobile/MainActivity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-hdpi/android12splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-hdpi/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-mdpi/android12splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-mdpi/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-v21/background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-v21/launch_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-xhdpi/android12splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-xhdpi/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-xxhdpi/android12splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-xxhdpi/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-xxxhdpi/android12splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable-xxxhdpi/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable/background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable/launch_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/values-night/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/values-v31/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/values/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/profile/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/colors/colors.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/laboratorioferreira_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/laboratorioferreira_logo_sem_fundo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/env/.env.development" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/env/.env.example" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/AppFrameworkInfo.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/Debug.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/Release.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/AppDelegate.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchBackground.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchBackground.imageset/background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Base.lproj/LaunchScreen.storyboard" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Base.lproj/Main.storyboard" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/GoogleService-Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Runner-Bridging-Header.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/firebase_app_id_file.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/env.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/firebase_options.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/assets.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/assets.gen.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/colors.gen.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/env.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/core/application/services/i_http_service.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/core/domain/models/api_response.freezed.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/core/domain/models/api_response.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/auth/data/repositories/auth_repository.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/auth/domain/models/account.freezed.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/auth/domain/models/account.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/auth/domain/models/login.freezed.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/auth/domain/models/login.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/auth/domain/models/session.freezed.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/auth/domain/models/session.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/auth/presentation/controllers/auth_controller.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/auth/presentation/controllers/login_controller.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/auth/presentation/states/auth_state.freezed.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/contato/application/services/contato_service.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/contato/data/repositories/contato_repository.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/contato/domain/models/contato.freezed.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/contato/domain/models/contato.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/contato/domain/models/pagination.freezed.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/contato/presentation/components/editor_contato/controllers/is_loading_controller.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/settings/data/repositories/settings_repository.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/settings/domain/models/setting.freezed.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/generated/src/features/settings/presentation/controllers/settings_notifier.g.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/application/application.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/application/services/dio_service.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/application/services/i_http_service.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/application/services/init.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/application/services/riverpod_logger.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/application/services/router.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/application/services/services.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/domain/domain.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/domain/enums/enums.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/domain/enums/roles.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/domain/models/api_response.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/domain/models/models.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/domain/models/repository_exception.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/misc/extensions/build_context_extension.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/misc/extensions/extensions.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/misc/extensions/map_extension.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/misc/extensions/nullable_string_extension.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/misc/extensions/riverpod_extension.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/misc/helpers/formatter.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/misc/helpers/helpers.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/misc/helpers/ui_helper.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/misc/helpers/validator.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/misc/misc.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/controllers/controllers.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/controllers/network_status_notifier.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/controllers/pagination_controller.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/presentation.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/states/store.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/view/pages/home_page.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/view/pages/inicio_page_view.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/view/pages/pages.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/view/pages/welcome_page.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/view/theme/app_theme.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/view/theme/theme.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/view/view.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/view/widgets/async_value_box.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/view/widgets/confirm_modal.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/view/widgets/custom_chip.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/view/widgets/custom_text_form_field.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/view/widgets/custom_wrap.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/view/widgets/dropdown_menu.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/view/widgets/form_section.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/view/widgets/logo.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/view/widgets/scroll_to_top_button.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/view/widgets/search_bar.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/core/presentation/view/widgets/widgets.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/auth/data/repositories/auth_repository.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/auth/domain/models/account.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/auth/domain/models/login.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/auth/domain/models/models.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/auth/domain/models/refresh_token.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/auth/domain/models/session.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/auth/presentation/controllers/auth_controller.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/auth/presentation/controllers/login_controller.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/auth/presentation/states/auth_state.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/auth/presentation/view/pages/login_page.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/auth/presentation/view/widgets/login_form.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/application/services/contato_service.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/data/repositories/contato_repository.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/data/repositories/repositories.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/domain/models/contato.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/domain/models/models.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/domain/models/pagination.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/misc/helpers/editor_contato_helper.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/presentation/components/contatos_list/view/pages/lista_contatos_page_view.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/presentation/components/contatos_list/view/widgets/contato_card.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/presentation/components/contatos_list/view/widgets/criar_contato_button.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/presentation/components/detalhes_contato/view/pages/detalhes_contato_page.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/presentation/components/editor_contato/controllers/editor_contato_controller.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/presentation/components/editor_contato/controllers/is_loading_controller.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/presentation/components/editor_contato/view/pages/editor_contato_page.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/presentation/components/editor_contato/view/widgets/add_categoria_dialog.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/presentation/components/editor_contato/view/widgets/categorias_form_section.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/presentation/components/editor_contato/view/widgets/criar_account_fields.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/presentation/components/editor_contato/view/widgets/criar_account_section.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/presentation/components/editor_contato/view/widgets/editor_telefone_dialog.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/presentation/components/editor_contato/view/widgets/name_form_section.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/presentation/components/editor_contato/view/widgets/telefones_form_section.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/contato/presentation/store/contatos_store.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/servico/presentation/presentation.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/servico/presentation/view/pages/pages.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/servico/presentation/view/pages/servicos_page_view.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/servico/presentation/view/view.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/servico/servico.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/settings/data/data.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/settings/data/repositories/repositories.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/settings/data/repositories/settings_hive_repository.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/settings/data/repositories/settings_repository.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/settings/domain/models/models.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/settings/domain/models/setting.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/settings/presentation/controllers/settings_notifier.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/settings/presentation/view/pages/pages.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/settings/presentation/view/pages/settings_page.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/settings/presentation/view/view.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/settings/presentation/view/widgets/gerenciar_contas_section.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/settings/presentation/view/widgets/logged_in_info_section.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/settings/presentation/view/widgets/theme_dropdowns.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/settings/presentation/view/widgets/widgets.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/features/settings/settings.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/random_model_generators.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/src/core/domain/enums/roles_test.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/src/core/domain/models/api_response_test.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/src/features/auth/data/repositories/auth_repository_test.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/src/features/auth/domain/models/account_test.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/src/features/contato/domain/models/contato_test.dart" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2LBcrdjUuLLn1N8bqnJZKeJdfSG" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "io.flutter.reload.alreadyRun": "true",
+    "last_opened_file_path": "/home/danilloism/Projetos/laboratorio_ferreira",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "show.migrate.to.gradle.popup": "false"
+  }
+}]]></component>
+  <component name="RunManager" selected="Flutter.Flutter Run -&gt; 'laboratorio_ferreira_mobile'" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="13489e0d-e954-4c31-a5d4-c709b2750e78" name="Changes" comment="" />
+      <created>1675348115556</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1675348115556</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="setup melos" />
+    <option name="LAST_COMMIT_MESSAGE" value="setup melos" />
+  </component>
+</project>
