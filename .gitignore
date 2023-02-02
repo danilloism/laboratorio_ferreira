@@ -1,8 +1,6 @@
 pubspec_overrides.yaml
 **/pubspec_overrides.yaml
-
-
-.idea/
+.idea/*
 
 !.idea/codeStyles/
 !.idea/dictionaries/
